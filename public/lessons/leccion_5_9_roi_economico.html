@@ -1,0 +1,204 @@
+<style>*{box-sizing:border-box;margin:0;padding:0}.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:32px}.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(156,39,176,.15);border:1px solid rgba(156,39,176,.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#CE93D8;font-weight:500;margin-bottom:12px;letter-spacing:.5px}.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px}.lt span{color:#AB47BC}.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px;flex-wrap:wrap}.lmi{display:flex;align-items:center;gap:5px}.md{width:6px;height:6px;border-radius:50%}.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}.pbf{height:4px;background:#AB47BC;border-radius:4px;width:0%;transition:width .5s}.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:70px}.nb.active{color:#AB47BC;border-bottom-color:#AB47BC;background:#0C0D12}.sec{display:none;padding:20px 24px}.sec.active{display:block}.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}.cb{font-size:13px;color:#E0E0E0;line-height:1.7}.simil{background:rgba(156,39,176,.08);border:1px solid rgba(156,39,176,.22);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}.sl{font-size:10px;color:#CE93D8;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}.btn-p{background:#AB47BC;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500}.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer}.btn-complete{background:linear-gradient(135deg,#AB47BC,#7B1FA2);color:#fff;border:none;border-radius:10px;padding:14px 28px;font-size:13px;font-weight:600;cursor:pointer;width:100%;margin-top:16px;letter-spacing:.3px;transition:opacity .2s}.tec-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.tec-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 12px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s}.tec-tab.active{background:rgba(156,39,176,.15);border-color:#AB47BC;color:#CE93D8}.tec-panel{display:none}.tec-panel.show{display:block}.prompt-box{background:#0e1018;border:1px solid #1e2335;border-radius:10px;padding:14px;margin:10px 0}.prompt-label{font-size:10px;color:#CE93D8;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}.prompt-text{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.7;white-space:pre-wrap;word-break:break-word}.prompt-why{font-size:11px;color:#B0BEC5;line-height:1.6;margin-top:10px;padding-top:10px;border-top:1px solid #1e2335}.limit-item{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;background:#13151e;border:1px solid #1e2335;border-radius:8px;margin-bottom:8px;font-size:12px;color:#E0E0E0;line-height:1.6}.li-icon{font-size:16px;flex-shrink:0;margin-top:1px}.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}.concept-card{background:#13151e;border:1px solid #1e2335;border-radius:10px;padding:14px}.cc-label{font-size:10px;color:#CE93D8;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}.cc-title{font-size:13px;font-weight:500;color:#fff;margin-bottom:6px}.cc-body{font-size:12px;color:#B0BEC5;line-height:1.6}.qw{display:none}.qw.active{display:block}.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}.qopts{display:flex;flex-direction:column;gap:8px}.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s}.qopt:hover{border-color:#AB47BC;color:#fff}.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}.qfb.show{display:block}.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}.qnx{display:none;margin-top:12px}.qnx.show{display:block}.lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a}.fl{color:#AB47BC;cursor:pointer;text-decoration:underline}</style>
+<div class="lw">
+  <div class="lh">
+    <div class="lb">MÓDULO 5 · LECCIÓN 5.9</div>
+    <div class="lt">Análisis económico del impacto: <span>ROI en salud, métricas de eficiencia y business cases exitosos</span></div>
+    <div class="lm"><div class="lmi"><div class="md" style="background:#AB47BC"></div>72 minutos</div><div class="lmi"><div class="md" style="background:#00B8D4"></div>4 secciones</div><div class="lmi"><div class="md" style="background:#FFB300"></div>Economía de la salud digital</div></div>
+  </div>
+  <div class="pbw"><div class="pbb"><div class="pbf" id="pf59"></div></div><div class="pbl" id="pl59">0%</div></div>
+  <div class="snav">
+    <button class="nb active" id="t1" onclick="go(1)">ROI — metodología</button>
+    <button class="nb" id="t2" onclick="go(2)">Métricas de eficiencia</button>
+    <button class="nb" id="t3" onclick="go(3)">Business case práctico</button>
+    <button class="nb" id="t4" onclick="go(4)">Test</button>
+  </div>
+
+  <div class="sec active" id="s1">
+    <div class="card"><div class="ct">Objetivo de la lección</div><div class="cb">Cuantificar el valor económico generado por la implementación de IA en entornos sanitarios y construir el business case que justifique la inversión ante la dirección hospitalaria. El ROI en salud incluye valor económico, clínico, para el profesional y para el sistema — los cuatro deben aparecer en cualquier presentación creíble.</div></div>
+    <div class="simil"><div class="sl">Marco de referencia clínico</div>Calcular el ROI de un proyecto de IA en sanidad es como justificar un nuevo equipo de imagen: no basta el coste del equipo — necesitas cuantificar pruebas adicionales por año, coste evitado de derivaciones externas, mejora en diagnóstico precoz e impacto en tiempo de espera. El mismo marco aplica a la IA, con la ventaja de que la IA escala mejor.</div>
+    <div class="ct" style="margin-top:4px">Los 4 tipos de valor del ROI en IA sanitaria</div>
+    <div class="concept-grid">
+      <div class="concept-card"><div class="cc-label">Valor económico directo</div><div class="cc-title">Ahorro cuantificable</div><div class="cc-body">Reducción de estancia media, menor tasa de reingresos, reducción de pruebas innecesarias, ahorro en tiempo de documentación. Los más fáciles de medir y los que más valora la dirección financiera.</div></div>
+      <div class="concept-card"><div class="cc-label">Valor clínico</div><div class="cc-title">Mejora en resultados</div><div class="cc-body">Reducción de complicaciones, detección más precoz, mejor adherencia, menor variabilidad clínica. Más difícil de cuantificar en euros, pero imprescindible para la credibilidad clínica del proyecto.</div></div>
+      <div class="concept-card"><div class="cc-label">Valor para el profesional</div><div class="cc-title">Tiempo recuperado</div><div class="cc-body">Minutos ahorrados en documentación por paciente, reducción del burnout, mayor tiempo disponible para atención directa. Determinante para la adopción real del sistema.</div></div>
+      <div class="concept-card"><div class="cc-label">Valor sistémico</div><div class="cc-title">Impacto en el sistema</div><div class="cc-body">Reducción de urgencias evitables, mejor gestión de crónicos, datos para investigación. Horizonte temporal largo: no esperes verlos en el año 1 del proyecto.</div></div>
+    </div>
+    <div class="tec-tabs">
+      <button class="tec-tab active" onclick="showTab(this,'tab-costes')">Costes del proyecto</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-bene')">Cuantificar beneficios</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-formula')">Fórmula y períodos</button>
+    </div>
+    <div class="tec-panel show" id="tab-costes">
+      <div class="limit-item"><div class="li-icon">💰</div><div><strong>Costes de implementación (año 0)</strong><br>Licencias o coste de desarrollo del sistema, infraestructura (hardware, cloud), integración con HCE (horas TI), formación del personal (horas × coste/hora), certificación regulatoria si aplica AEMPS.</div></div>
+      <div class="limit-item"><div class="li-icon">💰</div><div><strong>Costes recurrentes (año 1 en adelante)</strong><br>Mantenimiento y licencias anuales, soporte técnico, actualizaciones del modelo, costes de monitorización y gobernanza, tiempo del personal dedicado a supervisión del sistema.</div></div>
+      <div class="limit-item"><div class="li-icon">⚠️</div><div><strong>Costes ocultos que se olvidan con frecuencia</strong><br>Productividad reducida durante la curva de aprendizaje (primeros 3-6 meses), costes de gestión del cambio (reuniones, comunicación, resistencias), coste de los datos (adquisición, anonimización, almacenamiento). Si no los incluyes, el business case no sobrevivirá a la primera auditoría.</div></div>
+    </div>
+    <div class="tec-panel" id="tab-bene">
+      <div class="limit-item"><div class="li-icon">📈</div><div><strong>Ahorro por reducción de estancia media</strong><br>Fórmula: (estancia actual - estancia objetivo) × altas/año × coste día-cama. Ejemplo real: reducir estancia de 8.4 a 7.2 días en 2.000 altas/año a 600 €/día-cama = 1.440.000 € anuales de ahorro potencial. Usa siempre datos de tu propio hospital, no benchmarks genéricos.</div></div>
+      <div class="limit-item"><div class="li-icon">📈</div><div><strong>Ahorro por reducción de reingresos</strong><br>Fórmula: (tasa actual - tasa objetivo) × altas/año × coste medio reingreso. Reducir reingresos del 13% al 9% en 2.000 altas a 3.500 €/reingreso = 280.000 €/año. El coste medio de reingreso es dato disponible en el CMBD de tu hospital.</div></div>
+      <div class="limit-item"><div class="li-icon">📈</div><div><strong>Ahorro por reducción de tiempo de documentación</strong><br>Fórmula: (minutos ahorrados/paciente ÷ 60) × pacientes/año × coste/hora médico. Ahorrar 8 min/paciente en 5.000 consultas a 60 €/hora = 40.000 €/año. Pequeño pero sostenido y muy creíble para la dirección porque es fácil de auditar.</div></div>
+    </div>
+    <div class="tec-panel" id="tab-formula">
+      <div class="limit-item"><div class="li-icon">🧮</div><div><strong>ROI (%) = [(Beneficios - Costes) / Costes] × 100</strong><br>En sanidad pública, el ROI puro no es siempre la métrica más relevante: el coste por ingreso evitado, el coste por hora de atención directa recuperada o el coste por punto de mejora en satisfacción del paciente pueden ser más significativos para la dirección clínica y la gerencia.</div></div>
+      <div class="limit-item"><div class="li-icon">📅</div><div><strong>Período de retorno esperado: 2-4 años en proyectos bien dimensionados</strong><br>Proyectos que prometen retorno en 6 meses no son creíbles. Proyectos que no recuperan la inversión en 5 años requieren justificación clínica muy sólida. El rango 2-4 años es el que acepta la mayoría de las gerencias hospitalarias para proyectos de digitalización.</div></div>
+      <div class="limit-item"><div class="li-icon">⚠️</div><div><strong>El error más frecuente: asumir beneficios plenos desde el mes 1</strong><br>Los beneficios de la IA son crecientes con el tiempo. Año 1 incluye curva de aprendizaje, productividad reducida y adopción parcial. Los beneficios plenos llegan en año 2-3. Un business case que no refleja esta curva perderá credibilidad ante cualquier director financiero con experiencia en proyectos TI.</div></div>
+    </div>
+    <div class="nav-actions"><div></div><button class="btn-p" onclick="go(2)">Métricas de eficiencia →</button></div>
+  </div>
+
+  <div class="sec" id="s2">
+    <div class="card"><div class="ct">Métricas de eficiencia para monitorizar el impacto de la IA</div><div class="cb">Definir las métricas antes de implementar el sistema es tan importante como el sistema mismo. Sin métricas predefinidas, no puedes demostrar que el sistema funciona — ni detectar si algo va mal. Las métricas deben ser específicas, medibles, vinculadas a datos que el sistema ya captura y comparables con la situación previa.</div></div>
+    <div class="simil"><div class="sl">Marco de referencia clínico</div>Las métricas de un proyecto de IA son como los indicadores de calidad de una unidad clínica: sin ellos puedes trabajar, pero no puedes mejorar sistemáticamente ni demostrar ante la gerencia que los recursos invertidos están generando resultado. El cuadro de mando de la IA tiene que ser tan visible como el de mortalidad o de reingresos.</div>
+    <div class="tec-tabs">
+      <button class="tec-tab active" onclick="showTab(this,'tab-proc')">Métricas de proceso</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-clin')">Métricas clínicas</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-adopt')">Adopción y satisfacción</button>
+    </div>
+    <div class="tec-panel show" id="tab-proc">
+      <div class="limit-item"><div class="li-icon">⏱️</div><div><strong>Tiempo de documentación por paciente (antes/después)</strong><br>Minutos desde apertura del episodio hasta firma del informe. Medible directamente en el sistema. Objetivo típico: reducción del 30-40% en el tiempo de redacción del informe tras 6 meses de uso estable del sistema.</div></div>
+      <div class="limit-item"><div class="li-icon">⏱️</div><div><strong>Tasa de modificación del borrador generado por IA</strong><br>Porcentaje de campos del borrador que el clínico modifica antes de firmar. Una tasa de modificación muy baja puede indicar que el clínico no está revisando adecuadamente. Una tasa muy alta puede indicar que el sistema no está bien calibrado para tu contexto clínico.</div></div>
+      <div class="limit-item"><div class="li-icon">⏱️</div><div><strong>Tiempo entre cierre de episodio y firma del informe</strong><br>En muchos hospitales, este tiempo es de horas o días en sistemas manuales. Con IA bien integrada debería reducirse a minutos. Impacta directamente en la continuidad asistencial con el médico de familia.</div></div>
+    </div>
+    <div class="tec-panel" id="tab-clin">
+      <div class="limit-item"><div class="li-icon">🏥</div><div><strong>Tasa de reingresos a 30 días (antes/después)</strong><br>El indicador de calidad asistencial más sensible al uso de IA en documentación y seguimiento. Requiere 12 meses de datos post-implementación para ser estadísticamente significativo. No uses datos de los primeros 3 meses — incluyen el ruido de la curva de aprendizaje.</div></div>
+      <div class="limit-item"><div class="li-icon">🏥</div><div><strong>Estancia media ajustada por GRD</strong><br>La estancia media bruta puede bajar por cambios en el mix de pacientes, no por la IA. Usa siempre la estancia ajustada por GRD (Grupos Relacionados por el Diagnóstico) para eliminar el efecto del mix de pacientes en el análisis.</div></div>
+      <div class="limit-item"><div class="li-icon">🏥</div><div><strong>Incidentes relacionados con documentación</strong><br>Errores de medicación al alta, omisiones en el plan de cuidados, derivaciones no enviadas. Si el sistema de IA mejora la documentación, estos incidentes deberían reducirse. Requiere un sistema de notificación de incidentes activo como línea de base.</div></div>
+    </div>
+    <div class="tec-panel" id="tab-adopt">
+      <div class="limit-item"><div class="li-icon">👥</div><div><strong>Tasa de adopción del sistema (% de profesionales que lo usan)</strong><br>Un sistema de IA que usa el 20% del servicio no tiene el ROI proyectado para el 100%. Monitoriza la adopción semanalmente en los primeros 6 meses y actúa sobre las barreras específicas de los no-adoptantes antes de que la resistencia se consolide.</div></div>
+      <div class="limit-item"><div class="li-icon">👥</div><div><strong>Satisfacción del profesional (NPS o escala 1-10)</strong><br>Un sistema clínicamente útil pero que los profesionales detestan no se sostendrá. La satisfacción del profesional es la métrica de supervivencia del proyecto a largo plazo. Mídela a los 3 y 12 meses — la mejora entre esas dos medidas es el indicador de que el sistema está madurando correctamente.</div></div>
+    </div>
+    <div class="prompt-box">
+      <div class="prompt-label">Prompt para diseñar el cuadro de mando de un proyecto de IA sanitaria</div>
+      <div class="prompt-text">Actúa como gestor hospitalario especializado en calidad y proyectos de digitalización sanitaria.
+
+Contexto: Acabamos de implementar [tipo de sistema de IA] en [servicio/hospital]. El sistema lleva 3 meses en funcionamiento.
+
+Datos disponibles: [lista de datos que el sistema ya captura o puede capturar]
+
+Tarea: Diseña el cuadro de mando de monitorización del proyecto con: (1) 3-5 indicadores de proceso con su definición exacta, fuente de datos y frecuencia de medición, (2) 2-3 indicadores clínicos con metodología de cálculo ajustada por case-mix, (3) 2 indicadores de adopción y satisfacción, (4) umbrales de alerta que indican que el proyecto no está funcionando según lo previsto y requieren revisión.
+
+Restricciones: Los indicadores deben ser medibles con los datos disponibles en mi contexto — no propongas métricas que requieran sistemas o datos que no tengo. Señala cuáles requieren al menos 6-12 meses para ser estadísticamente fiables.</div>
+      <div class="prompt-why">Pedir umbrales de alerta explícitos es la clave de un cuadro de mando útil: sin ellos tienes un tablero decorativo. Con ellos tienes un sistema de gestión activa del proyecto.</div>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-s" onclick="go(1)">← ROI metodología</button>
+      <button class="btn-p" onclick="go(3)">Business case →</button>
+    </div>
+  </div>
+
+  <div class="sec" id="s3">
+    <div class="card"><div class="ct">Business case práctico para presentación a dirección hospitalaria</div><div class="cb">La dirección hospitalaria recibe docenas de propuestas de proyectos al año. Un business case de IA que no está en su idioma — euros, pacientes, indicadores de calidad — no compite. Esta sección te da la estructura probada para presentar un proyecto de IA a la gerencia de un hospital público español.</div></div>
+    <div class="simil"><div class="sl">Marco de referencia clínico</div>Presentar un proyecto de IA a la dirección es como presentar un estudio clínico a un comité de ética: no es suficiente que la idea sea buena — necesitas demostrar que los beneficios son reales, los riesgos están identificados, tienes un plan de seguimiento y los recursos solicitados están justificados.</div>
+    <div class="tec-tabs">
+      <button class="tec-tab active" onclick="showTab(this,'tab-struct')">Estructura del business case</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-err-bc')">Errores frecuentes</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-prompt-bc')">Prompt para el business case</button>
+    </div>
+    <div class="tec-panel show" id="tab-struct">
+      <div class="limit-item"><div class="li-icon">1️⃣</div><div><strong>Resumen ejecutivo (1 página)</strong><br>Problema que resuelve, solución propuesta, inversión requerida, ROI proyectado y período de retorno. Si la dirección no entiende el proyecto con esta página, el resto no importa.</div></div>
+      <div class="limit-item"><div class="li-icon">2️⃣</div><div><strong>Situación actual y problema a resolver</strong><br>Datos objetivos de la situación actual: tiempo de documentación actual, tasa de reingresos, satisfacción del profesional, incidencias de documentación. Sin línea de base, no puedes demostrar mejora.</div></div>
+      <div class="limit-item"><div class="li-icon">3️⃣</div><div><strong>Solución propuesta y evidencia de efectividad</strong><br>Descripción del sistema, referencia a implementaciones similares en hospitales comparables (con resultados reales, no promesas de proveedor), evaluación del riesgo de implementación.</div></div>
+      <div class="limit-item"><div class="li-icon">4️⃣</div><div><strong>Análisis económico con escenario base y conservador</strong><br>Tabla de costes (años 0-3), tabla de beneficios cuantificados con supuestos explícitos, proyección de ROI en escenario base (adopción 80%) y conservador (adopción 50%), período de retorno en ambos escenarios.</div></div>
+      <div class="limit-item"><div class="li-icon">5️⃣</div><div><strong>Plan de implementación y métricas de seguimiento</strong><br>Cronograma realista (no optimista), hitos medibles, cuadro de mando con indicadores y umbrales, plan de contingencia si los resultados del año 1 no alcanzan el 60% del objetivo.</div></div>
+    </div>
+    <div class="tec-panel" id="tab-err-bc">
+      <div class="limit-item"><div class="li-icon">❌</div><div><strong>Usar datos de eficacia del proveedor como datos propios</strong><br>"El sistema reduce los reingresos un 30%" en el folleto del proveedor no es evidencia suficiente para un business case hospitalario. Necesitas datos de hospitales comparables en contexto similar al tuyo, o un piloto propio.</div></div>
+      <div class="limit-item"><div class="li-icon">❌</div><div><strong>No incluir los costes ocultos de implementación</strong><br>Los proyectos TI sanitarios exceden el presupuesto inicial con una frecuencia muy alta. Añade siempre un 20-30% de contingencia sobre los costes de implementación estimados.</div></div>
+      <div class="limit-item"><div class="li-icon">❌</div><div><strong>Presentar solo el escenario optimista</strong><br>La dirección hospitalaria tiene experiencia en proyectos que no alcanzan sus objetivos. Un business case sin escenario conservador parece poco riguroso. El escenario conservador (adopción 50%, beneficios año 1 al 40%) hace más creíble el escenario base.</div></div>
+      <div class="limit-item"><div class="li-icon">❌</div><div><strong>Ignorar el impacto en los profesionales</strong><br>Un proyecto de IA que no menciona cómo mejora el día a día del profesional que lo va a usar no tiene en cuenta el factor más crítico para su éxito: la adopción. La satisfacción del profesional es una métrica de ROI tan válida como el ahorro en días de estancia.</div></div>
+    </div>
+    <div class="tec-panel" id="tab-prompt-bc">
+      <div class="prompt-box">
+        <div class="prompt-label">Prompt para construir el business case completo</div>
+        <div class="prompt-text">Actúa como consultor de gestión hospitalaria especializado en economía de la salud digital.
+
+Contexto del proyecto:
+- Sistema propuesto: [tipo de IA, ej. escriba virtual, triage asistido]
+- Ámbito: [servicio/hospital] con [X] pacientes/año y [X] profesionales afectados
+- Inversión estimada: [rango orientativo en euros]
+- Datos actuales disponibles: [estancia media, tasa reingresos, tiempo documentación, etc.]
+- Objetivo de mejora: [reducción X% en estancia, X min ahorrados por consulta, etc.]
+
+Tarea: Genera el business case estructurado con:
+1. Resumen ejecutivo (150 palabras máximo)
+2. Tabla de costes años 0-3 (implementación + recurrentes + contingencia 25%)
+3. Tabla de beneficios con fórmula explícita para cada partida
+4. Proyección ROI: escenario base (adopción 80%) y conservador (adopción 50%)
+5. Período de retorno en ambos escenarios
+6. Cuadro de mando: 5 indicadores con umbrales de alerta
+7. Riesgos principales y plan de mitigación
+
+Restricciones: Usa supuestos conservadores propios del sector público español. Señala con [SUPUESTO] cada hipótesis. Los beneficios del año 1 deben estar reducidos al 40-60% del objetivo por curva de aprendizaje. No incluyas beneficios no cuantificables en las tablas — ponlos en una sección separada como valor adicional no monetizado.</div>
+        <div class="prompt-why">La instrucción de reducir los beneficios del año 1 al 40-60% por curva de aprendizaje es la diferencia entre un business case creíble y uno optimista. La dirección hospitalaria sabe que los proyectos TI no arrancan a plena velocidad — verlo reflejado en el modelo es señal de rigor, no de pesimismo.</div>
+      </div>
+    </div>
+    <div style="margin-top:20px;padding-top:16px;border-top:1px solid #1e2335">
+      <button class="btn-complete" onclick="completar()">✓ MARCAR LECCIÓN COMO COMPLETADA</button>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-s" onclick="go(2)">← Métricas</button>
+      <button class="btn-p" onclick="go(4)">Test →</button>
+    </div>
+  </div>
+
+  <div class="sec" id="s4">
+    <div class="qw active" id="q1w">
+      <div class="qnum">Pregunta 1 de 3</div>
+      <div class="qtxt">Un business case de IA para reducción de reingresos estima un ahorro de 400.000 €/año desde el primer mes de implementación. ¿Qué error conceptual contiene esta proyección?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,1)">El error está en la cifra — 400.000 € es un ahorro demasiado grande para ser creíble</button>
+        <button class="qopt" onclick="ans(this,true,1)">Asumir beneficios plenos desde el primer mes ignora la curva de aprendizaje, la adopción progresiva y el período necesario para que los cambios en la práctica clínica impacten en reingresos (métrica con rezago de al menos 90 días). Los beneficios del año 1 deberían estar al 40-60% del objetivo</button>
+        <button class="qopt" onclick="ans(this,false,1)">El error está en no diferenciar entre reingresos evitables y reingresos inevitables</button>
+        <button class="qopt" onclick="ans(this,false,1)">No hay error — si el sistema funciona correctamente desde el primer día, los beneficios pueden ser inmediatos</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+      <div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div>
+    </div>
+    <div class="qw" id="q2w">
+      <div class="qnum">Pregunta 2 de 3</div>
+      <div class="qtxt">Un hospital compara su estancia media antes y después de implementar IA sin ajustar por GRD (Grupos Relacionados por el Diagnóstico). ¿Por qué este análisis puede ser engañoso?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,2)">Porque el GRD solo aplica a hospitales de más de 500 camas</button>
+        <button class="qopt" onclick="ans(this,false,2)">Porque la estancia media nunca es un indicador válido del impacto de la IA</button>
+        <button class="qopt" onclick="ans(this,true,2)">Porque la estancia media bruta puede bajar por un cambio en el mix de pacientes (más pacientes de baja complejidad, menos de alta complejidad) sin relación con la IA. Ajustar por GRD elimina el efecto del mix y permite comparar la estancia real de pacientes equivalentes antes y después de la implementación</button>
+        <button class="qopt" onclick="ans(this,false,2)">Porque el GRD es un sistema de facturación, no un indicador de calidad clínica</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+      <div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div>
+    </div>
+    <div class="qw" id="q3w">
+      <div class="qnum">Pregunta 3 de 3</div>
+      <div class="qtxt">Un servicio hospitalario implanta un sistema de IA con una tasa de adopción del 25% al cabo de 6 meses. ¿Cuál es el impacto económico más inmediato de esta baja adopción y cuál es la acción prioritaria?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,3)">El impacto es principalmente técnico — el sistema necesita más datos para mejorar. La acción prioritaria es optimizar el modelo de IA</button>
+        <button class="qopt" onclick="ans(this,true,3)">El ROI proyectado cae en proporción directa a la adopción: si el business case asumía 80% de adopción y la real es 25%, los beneficios reales son aproximadamente un tercio de los proyectados. La acción prioritaria es identificar las barreras específicas de los no-adoptantes (usabilidad, integración en flujo, formación insuficiente) y resolverlas antes de que la resistencia se consolide</button>
+        <button class="qopt" onclick="ans(this,false,3)">El impacto económico es marginal — la IA aporta valor incluso con baja adopción porque mejora a los que sí la usan</button>
+        <button class="qopt" onclick="ans(this,false,3)">La acción prioritaria es escalar el sistema a más servicios para aumentar el volumen de usuarios</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+      <div class="qnx" id="nx3">
+        <div style="background:rgba(156,39,176,.1);border:1px solid rgba(156,39,176,.28);border-radius:10px;padding:16px;margin-top:8px">
+          <div style="font-size:13px;font-weight:500;color:#CE93D8;margin-bottom:6px">✓ Lección 5.9 completada</div>
+          <div style="font-size:12px;color:#B0BEC5;line-height:1.6">Dominas la metodología de ROI sanitario, las métricas de eficiencia y la construcción del business case. La lección 5.10 trabaja la <strong style="color:#fff">IA en salud mental: apoyo al diagnóstico psiquiátrico, chatbots terapéuticos y límites éticos fundamentales</strong>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="lf"><span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span><span> · Desarrollado por DoncelProject · doncel.project@gmail.com</span></div>
+</div>
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/4)*100);document.getElementById('pf59').style.width=p+'%';document.getElementById('pl59').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function showTab(el,id){el.closest('.sec').querySelectorAll('.tec-tab').forEach(t=>t.classList.remove('active'));el.closest('.sec').querySelectorAll('.tec-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById(id).classList.add('show');}
+function completar(){window.parent.postMessage({type:'LESSON_COMPLETE'},'*');document.querySelector('.btn-complete').textContent='✓ Lección completada';document.querySelector('.btn-complete').style.opacity='.5';document.querySelector('.btn-complete').disabled=true;}
+const fbs={
+  1:{ok:'✅ Correcto. Los beneficios de la IA en reingresos tienen un rezago inherente: los reingresos reflejan lo que pasó 30-90 días antes. Además, la adopción es progresiva — el sistema no está al 80% de uso desde el primer mes. Y la curva de aprendizaje reduce la productividad inicial. Un business case riguroso proyecta beneficios del año 1 al 40-60% del objetivo, alcanzando el 100% en el año 2-3.',ko:'❌ El problema no es la cifra en sí sino el timing. Los beneficios en reingresos tienen un rezago de 90+ días (los reingresos del mes 1 reflejan el alta del mes anterior, sin IA). Además, la adopción es progresiva y la curva de aprendizaje reduce la productividad inicial. Un business case que asume beneficios plenos desde el día 1 no sobrevivirá a la primera revisión trimestral.'},
+  2:{ok:'✅ Correcto. El mix de pacientes puede cambiar por razones completamente ajenas a la IA: un nuevo servicio que absorbe casos complejos, cambios en el perfil demográfico del área de referencia, o simplemente variabilidad estacional. Si no ajustas por GRD, puedes concluir que la IA redujo la estancia cuando en realidad el hospital simplemente trató pacientes más sencillos ese año. El ajuste por GRD es la práctica estándar en evaluación de eficiencia hospitalaria.',ko:'❌ El GRD no es solo un sistema de facturación — es la herramienta estándar para ajustar por complejidad del paciente en análisis de eficiencia hospitalaria. Sin el ajuste, estás comparando manzanas con naranjas: si el año post-IA el hospital trató más procesos de baja complejidad por cambios en el flujo de pacientes, la estancia media bajará aunque la IA no haya aportado nada.'},
+  3:{ok:'✅ Correcto. El ROI de un sistema de IA es directamente proporcional a su adopción: un sistema usado por el 25% del servicio genera aproximadamente el 25% de los beneficios proyectados para el 100%. Y la baja adopción a los 6 meses es una señal de alarma: las resistencias se consolidan con el tiempo. La acción prioritaria es identificar las barreras específicas de los no-adoptantes — no escalar el sistema a más servicios cuando el actual no está funcionando.',ko:'❌ El impacto económico de una adopción del 25% cuando se proyectaba 80% es severo: los beneficios reales son aproximadamente un tercio de los proyectados. Y escalar a más servicios sin resolver las barreras de adopción solo replicará el problema. La acción prioritaria es diagnóstico de barreras específicas (¿es usabilidad? ¿integración? ¿formación? ¿resistencia cultural?) y resolución dirigida antes de los 9 meses.'}
+};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+upd();
+</script>

@@ -1,0 +1,406 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:32px}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(156,39,176,.15);border:1px solid rgba(156,39,176,.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#CE93D8;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px}
+.lt span{color:#AB47BC}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px;flex-wrap:wrap}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#AB47BC;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:70px}
+.nb.active{color:#AB47BC;border-bottom-color:#AB47BC;background:#0C0D12}
+.sec{display:none;padding:20px 24px}
+.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(156,39,176,.08);border:1px solid rgba(156,39,176,.22);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#CE93D8;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#AB47BC;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer}
+.btn-complete{background:linear-gradient(135deg,#AB47BC,#7B1FA2);color:#fff;border:none;border-radius:10px;padding:14px 28px;font-size:13px;font-weight:600;cursor:pointer;width:100%;margin-top:16px;letter-spacing:.3px;transition:opacity .2s}
+.btn-complete:hover{opacity:.88}
+.tec-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.tec-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 12px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s}
+.tec-tab.active{background:rgba(156,39,176,.15);border-color:#AB47BC;color:#CE93D8}
+.tec-panel{display:none}
+.tec-panel.show{display:block}
+.prompt-box{background:#0e1018;border:1px solid #1e2335;border-radius:10px;padding:14px;margin:10px 0}
+.prompt-label{font-size:10px;color:#CE93D8;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}
+.prompt-text{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.prompt-why{font-size:11px;color:#B0BEC5;line-height:1.6;margin-top:10px;padding-top:10px;border-top:1px solid #1e2335}
+.limit-item{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;background:#13151e;border:1px solid #1e2335;border-radius:8px;margin-bottom:8px;font-size:12px;color:#E0E0E0;line-height:1.6}
+.li-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.concept-card{background:#13151e;border:1px solid #1e2335;border-radius:10px;padding:14px}
+.cc-label{font-size:10px;color:#CE93D8;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}
+.cc-title{font-size:13px;font-weight:500;color:#fff;margin-bottom:6px}
+.cc-body{font-size:12px;color:#B0BEC5;line-height:1.6}
+.spec-card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px;margin-bottom:10px}
+.spec-hd{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.spec-icon{font-size:20px}
+.spec-name{font-size:14px;font-weight:500;color:#fff}
+.spec-tag{font-size:10px;padding:2px 8px;background:rgba(156,39,176,.15);border:1px solid rgba(156,39,176,.25);border-radius:8px;color:#CE93D8;margin-left:auto}
+.qw{display:none}.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s}
+.qopt:hover{border-color:#AB47BC;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}.qnx.show{display:block}
+.lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a}
+.fl{color:#AB47BC;cursor:pointer;text-decoration:underline}
+</style>
+
+<div class="lw">
+  <div class="lh">
+    <div class="lb">MÓDULO 5 · LECCIÓN 5.4</div>
+    <div class="lt">Personalización por especialidad: <span>configuraciones específicas, integración de guías locales y métricas de calidad</span></div>
+    <div class="lm">
+      <div class="lmi"><div class="md" style="background:#AB47BC"></div>72 minutos</div>
+      <div class="lmi"><div class="md" style="background:#00B8D4"></div>4 secciones</div>
+      <div class="lmi"><div class="md" style="background:#FFB300"></div>Biblioteca por especialidad</div>
+    </div>
+  </div>
+
+  <div class="pbw"><div class="pbb"><div class="pbf" id="pf54"></div></div><div class="pbl" id="pl54">0%</div></div>
+
+  <div class="snav">
+    <button class="nb active" id="t1" onclick="go(1)">System prompts expertos</button>
+    <button class="nb" id="t2" onclick="go(2)">Guías locales integradas</button>
+    <button class="nb" id="t3" onclick="go(3)">Métricas por especialidad</button>
+    <button class="nb" id="t4" onclick="go(4)">Test</button>
+  </div>
+
+  <!-- S1 -->
+  <div class="sec active" id="s1">
+    <div class="card">
+      <div class="ct">Objetivo de la lección</div>
+      <div class="cb">Adaptar ChatGPT, Claude y otras herramientas de IA al contexto específico de cada especialidad sanitaria. Un mismo modelo de IA da respuestas radicalmente diferentes dependiendo del system prompt, el contexto de especialidad y las restricciones configuradas. La personalización por especialidad es el factor que más diferencia un uso amateur de un uso profesional.</div>
+    </div>
+
+    <div class="simil">
+      <div class="sl">Marco de referencia clínico</div>
+      Usar ChatGPT sin configuración de especialidad es como consultar a un médico de guardia que sabe un poco de todo pero no conoce tu especialidad, tu protocolo local ni las particularidades de tu unidad. El system prompt transforma al generalista en el especialista que conoce exactamente tu contexto.
+    </div>
+
+    <div class="ct" style="margin-top:4px">¿Qué configura el system prompt de especialidad?</div>
+
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="cc-label">Rol y experiencia</div>
+        <div class="cc-title">Identidad profesional precisa</div>
+        <div class="cc-body">"Actúa como nefrólogo con 20 años de experiencia en trasplante renal y diálisis peritoneal" da respuestas muy distintas que "actúa como médico". El nivel de subespecialidad condiciona el tecnicismo, los supuestos y la profundidad.</div>
+      </div>
+      <div class="concept-card">
+        <div class="cc-label">Contexto asistencial</div>
+        <div class="cc-title">Entorno y recursos disponibles</div>
+        <div class="cc-body">Hospital terciario vs AP vs urgencias vs domicilio condicionan las opciones diagnósticas y terapéuticas disponibles. Sin este contexto, la IA puede proponer pruebas o tratamientos no disponibles en tu entorno.</div>
+      </div>
+      <div class="concept-card">
+        <div class="cc-label">Guías de referencia</div>
+        <div class="cc-title">Marco normativo clínico específico</div>
+        <div class="cc-body">Qué guías sigue tu especialidad (ESC, ATS, SEHAD...) y si hay protocolos locales que prevalecen sobre las guías internacionales. La IA debe saber cuál es tu marco de referencia, no el que asume por defecto.</div>
+      </div>
+      <div class="concept-card">
+        <div class="cc-label">Restricciones de seguridad</div>
+        <div class="cc-title">Lo que nunca debe hacer</div>
+        <div class="cc-body">Las restricciones específicas de especialidad: en oncología, nunca dar pronóstico de supervivencia sin datos completos; en pediatría, siempre verificar dosis por peso; en psiquiatría, nunca dar recomendaciones de medicación sin contexto completo.</div>
+      </div>
+    </div>
+
+    <div class="ct" style="margin:16px 0 8px">Biblioteca de system prompts por especialidad</div>
+
+    <div class="tec-tabs">
+      <button class="tec-tab active" onclick="showTab(this,'tab-med-interna')">Med. Interna</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-urgencias')">Urgencias</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-ap')">Atención Primaria</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-oncologia')">Oncología</button>
+    </div>
+
+    <div class="tec-panel show" id="tab-med-interna">
+      <div class="prompt-box">
+        <div class="prompt-label">System prompt — Medicina Interna hospitalaria</div>
+        <div class="prompt-text">Eres un internista con 15 años de experiencia en hospital terciario, subespecializado en enfermedades autoinmunes y pacientes pluripatológicos. Tu contexto habitual es una planta de hospitalización con acceso a todas las pruebas de imagen, laboratorio y consultas de subespecialidades.
+
+Marco de referencia clínica: guías europeas (ESC, EASL, EULAR) y protocolos SEMI. Cuando haya discrepancia entre guía internacional y práctica habitual española, señálalo.
+
+Restricciones permanentes:
+- En pacientes polimedicados (≥5 fármacos), revisa siempre interacciones antes de proponer un nuevo fármaco
+- No des pronósticos de supervivencia sin datos completos de estadiaje y estado funcional
+- Si la situación clínica requiere decisión ética (limitación de esfuerzo terapéutico, cuidados paliativos), señálalo explícitamente y no tomes esa decisión
+- Si no tienes suficientes datos para una recomendación segura, di qué dato adicional cambiaría tu respuesta
+
+Formato preferido de respuesta: estructurado por problemas activos, con plan para cada uno.</div>
+        <div class="prompt-why">Este system prompt convierte la IA en un consultor de medicina interna que conoce tu entorno. El punto clave es la restricción sobre decisiones éticas: la IA debe identificarlas y señalarlas, no tomarlas.</div>
+      </div>
+    </div>
+
+    <div class="tec-panel" id="tab-urgencias">
+      <div class="prompt-box">
+        <div class="prompt-label">System prompt — Urgencias hospitalarias</div>
+        <div class="prompt-text">Eres un urgenciólogo con 10 años de experiencia en urgencias de hospital terciario con nivel de complejidad alto. Tu entorno tiene acceso a ECG, analítica urgente (incluyendo troponina, BNP, dímero D, gases), TAC, ecografía de urgencias y consultas de guardia de todas las especialidades.
+
+Marco de referencia: guías SEMES, ERC y guías de urgencias del hospital. Velocidad y seguridad son los ejes de toda respuesta.
+
+Restricciones permanentes:
+- Siempre identifica primero si hay criterios de riesgo vital inminente antes de entrar en diagnóstico diferencial
+- Para toda decisión de alta, incluye criterios de alarma que el paciente debe conocer
+- En decisiones de triaje o alta, señala explícitamente el nivel de riesgo residual y quién asume la responsabilidad de seguimiento
+- En pacientes que llegan con diagnóstico previo, no lo asumas sin verificar que los datos actuales son consistentes con ese diagnóstico
+
+Formato preferido: primero seguridad (¿hay riesgo vital?), luego diagnóstico, luego plan de acción acotado por tiempo.</div>
+        <div class="prompt-why">En urgencias, la velocidad de respuesta tiene un coste: el riesgo de simplificar en exceso. La restricción de "verificar el diagnóstico previo" combate el anchoring bias que ocurre cuando el paciente llega ya etiquetado.</div>
+      </div>
+    </div>
+
+    <div class="tec-panel" id="tab-ap">
+      <div class="prompt-box">
+        <div class="prompt-label">System prompt — Atención Primaria</div>
+        <div class="prompt-text">Eres un médico de familia con 12 años de experiencia en centro de salud urbano de alta demanda. Tu contexto incluye: consulta de 20 minutos, analítica diferida (resultado en 24–48h), acceso a ECG, ecografía básica y derivación a hospitalaria (con esperas de semanas). No tienes acceso a TAC urgente ni a consultas rápidas de subespecialidades.
+
+Marco de referencia: GPC del SNS, semFYC y el programa de salud de tu CCAA. Cuando la guía recomiende una prueba no disponible en AP, sugiere la alternativa disponible.
+
+Restricciones permanentes:
+- Siempre evalúa si la situación puede manejarse en AP o requiere derivación (urgente o programada). Cuando propongas derivación, especifica el nivel de urgencia
+- En prescripción, respeta los criterios de financiación del SNS y las restricciones de prescripción del médico de AP
+- Valora siempre el contexto familiar y social del paciente — en AP, el entorno es parte del diagnóstico y del tratamiento
+- Si el paciente es crónico complejo, verifica si hay plan de cuidados previo antes de proponer cambios
+
+Formato preferido: SOAP o plan por problemas. Lenguaje accesible para notas de historia clínica en AP.</div>
+        <div class="prompt-why">La clave del system prompt de AP es el contexto de recursos limitados: la IA tiende a proponer pruebas y derivaciones de hospital. Este prompt la reconduce hacia la realidad de la consulta de 20 minutos con recursos de AP.</div>
+      </div>
+    </div>
+
+    <div class="tec-panel" id="tab-oncologia">
+      <div class="prompt-box">
+        <div class="prompt-label">System prompt — Oncología clínica</div>
+        <div class="prompt-text">Eres un oncólogo médico con 15 años de experiencia en tumores sólidos, con subespecialidad en cáncer de pulmón y tumores torácicos. Tu contexto es una unidad de oncología de hospital terciario con acceso a ensayos clínicos, secuenciación genómica, terapias dirigidas e inmunoterapia.
+
+Marco de referencia: guías ESMO, SEOM y protocolos locales del comité de tumores. Cuando la guía tenga múltiples opciones, considera siempre el perfil molecular del tumor.
+
+Restricciones permanentes:
+- NUNCA des pronóstico de supervivencia en tiempo concreto sin datos completos de estadiaje, estado funcional (ECOG), comorbilidades y perfil molecular. Si debes hablar de pronóstico, usa rangos y añade siempre la incertidumbre individual
+- En toda decisión terapéutica, menciona si hay ensayos clínicos relevantes disponibles en España
+- Para tratamientos de alta toxicidad, incluye siempre el plan de manejo de toxicidades esperadas
+- En el contexto de enfermedad avanzada, evalúa siempre si la decisión es consistente con el plan de cuidados avanzados del paciente si existe
+
+Formato preferido: por ciclo de tratamiento o por decisión clínica concreta. Incluye siempre la rationale de la elección.</div>
+        <div class="prompt-why">La restricción sobre pronóstico de supervivencia es crítica en oncología: la IA tiende a dar cifras de supervivencia mediana que pueden ser aplicadas por pacientes o familiares sin el contexto necesario para interpretarlas correctamente.</div>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <div></div>
+      <button class="btn-p" onclick="go(2)">Guías locales integradas →</button>
+    </div>
+  </div>
+
+  <!-- S2 -->
+  <div class="sec" id="s2">
+    <div class="card">
+      <div class="ct">Integración de guías y protocolos locales en la IA</div>
+      <div class="cb">La IA de propósito general conoce las guías internacionales de las grandes sociedades científicas, pero no conoce el protocolo de tu unidad, los recursos disponibles en tu hospital ni las adaptaciones que tu equipo ha hecho a las guías estándar. Integrar ese conocimiento local es el paso que convierte la IA en una herramienta clínicamente útil para tu contexto específico.</div>
+    </div>
+
+    <div class="simil">
+      <div class="sl">Marco de referencia clínico</div>
+      Dar a la IA tu protocolo local es como hacer una sesión de acogida con un nuevo médico: necesita saber que vuestro servicio sigue la guía ESC pero con la modificación del comité de trombosis local, que la farmacia no tiene disponible el fármaco X de primera línea de la guía y que en vuestro hospital los crónicos complejos se manejan siempre con el equipo de enfermería de enlace. Sin esa información, aplicará la guía internacional sin contexto.
+    </div>
+
+    <div class="tec-tabs">
+      <button class="tec-tab active" onclick="showTab(this,'tab-como')">Cómo integrar protocolos</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-limites')">Límites y riesgos</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-update')">Mantener actualizado</button>
+    </div>
+
+    <div class="tec-panel show" id="tab-como">
+      <div class="limit-item"><div class="li-icon">📄</div><div><strong>Estrategia 1 — Resumen del protocolo en el prompt</strong><br>Incluye un resumen de los puntos clave de tu protocolo local directamente en el prompt. No el documento completo — los puntos donde tu protocolo se aparta de la guía internacional o donde hay decisiones locales específicas. La IA los integrará en su razonamiento.</div></div>
+      <div class="limit-item"><div class="li-icon">📎</div><div><strong>Estrategia 2 — Carga del protocolo como documento</strong><br>En herramientas como Claude o ChatGPT con capacidad de lectura de documentos, puedes adjuntar el protocolo en PDF y referenciarlo en el prompt. La IA puede leer y aplicar el contenido del documento al caso clínico. Ventaja: mayor fidelidad al protocolo. Límite: el documento debe tener un formato legible por la IA.</div></div>
+      <div class="limit-item"><div class="li-icon">🔗</div><div><strong>Estrategia 3 — NotebookLM para protocolos de servicio</strong><br>Crea un cuaderno en NotebookLM con todos los protocolos de tu servicio. Puedes interrogar directamente "¿Qué dice nuestro protocolo de [condición] sobre [decisión específica]?" con citas exactas del documento. Ideal para múltiples protocolos que necesitas consultar frecuentemente.</div></div>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Prompt para aplicar protocolo local a un caso clínico</div>
+        <div class="prompt-text">Actúa como [especialidad] experto. Voy a darte el resumen de nuestro protocolo local y un caso clínico. Necesito que apliques el protocolo local, no la guía internacional general.
+
+PROTOCOLO LOCAL — puntos clave que se apartan de la guía internacional:
+- [Punto 1: ej. "En nuestro hospital, el umbral de troponina para SCA es X por el tipo de ensayo que usamos (ARCHITECT), no el umbral estándar"]
+- [Punto 2: ej. "La heparina de primera línea en nuestro protocolo de TEP es [nombre] a [dosis], no la recomendada por la ESC por disponibilidad en farmacia"]
+- [Punto 3: ej. "Los pacientes con [condición] se deben comentar siempre con el servicio de [especialidad] antes de dar el alta"]
+
+CASO CLÍNICO: [descripción del caso]
+
+Tarea: Aplica el protocolo local descrito para generar el plan de manejo de este caso. Si hay algún punto del caso donde el protocolo local no da instrucciones claras y necesitas recurrir a la guía general, señálalo explícitamente.
+
+Restricciones: No apliques la guía internacional donde el protocolo local es claro. Si hay contradicción evidente entre el protocolo local y la evidencia científica actual, señálalo pero no lo corrijas sin indicación.</div>
+        <div class="prompt-why">La instrucción "señala si hay contradicción entre protocolo local y evidencia" es crítica: permite que la IA actúe como auditor de calidad del protocolo, detectando partes que pueden estar desactualizadas, sin desplazar la autoridad del equipo clínico sobre su propio protocolo.</div>
+      </div>
+    </div>
+
+    <div class="tec-panel" id="tab-limites">
+      <div class="limit-item"><div class="li-icon">⚠️</div><div><strong>La IA no puede validar la calidad científica de tu protocolo</strong><br>Si tu protocolo local tiene un error o está desactualizado, la IA lo aplicará igualmente sin cuestionarlo (a menos que le pidas explícitamente que lo compare con la evidencia actual). Integrar un protocolo en la IA no valida su calidad clínica.</div></div>
+      <div class="limit-item"><div class="li-icon">⚠️</div><div><strong>Documentos muy largos reducen la precisión</strong><br>Los protocolos de más de 5.000 palabras empiezan a superar la capacidad de atención del modelo en el contexto del prompt. Para protocolos largos, usa resúmenes de los puntos críticos o herramientas especializadas como NotebookLM.</div></div>
+      <div class="limit-item"><div class="li-icon">⚠️</div><div><strong>La IA puede confundir versiones del protocolo</strong><br>Si incluyes en el mismo prompt fragmentos de diferentes versiones de un protocolo, la IA puede mezclarlos. Usa siempre la versión más reciente y señálala explícitamente.</div></div>
+    </div>
+
+    <div class="tec-panel" id="tab-update">
+      <div class="limit-item"><div class="li-icon">🔄</div><div><strong>Crea un "prompt master" de tu servicio y actualízalo periódicamente</strong><br>Diseña un system prompt de especialidad con los puntos clave del protocolo actual. Revísalo cada vez que el protocolo se actualice. En herramientas como Claude, puedes guardarlo en "instrucciones personalizadas" para que se aplique automáticamente.</div></div>
+      <div class="limit-item"><div class="li-icon">📅</div><div><strong>Fecha el protocolo en el prompt</strong><br>Añade en el prompt "Protocolo actualizado a [fecha]". Esto te ayuda a identificar cuándo el prompt necesita revisión y evita que apliques un protocolo desactualizado sin saberlo.</div></div>
+      <div class="limit-item"><div class="li-icon">👥</div><div><strong>Comparte el prompt master con el equipo</strong><br>Un prompt de especialidad bien diseñado es un recurso de equipo, no personal. Compartirlo con el equipo garantiza que todos trabajan con el mismo contexto cuando usan IA para casos clínicos. Puede guardarse en la carpeta compartida del servicio.</div></div>
+    </div>
+
+    <div class="nav-actions">
+      <button class="btn-s" onclick="go(1)">← System prompts expertos</button>
+      <button class="btn-p" onclick="go(3)">Métricas por especialidad →</button>
+    </div>
+  </div>
+
+  <!-- S3 -->
+  <div class="sec" id="s3">
+    <div class="card">
+      <div class="ct">Métricas de calidad específicas por especialidad</div>
+      <div class="cb">No todas las especialidades evalúan la calidad de la asistencia con los mismos indicadores. La IA puede ayudar a calcular, interpretar y actuar sobre métricas de calidad si se le proporcionan los datos correctos y el contexto específico de cada especialidad.</div>
+    </div>
+
+    <div class="simil">
+      <div class="sl">Marco de referencia clínico</div>
+      Las métricas de calidad son como las constantes vitales de tu servicio: los números no significan nada sin el contexto de referencia (¿cuál es el estándar nacional? ¿el de tu grupo de hospitales comparables? ¿el de tu CCAA?). La IA puede ayudarte a interpretar tus métricas en contexto, pero necesita ese contexto para hacerlo correctamente.
+    </div>
+
+    <div class="tec-tabs">
+      <button class="tec-tab active" onclick="showTab(this,'tab-met-hosp')">Hospitalización</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-met-urg')">Urgencias</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-met-onco')">Oncología</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-met-ap2')">Atención Primaria</button>
+    </div>
+
+    <div class="tec-panel show" id="tab-met-hosp">
+      <div class="limit-item"><div class="li-icon">📊</div><div><strong>Estancia media ajustada por casuística (SMAC)</strong><br>No es suficiente comparar la estancia media bruta — debe ajustarse por la complejidad del case-mix (GRD). La IA puede ayudarte a interpretar si tu SMAC es coherente con tu casuística y a identificar qué GRDs están fuera de estándar.</div></div>
+      <div class="limit-item"><div class="li-icon">📊</div><div><strong>Tasa de reingresos a 30 días</strong><br>El umbral ACSA es ≤9% para reingresos a 30 días. La IA puede ayudar a analizar el perfil de pacientes reingresantes de tu servicio e identificar intervenciones específicas en el proceso de alta que pueden reducir la tasa.</div></div>
+      <div class="limit-item"><div class="li-icon">📊</div><div><strong>Infecciones relacionadas con la asistencia (IRA)</strong><br>Bacteriemia zero, ITU zero, NN-VM zero. La IA puede ayudar a revisar protocolos de prevención y a identificar puntos de mejora en el bundle de medidas preventivas.</div></div>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Prompt para análisis de métricas de hospitalización</div>
+        <div class="prompt-text">Actúa como gestor sanitario especializado en mejora de calidad asistencial.
+
+Datos de mi servicio (Medicina Interna, 30 camas, hospital terciario):
+- Estancia media: 8,4 días | Estándar CMBD nacional para mi casuística: 6,9 días
+- Reingresos 30 días: 13,2% | Umbral ACSA: ≤9%
+- IRA bacteriemia: 1,8/1000 días de catéter | Objetivo Bacteriemia Zero: <1
+
+Para cada indicador fuera de objetivo: (1) lista las 3 causas más probables en un servicio de medicina interna de mis características, (2) propón la intervención de mejora con mayor evidencia de efectividad, (3) estima el tiempo razonable para ver impacto, (4) sugiere el indicador de proceso más útil para monitorizar la mejora.
+
+Formato: tabla por indicador. Cita el nivel de evidencia de cada intervención (1A / 1B / 2 / experto).
+
+Restricciones: No propongas intervenciones que requieran aumento de plantilla sin señalarlo. Prioriza intervenciones de proceso sobre intervenciones de estructura.</div>
+        <div class="prompt-why">Pedir el nivel de evidencia de cada intervención de mejora protege contra la tendencia de la IA a presentar intervenciones con distinto respaldo empírico con el mismo tono de certeza.</div>
+      </div>
+    </div>
+
+    <div class="tec-panel" id="tab-met-urg">
+      <div class="limit-item"><div class="li-icon">⏱️</div><div><strong>Tiempo puerta-médico y tiempo puerta-ECG</strong><br>En SCA, el tiempo puerta-balón o puerta-aguja es el indicador de resultado más crítico. La IA puede ayudar a mapear el proceso desde la llegada del paciente hasta la intervención para identificar los cuellos de botella que alargan estos tiempos.</div></div>
+      <div class="limit-item"><div class="li-icon">⏱️</div><div><strong>Saturación y tiempos de espera en triaje</strong><br>El índice de saturación de urgencias (NEDOCS, ICUE) y los tiempos de espera por nivel de triaje son los indicadores de calidad estructural más utilizados. La IA puede ayudar a interpretar los picos de saturación y a diseñar respuestas organizativas.</div></div>
+    </div>
+
+    <div class="tec-panel" id="tab-met-onco">
+      <div class="limit-item"><div class="li-icon">🎯</div><div><strong>Tiempo hasta el inicio de tratamiento</strong><br>El estándar SEOM para cáncer de pulmón es inicio de tratamiento en ≤28 días desde el diagnóstico. La IA puede ayudar a mapear el proceso diagnóstico-terapéutico y a identificar los pasos que más alargan el tiempo hasta el tratamiento.</div></div>
+      <div class="limit-item"><div class="li-icon">🎯</div><div><strong>Participación en ensayos clínicos</strong><br>La tasa de pacientes incluidos en ensayos clínicos es un indicador de la excelencia científica de una unidad de oncología. La IA puede ayudar a identificar qué ensayos activos pueden ser relevantes para los pacientes de tu unidad.</div></div>
+    </div>
+
+    <div class="tec-panel" id="tab-met-ap2">
+      <div class="limit-item"><div class="li-icon">💊</div><div><strong>Control de crónicos — HbA1c, LDL, PA</strong><br>Los indicadores de control de crónicos (diabéticos con HbA1c ≤7%, hipertensos con PA ≤130/80, dislipémicos con LDL dentro de objetivo según riesgo CV) son los principales indicadores de calidad asistencial en AP. La IA puede ayudar a analizar los pacientes fuera de objetivo e identificar las barreras más frecuentes.</div></div>
+      <div class="limit-item"><div class="li-icon">💊</div><div><strong>Prescripción de medicamentos de alto riesgo</strong><br>La prevalencia de prescripción de medicamentos de alto riesgo en mayores (anticorlinérgicos, benzodiacepinas de vida larga, AINE en insuficiencia renal) es un indicador de calidad del proceso de prescripción. La IA puede ayudar a identificar pacientes con polifarmacia de alto riesgo.</div></div>
+    </div>
+
+    <div style="margin-top:20px;padding-top:16px;border-top:1px solid #1e2335">
+      <button class="btn-complete" onclick="completar()">✓ MARCAR LECCIÓN COMO COMPLETADA</button>
+    </div>
+
+    <div class="nav-actions">
+      <button class="btn-s" onclick="go(2)">← Guías locales integradas</button>
+      <button class="btn-p" onclick="go(4)">Test →</button>
+    </div>
+  </div>
+
+  <!-- S4: TEST -->
+  <div class="sec" id="s4">
+    <div class="qw active" id="q1w">
+      <div class="qnum">Pregunta 1 de 3</div>
+      <div class="qtxt">Un médico de atención primaria configura el system prompt de la IA con su especialidad pero no incluye información sobre los recursos disponibles en su centro (sin acceso a ECG urgente, analítica diferida 24–48h). ¿Qué consecuencia práctica tiene esta omisión?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,1)">Ninguna — la IA adapta automáticamente sus respuestas al contexto de AP sin necesidad de indicarlo</button>
+        <button class="qopt" onclick="ans(this,true,1)">La IA puede proponer pruebas o derivaciones que asumen recursos de hospital (TAC urgente, consulta rápida de especialista) que no están disponibles en AP, generando planes de manejo inaplicables en el contexto real</button>
+        <button class="qopt" onclick="ans(this,false,1)">La IA usará el protocolo hospitalario en lugar del protocolo de AP, pero el resultado clínico será similar</button>
+        <button class="qopt" onclick="ans(this,false,1)">La IA rechazará responder preguntas clínicas de AP porque no tiene entrenamiento específico en medicina de familia</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+      <div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div>
+    </div>
+
+    <div class="qw" id="q2w">
+      <div class="qnum">Pregunta 2 de 3</div>
+      <div class="qtxt">Un oncólogo integra el protocolo local de su unidad en el prompt de la IA. Una semana después, la guía ESMO actualiza las recomendaciones de primera línea para el tumor que trata. ¿Qué riesgo existe y cómo se gestiona?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,2)">No hay riesgo — la IA actualiza automáticamente su conocimiento cuando hay nuevas guías</button>
+        <button class="qopt" onclick="ans(this,true,2)">La IA seguirá aplicando el protocolo local antiguo porque es lo que tiene en el prompt — el riesgo es usar un protocolo desactualizado sin saberlo. Se gestiona revisando el prompt master cada vez que hay actualización de guías y fechando la versión del protocolo en el prompt</button>
+        <button class="qopt" onclick="ans(this,false,2)">La IA aplicará automáticamente la guía ESMO nueva ignorando el protocolo local porque las guías internacionales tienen prioridad sobre los protocolos locales</button>
+        <button class="qopt" onclick="ans(this,false,2)">El protocolo local siempre prevalece sobre las guías internacionales, por lo que no hay riesgo de usar información desactualizada</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+      <div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div>
+    </div>
+
+    <div class="qw" id="q3w">
+      <div class="qnum">Pregunta 3 de 3</div>
+      <div class="qtxt">Un jefe de servicio de Medicina Interna pide a la IA que analice sus métricas: estancia media 8,4 días (estándar 6,9) y reingresos 13,2% (umbral ≤9%). Para que el análisis sea útil, ¿qué información adicional es imprescindible incluir en el prompt?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,3)">Solo el número de camas y la plantilla de médicos del servicio</button>
+        <button class="qopt" onclick="ans(this,false,3)">El nombre del hospital para que la IA busque comparadores en internet</button>
+        <button class="qopt" onclick="ans(this,true,3)">El tipo de hospital (terciario/secundario), la casuística del servicio (case-mix, patologías prevalentes), y el estándar de referencia con su fuente (CMBD nacional, ACSA) — sin esto, la IA da interpretaciones genéricas que no se ajustan a la complejidad real del servicio</button>
+        <button class="qopt" onclick="ans(this,false,3)">Los datos de satisfacción del paciente para cruzarlos con los indicadores de eficiencia</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+      <div class="qnx" id="nx3">
+        <div style="background:rgba(156,39,176,.1);border:1px solid rgba(156,39,176,.28);border-radius:10px;padding:16px;margin-top:8px">
+          <div style="font-size:13px;font-weight:500;color:#CE93D8;margin-bottom:6px">✓ Lección 5.4 completada</div>
+          <div style="font-size:12px;color:#B0BEC5;line-height:1.6">Dominas la configuración de system prompts por especialidad, la integración de protocolos locales y las métricas de calidad específicas. La lección 5.5 trabaja el <strong style="color:#fff">escriba virtual con memoria persistente: arquitectura, integración con voz y gestión del contexto longitudinal</strong>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lf">
+    <span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span>
+    <span> · Desarrollado por DoncelProject · doncel.project@gmail.com</span>
+  </div>
+</div>
+
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/4)*100);document.getElementById('pf54').style.width=p+'%';document.getElementById('pl54').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function showTab(el,id){el.closest('.sec').querySelectorAll('.tec-tab').forEach(t=>t.classList.remove('active'));el.closest('.sec').querySelectorAll('.tec-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById(id).classList.add('show');}
+function completar(){window.parent.postMessage({type:'LESSON_COMPLETE'},'*');document.querySelector('.btn-complete').textContent='✓ Lección completada';document.querySelector('.btn-complete').style.opacity='.5';document.querySelector('.btn-complete').disabled=true;}
+const fbs={
+  1:{ok:'✅ Correcto. La IA no infiere el contexto de recursos de forma automática — trabaja con lo que le proporcionas. Si el system prompt no especifica que estás en AP con acceso limitado a pruebas, la IA asumirá un contexto de hospital con acceso completo y propondrá un TAC, una consulta urgente de especialista o una analítica que en tu centro tarda 24–48 horas. El plan resultante será inútil o incluso contraproducente en tu realidad clínica.',ko:'❌ La IA no adapta automáticamente sus respuestas al contexto de recursos — solo puede usar la información que le proporcionas. Sin especificar los recursos disponibles, la IA asume el mejor escenario posible (hospital con todos los recursos) y genera planes de manejo inaplicables en AP. Especificar el entorno de recursos es uno de los componentes más importantes del system prompt de especialidad.'},
+  2:{ok:'✅ Correcto. Una de las limitaciones clave de integrar protocolos locales en la IA es que el contexto del prompt no se actualiza solo. Si el protocolo cambia o la guía de referencia se actualiza, el prompt sigue aplicando la versión antigua que le diste. La solución práctica es revisar el prompt master del servicio cada vez que hay una actualización significativa de las guías de referencia, y fechar la versión del protocolo en el prompt para saber cuándo fue la última revisión.',ko:'❌ La IA no actualiza automáticamente su conocimiento ni aplica guías nuevas por defecto. Si el prompt incluye el protocolo local, la IA lo aplicará aunque esté desactualizado. Si no hay protocolo en el prompt, la IA aplicará su conocimiento de entrenamiento — que puede estar desactualizado respecto a las últimas guías. En ambos casos, la responsabilidad de mantener el contexto actualizado es del profesional que diseña el prompt.'},
+  3:{ok:'✅ Correcto. Sin el contexto del tipo de hospital y la casuística, la IA no puede distinguir si una estancia media de 8,4 días es razonable dado el case-mix o es mejorable con intervenciones de proceso. Un hospital terciario con casuística de alta complejidad tiene estándares distintos que un hospital comarcal. Sin la fuente del estándar de referencia, tampoco puede valorar si el umbral es el adecuado para comparar. El contexto de casuística es el dato diferencial que convierte el análisis de métricas de genérico en útil.',ko:'❌ Los datos de plantilla o satisfacción pueden ser útiles para un análisis completo, pero no son el dato imprescindible para interpretar las métricas de eficiencia. El dato crítico es el contexto de casuística y tipo de hospital: sin él, la IA compara los números con estándares genéricos que pueden no ser aplicables a la complejidad real del servicio.'}
+};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+upd();
+</script>

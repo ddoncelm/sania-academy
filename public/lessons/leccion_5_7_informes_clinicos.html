@@ -1,0 +1,321 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:32px}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(156,39,176,.15);border:1px solid rgba(156,39,176,.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#CE93D8;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px}.lt span{color:#AB47BC}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px;flex-wrap:wrap}
+.lmi{display:flex;align-items:center;gap:5px}.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#AB47BC;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:70px}
+.nb.active{color:#AB47BC;border-bottom-color:#AB47BC;background:#0C0D12}
+.sec{display:none;padding:20px 24px}.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(156,39,176,.08);border:1px solid rgba(156,39,176,.22);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#CE93D8;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#AB47BC;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer}
+.btn-complete{background:linear-gradient(135deg,#AB47BC,#7B1FA2);color:#fff;border:none;border-radius:10px;padding:14px 28px;font-size:13px;font-weight:600;cursor:pointer;width:100%;margin-top:16px;letter-spacing:.3px;transition:opacity .2s}
+.tec-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.tec-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 12px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s}
+.tec-tab.active{background:rgba(156,39,176,.15);border-color:#AB47BC;color:#CE93D8}
+.tec-panel{display:none}.tec-panel.show{display:block}
+.prompt-box{background:#0e1018;border:1px solid #1e2335;border-radius:10px;padding:14px;margin:10px 0}
+.prompt-label{font-size:10px;color:#CE93D8;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}
+.prompt-text{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.prompt-why{font-size:11px;color:#B0BEC5;line-height:1.6;margin-top:10px;padding-top:10px;border-top:1px solid #1e2335}
+.limit-item{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;background:#13151e;border:1px solid #1e2335;border-radius:8px;margin-bottom:8px;font-size:12px;color:#E0E0E0;line-height:1.6}
+.li-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.concept-card{background:#13151e;border:1px solid #1e2335;border-radius:10px;padding:14px}
+.cc-label{font-size:10px;color:#CE93D8;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}
+.cc-title{font-size:13px;font-weight:500;color:#fff;margin-bottom:6px}
+.cc-body{font-size:12px;color:#B0BEC5;line-height:1.6}
+.qw{display:none}.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s}
+.qopt:hover{border-color:#AB47BC;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}.qnx.show{display:block}
+.lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a}
+.fl{color:#AB47BC;cursor:pointer;text-decoration:underline}
+</style>
+<div class="lw">
+  <div class="lh">
+    <div class="lb">MÓDULO 5 · LECCIÓN 5.7</div>
+    <div class="lt">Automatización de informes clínicos: <span>templates inteligentes, integración con datos estructurados y firma digital</span></div>
+    <div class="lm">
+      <div class="lmi"><div class="md" style="background:#AB47BC"></div>48 minutos</div>
+      <div class="lmi"><div class="md" style="background:#00B8D4"></div>4 secciones</div>
+      <div class="lmi"><div class="md" style="background:#FFB300"></div>Documentación clínica avanzada</div>
+    </div>
+  </div>
+  <div class="pbw"><div class="pbb"><div class="pbf" id="pf57"></div></div><div class="pbl" id="pl57">0%</div></div>
+  <div class="snav">
+    <button class="nb active" id="t1" onclick="go(1)">Templates por tipo de informe</button>
+    <button class="nb" id="t2" onclick="go(2)">Datos estructurados</button>
+    <button class="nb" id="t3" onclick="go(3)">Firma digital y distribución</button>
+    <button class="nb" id="t4" onclick="go(4)">Test</button>
+  </div>
+
+  <div class="sec active" id="s1">
+    <div class="card">
+      <div class="ct">Objetivo de la lección</div>
+      <div class="cb">Crear un sistema completo de generación de documentación clínica que combine templates inteligentes, datos estructurados de la HCE y revisión eficiente por el clínico. El objetivo no es que la IA redacte todo — es que el clínico dedique su tiempo a validar y personalizar, no a redactar desde cero.</div>
+    </div>
+    <div class="simil">
+      <div class="sl">Marco de referencia clínico</div>
+      Un template de informe inteligente es como un formulario de alta hospitalaria bien diseñado: no obliga al clínico a escribir lo que ya está en la historia, pero sí le pide que valide y personalice lo que el sistema ha pre-rellenado. La diferencia con el formulario estático es que la IA puede pre-rellenar con inteligencia clínica, no solo con datos de campos de la base de datos.
+    </div>
+    <div class="ct" style="margin-top:4px">Tipos de informe y qué aporta la IA en cada uno</div>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="cc-label">Informe de alta hospitalaria</div>
+        <div class="cc-title">Mayor complejidad, mayor impacto</div>
+        <div class="cc-body">La IA puede sintetizar el episodio, extraer diagnósticos y medicación al alta, generar las instrucciones al paciente y los criterios de alarma. El clínico valida y añade el juicio clínico narrativo.</div>
+      </div>
+      <div class="concept-card">
+        <div class="cc-label">Informe de derivación</div>
+        <div class="cc-title">Eficiencia y precisión</div>
+        <div class="cc-body">La IA adapta el informe al destinatario (qué necesita saber el especialista vs el médico de familia), extrae los antecedentes relevantes y formula la pregunta clínica de forma estructurada.</div>
+      </div>
+      <div class="concept-card">
+        <div class="cc-label">Nota evolutiva diaria</div>
+        <div class="cc-title">Volumen alto, revisión rápida</div>
+        <div class="cc-body">La IA genera el borrador SOAP con los cambios del día: nuevas constantes, resultados de analítica, evolución de síntomas referidos. El clínico añade el juicio y el plan en 30-60 segundos.</div>
+      </div>
+      <div class="concept-card">
+        <div class="cc-label">Informe de interconsulta</div>
+        <div class="cc-title">Respuesta estructurada al consultante</div>
+        <div class="cc-body">La IA estructura la respuesta según el motivo de la interconsulta, incluye los hallazgos relevantes para la especialidad consultante y formula recomendaciones en el formato que el especialista necesita.</div>
+      </div>
+    </div>
+    <div class="tec-tabs">
+      <button class="tec-tab active" onclick="showTab(this,'tab-alta')">Template alta hospitalaria</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-deriv')">Template derivación</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-ic')">Template interconsulta</button>
+    </div>
+    <div class="tec-panel show" id="tab-alta">
+      <div class="prompt-box">
+        <div class="prompt-label">Template inteligente — Informe de alta hospitalaria</div>
+        <div class="prompt-text">Actúa como médico documentalista clínico. Genera el informe de alta hospitalaria en formato SNS a partir de los datos que te proporciono.
+
+DATOS DEL EPISODIO:
+- Fecha ingreso / fecha alta: [fechas]
+- Servicio: [nombre]
+- Diagnóstico principal: [texto]
+- Diagnósticos secundarios: [lista]
+- Procedimientos realizados: [lista]
+
+DATOS CLÍNICOS DEL EPISODIO:
+- Motivo de ingreso: [descripción]
+- Resumen de evolución (puntos clave): [dictado libre cronológico]
+- Analíticas y pruebas relevantes: [resultados clave con fecha]
+
+MEDICACIÓN AL ALTA:
+- Fármacos que continúa: [lista con dosis y pauta]
+- Fármacos nuevos: [nombre, dosis, pauta, duración]
+- Fármacos suspendidos: [nombre + motivo]
+
+Genera el informe con estas secciones: (1) resumen del episodio (max 150 palabras, cronológico), (2) diagnósticos al alta con codificación CIE-10 si la conoces con certeza, (3) procedimientos, (4) tratamiento al alta completo (nombre genérico + comercial), (5) instrucciones al paciente en lenguaje accesible (frases cortas, sin tecnicismos), (6) criterios de alarma para urgencias (específicos de los diagnósticos del alta), (7) seguimiento programado.
+
+Restricciones: Si no conoces el código CIE-10 con certeza, señala [CODIFICAR]. Para la medicación al alta, si hay fármacos del ingreso que no han aparecido en mis datos, señala [VERIFICAR MEDICACIÓN PREVIA].</div>
+        <div class="prompt-why">Las instrucciones al paciente en lenguaje accesible son el apartado más frecuentemente delegado al clínico con menos tiempo. La IA puede generarlas con alta calidad si tiene los diagnósticos y el contexto del paciente. El clínico las adapta y personaliza, pero no parte de cero.</div>
+      </div>
+    </div>
+    <div class="tec-panel" id="tab-deriv">
+      <div class="prompt-box">
+        <div class="prompt-label">Template inteligente — Informe de derivación a especialista</div>
+        <div class="prompt-text">Actúa como médico de [especialidad de origen] redactando una derivación a [especialidad de destino].
+
+DATOS DEL PACIENTE:
+- Perfil: [edad, sexo, antecedentes relevantes para esta derivación]
+- Medicación habitual: [lista con dosis]
+- Alergias: [si las hay]
+
+MOTIVO DE DERIVACIÓN:
+- Problema clínico que origina la derivación: [descripción]
+- Evolución del problema: [desde cuándo, cómo ha evolucionado, qué se ha hecho]
+- Pruebas realizadas: [resultados relevantes]
+- Tratamiento ensayado: [qué se ha probado y con qué resultado]
+
+PREGUNTA CLÍNICA:
+- Qué necesito específicamente del especialista: [descripción de la duda o decisión que necesitas]
+- Urgencia: [preferente / normal / no urgente — con justificación]
+
+Genera la derivación estructurada adaptada al destinatario [especialidad]: incluye solo los antecedentes relevantes para su valoración, formula la pregunta clínica de forma concreta y proporciona el contexto que necesita para responderla sin tener que releer toda la historia del paciente.
+
+Restricciones: Adapta el nivel de detalle a lo que el especialista necesita — ni demasiado poco (no sabrá por qué le mandas al paciente) ni demasiado (no tiene tiempo de leer 3 páginas por cada derivación).</div>
+        <div class="prompt-why">La pregunta clínica concreta es el elemento más frecuentemente ausente en las derivaciones. Sin ella, el especialista no sabe exactamente qué se espera de su valoración, lo que genera respuestas genéricas que no resuelven la duda del médico derivante.</div>
+      </div>
+    </div>
+    <div class="tec-panel" id="tab-ic">
+      <div class="prompt-box">
+        <div class="prompt-label">Template inteligente — Respuesta de interconsulta</div>
+        <div class="prompt-text">Actúa como especialista en [especialidad] respondiendo una interconsulta de [especialidad consultante].
+
+DATOS DE LA INTERCONSULTA:
+- Motivo solicitado: [descripción del motivo de la IC]
+- Datos clínicos del paciente: [antecedentes relevantes, situación actual]
+- Pregunta clínica específica del consultante: [qué necesita saber]
+
+VALORACIÓN:
+- Hallazgos en mi evaluación: [exploración, pruebas revisadas, impresión clínica]
+- Diagnóstico o impresión desde mi especialidad: [diagnóstico o diagnóstico diferencial]
+
+Genera la respuesta de IC estructurada en: (1) resumen de la valoración (max 80 palabras), (2) conclusión diagnóstica o impresión, (3) recomendaciones específicas ordenadas por prioridad, (4) si el paciente requiere seguimiento por mi especialidad (sí/no/condicional — con criterios).
+
+Restricciones: Responde exactamente a la pregunta formulada en la IC. Si el motivo de la IC es ambiguo o insuficiente para dar una respuesta clínica útil, señálalo al inicio antes de dar tu valoración.</div>
+        <div class="prompt-why">La instrucción de señalar cuando el motivo de la IC es ambiguo evita uno de los problemas más frecuentes: dar una valoración que no responde a lo que el consultante realmente necesitaba.</div>
+      </div>
+    </div>
+    <div class="nav-actions"><div></div><button class="btn-p" onclick="go(2)">Datos estructurados →</button></div>
+  </div>
+
+  <div class="sec" id="s2">
+    <div class="card">
+      <div class="ct">Integración de datos estructurados en informes — más allá del dictado</div>
+      <div class="cb">Los mejores sistemas de generación de informes no solo procesan dictado libre — integran datos estructurados de la HCE (constantes, analíticas, medicación, diagnósticos codificados) para pre-rellenar el informe con información objetiva que la IA organiza y contextualiza narrativamente.</div>
+    </div>
+    <div class="simil">
+      <div class="sl">Marco de referencia clínico</div>
+      Integrar datos estructurados en el informe es como tener un residente que antes de presentar el caso ya ha recogido todas las constantes, analíticas y medicación del sistema y las ha organizado cronológicamente. El clínico no empieza desde cero — revisa, contextualiza y añade el juicio clínico que la IA no puede hacer.
+    </div>
+    <div class="tec-tabs">
+      <button class="tec-tab active" onclick="showTab(this,'tab-const')">Constantes y analíticas</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-med-s')">Medicación estructurada</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-cod')">Codificación automática</button>
+    </div>
+    <div class="tec-panel show" id="tab-const">
+      <div class="limit-item"><div class="li-icon">📊</div><div><strong>Integración de constantes vitales en la narrativa del informe</strong><br>La IA puede transformar una serie de constantes en una narrativa clínica: "El paciente presentó fiebre hasta 39.2°C el día 2, con resolución progresiva hasta afebril el día 4, con tendencia hemodinámicamente estable durante todo el ingreso." Es más informativo y legible que una tabla de constantes sin contexto.</div></div>
+      <div class="limit-item"><div class="li-icon">🔬</div><div><strong>Analíticas en contexto clínico</strong><br>La IA puede integrar los resultados analíticos relevantes en la narrativa del episodio: "La función renal al ingreso mostraba deterioro agudo (Cr 2.1 mg/dL sobre basal de 1.1) con recuperación completa al alta (Cr 1.2 mg/dL)." La IA selecciona los datos relevantes y los contextualiza — el clínico no tiene que copiarlos manualmente.</div></div>
+      <div class="limit-item"><div class="li-icon">⚠️</div><div><strong>Riesgo de incluir datos irrelevantes o erróneos</strong><br>Si la integración con la HCE no filtra correctamente, la IA puede incluir datos de episodios anteriores, valores de analíticas no relacionadas con el motivo del ingreso o constantes de procedimientos invasivos que distorsionan la narrativa. El clínico debe revisar siempre que los datos integrados corresponden al episodio actual.</div></div>
+    </div>
+    <div class="tec-panel" id="tab-med-s">
+      <div class="limit-item"><div class="li-icon">💊</div><div><strong>Reconciliación de medicación al alta</strong><br>La integración con la HCE permite que la IA compare la medicación del ingreso con la del alta y genere automáticamente la lista de cambios: "Se añade bisoprolol 2.5 mg/día por FA de nova aparición. Se suspende enalapril por hipotensión — sustituido por sacubitrilvalsartán 24/26 mg cada 12h. Resto de medicación sin cambios."</div></div>
+      <div class="limit-item"><div class="li-icon">⚠️</div><div><strong>La reconciliación automática no exime de la revisión manual</strong><br>Los errores de medicación en la reconciliación automatizada son la fuente de eventos adversos más frecuente en el alta hospitalaria. La IA puede ayudar a estructurar la lista, pero el clínico debe verificar específicamente cada cambio antes de firmar. Nunca delegar la validación de medicación al alta a la IA sin revisión explícita.</div></div>
+    </div>
+    <div class="tec-panel" id="tab-cod">
+      <div class="limit-item"><div class="li-icon">🏷️</div><div><strong>Codificación CIE-10 asistida por IA</strong><br>La IA puede sugerir los códigos CIE-10 para los diagnósticos del informe a partir del texto narrativo. Útil para reducir el tiempo de codificación, pero con riesgos de error: la IA puede seleccionar un código de especificidad incorrecta (más genérico o más específico de lo que corresponde) o confundir diagnósticos con presentaciones similares.</div></div>
+      <div class="limit-item"><div class="li-icon">✅</div><div><strong>Regla práctica para codificación asistida</strong><br>Usa la IA para generar la propuesta de códigos y la descripción textual del diagnóstico en paralelo. Verifica que la descripción textual del código propuesto corresponde exactamente al diagnóstico del paciente. Si hay duda, usa el código de mayor especificidad validado manualmente.</div></div>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-s" onclick="go(1)">← Templates</button>
+      <button class="btn-p" onclick="go(3)">Firma digital →</button>
+    </div>
+  </div>
+
+  <div class="sec" id="s3">
+    <div class="card">
+      <div class="ct">Firma digital y distribución automática de informes</div>
+      <div class="cb">Un sistema de generación de informes que no resuelve la firma y la distribución no completa el ciclo de trabajo. La firma digital del clínico es el elemento que da validez legal y clínica al informe. La distribución automática es lo que elimina el paso manual de envío que en muchos centros sigue haciéndose en papel.</div>
+    </div>
+    <div class="simil">
+      <div class="sl">Marco de referencia clínico</div>
+      La firma digital en documentación clínica funciona como la firma manuscrita en el papel: el clínico asume la responsabilidad del contenido del documento. Pero con una diferencia crítica: la firma digital incluye un sello de tiempo criptográfico que certifica quién firmó y cuándo, sin posibilidad de alteración posterior del documento. Es más segura que la firma manuscrita, no menos.
+    </div>
+    <div class="tec-tabs">
+      <button class="tec-tab active" onclick="showTab(this,'tab-firma')">Firma digital clínica</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-distrib')">Distribución automática</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-trazab')">Trazabilidad</button>
+    </div>
+    <div class="tec-panel show" id="tab-firma">
+      <div class="limit-item"><div class="li-icon">✍️</div><div><strong>Firma con certificado electrónico reconocido</strong><br>En España, la firma de documentos clínicos con validez legal requiere certificado electrónico reconocido: DNIe, certificado FNMT o tarjeta sanitaria con chip. Las soluciones con PIN de 4 dígitos o firma biométrica tienen menor nivel de garantía legal y no son aceptables para documentos clínicos de alta.</div></div>
+      <div class="limit-item"><div class="li-icon">✍️</div><div><strong>El clínico siempre firma — no la IA</strong><br>La IA genera el borrador. El clínico lo revisa, lo modifica si es necesario y lo firma con su certificado personal. La firma digital del clínico certifica que ha revisado y aprobado el contenido. Un informe generado por IA sin revisión y firma del clínico no tiene validez clínica ni legal.</div></div>
+      <div class="limit-item"><div class="li-icon">⚠️</div><div><strong>Responsabilidad del clínico sobre el contenido firmado</strong><br>Al firmar un informe generado por IA, el clínico asume la misma responsabilidad que si lo hubiera redactado él. La generación por IA no es una atenuante de responsabilidad si el informe contiene errores. La revisión antes de firmar no es opcional.</div></div>
+    </div>
+    <div class="tec-panel" id="tab-distrib">
+      <div class="limit-item"><div class="li-icon">📤</div><div><strong>Distribución automática al paciente (documento de alta)</strong><br>El informe firmado puede enviarse automáticamente al paciente vía correo electrónico (si tiene consignado), a la app de salud de su CCAA o en papel en admisión. La distribución digital reduce el tiempo entre firma y recepción por el paciente de horas a minutos.</div></div>
+      <div class="limit-item"><div class="li-icon">📤</div><div><strong>Distribución automática al médico de familia</strong><br>La integración con el sistema de intercambio de información del SNS (HCDSNS) permite el envío automático del informe de alta al médico de AP del paciente. Reduce el tiempo hasta que el médico de familia tiene el informe de días a minutos, mejorando la continuidad asistencial.</div></div>
+      <div class="limit-item"><div class="li-icon">📤</div><div><strong>Distribución interna — interconsultas y servicios de seguimiento</strong><br>Si el informe incluye derivaciones o seguimientos por otros servicios, el sistema puede enviar automáticamente la notificación al servicio correspondiente con el informe adjunto, sin que el clínico tenga que hacer una llamada o enviar un correo manual.</div></div>
+    </div>
+    <div class="tec-panel" id="tab-trazab">
+      <div class="limit-item"><div class="li-icon">🔍</div><div><strong>Trazabilidad completa del informe</strong><br>El sistema debe registrar: quién generó el borrador (IA + versión del modelo), quién lo revisó, qué modificaciones hizo el clínico respecto al borrador original, quién lo firmó, cuándo y a quién se distribuyó. Esta trazabilidad es un requisito del AI Act para sistemas de alto riesgo en sanidad.</div></div>
+      <div class="limit-item"><div class="li-icon">🔍</div><div><strong>Conservación del borrador original de la IA</strong><br>El registro del borrador original generado por la IA (antes de las modificaciones del clínico) es útil para: auditoría de calidad del sistema de IA, análisis de cuánto modifica el clínico los borradores, y defensa legal si se cuestiona la validez del proceso de generación.</div></div>
+    </div>
+    <div style="margin-top:20px;padding-top:16px;border-top:1px solid #1e2335">
+      <button class="btn-complete" onclick="completar()">✓ MARCAR LECCIÓN COMO COMPLETADA</button>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-s" onclick="go(2)">← Datos estructurados</button>
+      <button class="btn-p" onclick="go(4)">Test →</button>
+    </div>
+  </div>
+
+  <div class="sec" id="s4">
+    <div class="qw active" id="q1w">
+      <div class="qnum">Pregunta 1 de 3</div>
+      <div class="qtxt">Un clínico revisa rápidamente un informe de alta generado por IA (15 segundos de revisión) y lo firma sin modificaciones. El informe contiene un error en la medicación al alta. ¿Quién tiene responsabilidad sobre ese error?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,1)">La empresa proveedora del sistema de IA — el clínico solo firmó lo que el sistema generó</button>
+        <button class="qopt" onclick="ans(this,true,1)">El clínico tiene responsabilidad completa — al firmar el informe certifica haber revisado y aprobado su contenido. La generación por IA no es atenuante de responsabilidad si no hubo revisión adecuada. La firma implica validación</button>
+        <button class="qopt" onclick="ans(this,false,1)">Responsabilidad compartida 50/50 entre el clínico y el proveedor del sistema</button>
+        <button class="qopt" onclick="ans(this,false,1)">No hay responsabilidad — los errores de IA en documentación están exentos de responsabilidad médica en el AI Act</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+      <div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div>
+    </div>
+    <div class="qw" id="q2w">
+      <div class="qnum">Pregunta 2 de 3</div>
+      <div class="qtxt">¿Cuál es el principal riesgo de la reconciliación automatizada de medicación al alta generada por IA sin revisión manual explícita por el clínico?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,2)">El riesgo es principalmente de formato — la IA puede no respetar la nomenclatura farmacéutica correcta</button>
+        <button class="qopt" onclick="ans(this,true,2)">Los errores en la reconciliación automática (medicación omitida, dosis incorrectas, fármacos suspendidos que siguen en la lista) son una fuente frecuente de eventos adversos al alta. La IA puede estructurar la lista, pero la validación explícita de cada cambio por el clínico es obligatoria e irrenunciable</button>
+        <button class="qopt" onclick="ans(this,false,2)">No hay riesgo significativo — los sistemas de reconciliación automática tienen una precisión superior al 99%</button>
+        <button class="qopt" onclick="ans(this,false,2)">El riesgo es exclusivamente de compatibilidad con los sistemas del médico de familia que recibirá el informe</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+      <div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div>
+    </div>
+    <div class="qw" id="q3w">
+      <div class="qnum">Pregunta 3 de 3</div>
+      <div class="qtxt">El AI Act exige trazabilidad para sistemas de IA de alto riesgo en sanidad. ¿Qué debe registrar el sistema de generación de informes para cumplir este requisito?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,3)">Solo el nombre del clínico que firmó el informe y la fecha de firma</button>
+        <button class="qopt" onclick="ans(this,false,3)">Solo el contenido del borrador original de la IA para comparación futura</button>
+        <button class="qopt" onclick="ans(this,true,3)">Quién generó el borrador (IA + versión), quién lo revisó, qué modificaciones hizo el clínico respecto al borrador original, quién lo firmó, cuándo y a quién se distribuyó — trazabilidad completa del ciclo de vida del documento</button>
+        <button class="qopt" onclick="ans(this,false,3)">Solo la distribución del informe (destinatarios y fecha de envío) como evidencia de que llegó a los receptores correctos</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+      <div class="qnx" id="nx3">
+        <div style="background:rgba(156,39,176,.1);border:1px solid rgba(156,39,176,.28);border-radius:10px;padding:16px;margin-top:8px">
+          <div style="font-size:13px;font-weight:500;color:#CE93D8;margin-bottom:6px">✓ Lección 5.7 completada</div>
+          <div style="font-size:12px;color:#B0BEC5;line-height:1.6">Dominas los templates inteligentes por tipo de informe, la integración de datos estructurados y los requisitos de firma digital y trazabilidad. La lección 5.8 trabaja la <strong style="color:#fff">integración completa con HCE: formatos FHIR, mapeo de campos entre sistemas y validación de integridad de datos</strong>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="lf">
+    <span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span>
+    <span> · Desarrollado por DoncelProject · doncel.project@gmail.com</span>
+  </div>
+</div>
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/4)*100);document.getElementById('pf57').style.width=p+'%';document.getElementById('pl57').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function showTab(el,id){el.closest('.sec').querySelectorAll('.tec-tab').forEach(t=>t.classList.remove('active'));el.closest('.sec').querySelectorAll('.tec-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById(id).classList.add('show');}
+function completar(){window.parent.postMessage({type:'LESSON_COMPLETE'},'*');document.querySelector('.btn-complete').textContent='✓ Lección completada';document.querySelector('.btn-complete').style.opacity='.5';document.querySelector('.btn-complete').disabled=true;}
+const fbs={
+  1:{ok:'✅ Correcto. La firma digital del clínico certifica que ha revisado y aprobado el contenido del informe, independientemente de quién lo haya redactado. Al firmar, el clínico asume la misma responsabilidad que si hubiera redactado el informe desde cero. El hecho de que lo haya generado una IA no atenúa esa responsabilidad. La revisión antes de firmar no es un paso opcional — es el acto de validación que da validez clínica y legal al documento.',ko:'❌ La responsabilidad recae sobre el clínico que firmó, no sobre el proveedor del sistema de IA. La firma digital es el acto de validación: al firmar, el clínico certifica haber revisado el contenido. El AI Act no exime de responsabilidad a los profesionales que usan sistemas de IA — la supervisión humana es obligatoria precisamente para que la responsabilidad quede claramente asignada al profesional.'},
+  2:{ok:'✅ Correcto. La reconciliación de medicación al alta es una de las áreas de mayor riesgo en documentación clínica asistida por IA. Los errores más frecuentes son: medicación crónica del paciente omitida en la lista de alta, dosis incorrectas en la transición entre formulaciones, fármacos suspendidos durante el ingreso que reaparecen en la lista al alta, e interacciones no detectadas entre fármacos nuevos y crónicos. La IA puede estructurar y organizar la lista, pero la validación explícita de cada cambio es responsabilidad irrenunciable del clínico.',ko:'❌ El riesgo no es de formato ni de compatibilidad informática. Los errores en la reconciliación de medicación al alta son una causa documentada de reingresos y eventos adversos graves. Los sistemas automatizados pueden tener alta precisión en condiciones estándar, pero fallan especialmente en pacientes polimedicados con cambios complejos durante el ingreso. La validación explícita por el clínico no es una formalidad — es la salvaguarda clínica esencial.'},
+  3:{ok:'✅ Correcto. El AI Act exige trazabilidad completa para sistemas de alto riesgo: no es suficiente registrar solo quién firmó — el sistema debe documentar todo el ciclo de vida del documento: quién y cuándo lo generó (incluyendo la versión del modelo de IA), qué revisó el clínico, qué modificaciones realizó respecto al borrador original, quién firmó, cuándo y a quién se distribuyó. Esta trazabilidad permite la auditoría del sistema, la evaluación de calidad y la defensa ante reclamaciones.',ko:'❌ La trazabilidad del AI Act va más allá de la firma y la distribución. Requiere documentar todo el ciclo: generación (IA + versión), revisión (quién y cuándo), modificaciones del clínico respecto al borrador, firma y distribución. Registrar solo parte del ciclo no cumple el requisito de trazabilidad completa que el AI Act exige para sistemas de alto riesgo en sanidad.'}
+};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+upd();
+</script>

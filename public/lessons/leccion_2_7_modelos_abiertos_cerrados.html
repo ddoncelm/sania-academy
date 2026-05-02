@@ -1,0 +1,285 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:32px}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(33,150,243,0.15);border:1px solid rgba(33,150,243,0.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#90CAF9;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px}
+.lt span{color:#2196F3}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#2196F3;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:70px}
+.nb.active{color:#2196F3;border-bottom-color:#2196F3;background:#0C0D12}
+.sec{display:none;padding:20px 24px}
+.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(33,150,243,0.08);border:1px solid rgba(33,150,243,0.22);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#2196F3;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer}
+.col2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.modelo-card{border-radius:12px;padding:16px;background:#13151e;border:1px solid #1e2335}
+.mc-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.mc-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0}
+.mc-name{font-size:13px;font-weight:500}
+.mc-sub{font-size:11px;color:#B0BEC5;margin-top:2px}
+.pro-list{list-style:none;margin-bottom:8px}
+.pro-list li{font-size:12px;color:#A5D6A7;padding:3px 0;display:flex;gap:6px;line-height:1.5}
+.pro-list li::before{content:"✓";flex-shrink:0;color:#4CAF50}
+.con-list{list-style:none}
+.con-list li{font-size:12px;color:#EF9A9A;padding:3px 0;display:flex;gap:6px;line-height:1.5}
+.con-list li::before{content:"✗";flex-shrink:0;color:#F44336}
+.tabla-comp{width:100%;border-collapse:collapse;font-size:12px;margin:12px 0}
+.tabla-comp th{background:#1a1c24;color:#B0BEC5;font-weight:500;padding:8px 10px;text-align:left;font-size:11px;border:1px solid #1e2335}
+.tabla-comp td{padding:8px 10px;border:1px solid #1e2335;color:#E0E0E0;vertical-align:top;line-height:1.5}
+.tabla-comp tr:nth-child(even) td{background:#0e1018}
+.badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:6px;font-weight:500}
+.b-green{background:rgba(76,175,80,.15);color:#A5D6A7}
+.b-yellow{background:rgba(255,152,0,.15);color:#FFD54F}
+.b-red{background:rgba(244,67,54,.15);color:#EF9A9A}
+.b-blue{background:rgba(33,150,243,.15);color:#90CAF9}
+.decision-tree{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px;margin:12px 0}
+.dt-q{font-size:13px;font-weight:500;color:#fff;margin-bottom:12px}
+.dt-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.dt-opt{border-radius:8px;padding:12px;cursor:pointer;transition:border .2s}
+.dt-opt-a{background:rgba(33,150,243,.07);border:1px solid rgba(33,150,243,.25)}
+.dt-opt-b{background:rgba(124,77,255,.07);border:1px solid rgba(124,77,255,.25)}
+.dt-opt-title{font-size:12px;font-weight:500;margin-bottom:4px}
+.dt-opt-a .dt-opt-title{color:#90CAF9}
+.dt-opt-b .dt-opt-title{color:#CE93D8}
+.dt-opt-desc{font-size:11px;color:#B0BEC5;line-height:1.5}
+.dt-result{display:none;margin-top:12px;padding:12px;border-radius:8px;font-size:12px;line-height:1.6}
+.dt-result.show{display:block}
+.qw{display:none}.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s}
+.qopt:hover{border-color:#2196F3;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}.qnx.show{display:block}
+.lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a}
+.fl{color:#2196F3;cursor:pointer;text-decoration:underline}
+</style>
+
+<div class="lw">
+  <div class="lh">
+    <div class="lb">MÓDULO 2 · LECCIÓN 2.7</div>
+    <div class="lt">Modelos abiertos vs. cerrados: <span>diferencias prácticas para entornos sanitarios</span></div>
+    <div class="lm">
+      <div class="lmi"><div class="md" style="background:#2196F3"></div>47 minutos</div>
+      <div class="lmi"><div class="md" style="background:#00B8D4"></div>4 secciones</div>
+      <div class="lmi"><div class="md" style="background:#FFB300"></div>Árbol de decisión interactivo</div>
+    </div>
+  </div>
+  <div class="pbw"><div class="pbb"><div class="pbf" id="pf27"></div></div><div class="pbl" id="pl27">0%</div></div>
+  <div class="snav">
+    <button class="nb active" id="t1" onclick="go(1)">Conceptos</button>
+    <button class="nb" id="t2" onclick="go(2)">Comparativa</button>
+    <button class="nb" id="t3" onclick="go(3)">¿Cuál elijo?</button>
+    <button class="nb" id="t4" onclick="go(4)">Test</button>
+  </div>
+
+  <div class="sec active" id="s1">
+    <div class="card"><div class="ct">Objetivo</div><div class="cb">Comprender las implicaciones prácticas de elegir entre modelos propietarios (cerrados) y open source (abiertos) para uso clínico. La decisión no es solo técnica — implica privacidad, coste, control de datos y sostenibilidad a largo plazo.</div></div>
+    <div class="simil"><div class="sl">Analogía clínica</div>Elegir entre un modelo cerrado y uno abierto es como elegir entre un laboratorio externo de referencia (rápido, fiable, sin control sobre el proceso interno) y un laboratorio propio del hospital (más lento de arrancar, mayor inversión, pero control total de los datos y del proceso).</div>
+
+    <div class="col2">
+      <div class="modelo-card">
+        <div class="mc-header">
+          <div class="mc-icon" style="background:rgba(33,150,243,.2);color:#90CAF9">C</div>
+          <div><div class="mc-name">Modelos cerrados</div><div class="mc-sub">GPT-4o, Claude, Gemini</div></div>
+        </div>
+        <div style="font-size:11px;color:#B0BEC5;margin-bottom:6px">VENTAJAS</div>
+        <ul class="pro-list">
+          <li>Rendimiento de vanguardia sin configuración</li>
+          <li>Soporte técnico y actualizaciones automáticas</li>
+          <li>Fácil integración via API</li>
+          <li>Sin infraestructura propia necesaria</li>
+          <li>Versiones Enterprise con garantías legales</li>
+        </ul>
+        <div style="font-size:11px;color:#B0BEC5;margin:8px 0 6px">LIMITACIONES</div>
+        <ul class="con-list">
+          <li>Datos procesados en servidores externos</li>
+          <li>Coste recurrente por uso o suscripción</li>
+          <li>Sin control sobre el modelo interno</li>
+          <li>Dependencia del proveedor</li>
+        </ul>
+      </div>
+      <div class="modelo-card">
+        <div class="mc-header">
+          <div class="mc-icon" style="background:rgba(124,77,255,.2);color:#CE93D8">A</div>
+          <div><div class="mc-name">Modelos abiertos</div><div class="mc-sub">Llama, Mistral, Phi, Qwen</div></div>
+        </div>
+        <div style="font-size:11px;color:#B0BEC5;margin-bottom:6px">VENTAJAS</div>
+        <ul class="pro-list">
+          <li>Datos nunca salen de tu infraestructura</li>
+          <li>Sin coste por consulta (solo infraestructura)</li>
+          <li>Personalización y fine-tuning posibles</li>
+          <li>Control total del modelo y los datos</li>
+          <li>Cumplimiento RGPD más sencillo con datos reales</li>
+        </ul>
+        <div style="font-size:11px;color:#B0BEC5;margin:8px 0 6px">LIMITACIONES</div>
+        <ul class="con-list">
+          <li>Requiere infraestructura técnica propia</li>
+          <li>Menor rendimiento en tareas complejas (en general)</li>
+          <li>Mantenimiento y actualizaciones manuales</li>
+          <li>Necesita perfil técnico para despliegue</li>
+        </ul>
+      </div>
+    </div>
+    <div class="nav-actions"><div></div><button class="btn-p" onclick="go(2)">Comparativa →</button></div>
+  </div>
+
+  <div class="sec" id="s2">
+    <div class="card"><div class="ct">Tabla comparativa para decisión en entornos sanitarios</div><div class="cb">Los criterios más relevantes para un servicio clínico o gestión hospitalaria que evalúa qué tipo de modelo usar.</div></div>
+    <table class="tabla-comp">
+      <tr><th>Criterio</th><th>Cerrado (GPT-4o, Claude)</th><th>Abierto (Llama, Mistral)</th></tr>
+      <tr><td>Privacidad de datos</td><td><span class="badge b-yellow">Requiere DPA</span> datos en nube proveedor</td><td><span class="badge b-green">Alto</span> datos en infraestructura propia</td></tr>
+      <tr><td>Coste inicial</td><td><span class="badge b-green">Bajo</span> sin inversión hardware</td><td><span class="badge b-red">Alto</span> servidor GPU o cloud privado</td></tr>
+      <tr><td>Coste a escala</td><td><span class="badge b-red">Variable</span> escala con uso (por token)</td><td><span class="badge b-green">Predecible</span> infraestructura fija</td></tr>
+      <tr><td>Calidad en tareas complejas</td><td><span class="badge b-green">Muy alta</span> GPT-4o, Claude Opus</td><td><span class="badge b-yellow">Alta-media</span> mejora constante</td></tr>
+      <tr><td>Fine-tuning clínico</td><td><span class="badge b-yellow">Limitado</span> solo vía API/system prompt</td><td><span class="badge b-green">Completo</span> entrenamiento propio posible</td></tr>
+      <tr><td>Facilidad de uso</td><td><span class="badge b-green">Alta</span> plug & play</td><td><span class="badge b-red">Baja</span> requiere perfil técnico</td></tr>
+      <tr><td>Dependencia del proveedor</td><td><span class="badge b-red">Alta</span> si el proveedor cambia condiciones</td><td><span class="badge b-green">Nula</span> modelo propio</td></tr>
+      <tr><td>Cumplimiento RGPD datos reales</td><td><span class="badge b-yellow">Posible</span> con Enterprise + DPA</td><td><span class="badge b-green">Natural</span> sin cesión a terceros</td></tr>
+      <tr><td>Actualizaciones</td><td><span class="badge b-green">Automáticas</span> siempre versión actual</td><td><span class="badge b-yellow">Manuales</span> requiere gestión técnica</td></tr>
+      <tr><td>Modelos médicos especializados</td><td><span class="badge b-yellow">Limitados</span> ajuste vía prompt</td><td><span class="badge b-green">Disponibles</span> BioMistral, MedLlama, etc.</td></tr>
+    </table>
+    <div class="nav-actions"><button class="btn-s" onclick="go(1)">← Conceptos</button><button class="btn-p" onclick="go(3)">¿Cuál elijo? →</button></div>
+  </div>
+
+  <div class="sec" id="s3">
+    <div class="card"><div class="ct">Árbol de decisión interactivo</div><div class="cb">Responde las preguntas siguientes para obtener una recomendación orientativa según tu contexto clínico o institucional.</div></div>
+
+    <div class="decision-tree" id="dt1">
+      <div class="dt-q">1. ¿Necesitas introducir datos reales de pacientes (aunque sean pseudonimizados)?</div>
+      <div class="dt-opts">
+        <div class="dt-opt dt-opt-a" onclick="showDT(2,'si_datos')">
+          <div class="dt-opt-title">Sí — trabajo con datos clínicos reales</div>
+          <div class="dt-opt-desc">Necesito que la IA acceda a información de pacientes del sistema</div>
+        </div>
+        <div class="dt-opt dt-opt-b" onclick="showDT(2,'no_datos')">
+          <div class="dt-opt-title">No — solo datos anonimizados o ficticios</div>
+          <div class="dt-opt-desc">Uso para formación, protocolos genéricos, investigación sin datos identificables</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="decision-tree" id="dt2" style="display:none">
+      <div class="dt-q" id="dt2q"></div>
+      <div class="dt-opts" id="dt2opts"></div>
+    </div>
+
+    <div class="dt-result" id="dt-final"></div>
+
+    <div class="card" style="margin-top:14px">
+      <div class="ct">Modelos abiertos médicos destacados (2024-2025)</div>
+      <div class="cb" style="font-size:12px">
+        <strong style="color:#CE93D8">BioMistral-7B:</strong> Fine-tuned sobre PubMed y literatura biomédica. Bueno para Q&A clínico y resúmenes de evidencia.<br><br>
+        <strong style="color:#CE93D8">MedLlama-3:</strong> Basado en Llama-3, entrenado con datos médicos. Comprensión clínica superior a modelos base.<br><br>
+        <strong style="color:#CE93D8">Phi-3-mini Medical:</strong> Modelo pequeño de Microsoft, eficiente en hardware limitado. Viable en entornos hospitalarios sin GPU potente.<br><br>
+        <strong style="color:#CE93D8">Ollama (plataforma):</strong> Permite ejecutar modelos abiertos localmente en un ordenador estándar sin servidor. Ideal para comenzar a explorar sin inversión en infraestructura.
+      </div>
+    </div>
+    <div class="nav-actions"><button class="btn-s" onclick="go(2)">← Comparativa</button><button class="btn-p" onclick="go(4)">Test →</button></div>
+  </div>
+
+  <div class="sec" id="s4">
+    <div class="qw active" id="q1w">
+      <div class="qnum">Pregunta 1 de 3</div>
+      <div class="qtxt">Un hospital quiere implementar IA para análisis de notas clínicas reales sin salida de datos al exterior. ¿Qué tipo de modelo es más adecuado?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,1)">ChatGPT-4o con suscripción Plus</button>
+        <button class="qopt" onclick="ans(this,true,1)">Un modelo open source desplegado en servidores propios del hospital</button>
+        <button class="qopt" onclick="ans(this,false,1)">Claude Pro con memoria activada</button>
+        <button class="qopt" onclick="ans(this,false,1)">Cualquier modelo en versión Enterprise es equivalente</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+      <div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div>
+    </div>
+    <div class="qw" id="q2w">
+      <div class="qnum">Pregunta 2 de 3</div>
+      <div class="qtxt">Un médico de familia quiere usar IA para generar borradores de informes con datos completamente anonimizados. Su prioridad es la calidad del resultado y la facilidad de uso. ¿Qué tipo de modelo recomiendas?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,true,2)">Modelo cerrado (GPT-4o o Claude) — alta calidad, fácil uso, y con datos anonimizados el riesgo legal es asumible</button>
+        <button class="qopt" onclick="ans(this,false,2)">Modelo open source desplegado localmente — mayor privacidad aunque más complejo</button>
+        <button class="qopt" onclick="ans(this,false,2)">Ninguno — no es seguro usar IA para informes médicos en ningún caso</button>
+        <button class="qopt" onclick="ans(this,false,2)">Solo modelos con certificación CE como dispositivo médico</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+      <div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div>
+    </div>
+    <div class="qw" id="q3w">
+      <div class="qnum">Pregunta 3 de 3</div>
+      <div class="qtxt">¿Cuál es la principal ventaja de los modelos abiertos (open source) respecto a los cerrados para un servicio hospitalario con alto volumen de consultas?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,3)">Siempre tienen mayor calidad de respuesta en tareas clínicas complejas</button>
+        <button class="qopt" onclick="ans(this,false,3)">No requieren ningún tipo de infraestructura técnica para funcionar</button>
+        <button class="qopt" onclick="ans(this,true,3)">Coste predecible y sin pago por token — a escala de uso intensivo, la infraestructura propia resulta más económica que el pago por uso</button>
+        <button class="qopt" onclick="ans(this,false,3)">Cumplen automáticamente el RGPD sin necesidad de ninguna configuración adicional</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+      <div class="qnx" id="nx3">
+        <div style="background:rgba(33,150,243,.1);border:1px solid rgba(33,150,243,.28);border-radius:10px;padding:16px;margin-top:8px">
+          <div style="font-size:13px;font-weight:500;color:#90CAF9;margin-bottom:6px">✓ Lección 2.7 completada</div>
+          <div style="font-size:12px;color:#B0BEC5;line-height:1.6">Dominas los criterios de decisión entre modelos abiertos y cerrados para entornos sanitarios. La lección 2.8 aborda la <strong style="color:#fff">validación y control de calidad de respuestas de IA: cómo detectar alucinaciones y sesgos en contexto clínico</strong>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lf"><span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span><span> · Desarrollado por DoncelProject · doncel.project@gmail.com</span></div>
+</div>
+
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/4)*100);document.getElementById('pf27').style.width=p+'%';document.getElementById('pl27').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+const dtData={
+  si_datos:{q:'2. ¿Tu hospital tiene capacidad de desplegar servidores propios (IT, presupuesto)?',a:'Sí — tenemos infraestructura técnica',b:'No — somos un centro pequeño o sin IT dedicado',ra:{bg:'rgba(124,77,255,.1)',bc:'rgba(124,77,255,.3)',txt:'<strong style="color:#CE93D8">Recomendación: Modelo open source en servidores propios</strong><br>Con datos reales y capacidad técnica, el despliegue local de un modelo como Llama-3 o BioMistral es la opción con mayor control de privacidad y cumplimiento RGPD sin dependencia de terceros.'},rb:{bg:'rgba(255,152,0,.07)',bc:'rgba(255,152,0,.25)',txt:'<strong style="color:#FFD54F">Recomendación: Modelo cerrado Enterprise + DPA</strong><br>Sin capacidad técnica propia, la opción más pragmática es una herramienta Enterprise (ChatGPT Enterprise, Claude for Business) con DPA firmado. Los datos se procesan externamente pero con garantías contractuales de privacidad y no uso para entrenamiento.'}},
+  no_datos:{q:'2. ¿Tu prioridad es la calidad máxima del resultado o la privacidad del proceso?',a:'Calidad máxima — uso para formación y protocolos',b:'Privacidad del proceso — aunque sea con datos ficticios',ra:{bg:'rgba(33,150,243,.1)',bc:'rgba(33,150,243,.3)',txt:'<strong style="color:#90CAF9">Recomendación: Modelo cerrado estándar (GPT-4o, Claude)</strong><br>Con datos anonimizados y prioridad en calidad, los modelos cerrados en versión estándar son la opción más eficiente. Alta calidad de respuesta, fácil uso y sin inversión en infraestructura.'},rb:{bg:'rgba(76,175,80,.07)',bc:'rgba(76,175,80,.25)',txt:'<strong style="color:#A5D6A7">Recomendación: Modelo open source local (Ollama)</strong><br>Si incluso con datos ficticios prefieres que el proceso sea local, Ollama permite ejecutar modelos como Phi-3 o Llama-3 en un ordenador estándar sin servidor. Curva de aprendizaje inicial pero control total del proceso.'}}
+};
+let currentPath='';
+function showDT(step,path){
+  if(step===2){
+    currentPath=path;
+    const d=dtData[path];
+    document.getElementById('dt2').style.display='block';
+    document.getElementById('dt2q').textContent=d.q;
+    document.getElementById('dt2opts').innerHTML=`<div class="dt-opt dt-opt-a" onclick="showResult('ra')">${'<div class="dt-opt-title">'+d.a+'</div>'}</div><div class="dt-opt dt-opt-b" onclick="showResult('rb')">${'<div class="dt-opt-title">'+d.b+'</div>'}</div>`;
+  }
+}
+function showResult(key){
+  const d=dtData[currentPath][key];
+  const r=document.getElementById('dt-final');
+  r.style.background=d.bg;
+  r.style.border='1px solid '+d.bc;
+  r.style.color='#E0E0E0';
+  r.style.fontSize='13px';
+  r.style.lineHeight='1.7';
+  r.innerHTML=d.txt;
+  r.classList.add('show');
+}
+const fbs={
+  1:{ok:'✅ Correcto. Para datos clínicos reales que no pueden salir al exterior, la única opción que garantiza esto structuralmente es un modelo open source desplegado en infraestructura propia del hospital. Las versiones Enterprise de modelos cerrados ofrecen garantías contractuales pero los datos siguen procesándose en servidores del proveedor.',ko:'❌ Cualquier modelo cerrado (GPT, Claude, Gemini), independientemente de la versión o precio, procesa los datos en servidores externos del proveedor. Para garantizar que los datos nunca salen del hospital, la única opción es un modelo open source desplegado en infraestructura propia.'},
+  2:{ok:'✅ Correcto. Con datos completamente anonimizados, el riesgo legal de usar modelos cerrados es muy bajo o nulo. En este contexto, la prioridad de calidad y facilidad de uso apunta claramente a GPT-4o o Claude — los mejores modelos disponibles con la menor fricción de adopción.',ko:'❌ Con datos completamente anonimizados (sin posibilidad de reidentificación), el uso de modelos cerrados es perfectamente válido desde el punto de vista legal. Para un médico de familia sin equipo técnico, la complejidad de desplegar un modelo open source superaría ampliamente el beneficio adicional de privacidad que ya no es necesario en este contexto.'},
+  3:{ok:'✅ Correcto. A escala de uso intensivo (miles de consultas mensuales), el coste por token de los modelos cerrados puede superar ampliamente el coste de amortización de la infraestructura propia. Esta es la principal razón económica por la que hospitales y sistemas de salud con alto volumen optan por modelos open source una vez que tienen capacidad técnica.',ko:'❌ Los modelos abiertos no tienen mayor calidad generalizada (los modelos cerrados siguen siendo superiores en tareas complejas), requieren infraestructura técnica propia para funcionar, y el cumplimiento RGPD depende de cómo se configuren, no es automático. La ventaja principal a escala es el coste predecible sin pago por token.'}
+};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+upd();
+</script>

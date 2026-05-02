@@ -1,0 +1,399 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:32px}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(33,150,243,0.15);border:1px solid rgba(33,150,243,0.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#90CAF9;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px}
+.lt span{color:#2196F3}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#2196F3;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:70px}
+.nb.active{color:#2196F3;border-bottom-color:#2196F3;background:#0C0D12}
+.sec{display:none;padding:20px 24px}
+.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(33,150,243,0.08);border:1px solid rgba(33,150,243,0.22);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#2196F3;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer}
+.aud-grid{display:grid;grid-template-columns:1fr;gap:10px;margin:12px 0}
+.aud-card{background:#13151e;border:1px solid #1e2335;border-radius:12px;overflow:hidden}
+.aud-hd{padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer}
+.aud-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;font-weight:600}
+.aud-name{font-size:13px;font-weight:500}
+.aud-sub{font-size:11px;opacity:.6;margin-top:2px}
+.aud-body{display:none;padding:0 16px 14px;font-size:12px;line-height:1.7;color:#B0BEC5}
+.aud-body.show{display:block}
+.aud-tag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:6px;margin:2px 2px 6px 0;font-weight:500}
+.compare-wrap{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.cv{border-radius:10px;padding:14px}
+.cv-a{background:rgba(255,152,0,.06);border:1px solid rgba(255,152,0,.2)}
+.cv-b{background:rgba(33,150,243,.06);border:1px solid rgba(33,150,243,.2)}
+.cv-c{background:rgba(76,175,80,.06);border:1px solid rgba(76,175,80,.2)}
+.cv-label{font-size:10px;font-weight:500;margin-bottom:8px;letter-spacing:.6px}
+.cv-a .cv-label{color:#FFD54F}
+.cv-b .cv-label{color:#90CAF9}
+.cv-c .cv-label{color:#A5D6A7}
+.cv-prompt{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.6;background:#0C0D12;border-radius:6px;padding:10px;white-space:pre-wrap;word-break:break-word}
+.cv-why{font-size:11px;margin-top:8px;padding-top:8px;border-top:1px solid #1e2335;line-height:1.5;color:#B0BEC5}
+.lab-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.lab-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 12px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s}
+.lab-tab.active{background:rgba(33,150,243,.15);border-color:#2196F3;color:#90CAF9}
+.lab-panel{display:none}
+.lab-panel.show{display:block}
+.prompt-box{background:#0e1018;border:1px solid #1e2335;border-radius:10px;padding:14px;margin:10px 0}
+.prompt-label{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}
+.prompt-text{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.prompt-why{font-size:11px;color:#B0BEC5;line-height:1.6;margin-top:10px;padding-top:10px;border-top:1px solid #1e2335}
+.tabla-niv{width:100%;border-collapse:collapse;font-size:12px;margin:12px 0}
+.tabla-niv th{background:#1a1c24;color:#B0BEC5;font-weight:500;padding:8px 10px;text-align:left;font-size:11px;border:1px solid #1e2335}
+.tabla-niv td{padding:8px 10px;border:1px solid #1e2335;color:#E0E0E0;vertical-align:top;line-height:1.5}
+.tabla-niv tr:nth-child(even) td{background:#0e1018}
+.qw{display:none}
+.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s}
+.qopt:hover{border-color:#2196F3;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}
+.qnx.show{display:block}
+.lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a}
+.fl{color:#2196F3;cursor:pointer;text-decoration:underline}
+</style>
+
+<div class="lw">
+  <div class="lh">
+    <div class="lb">MÓDULO 2 · LECCIÓN 2.3</div>
+    <div class="lt">Adaptación del lenguaje: <span>paciente, residente y especialista</span></div>
+    <div class="lm">
+      <div class="lmi"><div class="md" style="background:#2196F3"></div>47 minutos</div>
+      <div class="lmi"><div class="md" style="background:#00B8D4"></div>4 secciones</div>
+      <div class="lmi"><div class="md" style="background:#FFB300"></div>3 perfiles de audiencia</div>
+    </div>
+  </div>
+
+  <div class="pbw">
+    <div class="pbb"><div class="pbf" id="pf23"></div></div>
+    <div class="pbl" id="pl23">0%</div>
+  </div>
+
+  <div class="snav">
+    <button class="nb active" id="t1" onclick="go(1)">Los 3 perfiles</button>
+    <button class="nb" id="t2" onclick="go(2)">Comparativa</button>
+    <button class="nb" id="t3" onclick="go(3)">Laboratorio</button>
+    <button class="nb" id="t4" onclick="go(4)">Test</button>
+  </div>
+
+  <!-- S1: LOS 3 PERFILES -->
+  <div class="sec active" id="s1">
+    <div class="card">
+      <div class="ct">Objetivo de la lección</div>
+      <div class="cb">Personalizar el nivel de comunicación según la audiencia objetivo. Un mismo contenido clínico necesita tres versiones radicalmente distintas: para el paciente que debe comprenderlo y actuar en consecuencia, para el residente que está aprendiendo, y para el especialista que necesita precisión técnica sin redundancias.</div>
+    </div>
+
+    <div class="simil">
+      <div class="sl">Analogía clínica</div>
+      Un médico no explica una insuficiencia cardíaca igual al paciente en la cama, al R2 en la sesión clínica, y al cardiólogo en la interconsulta. La IA tampoco debe hacerlo — pero necesitas indicárselo explícitamente en el prompt.
+    </div>
+
+    <div class="ct" style="margin-top:4px">Los tres perfiles de audiencia — toca cada uno</div>
+
+    <div class="aud-grid">
+      <div class="aud-card" onclick="toggleAud(1)">
+        <div class="aud-hd">
+          <div class="aud-icon" style="background:rgba(255,152,0,.18);color:#FFD54F">P</div>
+          <div>
+            <div class="aud-name">Paciente</div>
+            <div class="aud-sub">Educación sanitaria · Consentimiento informado · Alta</div>
+          </div>
+        </div>
+        <div class="aud-body" id="aud1">
+          <div style="margin-bottom:8px">
+            <span class="aud-tag" style="background:rgba(255,152,0,.15);color:#FFD54F">Sin tecnicismos</span>
+            <span class="aud-tag" style="background:rgba(255,152,0,.15);color:#FFD54F">Frases cortas ≤15 palabras</span>
+            <span class="aud-tag" style="background:rgba(255,152,0,.15);color:#FFD54F">Accionable</span>
+            <span class="aud-tag" style="background:rgba(255,152,0,.15);color:#FFD54F">Señales de alarma claras</span>
+          </div>
+          El paciente necesita comprender para actuar, no para saber. El objetivo no es transferir conocimiento médico sino conseguir adherencia, seguridad y autonomía. Usa analogías cotidianas, evita toda terminología latina o anglosajona, y cierra siempre con "cuándo llamar al médico".<br><br>
+          <strong style="color:#FFD54F">Instrucción para el prompt:</strong> "Redacta en lenguaje sencillo para una persona sin formación sanitaria. Frases de máximo 15 palabras. Sin tecnicismos. Si usas algún término médico, explícalo entre paréntesis. Cierra con las señales de alarma para buscar atención urgente."
+        </div>
+      </div>
+
+      <div class="aud-card" onclick="toggleAud(2)">
+        <div class="aud-hd">
+          <div class="aud-icon" style="background:rgba(33,150,243,.18);color:#90CAF9">R</div>
+          <div>
+            <div class="aud-name">Residente / Estudiante</div>
+            <div class="aud-sub">Formación · Sesiones clínicas · Autoaprendizaje</div>
+          </div>
+        </div>
+        <div class="aud-body" id="aud2">
+          <div style="margin-bottom:8px">
+            <span class="aud-tag" style="background:rgba(33,150,243,.15);color:#90CAF9">Razonamiento visible</span>
+            <span class="aud-tag" style="background:rgba(33,150,243,.15);color:#90CAF9">Contexto fisiopatológico</span>
+            <span class="aud-tag" style="background:rgba(33,150,243,.15);color:#90CAF9">Errores frecuentes</span>
+            <span class="aud-tag" style="background:rgba(33,150,243,.15);color:#90CAF9">Preguntas de reflexión</span>
+          </div>
+          El residente necesita entender el "por qué" detrás de cada decisión. No solo qué hacer, sino la fisiopatología que lo justifica y los errores que sus compañeros cometen. Incluye el nivel de evidencia, las reglas nemotécnicas y los puntos de incertidumbre clínica real.<br><br>
+          <strong style="color:#90CAF9">Instrucción para el prompt:</strong> "Nivel R[número] de [especialidad]. Explica el razonamiento clínico paso a paso. Incluye la fisiopatología relevante, los errores frecuentes en residentes y al menos una pregunta de reflexión para consolidar el aprendizaje."
+        </div>
+      </div>
+
+      <div class="aud-card" onclick="toggleAud(3)">
+        <div class="aud-hd">
+          <div class="aud-icon" style="background:rgba(76,175,80,.18);color:#A5D6A7">E</div>
+          <div>
+            <div class="aud-name">Especialista / Par</div>
+            <div class="aud-sub">Interconsulta · Informe · Sesión científica</div>
+          </div>
+        </div>
+        <div class="aud-body" id="aud3">
+          <div style="margin-bottom:8px">
+            <span class="aud-tag" style="background:rgba(76,175,80,.15);color:#A5D6A7">Terminología técnica completa</span>
+            <span class="aud-tag" style="background:rgba(76,175,80,.15);color:#A5D6A7">Sin definiciones básicas</span>
+            <span class="aud-tag" style="background:rgba(76,175,80,.15);color:#A5D6A7">Nivel de evidencia</span>
+            <span class="aud-tag" style="background:rgba(76,175,80,.15);color:#A5D6A7">Máxima densidad informativa</span>
+          </div>
+          El especialista comparte base de conocimiento. No necesitas explicar qué es la fracción de eyección ni qué son las troponinas. Usa abreviaturas estándar, terminología en inglés cuando sea más precisa, y ve directo a la información diferencial o al punto de incertidumbre clínica real.<br><br>
+          <strong style="color:#A5D6A7">Instrucción para el prompt:</strong> "Escribe para un especialista en [área] con formación completa. Usa terminología médica técnica sin simplificaciones. No definas conceptos básicos de la especialidad. Máxima densidad informativa. Referencia el nivel de evidencia cuando sea relevante."
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:4px">
+      <div class="ct">Tabla resumen de parámetros por audiencia</div>
+      <table class="tabla-niv">
+        <tr>
+          <th>Parámetro</th>
+          <th style="color:#FFD54F">Paciente</th>
+          <th style="color:#90CAF9">Residente</th>
+          <th style="color:#A5D6A7">Especialista</th>
+        </tr>
+        <tr>
+          <td>Vocabulario</td>
+          <td>Cotidiano, sin tecnicismos</td>
+          <td>Médico básico + contexto</td>
+          <td>Técnico completo</td>
+        </tr>
+        <tr>
+          <td>Longitud frases</td>
+          <td>≤15 palabras</td>
+          <td>Media, con estructura</td>
+          <td>Densa, eficiente</td>
+        </tr>
+        <tr>
+          <td>Fisiopatología</td>
+          <td>No (solo consecuencias)</td>
+          <td>Sí, explicada</td>
+          <td>Sí, asumida</td>
+        </tr>
+        <tr>
+          <td>Nivel evidencia</td>
+          <td>No</td>
+          <td>Sí, con explicación</td>
+          <td>Sí, sin explicación</td>
+        </tr>
+        <tr>
+          <td>Foco principal</td>
+          <td>Qué hacer y cuándo consultar</td>
+          <td>Por qué y cómo razonar</td>
+          <td>Qué y con qué evidencia</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="nav-actions"><div></div><button class="btn-p" onclick="go(2)">Comparativa →</button></div>
+  </div>
+
+  <!-- S2: COMPARATIVA -->
+  <div class="sec" id="s2">
+    <div class="card">
+      <div class="ct">El mismo contenido, tres versiones</div>
+      <div class="cb">Analiza cómo el mismo tema clínico —la anticoagulación en FA— se comunica de forma radicalmente distinta según la audiencia. Los tres textos son correctos: la diferencia no es la calidad sino la adaptación.</div>
+    </div>
+
+    <div class="ct" style="margin:12px 0 4px">Tema: anticoagulación en fibrilación auricular</div>
+    <div style="display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:16px">
+      <div class="cv cv-a">
+        <div class="cv-label">👤 VERSIÓN PACIENTE</div>
+        <div class="cv-prompt">Su corazón a veces late de forma irregular. Esto puede hacer que se formen coágulos en la sangre. Los coágulos son peligrosos porque pueden viajar al cerebro y causar un ictus. Para evitarlo, va a tomar una pastilla todos los días que hace la sangre menos espesa. Es muy importante que no la olvide. Si le sale un moratón grande, sangra mucho al cortarse, u orina de color rojizo, llame a su médico ese mismo día.</div>
+        <div class="cv-why">Sin tecnicismos. Analogías cotidianas. Accionable. Señal de alarma concreta.</div>
+      </div>
+      <div class="cv cv-b">
+        <div class="cv-label">🩺 VERSIÓN RESIDENTE</div>
+        <div class="cv-prompt">En la FA no valvular, el riesgo tromboembólico se estratifica con CHA₂DS₂-VASc (anticoagular si ≥2 en hombres, ≥3 en mujeres). Los ACO de elección son los NACO frente a AVK por menor riesgo hemorrágico intracraneal y manejo más predecible (sin controles de INR rutinarios). Error frecuente en residentes: no ajustar dosis de apixabán o rivaroxabán por función renal en pacientes mayores. Recuerda: dabigatrán requiere FG>30, apixabán>15. ¿Por qué la reversión con idarucizumab es específica solo para dabigatrán?</div>
+        <div class="cv-why">Terminología técnica con contexto. Razonamiento clínico visible. Error frecuente señalado. Pregunta de reflexión al final.</div>
+      </div>
+      <div class="cv cv-c">
+        <div class="cv-label">👨‍⚕️ VERSIÓN ESPECIALISTA</div>
+        <div class="cv-prompt">En FA no valvular con CHA₂DS₂-VASc ≥2♂/≥3♀, NACO de primera línea (NNT vs AVK: 143 para ictus isquémico, NNH para HIC: 476, metaanálisis Ruff 2014). Ajuste renal obligatorio: apixabán (Cockroft-Gault; reducir si 2/3 criterios: Cr≥1.5, peso≤60kg, edad≥80); rivaroxabán (evitar si FG<15); dabigatrán (contraindicado FG<30, interacción P-gp relevante). En contexto perioperatorio: bridge innecesario con NACO si CHA₂DS₂-VASc<4 (ESC 2023). Antídotos disponibles: idarucizumab (dabigatrán), andexanet alfa (Xa).</div>
+        <div class="cv-why">Máxima densidad. Referencia bibliográfica. Abreviaturas estándar asumidas. Sin definiciones básicas. Foco en puntos diferenciales.</div>
+      </div>
+    </div>
+
+    <div class="nav-actions"><button class="btn-s" onclick="go(1)">← Perfiles</button><button class="btn-p" onclick="go(3)">Laboratorio →</button></div>
+  </div>
+
+  <!-- S3: LABORATORIO -->
+  <div class="sec" id="s3">
+    <div class="card">
+      <div class="ct">Laboratorio de prompts por audiencia</div>
+      <div class="cb">Prompts listos para adaptar cualquier contenido clínico a cada perfil de audiencia. Copia, rellena los corchetes y adapta a tu especialidad.</div>
+    </div>
+
+    <div class="lab-tabs">
+      <button class="lab-tab active" onclick="showLab(this,1)">Para paciente</button>
+      <button class="lab-tab" onclick="showLab(this,2)">Para residente</button>
+      <button class="lab-tab" onclick="showLab(this,3)">Para especialista</button>
+    </div>
+
+    <div class="lab-panel show" id="lab1">
+      <div class="prompt-box">
+        <div class="prompt-label">Explicación de diagnóstico al paciente</div>
+        <div class="prompt-text">Actúa como médico con habilidad para comunicar diagnósticos de forma comprensible. Explica a un paciente de [edad] años, sin formación sanitaria, qué significa tener [diagnóstico].
+
+La explicación debe incluir: qué es la enfermedad en términos cotidianos (2-3 frases), por qué le ha ocurrido a él/ella (si aplica), cómo va a afectar a su vida diaria, y cuándo debe buscar atención médica urgente.
+
+Restricciones: frases de máximo 15 palabras. Sin términos médicos latinos ni anglicismos. Si necesitas usar algún término técnico, explícalo entre paréntesis. Tono cálido y cercano. No uses el término "patología".</div>
+        <div class="prompt-why">Reduce la ansiedad del diagnóstico y mejora la comprensión. El profesional sanitario revisa antes de entregar al paciente.</div>
+      </div>
+      <div class="prompt-box">
+        <div class="prompt-label">Instrucciones de medicación para paciente mayor</div>
+        <div class="prompt-text">Redacta instrucciones para tomar [medicamento] dirigidas a un paciente de [edad] años con nivel educativo bajo que vive solo. El tratamiento es para [indicación].
+
+Incluye: cuándo tomarlo (referenciado a actividades cotidianas como "después de desayunar"), qué hacer si olvida una dosis, cuándo NO tomarlo, y 3 señales de que algo va mal y debe llamar al médico.
+
+Restricciones: sin nombres químicos. Sin frases de más de 12 palabras. Usa números en lugar de fracciones. Formato: lista numerada con máximo 8 puntos.</div>
+        <div class="prompt-why">Adherencia terapéutica mejorada cuando las instrucciones se adaptan al nivel real del paciente.</div>
+      </div>
+    </div>
+
+    <div class="lab-panel" id="lab2">
+      <div class="prompt-box">
+        <div class="prompt-label">Explicación fisiopatológica para residente</div>
+        <div class="prompt-text">Actúa como tutor clínico experto en [especialidad]. Explica el mecanismo fisiopatológico de [condición/complicación] a un médico residente de [año de residencia].
+
+La explicación debe: partir de la fisiopatología básica en 5 pasos secuenciales, conectar cada paso con una consecuencia clínica observable, señalar los 2 errores diagnósticos más frecuentes en residentes para este cuadro, y terminar con una pregunta de reflexión para consolidar el aprendizaje.
+
+Nivel: comprensible para un R[número] con formación universitaria completa pero sin experiencia específica en este cuadro.</div>
+        <div class="prompt-why">El razonamiento visible es lo que diferencia al residente que aprende del que simplemente ejecuta protocolos.</div>
+      </div>
+      <div class="prompt-box">
+        <div class="prompt-label">Caso clínico docente con puntos de aprendizaje</div>
+        <div class="prompt-text">Diseña un caso clínico docente sobre [tema] para residentes de [especialidad] de [año]. Dificultad: [básica/intermedia/avanzada].
+
+Estructura: (1) Presentación inicial con datos intencionalmente incompletos para generar discusión, (2) 3 preguntas de razonamiento clínico con respuesta justificada paso a paso mostrando el proceso de descarte, (3) Evolución y diagnóstico definitivo con prueba confirmatoria, (4) 3 puntos de aprendizaje clave que el residente debe llevarse.
+
+Restricciones: caso ficticio pero clínicamente verosímil. No reveles el diagnóstico hasta el apartado 3. Usa terminología técnica de la especialidad.</div>
+        <div class="prompt-why">Material docente de alta calidad en minutos. El tutor valida el contenido clínico antes de usar en sesión.</div>
+      </div>
+    </div>
+
+    <div class="lab-panel" id="lab3">
+      <div class="prompt-box">
+        <div class="prompt-label">Resumen de evidencia para comunicación entre pares</div>
+        <div class="prompt-text">Actúa como médico especialista en [área] preparando un resumen de evidencia para comunicar a un colega especialista en [área relacionada]. Tema: [pregunta clínica específica].
+
+Resume: los estudios pivotales con sus endpoints primarios y resultados (NNT/NNH si disponible), el nivel de evidencia actual (GRADE o equivalente), las limitaciones metodológicas relevantes, y la controversia o punto de incertidumbre clínica más relevante en la actualidad.
+
+Restricciones: usa terminología técnica completa y abreviaturas estándar de la especialidad sin definirlas. No incluyas introducciones básicas sobre la enfermedad. Densidad informativa máxima. Si no conoces algún dato específico, indícalo.</div>
+        <div class="prompt-why">Ahorra tiempo de revisión bibliográfica para comunicaciones clínicas entre especialistas. Valida siempre las referencias.</div>
+      </div>
+      <div class="prompt-box">
+        <div class="prompt-label">Informe de interconsulta especializada</div>
+        <div class="prompt-text">Redacta un informe de interconsulta de [especialidad origen] a [especialidad destino] para el siguiente caso: [datos clínicos relevantes sin identificar al paciente].
+
+Formato de informe especializado: motivo de interconsulta (1 frase concisa), resumen clínico relevante para la especialidad consultada (solo datos pertinentes), pregunta clínica concreta que se plantea, tratamiento actual relacionado con la consulta, y datos de pruebas complementarias relevantes.
+
+Restricciones: terminología médica técnica completa. Omite datos del historial no pertinentes para la interconsulta. Extensión máxima: 200 palabras. Tono profesional entre pares.</div>
+        <div class="prompt-why">Interconsultas más precisas y eficientes = respuestas más útiles del especialista consultado.</div>
+      </div>
+    </div>
+
+    <div class="nav-actions"><button class="btn-s" onclick="go(2)">← Comparativa</button><button class="btn-p" onclick="go(4)">Test →</button></div>
+  </div>
+
+  <!-- S4: TEST -->
+  <div class="sec" id="s4">
+    <div class="qw active" id="q1w">
+      <div class="qnum">Pregunta 1 de 3</div>
+      <div class="qtxt">Una enfermera quiere usar IA para generar la explicación de una colonoscopia para un paciente de 78 años con bajo nivel educativo. ¿Qué elemento del prompt es más crítico para garantizar que el texto sea comprensible?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,1)">Indicar que la IA actúe como gastroenterólogo experto</button>
+        <button class="qopt" onclick="ans(this,true,1)">Especificar frases de máximo 15 palabras, sin tecnicismos, con señales de alarma concretas y tono cercano</button>
+        <button class="qopt" onclick="ans(this,false,1)">Pedir que incluya la fisiopatología del colon para que el paciente comprenda mejor</button>
+        <button class="qopt" onclick="ans(this,false,1)">Solicitar que el texto tenga extensión mínima de 500 palabras para ser completo</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+      <div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div>
+    </div>
+
+    <div class="qw" id="q2w">
+      <div class="qnum">Pregunta 2 de 3</div>
+      <div class="qtxt">Un tutor de residentes quiere que la IA le genere una explicación sobre la fisiopatología del shock séptico para su R2. ¿Qué instrucción diferencia un prompt para residente de uno para especialista?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,2)">Usar terminología técnica completa sin definiciones</button>
+        <button class="qopt" onclick="ans(this,true,2)">Incluir el razonamiento paso a paso, los errores frecuentes en residentes y una pregunta de reflexión al final</button>
+        <button class="qopt" onclick="ans(this,false,2)">Pedir máxima densidad informativa y referencias bibliográficas</button>
+        <button class="qopt" onclick="ans(this,false,2)">Solicitar que omita la fisiopatología básica que el residente ya conoce</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+      <div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div>
+    </div>
+
+    <div class="qw" id="q3w">
+      <div class="qnum">Pregunta 3 de 3</div>
+      <div class="qtxt">Un médico genera con IA un informe de interconsulta a cardiología que incluye una explicación de qué es la fracción de eyección y cómo se mide. ¿Cuál es el problema principal?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,3)">El informe es demasiado corto para ser útil al cardiólogo</button>
+        <button class="qopt" onclick="ans(this,false,3)">Debería incluir más datos del historial completo del paciente</button>
+        <button class="qopt" onclick="ans(this,true,3)">El prompt no especificó la audiencia (especialista) — la IA generó texto para nivel básico, añadiendo definiciones innecesarias que reducen la densidad informativa y el tono profesional entre pares</button>
+        <button class="qopt" onclick="ans(this,false,3)">El informe debería estar en inglés para comunicación entre especialistas</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+      <div class="qnx" id="nx3">
+        <div style="background:rgba(33,150,243,.1);border:1px solid rgba(33,150,243,.28);border-radius:10px;padding:16px;margin-top:8px">
+          <div style="font-size:13px;font-weight:500;color:#90CAF9;margin-bottom:6px">✓ Lección 2.3 completada</div>
+          <div style="font-size:12px;color:#B0BEC5;line-height:1.6">Dominas la adaptación del lenguaje según audiencia: paciente, residente y especialista. La lección 2.4 trabaja la <strong style="color:#fff">memoria persistente en ChatGPT y Claude para el seguimiento clínico longitudinal de pacientes crónicos</strong>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lf">
+    <span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span>
+    <span> · Desarrollado por DoncelProject · doncel.project@gmail.com</span>
+  </div>
+</div>
+
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/4)*100);document.getElementById('pf23').style.width=p+'%';document.getElementById('pl23').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function toggleAud(i){const b=document.getElementById('aud'+i);const open=b.classList.contains('show');document.querySelectorAll('.aud-body').forEach(x=>x.classList.remove('show'));if(!open)b.classList.add('show');}
+function showLab(el,i){document.querySelectorAll('.lab-tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.lab-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById('lab'+i).classList.add('show');}
+const fbs={
+  1:{ok:'✅ Correcto. Para una audiencia de bajo nivel educativo y edad avanzada, las restricciones de formato son el elemento más crítico: frases cortas, vocabulario cotidiano, señales de alarma concretas. El rol de gastroenterólogo y la fisiopatología son relevantes para el especialista, no para el paciente que necesita saber qué va a sentir y cuándo debe pedir ayuda.',ko:'❌ La fisiopatología detallada y la extensión larga son exactamente lo contrario de lo que necesita este paciente. Para una audiencia mayor con bajo nivel educativo, la prioridad son las restricciones de formato: frases cortas, sin tecnicismos, información accionable y señales de alarma claras.'},
+  2:{ok:'✅ Correcto. El diferencial clave entre un prompt para residente y uno para especialista es la visibilidad del razonamiento clínico. El residente necesita ver el proceso de pensamiento, los errores que sus compañeros cometen y preguntas que le hagan reflexionar. El especialista ya tiene ese andamiaje — necesita densidad informativa y referencias, no pedagogía.',ko:'❌ La terminología técnica, la densidad informativa y las referencias son características del prompt para especialista, no para residente. Lo que define el prompt para residente es el razonamiento visible paso a paso, los errores frecuentes señalados explícitamente y las preguntas de reflexión que consolidan el aprendizaje.'},
+  3:{ok:'✅ Correcto. La IA sin instrucción de audiencia tiende a producir texto para nivel intermedio o básico por defecto, añadiendo definiciones y explicaciones que un cardiólogo considera ruido innecesario. El prompt debía incluir "escribe para un cardiólogo especialista, sin definir conceptos básicos de la especialidad, máxima densidad informativa".',ko:'❌ El problema no es la extensión ni el idioma. El fallo es que el prompt no especificó la audiencia experta — sin esa instrucción, la IA genera texto genérico con definiciones básicas que son innecesarias e incluso condescendientes para un cardiólogo. La audiencia del destinatario es el parámetro que más cambia el tono y la densidad del texto generado.'}
+};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+upd();
+</script>

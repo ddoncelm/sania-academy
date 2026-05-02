@@ -1,0 +1,620 @@
+
+<style>
+  :root {
+    --dp-bg: #0C0D12;
+    --dp-blue: #2196F3;
+    --dp-cyan: #00B8D4;
+    --dp-gray: #B0BEC5;
+    --dp-white: #FFFFFF;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .lesson-wrap {
+    background: var(--dp-bg);
+    color: var(--dp-white);
+    font-family: var(--font-sans, sans-serif);
+    padding: 0 0 32px;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  /* HEADER */
+  .lesson-header {
+    background: linear-gradient(135deg, #0C0D12 60%, #0d1f35);
+    border-bottom: 1px solid #1a2a3a;
+    padding: 24px 28px 20px;
+  }
+  .lesson-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(33,150,243,0.15); border: 1px solid rgba(33,150,243,0.3);
+    border-radius: 20px; padding: 4px 12px;
+    font-size: 11px; color: var(--dp-blue); font-weight: 500;
+    margin-bottom: 12px; letter-spacing: 0.5px;
+  }
+  .lesson-title {
+    font-size: 20px; font-weight: 500; color: var(--dp-white);
+    line-height: 1.3; margin-bottom: 8px;
+  }
+  .lesson-title span { color: var(--dp-cyan); }
+  .lesson-meta {
+    display: flex; align-items: center; gap: 16px;
+    font-size: 12px; color: var(--dp-gray); margin-top: 10px;
+  }
+  .lesson-meta-item { display: flex; align-items: center; gap: 5px; }
+  .meta-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--dp-cyan); }
+
+  /* PROGRESS */
+  .progress-bar-wrap {
+    background: #1a1c24; border-bottom: 1px solid #1a2a3a;
+    padding: 10px 28px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .progress-bar-bg { flex: 1; height: 4px; background: #2a2d3a; border-radius: 4px; }
+  .progress-bar-fill { height: 4px; background: var(--dp-cyan); border-radius: 4px; width: 0%; transition: width 0.5s; }
+  .progress-label { font-size: 11px; color: var(--dp-gray); min-width: 40px; text-align: right; }
+
+  /* SECTION NAV */
+  .section-nav {
+    display: flex; gap: 0;
+    background: #13151e;
+    border-bottom: 1px solid #1a2a3a;
+    overflow-x: auto;
+  }
+  .nav-btn {
+    flex: 1; padding: 10px 8px;
+    background: transparent; border: none; cursor: pointer;
+    font-size: 11px; color: var(--dp-gray);
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s; white-space: nowrap;
+    min-width: 80px;
+  }
+  .nav-btn.active { color: var(--dp-cyan); border-bottom-color: var(--dp-cyan); background: rgba(0,184,212,0.05); }
+  .nav-btn:hover:not(.active) { color: var(--dp-white); background: rgba(255,255,255,0.03); }
+
+  /* CONTENT SECTIONS */
+  .section { display: none; padding: 24px 28px; }
+  .section.active { display: block; }
+
+  /* CARDS */
+  .card {
+    background: #13151e; border: 1px solid #1e2335;
+    border-radius: 12px; padding: 18px 20px; margin-bottom: 16px;
+  }
+  .card-title {
+    font-size: 13px; font-weight: 500; color: var(--dp-cyan);
+    margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+  }
+  .card-title svg { flex-shrink: 0; }
+  .card-body { font-size: 13px; color: var(--dp-gray); line-height: 1.7; }
+  .card-body strong { color: var(--dp-white); font-weight: 500; }
+
+  /* SIMIL BOX */
+  .simil {
+    background: rgba(33,150,243,0.08); border-left: 3px solid var(--dp-blue);
+    border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0;
+    font-size: 12px; color: #90CAF9; line-height: 1.6;
+  }
+  .simil-label { font-size: 10px; font-weight: 500; color: var(--dp-blue); letter-spacing: 1px; margin-bottom: 4px; }
+
+  /* HIGHLIGHT */
+  .highlight {
+    background: rgba(0,184,212,0.08); border: 1px solid rgba(0,184,212,0.2);
+    border-radius: 8px; padding: 12px 16px; margin: 12px 0;
+    font-size: 12px; color: #80DEEA; line-height: 1.6;
+  }
+  .highlight-label { font-size: 10px; font-weight: 500; color: var(--dp-cyan); letter-spacing: 1px; margin-bottom: 4px; }
+
+  /* ROLE GRID */
+  .role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 4px; }
+  .role-card {
+    background: #0e1018; border: 1px solid #1e2335; border-radius: 10px;
+    padding: 14px 16px; cursor: pointer; transition: all 0.2s;
+  }
+  .role-card:hover { border-color: var(--dp-blue); background: #111522; }
+  .role-card.selected { border-color: var(--dp-cyan); background: rgba(0,184,212,0.07); }
+  .role-icon { font-size: 22px; margin-bottom: 8px; }
+  .role-name { font-size: 13px; font-weight: 500; color: var(--dp-white); margin-bottom: 4px; }
+  .role-desc { font-size: 11px; color: var(--dp-gray); line-height: 1.5; }
+  .role-example {
+    display: none; margin-top: 10px; padding-top: 10px;
+    border-top: 1px solid #1e2335;
+    font-size: 11px; color: #80DEEA; line-height: 1.5;
+  }
+  .role-card.selected .role-example { display: block; }
+
+  /* TYPES OF IA */
+  .ia-types { display: flex; flex-direction: column; gap: 10px; }
+  .ia-type {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: #0e1018; border: 1px solid #1e2335; border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .ia-type-bar {
+    width: 4px; min-height: 40px; border-radius: 4px; flex-shrink: 0; margin-top: 2px;
+  }
+  .ia-type-title { font-size: 13px; font-weight: 500; color: var(--dp-white); margin-bottom: 4px; }
+  .ia-type-body { font-size: 12px; color: var(--dp-gray); line-height: 1.6; }
+  .ia-type-badge {
+    display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 10px;
+    margin-bottom: 6px; font-weight: 500;
+  }
+
+  /* QUIZ */
+  .quiz-q { font-size: 14px; font-weight: 500; color: var(--dp-white); margin-bottom: 16px; line-height: 1.5; }
+  .quiz-opts { display: flex; flex-direction: column; gap: 8px; }
+  .quiz-opt {
+    background: #0e1018; border: 1px solid #1e2335; border-radius: 8px;
+    padding: 12px 16px; cursor: pointer; font-size: 13px; color: var(--dp-gray);
+    transition: all 0.2s; text-align: left; width: 100%;
+  }
+  .quiz-opt:hover:not(:disabled) { border-color: var(--dp-blue); color: var(--dp-white); background: #111522; }
+  .quiz-opt.correct { border-color: #4CAF50; background: rgba(76,175,80,0.1); color: #A5D6A7; }
+  .quiz-opt.wrong { border-color: #EF5350; background: rgba(239,83,80,0.1); color: #EF9A9A; }
+  .quiz-feedback { display: none; margin-top: 14px; padding: 12px 16px; border-radius: 8px; font-size: 13px; line-height: 1.6; }
+  .quiz-feedback.show { display: block; }
+  .quiz-feedback.ok { background: rgba(76,175,80,0.1); border: 1px solid rgba(76,175,80,0.3); color: #A5D6A7; }
+  .quiz-feedback.ko { background: rgba(239,83,80,0.1); border: 1px solid rgba(239,83,80,0.3); color: #EF9A9A; }
+  .quiz-next { display: none; margin-top: 12px; }
+  .quiz-next.show { display: block; }
+  .btn-next {
+    background: var(--dp-blue); color: white; border: none; border-radius: 8px;
+    padding: 10px 20px; font-size: 13px; cursor: pointer; transition: opacity 0.2s;
+  }
+  .btn-next:hover { opacity: 0.85; }
+
+  /* GLOSSARY */
+  .glossary-item {
+    border-bottom: 1px solid #1e2335; padding: 14px 0;
+  }
+  .glossary-term { font-size: 13px; font-weight: 500; color: var(--dp-cyan); margin-bottom: 4px; }
+  .glossary-def { font-size: 12px; color: var(--dp-gray); line-height: 1.6; }
+  .glossary-analogy { font-size: 11px; color: #90CAF9; margin-top: 6px; font-style: italic; }
+
+  /* VISUAL: IA BRAIN */
+  .visual-section { margin: 20px 0; }
+
+  /* FOOTER */
+  .lesson-footer {
+    margin: 24px 28px 0;
+    padding-top: 16px; border-top: 1px solid #1e2335;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11px; color: #546E7A;
+  }
+  .footer-logo { color: var(--dp-blue); cursor: pointer; font-weight: 500; }
+
+  /* NAV BUTTONS */
+  .nav-actions { display: flex; justify-content: space-between; margin-top: 24px; gap: 10px; }
+  .btn-sec {
+    background: transparent; border: 1px solid #2a2d3a; color: var(--dp-gray);
+    border-radius: 8px; padding: 9px 18px; font-size: 12px; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-sec:hover { border-color: var(--dp-blue); color: var(--dp-white); }
+  .btn-prim {
+    background: var(--dp-blue); color: white; border: none;
+    border-radius: 8px; padding: 9px 18px; font-size: 12px; cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .btn-prim:hover { opacity: 0.85; }
+
+  /* COMPLETED BADGE */
+  .completed-check {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: #4CAF50; margin-left: 6px; font-size: 9px;
+    color: white; vertical-align: middle;
+  }
+  .section-done { color: #4CAF50 !important; }
+</style>
+
+<div class="lesson-wrap">
+
+  <!-- HEADER -->
+  <div class="lesson-header">
+    <div class="lesson-badge">
+      <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="none" stroke="currentColor" stroke-width="1.2"/><line x1="5" y1="3" x2="5" y2="5.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="5" cy="7" r="0.6" fill="currentColor"/></svg>
+      MÓDULO 1 · LECCIÓN 1.1
+    </div>
+    <div class="lesson-title">¿Qué es la <span>Inteligencia Artificial</span> y cómo se aplica en sanidad?</div>
+    <div class="lesson-meta">
+      <div class="lesson-meta-item"><div class="meta-dot"></div>71 minutos</div>
+      <div class="lesson-meta-item"><div class="meta-dot" style="background:#2196F3"></div>5 secciones</div>
+      <div class="lesson-meta-item"><div class="meta-dot" style="background:#9C27B0"></div>Nivel básico</div>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-label" id="progressLabel">0%</div>
+  </div>
+
+  <!-- SECTION NAV -->
+  <div class="section-nav">
+    <button class="nav-btn active" id="tab0" onclick="goSection(0)">📖 Intro</button>
+    <button class="nav-btn" id="tab1" onclick="goSection(1)">🧠 Qué es IA</button>
+    <button class="nav-btn" id="tab2" onclick="goSection(2)">👤 Por rol</button>
+    <button class="nav-btn" id="tab3" onclick="goSection(3)">⚖️ Ética</button>
+    <button class="nav-btn" id="tab4" onclick="goSection(4)">✅ Autoevaluación</button>
+  </div>
+
+  <!-- SECTION 0: INTRO -->
+  <div class="section active" id="sec0">
+    <div class="card">
+      <div class="card-title">
+        <svg width="16" height="16" viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="3" fill="none" stroke="currentColor" stroke-width="1.2"/><line x1="5" y1="5.5" x2="11" y2="5.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="5" y1="8" x2="11" y2="8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="5" y1="10.5" x2="8" y2="10.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        Objetivo de la lección
+      </div>
+      <div class="card-body">
+        Comprender los conceptos fundamentales de la IA generativa y entender cómo cambia el trabajo diario según tu rol en el sistema sanitario: médico, enfermero/a, farmacéutico/a o gestor/a.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        ¿Qué vas a aprender?
+      </div>
+      <div class="card-body" style="display:flex; flex-direction:column; gap:10px;">
+        <div style="display:flex; gap:10px; align-items:flex-start;">
+          <div style="width:22px;height:22px;border-radius:50%;background:rgba(33,150,243,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:#90CAF9;margin-top:1px;">1</div>
+          <div><strong>Fundamentos de IA</strong> explicados sin tecnicismos, con ejemplos de tu práctica diaria</div>
+        </div>
+        <div style="display:flex; gap:10px; align-items:flex-start;">
+          <div style="width:22px;height:22px;border-radius:50%;background:rgba(0,184,212,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:#80DEEA;margin-top:1px;">2</div>
+          <div><strong>Casos de uso reales</strong> por rol: medicina, enfermería, farmacia y gestión</div>
+        </div>
+        <div style="display:flex; gap:10px; align-items:flex-start;">
+          <div style="width:22px;height:22px;border-radius:50%;background:rgba(156,39,176,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:#CE93D8;margin-top:1px;">3</div>
+          <div><strong>Marco ético esencial</strong> y primeros pasos con configuración segura en el entorno SSPA</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="simil">
+      <div class="simil-label">💡 ANTES DE EMPEZAR</div>
+      No necesitas saber programar ni tener conocimientos técnicos. Esta lección está diseñada para profesionales sanitarios que usan la IA como herramienta, igual que usas el HIS o el ecógrafo: sin entender cómo funcionan por dentro, pero sabiendo sacarles partido.
+    </div>
+
+    <div class="nav-actions">
+      <span></span>
+      <button class="btn-prim" onclick="goSection(1)">Empezar → Qué es la IA</button>
+    </div>
+  </div>
+
+  <!-- SECTION 1: QUÉ ES IA -->
+  <div class="section" id="sec1">
+    <div class="card">
+      <div class="card-title">🧠 La definición sin tecnicismos</div>
+      <div class="card-body">
+        La Inteligencia Artificial es un software capaz de <strong>procesar enormes cantidades de texto y datos</strong>, identificar patrones y generar respuestas útiles. No "piensa" como tú; predice qué palabra, frase o decisión es más probable dado un contexto.
+      </div>
+      <div class="simil">
+        <div class="simil-label">🔬 SÍMIL CLÍNICO</div>
+        Imagina que has leído <strong>toda la literatura médica publicada en el mundo</strong>. Cuando un residente te pregunta sobre el manejo del shock séptico, no "recuerdas" el protocolo: tu cerebro activa los patrones aprendidos y construyes una respuesta coherente. Eso hace la IA generativa, pero con textos como materia prima.
+      </div>
+    </div>
+
+    <!-- VISUAL: tipos de IA -->
+    <div class="card">
+      <div class="card-title">Tipos de IA que encontrarás en sanidad</div>
+      <div class="ia-types">
+        <div class="ia-type">
+          <div class="ia-type-bar" style="background:#2196F3;"></div>
+          <div>
+            <div class="ia-type-badge" style="background:rgba(33,150,243,0.15);color:#90CAF9;">IA PREDICTIVA</div>
+            <div class="ia-type-title">Predice eventos clínicos</div>
+            <div class="ia-type-body">Analiza variables del paciente para anticipar deterioro, reingresos o sepsis. Ejemplo: <strong>sistema de alerta temprana</strong> en UCI que detecta patrones de alarma antes de que el médico los note en el monitor.</div>
+          </div>
+        </div>
+        <div class="ia-type">
+          <div class="ia-type-bar" style="background:#00B8D4;"></div>
+          <div>
+            <div class="ia-type-badge" style="background:rgba(0,184,212,0.15);color:#80DEEA;">IA GENERATIVA</div>
+            <div class="ia-type-title">Produce texto, imágenes o código</div>
+            <div class="ia-type-body">Es el tipo de ChatGPT/Claude. Redacta informes, resume historiales, responde preguntas. El médico pregunta; la IA genera una respuesta en lenguaje natural. <strong>Es el foco de este curso.</strong></div>
+          </div>
+        </div>
+        <div class="ia-type">
+          <div class="ia-type-bar" style="background:#9C27B0;"></div>
+          <div>
+            <div class="ia-type-badge" style="background:rgba(156,39,176,0.15);color:#CE93D8;">IA DIAGNÓSTICA</div>
+            <div class="ia-type-title">Interpreta imágenes médicas</div>
+            <div class="ia-type-body">Detecta nódulos pulmonares en TC, lesiones dérmicas en fotos o retinopatía diabética. Actúa como un <strong>segundo observador</strong> que nunca se cansa ni pierde concentración.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SVG: cómo funciona el LLM -->
+    <div class="card">
+      <div class="card-title">¿Cómo funciona un modelo de lenguaje (LLM)?</div>
+      <svg width="100%" viewBox="0 0 620 160" role="img">
+        <title>Flujo simplificado de un LLM</title>
+        <!-- Input -->
+        <rect x="10" y="50" width="110" height="60" rx="10" fill="rgba(33,150,243,0.15)" stroke="#2196F3" stroke-width="0.8"/>
+        <text x="65" y="74" text-anchor="middle" font-size="11" fill="#90CAF9" font-family="sans-serif">TU PREGUNTA</text>
+        <text x="65" y="90" text-anchor="middle" font-size="10" fill="#B0BEC5" font-family="sans-serif">"¿Cuál es la dosis</text>
+        <text x="65" y="103" text-anchor="middle" font-size="10" fill="#B0BEC5" font-family="sans-serif">de amoxicilina?"</text>
+        <!-- Arrow 1 -->
+        <line x1="120" y1="80" x2="150" y2="80" stroke="#2196F3" stroke-width="1.2" marker-end="url(#arr2)"/>
+        <!-- Tokenización -->
+        <rect x="152" y="50" width="100" height="60" rx="10" fill="rgba(0,184,212,0.12)" stroke="#00B8D4" stroke-width="0.8"/>
+        <text x="202" y="74" text-anchor="middle" font-size="11" fill="#80DEEA" font-family="sans-serif">TOKENIZACIÓN</text>
+        <text x="202" y="90" text-anchor="middle" font-size="10" fill="#B0BEC5" font-family="sans-serif">divide en</text>
+        <text x="202" y="103" text-anchor="middle" font-size="10" fill="#B0BEC5" font-family="sans-serif">fragmentos</text>
+        <!-- Arrow 2 -->
+        <line x1="252" y1="80" x2="282" y2="80" stroke="#00B8D4" stroke-width="1.2" marker-end="url(#arr2)"/>
+        <!-- Modelo -->
+        <rect x="284" y="30" width="120" height="100" rx="10" fill="rgba(156,39,176,0.15)" stroke="#9C27B0" stroke-width="0.8"/>
+        <text x="344" y="55" text-anchor="middle" font-size="11" fill="#CE93D8" font-family="sans-serif">MODELO LLM</text>
+        <text x="344" y="72" text-anchor="middle" font-size="10" fill="#B0BEC5" font-family="sans-serif">miles de millones</text>
+        <text x="344" y="85" text-anchor="middle" font-size="10" fill="#B0BEC5" font-family="sans-serif">de parámetros</text>
+        <text x="344" y="98" text-anchor="middle" font-size="10" fill="#B0BEC5" font-family="sans-serif">buscan patrones</text>
+        <text x="344" y="111" text-anchor="middle" font-size="10" fill="#B0BEC5" font-family="sans-serif">en el entrenamiento</text>
+        <!-- Arrow 3 -->
+        <line x1="404" y1="80" x2="434" y2="80" stroke="#9C27B0" stroke-width="1.2" marker-end="url(#arr2)"/>
+        <!-- Output -->
+        <rect x="436" y="50" width="115" height="60" rx="10" fill="rgba(76,175,80,0.12)" stroke="#4CAF50" stroke-width="0.8"/>
+        <text x="493" y="74" text-anchor="middle" font-size="11" fill="#A5D6A7" font-family="sans-serif">RESPUESTA</text>
+        <text x="493" y="90" text-anchor="middle" font-size="10" fill="#B0BEC5" font-family="sans-serif">"500mg/8h en</text>
+        <text x="493" y="103" text-anchor="middle" font-size="10" fill="#B0BEC5" font-family="sans-serif">adultos sin…"</text>
+        <defs>
+          <marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="#607D8B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+      </svg>
+      <div class="card-body" style="margin-top:12px; font-size:12px;">
+        El modelo no "busca en Google": genera la respuesta <strong>prediciendo token a token</strong> qué es más probable que venga a continuación, basándose en todo lo que vio durante el entrenamiento.
+      </div>
+    </div>
+
+    <div class="highlight">
+      <div class="highlight-label">⚠️ CONCEPTO CLAVE: ALUCINACIONES</div>
+      La IA puede generar respuestas plausibles pero incorrectas (ej: una dosis equivocada que suena razonable). No miente; produce lo que estadísticamente "encaja". Por eso, en clínica, <strong>siempre verificas la información crítica</strong> con fuentes primarias o tu criterio experto.
+    </div>
+
+    <div class="nav-actions">
+      <button class="btn-sec" onclick="goSection(0)">← Volver</button>
+      <button class="btn-prim" onclick="goSection(2)">Siguiente: Por rol →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 2: POR ROL -->
+  <div class="section" id="sec2">
+    <div class="card-body" style="margin-bottom:16px; font-size:13px; color:var(--dp-gray);">
+      Selecciona tu rol para ver ejemplos de uso específicos:
+    </div>
+
+    <div class="role-grid">
+      <div class="role-card" id="role-med" onclick="selectRole('med')">
+        <div class="role-icon">🩺</div>
+        <div class="role-name">Medicina</div>
+        <div class="role-desc">Facultativos, MIR, médicos de atención primaria y especializada</div>
+        <div class="role-example" id="ex-med">
+          <strong>Ejemplos reales:</strong><br>
+          • Resumir el historial de un paciente pluripatológico antes de la visita<br>
+          • Redactar el informe de alta con plantilla predefinida<br>
+          • Consultar interacciones farmacológicas en segundos<br>
+          • Apoyar la discusión de casos complejos con bibliografía actualizada
+        </div>
+      </div>
+      <div class="role-card" id="role-enf" onclick="selectRole('enf')">
+        <div class="role-icon">💉</div>
+        <div class="role-name">Enfermería</div>
+        <div class="role-desc">Enfermeros/as, supervisores/as, gestión de planta</div>
+        <div class="role-example" id="ex-enf">
+          <strong>Ejemplos reales:</strong><br>
+          • Generar registros de enfermería estructurados por voz<br>
+          • Protocolo de cuidados de úlceras adaptado al paciente<br>
+          • Educación sanitaria personalizada en lenguaje comprensible<br>
+          • Checklist de seguridad previo a procedimientos
+        </div>
+      </div>
+      <div class="role-card" id="role-farm" onclick="selectRole('farm')">
+        <div class="role-icon">💊</div>
+        <div class="role-name">Farmacia</div>
+        <div class="role-desc">Farmacéuticos/as hospitalarios, de atención primaria y comunitaria</div>
+        <div class="role-example" id="ex-farm">
+          <strong>Ejemplos reales:</strong><br>
+          • Detección de duplicidades terapéuticas en polimedicados<br>
+          • Conciliación de medicación al ingreso hospitalario<br>
+          • Información al paciente sobre su tratamiento crónico<br>
+          • Revisión de guías farmacoterapéuticas actualizadas
+        </div>
+      </div>
+      <div class="role-card" id="role-gest" onclick="selectRole('gest')">
+        <div class="role-icon">📊</div>
+        <div class="role-name">Gestión</div>
+        <div class="role-desc">Directivos, supervisores, coordinadores de unidad, técnicos SSPA</div>
+        <div class="role-example" id="ex-gest">
+          <strong>Ejemplos reales:</strong><br>
+          • Elaborar memorias e informes institucionales en formato SSPA<br>
+          • Análisis de indicadores de calidad asistencial<br>
+          • Redacción de procedimientos y protocolos de unidad<br>
+          • Preparar presentaciones para comités y comisiones
+        </div>
+      </div>
+    </div>
+
+    <div class="simil" style="margin-top:16px;">
+      <div class="simil-label">🔬 SÍMIL PARA TODOS LOS ROLES</div>
+      La IA es como tener un <strong>residente muy rápido y muy leído</strong>: sabe mucho, redacta bien y trabaja sin cansarse. Pero igual que un residente, necesita supervisión. Tú aportas el criterio clínico y el contexto del paciente; la IA, la velocidad y la síntesis.
+    </div>
+
+    <div class="nav-actions">
+      <button class="btn-sec" onclick="goSection(1)">← Anterior</button>
+      <button class="btn-prim" onclick="goSection(3)">Siguiente: Ética →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 3: ÉTICA -->
+  <div class="section" id="sec3">
+    <div class="card">
+      <div class="card-title">⚖️ Marco ético básico en sanidad</div>
+      <div class="card-body">
+        Usar IA en entornos sanitarios implica responsabilidades específicas. Estos son los principios que guiarán todo el curso:
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <div class="card" style="border-left:3px solid #EF5350;">
+        <div style="font-size:13px; font-weight:500; color:#EF9A9A; margin-bottom:8px;">🚫 Lo que NUNCA debes hacer</div>
+        <div class="card-body">
+          • Introducir <strong>datos identificativos de pacientes</strong> en herramientas IA públicas (ChatGPT, Claude sin contrato HIPAA/RGPD)<br>
+          • Publicar diagnósticos o decisiones clínicas <strong>sin revisión humana</strong><br>
+          • Usar IA como única fuente para decisiones de alta trascendencia clínica
+        </div>
+      </div>
+      <div class="card" style="border-left:3px solid #4CAF50;">
+        <div style="font-size:13px; font-weight:500; color:#A5D6A7; margin-bottom:8px;">✅ Uso seguro y recomendado</div>
+        <div class="card-body">
+          • Siempre trabajar con datos <strong>anonimizados o ficticios</strong><br>
+          • Considerar la respuesta de la IA como un <strong>borrador que revisas</strong>, no como una respuesta final<br>
+          • Usar herramientas con acuerdos de tratamiento de datos conforme al RGPD y las políticas de la SSPA
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight" style="margin-top:16px;">
+      <div class="highlight-label">🛡️ CONFIGURACIÓN SEGURA: PRIMER PASO PRÁCTICO</div>
+      Antes de usar cualquier IA en tu trabajo diario, verifica: <strong>(1)</strong> si tu centro tiene herramientas IA corporativas aprobadas, <strong>(2)</strong> si la herramienta que usas tiene contrato de encargado de tratamiento firmado, y <strong>(3)</strong> si existe política de uso de IA en tu unidad. En caso de duda, consulta a tu responsable de protección de datos.
+    </div>
+
+    <div class="simil">
+      <div class="simil-label">💡 SÍMIL ÉTICO</div>
+      Hablar con la IA sobre un paciente sin anonimizar es como <strong>discutir la historia clínica en el ascensor del hospital</strong>: técnicamente pasa, pero es una brecha de confidencialidad. La IA es tan "pública" como ese ascensor si no tiene las garantías adecuadas.
+    </div>
+
+    <div class="nav-actions">
+      <button class="btn-sec" onclick="goSection(2)">← Anterior</button>
+      <button class="btn-prim" onclick="goSection(4)">Siguiente: Autoevaluación →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 4: AUTOEVALUACIÓN -->
+  <div class="section" id="sec4">
+    <div class="card">
+      <div class="card-title">✅ Autoevaluación de la lección</div>
+      <div class="card-body" style="margin-bottom:8px;">3 preguntas para confirmar que los conceptos clave han quedado claros.</div>
+    </div>
+
+    <!-- Q1 -->
+    <div class="card" id="q1-wrap">
+      <div class="quiz-q">1 de 3 — Un médico escribe en Claude: "El paciente Juan García Ruiz, 52 años, tiene diabetes y su HbA1c es 9,2%. ¿Qué ajuste de tratamiento me recomiendas?". ¿Cuál es el problema principal de este prompt?</div>
+      <div class="quiz-opts">
+        <button class="quiz-opt" onclick="answer(this, false, 1)">La pregunta es demasiado específica para que la IA pueda responderla bien</button>
+        <button class="quiz-opt" onclick="answer(this, true, 1)">Incluye datos identificativos del paciente en una herramienta que puede no tener garantías RGPD</button>
+        <button class="quiz-opt" onclick="answer(this, false, 1)">La HbA1c no es un dato relevante para ese tipo de consulta</button>
+        <button class="quiz-opt" onclick="answer(this, false, 1)">No hay ningún problema; es exactamente cómo debe usarse la IA clínica</button>
+      </div>
+      <div class="quiz-feedback" id="fb1"></div>
+      <div class="quiz-next" id="next1"><button class="btn-next" onclick="goSection(4); showQ(2)">Siguiente pregunta →</button></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="card" id="q2-wrap" style="display:none;">
+      <div class="quiz-q">2 de 3 — ¿Qué tipo de IA es la que más vas a usar en este curso?</div>
+      <div class="quiz-opts">
+        <button class="quiz-opt" onclick="answer(this, false, 2)">IA predictiva (anticipa eventos clínicos futuros)</button>
+        <button class="quiz-opt" onclick="answer(this, false, 2)">IA diagnóstica (interpreta imágenes médicas)</button>
+        <button class="quiz-opt" onclick="answer(this, true, 2)">IA generativa (produce texto en lenguaje natural)</button>
+        <button class="quiz-opt" onclick="answer(this, false, 2)">IA robótica (controla dispositivos físicos)</button>
+      </div>
+      <div class="quiz-feedback" id="fb2"></div>
+      <div class="quiz-next" id="next2"><button class="btn-next" onclick="showQ(3)">Última pregunta →</button></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="card" id="q3-wrap" style="display:none;">
+      <div class="quiz-q">3 de 3 — Una IA te da una dosis de medicamento que no has visto antes pero suena razonable. ¿Cómo debes actuar?</div>
+      <div class="quiz-opts">
+        <button class="quiz-opt" onclick="answer(this, false, 3)">Aceptarla directamente; la IA tiene acceso a toda la bibliografía médica</button>
+        <button class="quiz-opt" onclick="answer(this, true, 3)">Verificarla en fuentes primarias (ficha técnica, guía farmacoterapéutica) antes de prescribir</button>
+        <button class="quiz-opt" onclick="answer(this, false, 3)">Rechazarla siempre; la IA nunca es fiable para información farmacológica</button>
+        <button class="quiz-opt" onclick="answer(this, false, 3)">Consultarla con otro compañero sin necesidad de verificar</button>
+      </div>
+      <div class="quiz-feedback" id="fb3"></div>
+      <div class="quiz-next" id="next3">
+        <div id="final-msg" style="background:rgba(0,184,212,0.1);border:1px solid rgba(0,184,212,0.3);border-radius:10px;padding:16px;margin-top:8px;">
+          <div style="font-size:14px;font-weight:500;color:#80DEEA;margin-bottom:6px;">🎉 ¡Lección 1.1 completada!</div>
+          <div style="font-size:12px;color:var(--dp-gray);line-height:1.6;">Ya tienes los conceptos base para avanzar al siguiente tema. En la <strong style="color:var(--dp-white);">Lección 1.2</strong> aprenderás a escribir prompts efectivos adaptados a tu contexto clínico.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="lesson-footer">
+    <span class="footer-logo" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span>
+    <span>Desarrollado por DoncelProject · doncel.project@gmail.com</span>
+  </div>
+</div>
+
+<script>
+let currentSection = 0;
+const totalSections = 5;
+const completedSections = new Set([0]);
+
+function updateProgress() {
+  const pct = Math.round((completedSections.size / totalSections) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = pct + '%';
+}
+
+function goSection(n) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec' + n).classList.add('active');
+  document.getElementById('tab' + n).classList.add('active');
+  currentSection = n;
+  completedSections.add(n);
+  updateProgress();
+}
+
+function selectRole(role) {
+  document.querySelectorAll('.role-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('role-' + role).classList.add('selected');
+}
+
+const feedbacks = {
+  1: {
+    ok: '✅ Correcto. Incluir el nombre del paciente en una herramienta IA pública infringe la confidencialidad y puede suponer una brecha del RGPD. El prompt correcto sería: "Paciente de 52 años con DM2, HbA1c 9,2%. ¿Ajuste de tratamiento?"',
+    ko: '❌ La respuesta correcta es la segunda. Incluir datos identificativos (nombre y apellidos) en herramientas IA sin garantías RGPD es el problema principal, independientemente de la calidad clínica de la respuesta.'
+  },
+  2: {
+    ok: '✅ Correcto. La IA generativa produce texto en lenguaje natural y es el tipo de herramienta principal de este curso (Claude, ChatGPT). Los otros tipos tienen aplicaciones clínicas importantes pero distintas.',
+    ko: '❌ La correcta es la IA generativa. Es la tecnología que subyace a herramientas como Claude o ChatGPT, que producen texto en lenguaje natural a partir de tu instrucción.'
+  },
+  3: {
+    ok: '✅ Correcto. La IA puede alucinar: generar información plausible pero errónea. Para información farmacológica crítica, siempre verifica en la ficha técnica oficial o la guía farmacoterapéutica de tu centro antes de prescribir.',
+    ko: '❌ La correcta es verificar en fuentes primarias. La IA no es ni siempre fiable ni siempre errónea; es una herramienta que requiere supervisión experta, especialmente para decisiones clínicas de impacto.'
+  }
+};
+
+function answer(btn, isCorrect, qNum) {
+  const opts = btn.closest('.quiz-opts').querySelectorAll('.quiz-opt');
+  opts.forEach(o => { o.disabled = true; });
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  const fb = document.getElementById('fb' + qNum);
+  fb.textContent = isCorrect ? feedbacks[qNum].ok : feedbacks[qNum].ko;
+  fb.className = 'quiz-feedback show ' + (isCorrect ? 'ok' : 'ko');
+  document.getElementById('next' + qNum).classList.add('show');
+}
+
+function showQ(n) {
+  if (n === 2) {
+    document.getElementById('q1-wrap').style.display = 'none';
+    document.getElementById('q2-wrap').style.display = 'block';
+  } else if (n === 3) {
+    window.parent.postMessage({ type: 'LESSON_COMPLETE' }, '*');
+    document.getElementById('q2-wrap').style.display = 'none';
+    document.getElementById('q3-wrap').style.display = 'block';
+  }
+}
+
+updateProgress();
+</script>

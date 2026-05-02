@@ -1,0 +1,203 @@
+<style>*{box-sizing:border-box;margin:0;padding:0}.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:32px}.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(156,39,176,.15);border:1px solid rgba(156,39,176,.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#CE93D8;font-weight:500;margin-bottom:12px;letter-spacing:.5px}.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px}.lt span{color:#AB47BC}.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px;flex-wrap:wrap}.lmi{display:flex;align-items:center;gap:5px}.md{width:6px;height:6px;border-radius:50%}.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}.pbf{height:4px;background:#AB47BC;border-radius:4px;width:0%;transition:width .5s}.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:70px}.nb.active{color:#AB47BC;border-bottom-color:#AB47BC;background:#0C0D12}.sec{display:none;padding:20px 24px}.sec.active{display:block}.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}.cb{font-size:13px;color:#E0E0E0;line-height:1.7}.simil{background:rgba(156,39,176,.08);border:1px solid rgba(156,39,176,.22);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}.sl{font-size:10px;color:#CE93D8;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}.btn-p{background:#AB47BC;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500}.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer}.btn-complete{background:linear-gradient(135deg,#AB47BC,#7B1FA2);color:#fff;border:none;border-radius:10px;padding:14px 28px;font-size:13px;font-weight:600;cursor:pointer;width:100%;margin-top:16px;letter-spacing:.3px;transition:opacity .2s}.btn-complete:hover{opacity:.88}.tec-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.tec-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 12px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s}.tec-tab.active{background:rgba(156,39,176,.15);border-color:#AB47BC;color:#CE93D8}.tec-panel{display:none}.tec-panel.show{display:block}.prompt-box{background:#0e1018;border:1px solid #1e2335;border-radius:10px;padding:14px;margin:10px 0}.prompt-label{font-size:10px;color:#CE93D8;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}.prompt-text{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.7;white-space:pre-wrap;word-break:break-word}.prompt-why{font-size:11px;color:#B0BEC5;line-height:1.6;margin-top:10px;padding-top:10px;border-top:1px solid #1e2335}.limit-item{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;background:#13151e;border:1px solid #1e2335;border-radius:8px;margin-bottom:8px;font-size:12px;color:#E0E0E0;line-height:1.6}.li-icon{font-size:16px;flex-shrink:0;margin-top:1px}.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}.concept-card{background:#13151e;border:1px solid #1e2335;border-radius:10px;padding:14px}.cc-label{font-size:10px;color:#CE93D8;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}.cc-title{font-size:13px;font-weight:500;color:#fff;margin-bottom:6px}.cc-body{font-size:12px;color:#B0BEC5;line-height:1.6}.qw{display:none}.qw.active{display:block}.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}.qopts{display:flex;flex-direction:column;gap:8px}.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s}.qopt:hover{border-color:#AB47BC;color:#fff}.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}.qfb.show{display:block}.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}.qnx{display:none;margin-top:12px}.qnx.show{display:block}.lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a}.fl{color:#AB47BC;cursor:pointer;text-decoration:underline}</style>
+<div class="lw">
+  <div class="lh">
+    <div class="lb">MÓDULO 5 · LECCIÓN 5.12</div>
+    <div class="lt">Medición de impacto real: <span>KPIs específicos por dominio, diseño de estudios de evaluación y comunicación de resultados a stakeholders</span></div>
+    <div class="lm">
+      <div class="lmi"><div class="md" style="background:#AB47BC"></div>72 minutos</div>
+      <div class="lmi"><div class="md" style="background:#00B8D4"></div>4 secciones</div>
+      <div class="lmi"><div class="md" style="background:#FFB300"></div>Evaluación de proyectos de IA sanitaria</div>
+    </div>
+  </div>
+  <div class="pbw"><div class="pbb"><div class="pbf" id="pf512"></div></div><div class="pbl" id="pl512">0%</div></div>
+  <div class="snav">
+    <button class="nb active" id="t1" onclick="go(1)">KPIs por dominio</button>
+    <button class="nb" id="t2" onclick="go(2)">Diseño del estudio</button>
+    <button class="nb" id="t3" onclick="go(3)">Comunicar resultados</button>
+    <button class="nb" id="t4" onclick="go(4)">Test</button>
+  </div>
+
+  <div class="sec active" id="s1">
+    <div class="card"><div class="ct">Objetivo de la lección</div><div class="cb">Evaluar objetivamente los resultados de la implementación de IA en el entorno sanitario real. La medición del impacto no es una formalidad post-proyecto — es la evidencia que justifica la continuidad o el escalado, la que detecta efectos adversos no previstos, y la que permite aprender de forma sistemática qué funciona y qué no en la IA clínica.</div></div>
+    <div class="simil"><div class="sl">Marco de referencia clínico</div>Medir el impacto de un proyecto de IA sanitaria es como hacer el seguimiento de un paciente después de un cambio de tratamiento: no puedes saber si el tratamiento funcionó sin medir las variables correctas, en el momento correcto y comparando con la situación previa. Un proyecto sin medición sistemática del impacto es como cambiar el tratamiento y no hacer analítica de seguimiento — puedes tener suerte o generar daño sin saberlo.</div>
+    <div class="ct" style="margin-top:4px">KPIs por dominio de impacto</div>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="cc-label">Dominio calidad asistencial</div>
+        <div class="cc-title">KPIs de resultado clínico</div>
+        <div class="cc-body">Tasa de eventos adversos, tasa de reingresos a 30 días, adherencia a guías clínicas, tiempo hasta diagnóstico correcto, tasa de complicaciones evitables, variabilidad en la práctica clínica. Son los KPIs de mayor peso clínico y los más difíciles de atribuir directamente a la IA.</div>
+      </div>
+      <div class="concept-card">
+        <div class="cc-label">Dominio eficiencia</div>
+        <div class="cc-title">KPIs de proceso</div>
+        <div class="cc-body">Tiempo de documentación por paciente, tiempo hasta primer diagnóstico, estancia media, tiempo de espera en triage, número de pruebas solicitadas por diagnóstico, tiempo de resolución de interconsultas. Más fáciles de medir y de atribuir a la IA.</div>
+      </div>
+      <div class="concept-card">
+        <div class="cc-label">Dominio satisfacción</div>
+        <div class="cc-title">KPIs de experiencia</div>
+        <div class="cc-body">Satisfacción del profesional (reducción del burnout, percepción de carga administrativa), satisfacción del paciente (comprensión de su proceso, experiencia de la consulta), Net Promoter Score del sistema de IA entre los usuarios del servicio.</div>
+      </div>
+      <div class="concept-card">
+        <div class="cc-label">Dominio adopción</div>
+        <div class="cc-title">KPIs de uso real</div>
+        <div class="cc-body">Tasa de adopción activa (porcentaje del equipo que usa el sistema de forma regular), frecuencia de uso, tasa de override (con qué frecuencia el clínico ignora la sugerencia de la IA), tiempo medio de revisión del borrador antes de firmar.</div>
+      </div>
+    </div>
+    <div class="tec-tabs">
+      <button class="tec-tab active" onclick="showTab(this,'tab-k1')">KPIs de calidad y eficiencia</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-k2')">KPIs de adopción</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-k3')">Errores frecuentes en la medición</button>
+    </div>
+    <div class="tec-panel show" id="tab-k1">
+      <div class="limit-item"><div class="li-icon">📊</div><div><strong>La tasa de override es el KPI más honesto de todos</strong><br>El porcentaje de veces que el clínico ignora la sugerencia de la IA dice más sobre la utilidad real del sistema que cualquier métrica de satisfacción. Una tasa de override del 80% significa que el sistema no está añadiendo valor clínico, independientemente de lo que digan las encuestas. Una tasa del 5% puede significar que el sistema es excelente o que los clínicos han dejado de leerlo críticamente — ambas interpretaciones requieren investigación.</div></div>
+      <div class="limit-item"><div class="li-icon">📊</div><div><strong>El tiempo de revisión del borrador como proxy de calidad</strong><br>Si el clínico revisa el borrador de la IA en 8 segundos, no lo está leyendo — está firmando ciegamente. Si lo revisa en 15 minutos, el sistema no está ahorrando tiempo. El tiempo de revisión óptimo (60-120 segundos para un informe de alta) es un indicador de que el borrador es suficientemente bueno para revisar rápido pero lo suficientemente imperfecto para requerir revisión real.</div></div>
+      <div class="limit-item"><div class="li-icon">📊</div><div><strong>Medir los efectos adversos no previstos</strong><br>Todo proyecto de IA debe incluir en su sistema de medición la búsqueda activa de efectos adversos: ¿ha aumentado la tasa de algún evento adverso específico desde la implementación? ¿Han aparecido sesgos sistemáticos en algún subgrupo de pacientes? ¿Ha habido incidentes relacionados directamente con el sistema de IA? La ausencia de monitorización activa no equivale a ausencia de problemas.</div></div>
+    </div>
+    <div class="tec-panel" id="tab-k2">
+      <div class="limit-item"><div class="li-icon">👥</div><div><strong>Adopción activa vs adopción aparente</strong><br>Adopción activa: el clínico usa el sistema de forma voluntaria y lo considera útil para su práctica. Adopción aparente: el clínico usa el sistema porque es obligatorio o porque está integrado en el flujo de trabajo de forma que no puede evitarlo. La diferencia es crítica: solo la adopción activa genera impacto real sostenido.</div></div>
+      <div class="limit-item"><div class="li-icon">👥</div><div><strong>Segmentación de la adopción por perfil de usuario</strong><br>La tasa de adopción global puede ocultar diferencias importantes: residentes vs adjuntos, médicos vs enfermería, servicio de guardia vs consulta programada. Un sistema que adopta el 80% de los médicos de plantilla pero el 10% del personal de guardia tiene un problema de implantación para situaciones de alta presión — que son frecuentemente las más críticas.</div></div>
+    </div>
+    <div class="tec-panel" id="tab-k3">
+      <div class="limit-item"><div class="li-icon">⚠️</div><div><strong>Error 1 — Medir solo lo que mejoró, ignorar lo que empeoró</strong><br>Un sistema de IA puede mejorar la eficiencia de documentación y simultáneamente aumentar la tasa de un tipo específico de error clínico. Si solo mides la eficiencia, concluyes que el sistema es exitoso cuando en realidad está generando daño. La medición debe ser comprehensiva — incluyendo variables no vinculadas directamente al objetivo del sistema.</div></div>
+      <div class="limit-item"><div class="li-icon">⚠️</div><div><strong>Error 2 — Atribuir toda la mejora a la IA sin grupo control</strong><br>Si el servicio mejoró su estancia media después de implementar la IA, puede ser por la IA, por el nuevo protocolo de alta que se implementó al mismo tiempo, por el cambio de jefe de servicio o por la temporada del año. Sin grupo control, la atribución causal es imposible.</div></div>
+      <div class="limit-item"><div class="li-icon">⚠️</div><div><strong>Error 3 — Medir durante el efecto Hawthorne sin prolongar el seguimiento</strong><br>Los primeros meses de implementación generan mejoras en casi todos los indicadores simplemente porque el equipo sabe que está siendo observado. Estas mejoras no son sostenibles. Medir solo los primeros 3 meses y presentar esos resultados como impacto real del sistema es metodológicamente incorrecto.</div></div>
+    </div>
+    <div class="nav-actions"><div></div><button class="btn-p" onclick="go(2)">Diseño del estudio →</button></div>
+  </div>
+
+  <div class="sec" id="s2">
+    <div class="card"><div class="ct">Diseño de estudios de evaluación del impacto</div><div class="cb">La evaluación del impacto de un sistema de IA sanitaria requiere un diseño metodológico riguroso — el mismo rigor que aplicarías a la evaluación de una intervención clínica. Sin diseño adecuado, los resultados son anecdóticos y no generalizables.</div></div>
+    <div class="simil"><div class="sl">Marco de referencia clínico</div>Evaluar el impacto de la IA con rigor metodológico es exactamente igual que diseñar un ensayo clínico: necesitas una hipótesis clara, un grupo control, variables de resultado predefinidas, un período de seguimiento suficiente y un análisis estadístico apropiado. La única diferencia es que la intervención es un sistema de software, no un fármaco — pero los principios metodológicos son idénticos.</div>
+    <div class="tec-tabs">
+      <button class="tec-tab active" onclick="showTab(this,'tab-dis1')">Diseños de evaluación</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-dis2')">Grupo control en IA sanitaria</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-dis3')">Prompt para diseño del estudio</button>
+    </div>
+    <div class="tec-panel show" id="tab-dis1">
+      <div class="limit-item"><div class="li-icon">🔬</div><div><strong>Diseño antes-después con grupo control histórico</strong><br>Compara los KPIs del período anterior a la implementación con el período posterior en el mismo servicio. Simple y factible, pero no controla los factores que cambiaron simultáneamente. Adecuado para proyectos con acceso limitado a grupo control paralelo.</div></div>
+      <div class="limit-item"><div class="li-icon">🔬</div><div><strong>Diseño con grupo control paralelo (servicio equivalente)</strong><br>El servicio que implementa la IA se compara con otro servicio equivalente que no la implementa en el mismo período. Controla mejor los factores externos. Requiere identificar un servicio comparable en tamaño, casuística y características del equipo.</div></div>
+      <div class="limit-item"><div class="li-icon">🔬</div><div><strong>Diseño escalonado (stepped-wedge)</strong><br>El sistema se implementa progresivamente en distintos turnos, unidades o servicios en distintos momentos. Cada unidad actúa como control antes de su implementación y como caso después. Genera evidencia de alta calidad y permite la implementación progresiva — especialmente adecuado para hospitales del SNS.</div></div>
+      <div class="limit-item"><div class="li-icon">🔬</div><div><strong>Período mínimo de seguimiento — 12 meses post-implementación completa</strong><br>Los primeros 3-6 meses incluyen el efecto Hawthorne y la curva de aprendizaje. El impacto real y sostenido del sistema solo es evaluable después de que el equipo ha normalizado su uso. La evaluación a 6 meses puede ser correcta para decisiones de continuidad del piloto, pero no para publicar resultados ni para decisiones de escalado definitivo.</div></div>
+    </div>
+    <div class="tec-panel" id="tab-dis2">
+      <div class="limit-item"><div class="li-icon">⚖️</div><div><strong>El problema ético del grupo control en IA clínica potencialmente beneficiosa</strong><br>Si el sistema de IA ha demostrado beneficio en el piloto, denegar su uso al grupo control plantea un dilema ético similar al de los ensayos clínicos con tratamientos eficaces: ¿es ético mantener un grupo sin acceso a una intervención potencialmente beneficiosa? La respuesta práctica es usar diseños que minimicen el tiempo de privación: stepped-wedge o comparación histórica.</div></div>
+      <div class="limit-item"><div class="li-icon">⚖️</div><div><strong>El grupo control invisible — los pacientes atendidos antes de la implementación</strong><br>En muchos proyectos el grupo control más accesible y éticamente menos problemático son los propios pacientes del servicio en el período inmediatamente anterior a la implementación. Requiere que los datos históricos estén disponibles y sean comparables, y que no haya habido otros cambios importantes en el servicio durante ese período.</div></div>
+    </div>
+    <div class="tec-panel" id="tab-dis3">
+      <div class="prompt-box">
+        <div class="prompt-label">Prompt para diseñar el estudio de evaluación del impacto</div>
+        <div class="prompt-text">Actúa como metodólogo experto en evaluación de tecnologías sanitarias y diseño de estudios observacionales en salud.
+
+Sistema de IA implementado: [descripción del sistema y su función]
+Servicio/s donde se ha implementado: [descripción con características relevantes]
+Recursos disponibles para la evaluación: [tiempo, personal, acceso a datos, presupuesto]
+Objetivo principal de la evaluación: [qué necesitas demostrar o descartar]
+
+Diseña el estudio de evaluación del impacto con: (1) diseño metodológico más adecuado para este contexto con justificación, (2) variables de resultado primarias y secundarias con definición operacional exacta y fuente de datos, (3) criterios de inclusión y exclusión, (4) período de seguimiento recomendado con justificación, (5) tamaño muestral mínimo para detectar una diferencia clínicamente relevante en la variable primaria, (6) plan de análisis estadístico básico, (7) las 3 principales amenazas a la validez interna del estudio y cómo mitigarlas.
+
+Restricciones: El diseño debe ser factible con los recursos disponibles — no propongas un ensayo clínico aleatorizado si el contexto es un servicio del SNS sin financiación específica para investigación. Señala explícitamente qué conclusiones permitirá y qué conclusiones NO permitirá el diseño propuesto.</div>
+        <div class="prompt-why">La instrucción de señalar qué conclusiones NO permite el diseño es la más importante para la honestidad científica: un estudio antes-después sin grupo control permite concluir que los indicadores mejoraron tras la implementación, pero no que la mejora se debió a la IA. Confundir estas dos afirmaciones es el error metodológico más frecuente en la publicación de proyectos de IA sanitaria.</div>
+      </div>
+    </div>
+    <div class="nav-actions"><button class="btn-s" onclick="go(1)">← KPIs</button><button class="btn-p" onclick="go(3)">Comunicar resultados →</button></div>
+  </div>
+
+  <div class="sec" id="s3">
+    <div class="card"><div class="ct">Comunicación de resultados a stakeholders</div><div class="cb">Los mismos datos sobre el impacto de un sistema de IA deben comunicarse de forma radicalmente distinta a la dirección hospitalaria, al comité clínico, al equipo que lo usa en su día a día y a los pacientes. Adaptar el mensaje al receptor es la diferencia entre que el proyecto continúe o se cancele, entre que el equipo lo adopte o lo rechace.</div></div>
+    <div class="tec-tabs">
+      <button class="tec-tab active" onclick="showTab(this,'tab-s1')">Por audiencia</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-s2')">Comunicar resultados negativos</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-s3')">Prompt de informe ejecutivo</button>
+    </div>
+    <div class="tec-panel show" id="tab-s1">
+      <div class="limit-item"><div class="li-icon">👔</div><div><strong>Dirección hospitalaria — impacto económico y estratégico</strong><br>KPIs de eficiencia y ahorro de costes en primer plano. Período de retorno de la inversión. Comparación con benchmarks de otros hospitales. Los resultados clínicos como argumento secundario de calidad. Una diapositiva por cada KPI principal con el delta respecto al período anterior y la tendencia. Sin tecnicismos de IA.</div></div>
+      <div class="limit-item"><div class="li-icon">🩺</div><div><strong>Comité clínico — rigor metodológico y resultados clínicos</strong><br>Diseño del estudio y sus limitaciones en primer plano. KPIs clínicos (calidad, seguridad) como argumento principal. Los KPIs de eficiencia como secundarios. Análisis de subgrupos si hay diferencias por perfil de paciente. Discusión honesta de los casos donde el sistema no añadió valor o generó problemas.</div></div>
+      <div class="limit-item"><div class="li-icon">👩‍⚕️</div><div><strong>Equipo clínico — impacto en su día a día</strong><br>Cuánto tiempo ahorran. Qué errores han evitado. Casos concretos donde el sistema ayudó. Qué limitaciones siguen existiendo y cómo manejarlas. Qué cambios se van a hacer en el sistema basándose en su feedback. Esta audiencia necesita sentir que sus opiniones sobre el sistema han influido en su evolución.</div></div>
+      <div class="limit-item"><div class="li-icon">🏥</div><div><strong>Pacientes y ciudadanos — lenguaje accesible y foco en seguridad</strong><br>Qué hace la IA en su proceso asistencial en lenguaje sin tecnicismos. Cómo protege su privacidad. Qué garantías tienen de que el médico sigue siendo el responsable de su atención. Esta comunicación es especialmente importante en proyectos con alto perfil público para prevenir alarma social injustificada.</div></div>
+    </div>
+    <div class="tec-panel" id="tab-s2">
+      <div class="limit-item"><div class="li-icon">📢</div><div><strong>Los resultados negativos o neutros tienen el mismo valor que los positivos</strong><br>Un sistema que no demostró el impacto esperado, bien comunicado, es una contribución valiosa al conocimiento del campo: evita que otros servicios inviertan en el mismo sistema con las mismas expectativas. Un resultado negativo comunicado honestamente es mejor que un resultado positivo inflado que otros replicarán con fracasos innecesarios.</div></div>
+      <div class="limit-item"><div class="li-icon">📢</div><div><strong>Cómo comunicar que el sistema no funcionó como esperado</strong><br>Distingue entre "el sistema no funcionó" (fallo del sistema) y "el sistema no funcionó en nuestro contexto con este diseño" (fallo de implementación o diseño). La segunda formulación es más precisa y más productiva: abre la puerta a identificar qué cambiaría si se replicara. Propón siempre hipótesis sobre por qué no se logró el impacto esperado y qué haría falta para lograrlo.</div></div>
+    </div>
+    <div class="tec-panel" id="tab-s3">
+      <div class="prompt-box">
+        <div class="prompt-label">Prompt para generar el informe ejecutivo de resultados para dirección</div>
+        <div class="prompt-text">Actúa como consultor experto en comunicación de proyectos de salud digital a equipos directivos hospitalarios.
+
+Proyecto: [descripción del sistema y objetivo]
+Resultados del estudio de evaluación: [datos completos con KPIs, período, metodología]
+Audiencia: [gerencia / comité de dirección / consejo asesor]
+Decisión que necesita tomar esta audiencia: [continuar / escalar / modificar / cancelar el proyecto]
+
+Genera el informe ejecutivo de resultados con: (1) resumen ejecutivo de 150 palabras con el resultado principal y la recomendación, (2) tabla de KPIs principales con valor pre-implementación, valor post-implementación y variación porcentual, (3) contexto de los resultados — qué factores externos pueden haber influido (honestidad sobre las limitaciones de la atribución causal), (4) comparación con benchmarks de proyectos similares si disponibles, (5) recomendación con los 3 argumentos principales que la sustentan, (6) próximos pasos concretos con responsable y fecha.
+
+Restricciones: Tono riguroso y honesto — no inflado. Si los resultados son mixtos, preséntalo así. La audiencia tiene experiencia en gestión y detectará la comunicación excesivamente optimista como falta de rigor. La credibilidad a largo plazo vale más que la aprobación a corto.</div>
+        <div class="prompt-why">La instrucción de honestidad sobre los resultados mixtos es estratégicamente correcta además de éticamente obligatoria: un informe ejecutivo que presenta resultados inflados genera expectativas que el sistema no puede cumplir en el escalado, lo que destruye la credibilidad del equipo responsable y dificulta futuros proyectos de IA en ese centro.</div>
+      </div>
+    </div>
+    <div style="margin-top:20px;padding-top:16px;border-top:1px solid #1e2335">
+      <button class="btn-complete" onclick="completar()">✓ MARCAR LECCIÓN COMO COMPLETADA</button>
+    </div>
+    <div class="nav-actions"><button class="btn-s" onclick="go(2)">← Diseño estudio</button><button class="btn-p" onclick="go(4)">Test →</button></div>
+  </div>
+
+  <div class="sec" id="s4">
+    <div class="qw active" id="q1w">
+      <div class="qnum">Pregunta 1 de 3</div>
+      <div class="qtxt">La tasa de override — porcentaje de veces que el clínico ignora la sugerencia de la IA — es el KPI más honesto de la adopción. ¿Qué indica una tasa de override del 5%?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,1)">Que el sistema es de muy alta calidad y los clínicos confían completamente en sus sugerencias</button>
+        <button class="qopt" onclick="ans(this,true,1)">Que puede significar dos cosas opuestas que requieren investigación: que el sistema es excelente y sus sugerencias son casi siempre correctas, o que los clínicos han dejado de leer críticamente las sugerencias y firman sin revisar. Ambas interpretaciones son posibles con el mismo dato numérico — necesitas investigar cuál es la real</button>
+        <button class="qopt" onclick="ans(this,false,1)">Que el 5% de los pacientes no quieren que la IA participe en su proceso asistencial</button>
+        <button class="qopt" onclick="ans(this,false,1)">Que el sistema tiene un 95% de precisión diagnóstica validado clínicamente</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+      <div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div>
+    </div>
+    <div class="qw" id="q2w">
+      <div class="qnum">Pregunta 2 de 3</div>
+      <div class="qtxt">Un servicio implementa un sistema de IA para documentación clínica. Los KPIs mejoran en los primeros 3 meses y la dirección quiere presentar los resultados como evidencia del impacto del sistema. ¿Cuál es el problema metodológico principal?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,2)">Los primeros 3 meses tienen demasiado pocos casos para que el análisis estadístico tenga potencia suficiente</button>
+        <button class="qopt" onclick="ans(this,true,2)">Los primeros meses de implementación generan el efecto Hawthorne: los profesionales mejoran su desempeño simplemente porque saben que están siendo observados, independientemente del sistema de IA. Las mejoras en los primeros 3-6 meses no son atribuibles con certeza al sistema y no predicen el impacto sostenido a largo plazo</button>
+        <button class="qopt" onclick="ans(this,false,2)">El estudio sin grupo control aleatorizado no cumple los requisitos del AI Act para la evaluación de sistemas de alto riesgo</button>
+        <button class="qopt" onclick="ans(this,false,2)">Los resultados a 3 meses son válidos solo si el sistema tiene más de 6 meses de desarrollo previo al despliegue</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+      <div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div>
+    </div>
+    <div class="qw" id="q3w">
+      <div class="qnum">Pregunta 3 de 3</div>
+      <div class="qtxt">¿Por qué comunicar honestamente resultados negativos o mixtos de un proyecto de IA tiene más valor a largo plazo que inflar los resultados positivos?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,3)">Porque el AI Act obliga a reportar resultados negativos a la autoridad regulatoria antes de cualquier escalado del sistema</button>
+        <button class="qopt" onclick="ans(this,false,3)">Porque los resultados negativos son más fáciles de publicar en revistas científicas que los positivos, que son más comunes y menos originales</button>
+        <button class="qopt" onclick="ans(this,true,3)">Porque los resultados inflados generan expectativas que el sistema no puede cumplir en el escalado, destruyendo la credibilidad del equipo y dificultando futuros proyectos en ese centro. La honestidad sobre los resultados mixtos construye credibilidad a largo plazo, evita que otros centros repliquen el proyecto con las mismas limitaciones, y abre la conversación sobre qué condiciones son necesarias para que el sistema funcione</button>
+        <button class="qopt" onclick="ans(this,false,3)">Porque la dirección hospitalaria siempre prefiere resultados negativos honestos a resultados positivos que parezcan demasiado buenos para ser verdad</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+      <div class="qnx" id="nx3">
+        <div style="background:rgba(156,39,176,.1);border:1px solid rgba(156,39,176,.28);border-radius:10px;padding:16px;margin-top:8px">
+          <div style="font-size:13px;font-weight:500;color:#CE93D8;margin-bottom:6px">✓ Lección 5.12 completada</div>
+          <div style="font-size:12px;color:#B0BEC5;line-height:1.6">Dominas los KPIs específicos por dominio, el diseño riguroso de estudios de evaluación y la comunicación adaptada a cada audiencia. La lección 5.13 cierra el módulo con <strong style="color:#fff">la contratación y auditoría de herramientas de IA: pliegos técnicos, evaluación de proveedores y gestión de contratos</strong>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="lf"><span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span> · Desarrollado por DoncelProject · doncel.project@gmail.com</div>
+</div>
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/4)*100);document.getElementById('pf512').style.width=p+'%';document.getElementById('pl512').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function showTab(el,id){el.closest('.sec').querySelectorAll('.tec-tab').forEach(t=>t.classList.remove('active'));el.closest('.sec').querySelectorAll('.tec-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById(id).classList.add('show');}
+function completar(){window.parent.postMessage({type:'LESSON_COMPLETE'},'*');document.querySelector('.btn-complete').textContent='✓ Lección completada';document.querySelector('.btn-complete').style.opacity='.5';document.querySelector('.btn-complete').disabled=true;}
+const fbs={
+  1:{ok:'✅ Correcto. Una tasa de override del 5% admite dos interpretaciones opuestas que solo pueden distinguirse con investigación cualitativa adicional: el sistema puede ser excelente (sus sugerencias son casi siempre correctas y el clínico las acepta tras revisión crítica) o puede haber generado automación complacency (el clínico ha dejado de leer críticamente las sugerencias y firma sin revisar). El segundo escenario, aunque produce el mismo dato numérico, es el de mayor riesgo clínico — y requiere intervención inmediata.',ko:'❌ Una tasa de override del 5% no puede interpretarse directamente como calidad del sistema ni como satisfacción del paciente. Es un dato ambiguo que requiere investigación: puede significar que el sistema es excelente, o que los clínicos han dejado de leerlo críticamente. Sin saber cuál es la interpretación real, no puedes tomar decisiones correctas sobre el sistema.'},
+  2:{ok:'✅ Correcto. El efecto Hawthorne es el sesgo más frecuente en la evaluación de proyectos de IA sanitaria en sus primeras fases: los profesionales cambian su comportamiento porque saben que están siendo observados y evaluados, independientemente de si el sistema de IA añade valor real. Las mejoras observadas en los primeros meses son reales pero no son atribuibles con certeza al sistema. El impacto sostenible y atribuible a la IA solo es evaluable después de que el equipo ha normalizado su uso y ha dejado de "actuar para la cámara".',ko:'❌ El problema principal no es estadístico ni regulatorio. Es el efecto Hawthorne: la mejora observada en los primeros meses puede deberse a que el equipo sabe que está siendo observado y cambia su comportamiento, no a que el sistema de IA añada valor real. Presentar resultados de los primeros 3 meses como evidencia del impacto del sistema es metodológicamente incorrecto porque no permite separar el efecto de la observación del efecto de la intervención.'},
+  3:{ok:'✅ Correcto. La razón principal no es regulatoria ni de publicación científica — es estratégica y ética a la vez. Los resultados inflados generan un efecto domino negativo: la dirección aprueba el escalado con expectativas que el sistema no puede cumplir, el equipo que debe adoptarlo en mayor escala se encuentra con un sistema que no funciona como prometía, y la credibilidad del equipo responsable queda destruida para futuros proyectos. La honestidad sobre los resultados mixtos es la inversión más rentable a largo plazo en la reputación de los impulsores de proyectos de IA en un hospital.',ko:'❌ La razón principal no es regulatoria ni bibliométrica. La honestidad sobre resultados negativos o mixtos tiene valor estratégico real: construye credibilidad, evita que otros repliquen proyectos con las mismas limitaciones, y abre conversaciones productivas sobre qué condiciones son necesarias para que el sistema funcione. Los resultados inflados generan a corto plazo aprobación pero a medio plazo destruyen la credibilidad del equipo cuando el escalado no cumple las expectativas creadas.'}
+};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+upd();
+</script>

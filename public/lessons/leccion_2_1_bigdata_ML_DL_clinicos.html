@@ -1,0 +1,361 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:0}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(33,150,243,0.13);border:1px solid rgba(33,150,243,0.32);border-radius:20px;padding:4px 12px;font-size:11px;color:#90CAF9;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px;color:#fff}
+.lt span{color:#2196F3}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px;flex-wrap:wrap}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#2196F3;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:70px;font-family:var(--font-sans,sans-serif)}
+.nb.active{color:#2196F3;border-bottom-color:#2196F3;background:#0C0D12}
+.sec{display:none;padding:20px 24px}
+.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(33,150,243,0.07);border:1px solid rgba(33,150,243,0.2);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#2196F3;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500;font-family:var(--font-sans,sans-serif)}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer;font-family:var(--font-sans,sans-serif)}
+.badge{display:inline-block;font-size:10px;font-weight:500;padding:2px 8px;border-radius:8px;margin-right:4px}
+.b-blue{background:rgba(33,150,243,.15);color:#90CAF9}
+.b-green{background:rgba(76,175,80,.15);color:#A5D6A7}
+.b-amber{background:rgba(255,152,0,.15);color:#FFD54F}
+.b-purple{background:rgba(103,58,183,.15);color:#CE93D8}
+.b-cyan{background:rgba(0,188,212,.15);color:#80DEEA}
+.concepto{background:#0e1018;border-radius:10px;margin-bottom:10px;overflow:hidden;border:1px solid #1e2335;cursor:pointer}
+.con-hd{display:flex;align-items:center;gap:12px;padding:13px 16px}
+.con-ico{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.con-meta{flex:1}
+.con-title{font-size:13px;font-weight:500;color:#fff;margin-bottom:2px}
+.con-sub{font-size:11px;color:#546E7A}
+.con-body{display:none;padding:0 16px 14px 64px;font-size:12px;color:#B0BEC5;line-height:1.7}
+.con-body.show{display:block}
+.analogia{background:rgba(33,150,243,.08);border:1px solid rgba(33,150,243,.2);border-radius:8px;padding:10px 12px;margin:8px 0;font-size:12px;color:#E0E0E0;line-height:1.7}
+.ana-lbl{font-size:10px;color:#90CAF9;font-weight:500;text-transform:uppercase;letter-spacing:.6px;margin-bottom:5px}
+.pildora-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 0}
+.pildora{background:#0e1018;border-radius:8px;padding:12px;border:1px solid #1e2335;text-align:center}
+.pildora-v{font-size:20px;font-weight:500;margin-bottom:5px}
+.pildora-l{font-size:11px;color:#B0BEC5;line-height:1.4}
+.piramide-row{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #1e2335;font-size:12px;color:#E0E0E0;line-height:1.6}
+.piramide-row:last-child{border-bottom:none}
+.piramide-ico{font-size:18px;flex-shrink:0;margin-top:2px;min-width:28px;text-align:center}
+.piramide-txt{flex:1}
+.piramide-title{font-weight:500;color:#fff;margin-bottom:3px}
+.qw{display:none}
+.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s;font-family:var(--font-sans,sans-serif)}
+.qopt:hover{border-color:#2196F3;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}
+.qnx.show{display:block}
+.completar-wrap{padding:20px 24px;display:none}
+.completar-wrap.show{display:block}
+.btn-completar{width:100%;padding:14px;background:transparent;border:2px solid #2196F3;border-radius:12px;color:#90CAF9;font-size:13px;font-weight:500;cursor:pointer;transition:all .3s;letter-spacing:.5px;font-family:var(--font-sans,sans-serif)}
+.btn-completar:hover{background:rgba(33,150,243,.12)}
+.btn-completar.done{background:#2196F3;color:#fff;border-color:#2196F3}
+.completar-confirm{text-align:center;font-size:11px;color:#A5D6A7;margin-top:8px;display:none}
+.completar-confirm.show{display:block}
+.lf{text-align:center;font-size:10px;color:#546E7A;padding:16px 24px;border-top:1px solid #1a2a3a}
+.fl{color:#2196F3;cursor:pointer;text-decoration:underline}
+</style>
+
+<div class="lw">
+  <div class="lh">
+    <div class="lb">MÓDULO 2 · LECCIÓN 2.1</div>
+    <div class="lt">Fundamentos de Big Data, ML y DL <span>explicados para clínicos</span></div>
+    <div class="lm">
+      <div class="lmi"><div class="md" style="background:#2196F3"></div>60 minutos</div>
+      <div class="lmi"><div class="md" style="background:#FFB300"></div>4 secciones</div>
+      <div class="lmi"><div class="md" style="background:#A5D6A7"></div>Sin matemáticas · Con analogías clínicas</div>
+    </div>
+  </div>
+  <div class="pbw"><div class="pbb"><div class="pbf" id="pf"></div></div><div class="pbl" id="pl">0%</div></div>
+  <div class="snav">
+    <button class="nb active" id="t0" onclick="go(0)">📖 Intro</button>
+    <button class="nb" id="t1" onclick="go(1)">📊 Big Data</button>
+    <button class="nb" id="t2" onclick="go(2)">🧠 ML y DL</button>
+    <button class="nb" id="t3" onclick="go(3)">✅ Test</button>
+  </div>
+
+  <!-- SECCIÓN 0 -->
+  <div class="sec active" id="s0">
+    <div class="card">
+      <div class="ct">Objetivo</div>
+      <div class="cb">Desmitificar los conceptos técnicos de IA — Big Data, Machine Learning y Deep Learning — usando analogías clínicas comprensibles. Al terminar esta lección sabrás qué significan realmente estos términos, por qué importan en tu práctica y cómo reconocerlos cuando aparecen en una propuesta de proveedor o en un artículo científico.</div>
+    </div>
+    <div class="simil">
+      <div class="sl">Por qué esta lección está en el módulo de prompts</div>
+      Para escribir buenos prompts y evaluar críticamente las respuestas de la IA, necesitas entender mínimamente cómo funciona por dentro. No hace falta saber programar — igual que para prescribir un antihipertensivo no necesitas sintetizarlo, pero sí conocer su mecanismo de acción. Esta lección es tu farmacología básica de la IA.
+    </div>
+    <div class="pildora-grid">
+      <div class="pildora"><div class="pildora-v" style="color:#2196F3">Big Data</div><div class="pildora-l">El volumen de datos que alimenta la IA sanitaria</div></div>
+      <div class="pildora"><div class="pildora-v" style="color:#FFB300">ML</div><div class="pildora-l">Machine Learning: cómo la IA aprende de esos datos</div></div>
+      <div class="pildora"><div class="pildora-v" style="color:#AB47BC">DL</div><div class="pildora-l">Deep Learning: el nivel más sofisticado del aprendizaje</div></div>
+    </div>
+    <div class="nav-actions"><span></span><button class="btn-p" onclick="go(1)">Big Data →</button></div>
+  </div>
+
+  <!-- SECCIÓN 1 -->
+  <div class="sec" id="s1">
+    <div class="card">
+      <div class="ct">Big Data sanitario: del dato al conocimiento clínico accionable</div>
+      <div class="cb">El Big Data en sanidad no es solo "muchos datos" — es la capacidad de procesar, cruzar y extraer conocimiento de volúmenes de información que ningún ser humano podría analizar manualmente.</div>
+    </div>
+
+    <div class="simil">
+      <div class="sl">Analogía clínica</div>
+      Imagina que tienes el registro completo de todos los pacientes del SSPA de los últimos 20 años: HCE, analíticas, imagen, medicación, ingresos, urgencias, mortalidad. Eso es Big Data sanitario. Ningún equipo de investigadores humanos podría leer y cruzar esos millones de registros. La IA sí puede — y en eso reside su valor para la medicina de precisión y la salud pública.
+    </div>
+
+    <div class="card">
+      <div class="ct">Las 4 Vs del Big Data — toca para ver su relevancia clínica</div>
+    </div>
+
+    <div class="concepto" onclick="toggleCon(0)">
+      <div class="con-hd">
+        <div class="con-ico" style="background:rgba(33,150,243,.15);color:#90CAF9">📦</div>
+        <div class="con-meta"><div class="con-title">Volumen — la escala de los datos sanitarios</div><div class="con-sub">Millones de registros, imágenes y señales</div></div>
+      </div>
+      <div class="con-body" id="cb0">
+        El SSPA genera más de 2 millones de episodios asistenciales al año. Cada TAC son 500-1.000 imágenes DICOM. Un registro de Holter produce 100.000 latidos. Un paciente crónico bien registrado genera miles de puntos de dato a lo largo de su vida.
+        <div class="analogia"><div class="ana-lbl">Relevancia clínica</div>Este volumen hace imposible el análisis manual pero permite identificar patrones que no serían visibles en una serie de 50 casos. Un modelo entrenado con 500.000 TACs de tórax "ha visto" más nódulos pulmonares que cualquier radiólogo en toda su carrera.</div>
+      </div>
+    </div>
+
+    <div class="concepto" onclick="toggleCon(1)">
+      <div class="con-hd">
+        <div class="con-ico" style="background:rgba(255,152,0,.15);color:#FFD54F">⚡</div>
+        <div class="con-meta"><div class="con-title">Velocidad — datos generados en tiempo real</div><div class="con-sub">Constantes vitales, wearables, monitores de UCI</div></div>
+      </div>
+      <div class="con-body" id="cb1">
+        En una UCI, cada paciente genera decenas de parámetros cada segundo: FC, PA, SpO2, capnografía, presión intracraneal. La velocidad de generación de estos datos supera la capacidad de procesamiento humano continuo.
+        <div class="analogia"><div class="ana-lbl">Relevancia clínica</div>Los sistemas de alerta de deterioro en UCI analizan estas señales en tiempo real y detectan patrones de deterioro 6-8 horas antes de que sean clínicamente evidentes, permitiendo intervenciones preventivas. Eso solo es posible porque la IA procesa el flujo continuo de datos sin fatigarse.</div>
+      </div>
+    </div>
+
+    <div class="concepto" onclick="toggleCon(2)">
+      <div class="con-hd">
+        <div class="con-ico" style="background:rgba(76,175,80,.15);color:#A5D6A7">🔀</div>
+        <div class="con-meta"><div class="con-title">Variedad — datos heterogéneos del paciente</div><div class="con-sub">Texto, imagen, señal, datos estructurados</div></div>
+      </div>
+      <div class="con-body" id="cb2">
+        El perfil clínico completo de un paciente combina tipos de dato radicalmente distintos: texto de la HCE, imagen DICOM, señales de ECG, valores numéricos de analítica, audio de auscultación, genómica, datos de wearables. Cada tipo requiere técnicas de procesamiento distintas.
+        <div class="analogia"><div class="ana-lbl">Relevancia clínica</div>La integración de estos tipos heterogéneos es el fundamento de la IA multimodal (lección 1.12). Un modelo que solo ve analíticas tiene una visión parcial. Un modelo que cruza analítica + imagen + HCE tiene la visión clínica integrada que el médico experiente construye mentalmente en cada consulta.</div>
+      </div>
+    </div>
+
+    <div class="concepto" onclick="toggleCon(3)">
+      <div class="con-hd">
+        <div class="con-ico" style="background:rgba(103,58,183,.15);color:#CE93D8">✓</div>
+        <div class="con-meta"><div class="con-title">Veracidad — la calidad de los datos sanitarios</div><div class="con-sub">Registros incompletos, sesgos, duplicidades</div></div>
+      </div>
+      <div class="con-body" id="cb3">
+        Los datos sanitarios reales están lejos de ser perfectos: diagnósticos codificados incorrectamente, analíticas sin contexto clínico, registros de medicación incompletos, HCE con campos vacíos. Un modelo entrenado con datos de baja calidad producirá predicciones de baja calidad — "garbage in, garbage out".
+        <div class="analogia"><div class="ana-lbl">Relevancia clínica</div>La veracidad es la V más crítica para la IA clínica. Antes de creer las predicciones de un modelo, pregunta: "¿Con qué calidad de datos fue entrenado?" La limpieza y curación de datos sanitarios es el paso más laborioso — y más determinante — de cualquier proyecto de IA en salud.</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <div class="ct">Del dato al conocimiento — la pirámide sanitaria</div>
+      <div class="cb" style="padding:0;margin-top:8px">
+        <div class="piramide-row"><div class="piramide-ico" style="color:#546E7A">📡</div><div class="piramide-txt"><div class="piramide-title" style="color:#B0BEC5">Dato crudo</div>Frecuencia cardíaca: 112 lpm. Por sí solo, no dice nada sin contexto.</div></div>
+        <div class="piramide-row"><div class="piramide-ico" style="color:#90CAF9">📊</div><div class="piramide-txt"><div class="piramide-title" style="color:#90CAF9">Información</div>FC 112 + PA 80/50 + T 38.9 en un paciente postoperatorio. Empieza a tener significado.</div></div>
+        <div class="piramide-row"><div class="piramide-ico" style="color:#FFD54F">🔍</div><div class="piramide-txt"><div class="piramide-title" style="color:#FFD54F">Conocimiento</div>Patrón compatible con sepsis postoperatoria. El ML cruza estos datos con miles de casos similares y calcula la probabilidad.</div></div>
+        <div class="piramide-row"><div class="piramide-ico" style="color:#A5D6A7">⚡</div><div class="piramide-txt"><div class="piramide-title" style="color:#A5D6A7">Conocimiento accionable</div>Alerta: "Alta probabilidad de sepsis. Considerar hemocultivos, lactato y antibioterapia empírica en las próximas 2 horas." Esto es lo que produce la IA bien implementada.</div></div>
+      </div>
+    </div>
+    <div class="nav-actions"><button class="btn-s" onclick="go(0)">← Atrás</button><button class="btn-p" onclick="go(2)">ML y DL →</button></div>
+  </div>
+
+  <!-- SECCIÓN 2 -->
+  <div class="sec" id="s2">
+    <div class="card">
+      <div class="ct">Machine Learning y Deep Learning — sin matemáticas</div>
+      <div class="cb">Estos dos términos aparecen constantemente en propuestas de IA, artículos y reuniones de digitalización. Entender qué los diferencia te permite hacer las preguntas correctas y evaluar si la tecnología propuesta es la adecuada para el problema clínico que quieres resolver.</div>
+    </div>
+
+    <div class="concepto" onclick="toggleCon(4)">
+      <div class="con-hd">
+        <div class="con-ico" style="background:rgba(255,152,0,.15);color:#FFD54F">🏥</div>
+        <div class="con-meta"><div class="con-title">Machine Learning — aprendizaje por casos clínicos digitales</div><div class="con-sub">El modelo aprende de ejemplos, igual que un residente</div></div>
+      </div>
+      <div class="con-body" id="cb4">
+        Machine Learning es el proceso por el que un sistema informático mejora su rendimiento aprendiendo de datos, sin ser programado explícitamente para cada caso.
+        <div class="analogia"><div class="ana-lbl">Analogía clínica perfecta</div>Un residente de medicina interna aprende a reconocer una descompensación de IC porque ha visto cientos de casos durante su formación. No sigue un algoritmo explícito — ha interiorizado el patrón. El Machine Learning hace exactamente lo mismo con datos: el modelo "ve" miles de casos con su diagnóstico conocido y aprende el patrón que los distingue.</div>
+        <div style="margin-top:10px;font-size:12px;color:#E0E0E0"><strong style="color:#FFD54F">Tipos de ML en sanidad:</strong><br>
+        · <strong>Supervisado:</strong> aprende de ejemplos etiquetados (diagnósticos confirmados, pacientes que reingresaron o no). El más común en aplicaciones clínicas.<br>
+        · <strong>No supervisado:</strong> encuentra patrones ocultos sin etiquetas previas. Útil para identificar subgrupos de pacientes con respuesta similar al tratamiento.<br>
+        · <strong>Por refuerzo:</strong> aprende por prueba y error con retroalimentación. Aplicaciones en robótica quirúrgica y optimización de protocolos.</div>
+      </div>
+    </div>
+
+    <div class="concepto" onclick="toggleCon(5)">
+      <div class="con-hd">
+        <div class="con-ico" style="background:rgba(103,58,183,.15);color:#CE93D8">🧠</div>
+        <div class="con-meta"><div class="con-title">Deep Learning — redes neuronales sin matemáticas</div><div class="con-sub">Capas de procesamiento que imitan el sistema nervioso</div></div>
+      </div>
+      <div class="con-body" id="cb5">
+        Deep Learning es un tipo avanzado de Machine Learning que usa redes de capas de procesamiento ("neuronas artificiales") inspiradas en el funcionamiento del sistema nervioso. Cada capa extrae características progresivamente más abstractas de los datos.
+        <div class="analogia"><div class="ana-lbl">Analogía clínica</div>Imagina el sistema nervioso visual: la retina detecta luz y color (datos brutos), la corteza visual primaria extrae bordes y líneas, la corteza visual secundaria combina esas líneas en formas, y la corteza de asociación reconoce "esto es una lesión pulmonar sospechosa". El Deep Learning hace exactamente esto con imagen médica: capa a capa, de píxeles a diagnóstico.</div>
+        <div style="margin-top:10px;font-size:12px;color:#E0E0E0"><strong style="color:#CE93D8">Por qué DL para imagen médica:</strong> el análisis de imagen médica requiere detectar patrones visuales sutiles (variaciones de densidad en TAC, irregularidades de borde en dermatoscopia) que los algoritmos clásicos de ML no pueden capturar. El DL, entrenado con millones de imágenes etiquetadas, aprende a detectar estos patrones con precisión comparable o superior al especialista en tareas específicas y bien definidas.</div>
+      </div>
+    </div>
+
+    <div class="concepto" onclick="toggleCon(6)">
+      <div class="con-hd">
+        <div class="con-ico" style="background:rgba(33,150,243,.15);color:#90CAF9">💬</div>
+        <div class="con-meta"><div class="con-title">LLM — Large Language Models (Claude, ChatGPT, Gemini)</div><div class="con-sub">Deep Learning aplicado al lenguaje médico</div></div>
+      </div>
+      <div class="con-body" id="cb6">
+        Los modelos de lenguaje grande son un tipo específico de Deep Learning entrenado con cantidades masivas de texto. Han aprendido la estructura, el vocabulario y los patrones del lenguaje humano — incluyendo el lenguaje clínico — de forma que pueden generar texto coherente, responder preguntas y razonar sobre problemas complejos.
+        <div class="analogia"><div class="ana-lbl">Relevancia directa para esta lección</div>Cuando escribes un prompt en Claude o ChatGPT, estás interactuando con un LLM. Saber que detrás hay un modelo entrenado con texto te explica por qué funciona mejor con instrucciones claras (como las que aprenderás en la lección 2.2), por qué puede alucinar (el modelo predice texto probable, no verdad), y por qué el contexto que le das en el prompt es tan determinante para la calidad de la respuesta.</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <div class="ct">ML vs DL vs LLM — cuándo se usa cada uno en sanidad</div>
+      <div class="cb">
+        <strong style="color:#FFD54F">ML clásico →</strong> predicciones sobre datos estructurados: riesgo de reingreso, predicción de sepsis, estratificación de crónicos. Requiere menos datos y es más interpretable.<br><br>
+        <strong style="color:#CE93D8">Deep Learning →</strong> análisis de imagen médica, ECG, señales fisiológicas complejas. Requiere grandes volúmenes de datos etiquetados y capacidad computacional.<br><br>
+        <strong style="color:#90CAF9">LLM →</strong> generación de texto clínico, síntesis de información, apoyo al razonamiento diagnóstico, educación del paciente. Es la tecnología que usas cuando trabajas con Claude o ChatGPT.
+      </div>
+    </div>
+    <div class="nav-actions"><button class="btn-s" onclick="go(1)">← Big Data</button><button class="btn-p" onclick="go(3)">Test →</button></div>
+  </div>
+
+  <!-- SECCIÓN 3: TEST -->
+  <div class="sec" id="s3">
+    <div class="qw active" id="q1w">
+      <div class="qnum">Pregunta 1 de 3</div>
+      <div class="qtxt">Un hospital quiere implementar un sistema de IA para detectar automáticamente nódulos pulmonares en TAC de tórax. ¿Qué tipo de técnica de IA es más adecuada y por qué?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,1)">Machine Learning clásico, porque es más interpretable y requiere menos datos</button>
+        <button class="qopt" onclick="ans(this,false,1)">Un LLM como Claude, porque puede analizar la descripción textual del radiólogo</button>
+        <button class="qopt" onclick="ans(this,true,1)">Deep Learning, porque el análisis de imagen médica requiere detectar patrones visuales complejos a nivel de píxel que las redes neuronales profundas aprenden de grandes colecciones de imágenes etiquetadas</button>
+        <button class="qopt" onclick="ans(this,false,1)">Big Data, porque el volumen de TACs generados en el hospital es suficiente para entrenar el modelo</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+      <div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div>
+    </div>
+    <div class="qw" id="q2w">
+      <div class="qnum">Pregunta 2 de 3</div>
+      <div class="qtxt">Un modelo de ML para predicción de reingreso fue entrenado con registros del SSPA de 2018-2020, cuando el perfil de pacientes era diferente al actual (mayor edad media, más comorbilidades, post-COVID). ¿Qué "V" del Big Data explica por qué el modelo puede haber perdido precisión?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,2)">Volumen — el modelo fue entrenado con demasiados datos</button>
+        <button class="qopt" onclick="ans(this,false,2)">Velocidad — el modelo procesa los datos demasiado lentamente</button>
+        <button class="qopt" onclick="ans(this,false,2)">Variedad — el modelo no puede procesar tipos de datos heterogéneos</button>
+        <button class="qopt" onclick="ans(this,true,2)">Veracidad — los datos de entrenamiento ya no son representativos del perfil actual de pacientes, generando concept drift que degrada la precisión del modelo</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+      <div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div>
+    </div>
+    <div class="qw" id="q3w">
+      <div class="qnum">Pregunta 3 de 3</div>
+      <div class="qtxt">Cuando escribes un prompt en Claude y la IA genera una respuesta clínicamente incorrecta con total confianza (alucinación), ¿qué propiedad fundamental de los LLM lo explica?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,3)">El modelo no tiene acceso a internet y por eso no puede verificar la información</button>
+        <button class="qopt" onclick="ans(this,false,3)">El prompt estaba mal escrito y no especificó que la respuesta debía ser correcta</button>
+        <button class="qopt" onclick="ans(this,true,3)">Los LLM predicen el texto más probable dada la instrucción, no verifican la verdad. Una respuesta clínicamente incorrecta puede ser estadísticamente "probable" en el espacio de texto médico en que fue entrenado</button>
+        <button class="qopt" onclick="ans(this,false,3)">El modelo de lenguaje no fue entrenado con suficientes datos médicos</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+      <div class="qnx" id="nx3">
+        <div style="background:rgba(33,150,243,.09);border:1px solid rgba(33,150,243,.25);border-radius:10px;padding:16px;margin-top:8px">
+          <div style="font-size:13px;font-weight:500;color:#90CAF9;margin-bottom:6px">Lección 2.1 completada</div>
+          <div style="font-size:12px;color:#B0BEC5;line-height:1.6">Ya tienes la base conceptual. La lección <strong style="color:#fff">2.2</strong> aterriza todo esto en la práctica: <strong style="color:#fff">diseño de prompts efectivos para distintos perfiles</strong> — anatomía del prompt perfecto, biblioteca por especialidad y técnicas avanzadas.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="completar-wrap" id="cw">
+    <button class="btn-completar" id="bcmp" onclick="completar()">MARCAR LECCIÓN COMO COMPLETADA</button>
+    <div class="completar-confirm" id="cc">✓ Lección 2.1 registrada · DoncelProject</div>
+  </div>
+  <div class="lf">
+    <span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span>
+    <span> · Desarrollado por DoncelProject · doncel.project@gmail.com</span>
+  </div>
+</div>
+
+<script>
+let done=new Set([0]),cmp=false;
+function upd(){
+  const p=Math.round((done.size/4)*100);
+  document.getElementById('pf').style.width=p+'%';
+  document.getElementById('pl').textContent=p+'%';
+  if(done.size>=4)document.getElementById('cw').classList.add('show');
+}
+function go(n){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));
+  document.getElementById('s'+n).classList.add('active');
+  document.getElementById('t'+n).classList.add('active');
+  done.add(n);upd();
+}
+function toggleCon(i){
+  const b=document.getElementById('cb'+i);
+  const open=b.classList.contains('show');
+  document.querySelectorAll('.con-body').forEach(x=>x.classList.remove('show'));
+  if(!open)b.classList.add('show');
+}
+const fbs={
+  1:{
+    ok:'✅ Correcto. El análisis de imagen médica es el caso de uso paradigmático del Deep Learning en sanidad. Las redes neuronales profundas aprenden a detectar patrones visuales — variaciones de densidad, irregularidades de borde, distribución espacial de hallazgos — que son invisibles para los algoritmos clásicos de ML y que requieren grandes colecciones de imágenes etiquetadas por expertos para su entrenamiento.',
+    ko:'❌ Para análisis de imagen médica, Deep Learning es la técnica correcta. El ML clásico no puede procesar imágenes de forma eficaz porque no tiene mecanismos para extraer características visuales complejas. Los LLM procesan texto, no imagen. Y "Big Data" es el volumen de datos, no una técnica de análisis en sí misma.'
+  },
+  2:{
+    ok:'✅ Correcto. Este es el concept drift: cuando los datos del mundo real cambian respecto al perfil de entrenamiento, el modelo pierde precisión de forma silenciosa. La "V" de Veracidad recoge este problema: los datos de entrenamiento ya no son representativos de la realidad actual. La solución es re-validación y re-entrenamiento periódico del modelo, que debe estar contractualmente garantizado por el proveedor.',
+    ko:'❌ La V correcta es Veracidad, que incluye la representatividad de los datos. El concept drift ocurre cuando el perfil de la población real cambia respecto al perfil de entrenamiento, haciendo que los datos de referencia del modelo ya no sean veraces respecto a la realidad actual. Volumen, velocidad y variedad no explican este fenómeno.'
+  },
+  3:{
+    ok:'✅ Correcto. Esta es la comprensión más importante sobre los LLM para el profesional sanitario: el modelo no "sabe" la verdad — predice el texto más estadísticamente probable dada su instrucción y su entrenamiento. Una respuesta clínicamente incorrecta puede ser textualmente muy probable en el corpus médico con el que fue entrenado. Por eso la verificación humana es siempre imprescindible: el modelo optimiza la coherencia textual, no la verdad clínica.',
+    ko:'❌ La causa fundamental de las alucinaciones en LLM no es la falta de internet ni los errores del prompt — es la naturaleza probabilística del modelo. Los LLM predicen el siguiente token más probable, no verifican la verdad. Una respuesta puede sonar perfectamente clínica y ser factualmente incorrecta porque el modelo ha "aprendido" que ese tipo de texto es frecuente en su corpus de entrenamiento, independientemente de su veracidad.'
+  }
+};
+function ans(btn,ok,n){
+  btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);
+  btn.classList.add(ok?'correct':'wrong');
+  const fb=document.getElementById('fb'+n);
+  fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;
+  fb.className='qfb show '+(ok?'ok':'ko');
+  document.getElementById('nx'+n).classList.add('show');
+  if(n===3){done.add(3);upd();}
+}
+function showQ(n){
+  document.getElementById('q'+(n-1)+'w').classList.remove('active');
+  document.getElementById('q'+n+'w').classList.add('active');
+}
+function completar(){
+  if(cmp)return;cmp=true;
+  const b=document.getElementById('bcmp');
+  b.textContent='✓ LECCIÓN COMPLETADA';
+  b.classList.add('done');
+  document.getElementById('cc').classList.add('show');
+  try{
+    window.storage.set('completada_leccion_2_1',JSON.stringify({
+      leccion:'2.1',titulo:'Big Data, ML y DL para clínicos',
+      fecha:new Date().toLocaleDateString('es-ES'),ts:Date.now()
+    })).catch(()=>{});
+  }catch(e){}
+}
+upd();
+</script>

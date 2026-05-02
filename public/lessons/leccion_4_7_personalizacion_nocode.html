@@ -1,0 +1,294 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:sans-serif;border-radius:16px;overflow:hidden;padding-bottom:32px}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(33,150,243,.15);border:1px solid rgba(33,150,243,.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#90CAF9;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px}.lt span{color:#2196F3}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px;flex-wrap:wrap}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#2196F3;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:80px}
+.nb.active{color:#2196F3;border-bottom-color:#2196F3;background:#0C0D12}
+.sec{display:none;padding:20px 24px}.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(33,150,243,.08);border:1px solid rgba(33,150,243,.22);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#2196F3;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer}
+.tec-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.tec-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 14px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s}
+.tec-tab.active{background:rgba(33,150,243,.15);border-color:#2196F3;color:#90CAF9}
+.tec-panel{display:none}.tec-panel.show{display:block}
+.prompt-box{background:#0e1018;border:1px solid #1e2335;border-radius:10px;padding:14px;margin:10px 0}
+.prompt-label{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}
+.prompt-text{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.prompt-why{font-size:11px;color:#B0BEC5;line-height:1.6;margin-top:10px;padding-top:10px;border-top:1px solid #1e2335}
+.limit-item{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #1a2a3a}
+.limit-item:last-child{border-bottom:none}
+.li-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.li-title{font-size:12px;font-weight:600;color:#fff;margin-bottom:3px}
+.li-desc{font-size:11px;color:#B0BEC5;line-height:1.6}
+.flow-box{background:#0C0D12;border-radius:8px;padding:12px 14px;margin:10px 0;font-family:monospace;font-size:11px;color:#90CAF9;line-height:1.9;white-space:pre-wrap;word-break:break-word;border-left:2px solid #2196F3}
+.tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.tool-card{background:#13151e;border:1px solid #1e2335;border-radius:10px;padding:14px}
+.tool-name{font-size:13px;font-weight:700;color:#2196F3;margin-bottom:4px}
+.tool-tag{font-size:10px;color:#90CAF9;margin-bottom:8px}
+.tool-desc{font-size:11px;color:#B0BEC5;line-height:1.6}
+.alerta{border-radius:10px;padding:12px 14px;margin:12px 0;font-size:12px;line-height:1.6}
+.ao{background:rgba(76,175,80,.07);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.aw{background:rgba(255,152,0,.07);border:1px solid rgba(255,152,0,.22);color:#FFD54F}
+.alt{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px}
+.qw{display:none}.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s}
+.qopt:hover{border-color:#2196F3;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}.qnx.show{display:block}
+.complete-btn{width:100%;background:linear-gradient(135deg,#2196F3,#1565C0);color:#fff;border:none;border-radius:10px;padding:14px 20px;font-size:13px;font-weight:600;cursor:pointer;margin-top:16px;letter-spacing:.3px;transition:opacity .2s}
+.complete-btn:hover{opacity:.9}.complete-btn:disabled{opacity:.5;cursor:not-allowed}
+.lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a}
+.fl{color:#2196F3;cursor:pointer;text-decoration:underline}
+</style>
+<div class="lw">
+<div class="lh"><div class="lb">MÓDULO 4 · LECCIÓN 4.7</div><div class="lt">Personalización sin código con fuentes verificadas:<br><span>no-code fine-tuning, bases de conocimiento médico y control de versiones</span></div><div class="lm"><div class="lmi"><div class="md" style="background:#2196F3"></div>49 minutos</div><div class="lmi"><div class="md" style="background:#FFB300"></div>Nivel práctico</div><div class="lmi"><div class="md" style="background:#A5D6A7"></div>No-code / Low-code</div></div></div>
+<div class="pbw"><div class="pbb"><div class="pbf" id="pbf47"></div></div><div class="pbl" id="pbl47">0%</div></div>
+<div class="snav"><button class="nb active" id="t1" onclick="go(1)">Herramientas no-code</button><button class="nb" id="t2" onclick="go(2)">NotebookLM como RAG</button><button class="nb" id="t3" onclick="go(3)">Bases de conocimiento</button><button class="nb" id="t4" onclick="go(4)">Versiones y calidad</button><button class="nb" id="t5" onclick="go(5)">Test</button></div>
+
+<div class="sec active" id="s1">
+<div class="card"><div class="ct">Objetivo de la lección</div><div class="cb">Implementar la personalización de modelos de IA para contextos clínicos específicos sin escribir una sola línea de código, usando herramientas diseñadas para usuarios no técnicos: NotebookLM, GPTs personalizados de ChatGPT, Poe, y plataformas RAG no-code. Sin datos de pacientes, sin infraestructura, sin presupuesto de entrenamiento.</div></div>
+<div class="simil"><div class="sl">🧰 Analogía clínica</div>Personalizar un modelo de IA sin código es como preparar un formulario estructurado de anamnesis específico para tu especialidad: no necesitas saber programar formularios ni diseño de bases de datos — usas Google Forms o una plantilla Word. El resultado final es un instrumento personalizado para tu práctica clínica, construido con herramientas que ya conoces. Las plataformas no-code de IA son exactamente eso: el Google Forms de la personalización de modelos.</div>
+<div class="tool-grid">
+<div class="tool-card"><div class="tool-name">NotebookLM</div><div class="tool-tag">Google · Gratuito</div><div class="tool-desc">RAG visual sobre documentos PDF. Carga hasta 50 documentos, hace preguntas sobre ellos con citas precisas. Ideal para protocolos, guías y evidencia del servicio.</div></div>
+<div class="tool-card"><div class="tool-name">ChatGPT GPTs</div><div class="tool-tag">OpenAI · GPT Plus $20/mes</div><div class="tool-desc">Crear asistentes personalizados con system prompt, archivos de conocimiento y acciones. Compartibles con el equipo. Sin código pero con acceso a capacidades avanzadas.</div></div>
+<div class="tool-card"><div class="tool-name">Claude Projects</div><div class="tool-tag">Anthropic · Claude Pro $20/mes</div><div class="tool-desc">Proyectos con instrucciones personalizadas persistentes y documentos de conocimiento indexados. El contexto se mantiene entre conversaciones del mismo proyecto.</div></div>
+<div class="tool-card"><div class="tool-name">Poe / Perplexity</div><div class="tool-tag">Varias plataformas · Freemium</div><div class="tool-desc">Crear bots personalizados sobre múltiples modelos. Poe permite subir documentos y configurar el bot. Perplexity combina búsqueda web con documentos propios.</div></div>
+</div>
+<div class="nav-actions"><div></div><button class="btn-p" onclick="go(2)">NotebookLM →</button></div>
+</div>
+
+<div class="sec" id="s2">
+<div class="card"><div class="ct">NotebookLM: RAG no-code sobre tus documentos clínicos</div><div class="cb">NotebookLM (Google) es la herramienta más accesible para implementar un sistema RAG sobre documentos propios sin conocimientos técnicos. En 15 minutos puedes tener un sistema que responde preguntas sobre los protocolos de tu servicio citando el documento exacto.</div></div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'nb-setup')">⚙️ Configuración</button><button class="tec-tab" onclick="showTab(this,'nb-uso')">🩺 Uso clínico</button><button class="tec-tab" onclick="showTab(this,'nb-limit')">⚠️ Limitaciones</button></div>
+<div class="tec-panel show" id="nb-setup">
+<div class="flow-box">CONFIGURACIÓN DE NOTEBOOKLM PARA UN SERVICIO CLÍNICO:
+
+PASO 1 — Crear el notebook:
+→ Acceder a notebooklm.google.com con cuenta Google
+→ Crear nuevo Notebook: "Protocolos Servicio de [Especialidad]"
+→ Añadir fuentes (botón "+"):
+   - Subir PDFs de protocolos del servicio (máx. 50 documentos)
+   - Pegar texto de guías clínicas
+   - Añadir URLs de páginas web (guías de sociedades científicas)
+   - Google Docs si los protocolos están en Drive del hospital
+
+PASO 2 — Verificar la indexación:
+→ NotebookLM procesa los documentos en 1-3 minutos
+→ Hacer preguntas de prueba para verificar que extrae correctamente
+
+PASO 3 — Configurar el asistente (opcional):
+→ "Notebook Guide" → permite definir el tono y el contexto del asistente
+→ Añadir instrucciones: "Eres el asistente del Servicio de [X]. Cuando respondas,
+  cita siempre el documento y la sección exacta de donde proviene la información.
+  Si la pregunta no está cubierta por los documentos, indícalo explícitamente."
+
+PASO 4 — Compartir con el equipo:
+→ Botón "Share" → Copiar enlace
+→ El equipo accede al mismo notebook con los mismos documentos
+→ Cada miembro puede hacer sus propias preguntas
+
+PRIVACIDAD:
+→ NotebookLM usa Google Cloud (servidores UE disponibles con Google Workspace)
+→ Los documentos NO se usan para entrenar modelos de Google (confirmado en T&Cs)
+→ Para datos de pacientes: usar solo con datos anonimizados o documentos sin datos individuales
+→ Los protocolos del servicio (sin datos de pacientes) son generalmente seguros</div>
+</div>
+<div class="tec-panel" id="nb-uso">
+<div class="limit-item"><div class="li-icon">📋</div><div class="li-body"><div class="li-title">Consulta de protocolos durante la guardia</div><div class="li-desc">«¿Cuándo se activa el protocolo de sepsis según nuestros criterios locales?» → NotebookLM responde citando exactamente la sección del protocolo del hospital. Sin buscar en el PDF, sin llamar al adjunto. El sistema cita la fuente, el médico verifica si lo desea. Ahorro estimado: 3-5 minutos por consulta de protocolo durante guardias.</div></div></div>
+<div class="limit-item"><div class="li-icon">📚</div><div class="li-body"><div class="li-title">Sintetizar múltiples guías sobre una pregunta clínica</div><div class="li-desc">«¿Cuál es la recomendación de las guías ESC 2023 vs NICE 2022 para el inicio de anticoagulación en FA no valvular con CrCl 35 ml/min?» → NotebookLM consulta simultáneamente ambas guías indexadas y sintetiza las diferencias. Esto antes requería abrir dos PDFs y buscar manualmente en ambos.</div></div></div>
+<div class="limit-item"><div class="li-icon">🎓</div><div class="li-body"><div class="li-title">Preparación de sesiones clínicas y formación MIR</div><div class="li-desc">Indexar los artículos de revisión del tema de la sesión. Los residentes pueden hacer preguntas de preparación sobre los documentos y obtener respuestas con citas exactas. NotebookLM también genera automáticamente resúmenes, preguntas de estudio y FAQs sobre los documentos indexados.</div></div></div>
+</div>
+<div class="tec-panel" id="nb-limit">
+<div class="limit-item"><div class="li-icon">⚠️</div><div class="li-body"><div class="li-title">Límites de documentos y tamaño</div><div class="li-desc">Máximo 50 fuentes por notebook. Máximo 500.000 palabras por notebook. Para servicios con muchos protocolos: crear notebooks temáticos (uno para urgencias, uno para EPOC, uno para IC, etc.). Esta limitación es la principal diferencia con un sistema RAG técnico que puede indexar miles de documentos.</div></div></div>
+<div class="limit-item"><div class="li-icon">⚠️</div><div class="li-body"><div class="li-title">Sin memoria entre sesiones individuales (en versión gratuita)</div><div class="li-desc">NotebookLM no recuerda las conversaciones previas de la misma forma que Claude Projects. Cada sesión empieza desde cero. Para preguntas frecuentes repetidas, el usuario debe reformularlas cada vez. Claude Projects o ChatGPT GPTs con historial de conversación resuelven esto.</div></div></div>
+<div class="limit-item"><div class="li-icon">⚠️</div><div class="li-body"><div class="li-title">Puede «alucinar» entre documentos</div><div class="li-desc">NotebookLM puede ocasionalmente mezclar información de distintos documentos o generar información ligeramente incorrecta. La cita de la fuente facilita la verificación, pero no la garantiza. Para decisiones clínicas importantes, siempre verificar en el documento original.</div></div></div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(1)">← Herramientas</button><button class="btn-p" onclick="go(3)">Bases de conocimiento →</button></div>
+</div>
+
+<div class="sec" id="s3">
+<div class="card"><div class="ct">ChatGPT GPTs y Claude Projects: asistentes clínicos personalizados</div><div class="cb">Las plataformas de IA conversacional permiten crear asistentes personalizados con instrucciones fijas, documentos de conocimiento y comportamientos definidos. Son el equivalente no-code de implementar un system prompt + RAG para el equipo.</div></div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'gpt-config')">🔧 ChatGPT GPTs</button><button class="tec-tab" onclick="showTab(this,'claude-proj')">💼 Claude Projects</button><button class="tec-tab" onclick="showTab(this,'asist-diseno')">🎨 Diseño del asistente</button></div>
+<div class="tec-panel show" id="gpt-config">
+<div class="flow-box">CREAR UN GPT PERSONALIZADO PARA TU SERVICIO:
+
+ACCESO: ChatGPT Plus ($20/mes) → Explorar GPTs → Crear
+
+CONFIGURACIÓN (sin código):
+1. NOMBRE Y DESCRIPCIÓN:
+   "Asistente clínico de Cardiología — HUCS"
+   "Asistente especializado en protocolos de IC y cardiopatía isquémica
+   del Hospital Universitario Virgen Macarena"
+
+2. INSTRUCCIONES (system prompt):
+   [Pegar el system prompt completo con los 6 componentes de la lección 4.3]
+   Especificar: rol, contexto, reglas de comportamiento, formato, restricciones,
+   aviso de responsabilidad.
+
+3. ARCHIVOS DE CONOCIMIENTO:
+   Subir hasta 20 archivos PDF (protocolos, guías, vademécum local)
+   El GPT responde preguntas basándose en estos documentos + su conocimiento base
+
+4. CAPACIDADES:
+   → Búsqueda web: activar si quieres que pueda buscar en PubMed o guías online
+   → Intérprete de código: útil si el asistente va a calcular scores o dosis
+   → Generación de imágenes: desactivar para uso clínico (no es relevante)
+
+5. ACCESO:
+   → Solo yo: para uso personal
+   → Cualquiera con el enlace: para compartir con el equipo
+   → Publicado: visible en el GPT Store (NO recomendado para uso clínico interno)
+
+PRIVACIDAD:
+→ OpenAI no usa datos de conversaciones de GPTs para entrenamiento si has optado
+  por no participar (configurar en privacidad de la cuenta)
+→ Para datos de pacientes: NO subir a los archivos de conocimiento del GPT
+→ Los protocolos institucionales: generalmente seguros si no contienen datos individuales</div>
+</div>
+<div class="tec-panel" id="claude-proj">
+<div class="flow-box">CLAUDE PROJECTS — La opción para equipos sanitarios:
+
+ACCESO: Claude Pro ($20/mes) → Projects → Nuevo Proyecto
+
+VENTAJAS SOBRE CHATGPT GPTs:
+→ Contexto persistente entre conversaciones del proyecto
+→ El asistente «recuerda» las instrucciones y documentos sin repetirlos en cada sesión
+→ Todos los miembros del equipo ven el mismo proyecto con las mismas instrucciones
+→ Historial de conversaciones organizado por proyecto (consultas previas accesibles)
+
+CONFIGURACIÓN:
+1. INSTRUCCIONES DEL PROYECTO:
+   Definir el rol, el contexto, las reglas y el formato exactamente como en el system prompt
+   (lección 4.3) pero en el campo de instrucciones del proyecto
+
+2. DOCUMENTOS DEL PROYECTO:
+   Subir protocolos, guías, vademécum local
+   Claude los indexa y los consulta en cada conversación del proyecto
+
+3. COMPARTIR CON EL EQUIPO:
+   Invitar a otros usuarios de Claude Pro al proyecto
+   Todos tienen acceso a las mismas instrucciones y documentos
+
+CASO DE USO IDEAL:
+El Servicio de Nefrología crea un proyecto "Asistente NefroSevilla" con:
+→ Instrucciones: comportamiento como asistente nefrológico especializado
+→ Documentos: protocolo de diálisis del servicio, guía KDIGO, vademécum local,
+   protocolo de trasplante, escalas de valoración nutricional
+→ Acceso: todos los médicos del servicio con Claude Pro
+→ Resultado: asistente de guardia disponible 24/7 con los protocolos del propio servicio</div>
+</div>
+<div class="tec-panel" id="asist-diseno">
+<div class="prompt-box">
+<div class="prompt-label">Prompt: diseñar el asistente clínico personalizado para tu servicio</div>
+<div class="prompt-text">Necesito diseñar un asistente clínico personalizado para el Servicio de [ESPECIALIDAD] usando [NotebookLM / ChatGPT GPT / Claude Projects].
+
+CONTEXTO DEL SERVICIO:
+- Especialidad: [nombre]
+- Tipo de hospital: [nivel de complejidad]
+- Usuarios del asistente: [médicos adjuntos, residentes, enfermería, etc.]
+- Casos de uso principales que debe cubrir: [lista de los 5 más importantes]
+- Documentos disponibles para indexar: [lista de protocolos y guías]
+
+Diseña el asistente con:
+1. El NOMBRE y la DESCRIPCIÓN que verán los usuarios
+2. Las INSTRUCCIONES COMPLETAS (system prompt con los 6 componentes)
+3. La LISTA PRIORIZADA de documentos a indexar (en orden de importancia)
+4. Los 10 CASOS DE USO DE PRUEBA para verificar que el asistente funciona correctamente
+5. Las REGLAS DE USO PARA EL EQUIPO (qué puede y no puede usarse para)
+6. La POLÍTICA DE ACTUALIZACIÓN (con qué frecuencia revisar los documentos indexados)</div>
+<div class="prompt-why">Este prompt genera el diseño completo del asistente antes de configurarlo — evita el error de empezar a subir documentos sin haber pensado en el comportamiento que quieres. Con este diseño en mano, la configuración técnica en NotebookLM/GPT/Claude toma menos de 30 minutos.</div>
+</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(2)">← NotebookLM</button><button class="btn-p" onclick="go(4)">Versiones y calidad →</button></div>
+</div>
+
+<div class="sec" id="s4">
+<div class="card"><div class="ct">Control de versiones y calidad del asistente clínico</div><div class="cb">Un asistente clínico personalizado no es un proyecto que se termina — se mantiene. Los documentos se actualizan, los protocolos cambian, aparecen nuevas guías. El control de versiones garantiza que el asistente siempre tiene el conocimiento correcto y actualizado.</div></div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'ver-ciclo')">🔄 Ciclo de mantenimiento</button><button class="tec-tab" onclick="showTab(this,'ver-calidad')">✅ Control de calidad</button><button class="tec-tab" onclick="showTab(this,'ver-incidente')">🚨 Gestión de incidentes</button></div>
+<div class="tec-panel show" id="ver-ciclo">
+<div class="flow-box">CICLO DE MANTENIMIENTO DEL ASISTENTE CLÍNICO:
+
+MENSUAL:
+→ Revisar si algún protocolo o guía indexada ha sido actualizado
+→ Si hay versión nueva: eliminar la versión antigua del notebook/GPT
+  y subir la versión nueva
+→ Registrar el cambio en el log de versiones (quién actualizó, qué, cuándo)
+
+TRIMESTRAL:
+→ Revisar si las guías de sociedades científicas han publicado actualizaciones
+→ Comprobar que el asistente responde correctamente a los casos de prueba estándar
+→ Recoger feedback del equipo: ¿qué preguntas responde mal? ¿Qué falta?
+
+ANUAL:
+→ Revisión completa de todos los documentos indexados
+→ Evaluar si la plataforma usada sigue siendo la más adecuada
+→ Actualizar las instrucciones del asistente si han cambiado los flujos de trabajo
+
+DISPARADORES INMEDIATOS (fuera del calendario):
+→ Publicación de nueva guía clínica relevante → actualizar inmediatamente
+→ Cambio de protocolo en el hospital → actualizar antes de comunicarlo al equipo
+→ Detección de error significativo en una respuesta → revisar el documento origen
+  y el prompt del asistente
+
+LOG DE VERSIONES (Google Sheets):
+Columnas: Fecha | Responsable | Documento modificado | Versión anterior | 
+          Versión nueva | Motivo del cambio | Verificación post-cambio</div>
+</div>
+<div class="tec-panel" id="ver-calidad">
+<div class="limit-item"><div class="li-icon">✅</div><div class="li-body"><div class="li-title">Batería de preguntas de control de calidad</div><div class="li-desc">Mantener una lista de 10-15 preguntas estándar que el asistente debe responder correctamente. Después de cada actualización, ejecutar toda la batería y verificar que todas las respuestas son correctas. Si alguna falla, la actualización no va a producción hasta resolver el problema. Documentar el resultado de cada ejecución de la batería.</div></div></div>
+<div class="limit-item"><div class="li-icon">👥</div><div class="li-body"><div class="li-title">Revisión por dos médicos del servicio</div><div class="li-desc">Cualquier cambio significativo en las instrucciones o documentos del asistente debe ser revisado por dos médicos del servicio antes de desplegarse. Uno de ellos debe ser el responsable médico del asistente (el «dueño» del sistema). Esta doble revisión es el equivalente del peer-review para los cambios en la herramienta clínica.</div></div></div>
+<div class="alerta ao"><div class="alt">✅ Buena práctica: asistente con fecha visible</div>Añadir en las instrucciones: «Cuando respondas, indica siempre la fecha de la última actualización de los documentos disponibles: [FECHA]. Si la pregunta puede haber sido afectada por cambios posteriores a esa fecha, indícalo explícitamente». Esto garantiza que los usuarios saben cuándo fue la última actualización del conocimiento del asistente.</div>
+</div>
+<div class="tec-panel" id="ver-incidente">
+<div class="limit-item"><div class="li-icon">🚨</div><div class="li-body"><div class="li-title">Cuando el asistente da una respuesta incorrecta clínicamente</div><div class="li-desc">Si un miembro del equipo detecta que el asistente ha dado una respuesta clínicamente incorrecta: (1) documentar la pregunta exacta y la respuesta incorrecta, (2) identificar si el error viene del documento indexado o de la generación del modelo, (3) si es del documento: actualizar el documento, (4) si es del modelo: añadir instrucción explícita en el prompt para manejar ese tipo de pregunta, (5) ejecutar la batería de QC completa antes de devolver el asistente al equipo.</div></div></div>
+<div class="limit-item"><div class="li-icon">📋</div><div class="li-body"><div class="li-title">Política de cero tolerancia para errores de dosis</div><div class="li-desc">Si el asistente da una dosis incorrecta de medicamento, aunque sea una sola vez, el asistente debe desactivarse inmediatamente hasta identificar la causa y corregirla. Los errores de medicación son el riesgo de mayor impacto en seguridad del paciente. El umbral de tolerancia para errores de dosis es cero — a diferencia de los errores de formato o de estructura.</div></div></div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(3)">← Bases de conocimiento</button><button class="btn-p" onclick="go(5)">Test →</button></div>
+</div>
+
+<div class="sec" id="s5">
+<div class="qw active" id="q1w"><div class="qnum">Pregunta 1 de 3</div><div class="qtxt">Un médico de familia quiere crear un asistente en NotebookLM con las guías GPC (Guías de Práctica Clínica) del MinSanidad, los protocolos de prescripción del SAS y su vademécum local. Identifica el principal límite práctico de NotebookLM para este caso de uso.</div><div class="qopts"><button class="qopt" onclick="ans(this,false,1)">No puede acceder a documentos PDF — solo admite texto plano</button><button class="qopt" onclick="ans(this,false,1)">Requiere conocimientos de programación para configurar el RAG correctamente</button><button class="qopt" onclick="ans(this,true,1)">El límite de 50 fuentes y 500.000 palabras por notebook puede resultar insuficiente si hay muchas GPC y protocolos. La solución es crear notebooks temáticos separados (uno para patologías cardiovasculares, uno para diabetes y endocrinología, etc.) en lugar de intentar indexar toda la documentación en un solo notebook</button><button class="qopt" onclick="ans(this,false,1)">No puede compartirse con otros compañeros del centro de salud</button></div><div class="qfb" id="fb1"></div><div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div></div>
+<div class="qw" id="q2w"><div class="qnum">Pregunta 2 de 3</div><div class="qtxt">El asistente clínico del Servicio de Nefrología (Claude Projects) responde una pregunta sobre ajuste de dosis de un antibiótico en insuficiencia renal con una dosis incorrecta. ¿Cuál es la respuesta correcta del responsable del asistente?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,2)">Enviar un aviso al equipo indicando que ese medicamento específico tiene una limitación conocida del asistente, y continuar usándolo para el resto de consultas</button><button class="qopt" onclick="ans(this,true,2)">Desactivar inmediatamente el asistente para consultas de dosis hasta identificar y corregir la causa del error (¿el documento indexado tiene la información incorrecta? ¿el modelo generó la dosis incorrectamente?). Política de cero tolerancia para errores de medicación. Solo reactivar tras corrección verificada con la batería de QC completa</button><button class="qopt" onclick="ans(this,false,2)">Es un error del modelo, no del asistente — no es necesario intervenir en la configuración del asistente, solo notificar al proveedor</button><button class="qopt" onclick="ans(this,false,2)">Añadir una advertencia general al asistente: «Mis respuestas sobre dosis pueden no ser exactas — siempre verificar» y continuar usando el asistente</button></div><div class="qfb" id="fb2"></div><div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div></div>
+<div class="qw" id="q3w"><div class="qnum">Pregunta 3 de 3</div><div class="qtxt">¿Cuál es la diferencia clave entre usar ChatGPT GPT y NotebookLM para un asistente clínico de guardia?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,3)">No hay diferencia práctica — ambas herramientas tienen las mismas capacidades para uso clínico</button><button class="qopt" onclick="ans(this,false,3)">ChatGPT GPT es más seguro porque OpenAI tiene más experiencia en privacidad de datos médicos</button><button class="qopt" onclick="ans(this,true,3)">NotebookLM está optimizado para responder preguntas sobre documentos indexados con citas precisas, ideal para consultar protocolos puntuales. ChatGPT GPT combina documentos propios con el conocimiento general del modelo y permite configurar comportamientos más complejos (acciones, búsqueda web). Para un asistente de guardia que principalmente consulta protocolos, NotebookLM es más inmediato; para uno que también debe razonar, calcular y redactar, ChatGPT GPT es más versátil</button><button class="qopt" onclick="ans(this,false,3)">ChatGPT GPT permite hasta 1000 documentos mientras NotebookLM solo permite 50 — por eso siempre es mejor ChatGPT</button></div><div class="qfb" id="fb3"></div><div class="qnx" id="nx3"><div style="background:rgba(33,150,243,.1);border:1px solid rgba(33,150,243,.28);border-radius:10px;padding:16px;margin-top:8px"><div style="font-size:13px;font-weight:500;color:#90CAF9;margin-bottom:6px">✓ Lección 4.7 completada</div><div style="font-size:12px;color:#B0BEC5;line-height:1.6">Sabes implementar asistentes clínicos personalizados sin código usando NotebookLM, ChatGPT GPTs y Claude Projects, con su ciclo de mantenimiento, control de calidad y gestión de incidentes. La lección 4.8 entra en <strong style="color:#fff">actualización continua y mantenimiento: pipelines automáticos, detección de concept drift y versionado seguro de modelos clínicos</strong>.</div></div><button class="complete-btn" id="completeBtn" onclick="markComplete()">✓ MARCAR LECCIÓN COMO COMPLETADA</button></div></div>
+</div>
+<div class="lf"><span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span> · Desarrollado por DoncelProject · doncel.project@gmail.com</div>
+</div>
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/5)*100);document.getElementById('pbf47').style.width=p+'%';document.getElementById('pbl47').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function showTab(el,id){const sec=el.closest('.sec');sec.querySelectorAll('.tec-tab').forEach(t=>t.classList.remove('active'));sec.querySelectorAll('.tec-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById(id).classList.add('show');}
+const fbs={
+1:{ok:'✅ Correcto. El límite de 50 fuentes y 500.000 palabras es la principal restricción práctica de NotebookLM. Para un médico de familia con decenas de GPC, protocolos del SAS y vademécum, ese límite puede alcanzarse con la documentación más relevante de una sola área terapéutica. La solución pragmática es notebooks temáticos especializados en lugar de intentar incluirlo todo — y seleccionar los 30-40 documentos más consultados durante las guardias y consultas habituales.',ko:'❌ NotebookLM admite PDFs directamente (es una de sus funciones principales). La configuración es completamente no-code — sin programación. Y sí permite compartir el notebook con otros usuarios mediante enlace. El límite real es el de 50 fuentes y 500.000 palabras, que puede ser suficiente o insuficiente según la cantidad de documentación que se quiera indexar.'},
+2:{ok:'✅ Correcto. Los errores de dosis son la categoría de mayor riesgo de seguridad del paciente — la política de cero tolerancia significa desactivar inmediatamente, no advertir y continuar. Un aviso de «puede no ser exacto» transforma el asistente en una herramienta que el equipo seguirá usando con una falsa sensación de seguridad. La causa del error debe identificarse (¿documento incorrecto? ¿generación incorrecta del modelo?) y corregirse antes de reactivar.',ko:'❌ Continuar usando el asistente con un aviso genérico de imprecisión normaliza los errores de dosis y puede llevar a que el equipo ignore el aviso. Notificar al proveedor sin intervenir en la configuración ignora que el error puede estar en el documento indexado, no en el modelo. La única respuesta correcta ante un error de dosis es desactivar, diagnosticar, corregir y verificar.'},
+3:{ok:'✅ Correcto. NotebookLM está diseñado específicamente para Q&A sobre documentos con citas precisas — su fortaleza es responder preguntas factuales sobre documentos propios con trazabilidad de la fuente. ChatGPT GPT combina los documentos propios con el conocimiento general del modelo, permite acciones (búsqueda web, cálculos) y es más configurable en comportamiento. Para consultar protocolos puntuales, NotebookLM es más directo; para un asistente más complejo que razone, calcule y redacte además de consultar documentos, ChatGPT GPT es más versátil.',ko:'❌ Las diferencias entre ambas herramientas son importantes y relevantes para la elección según el caso de uso. Ninguna es «más segura» por el nombre del proveedor — la seguridad depende de la configuración y el uso. El límite de documentos de ChatGPT GPT es 20 archivos (no 1000), que incluso es menor que los 50 de NotebookLM. La diferencia clave está en las capacidades (solo Q&A sobre documentos vs. Q&A + razonamiento + acciones) y en la trazabilidad de las citas.'}
+};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+function markComplete(){document.getElementById('completeBtn').disabled=true;document.getElementById('completeBtn').textContent='✓ Completada';window.parent.postMessage({type:'LESSON_COMPLETE'},'*');}
+upd();
+</script>

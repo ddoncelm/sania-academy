@@ -1,0 +1,358 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:0}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(33,150,243,0.13);border:1px solid rgba(33,150,243,0.32);border-radius:20px;padding:4px 12px;font-size:11px;color:#90CAF9;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px;color:#fff}
+.lt span{color:#2196F3}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px;flex-wrap:wrap}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#2196F3;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:70px;font-family:var(--font-sans,sans-serif)}
+.nb.active{color:#2196F3;border-bottom-color:#2196F3;background:#0C0D12}
+.sec{display:none;padding:20px 24px}
+.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(33,150,243,0.07);border:1px solid rgba(33,150,243,0.2);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#2196F3;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500;font-family:var(--font-sans,sans-serif)}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer;font-family:var(--font-sans,sans-serif)}
+.modelo-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.mg-card{background:#0e1018;border-radius:10px;padding:14px;border:1px solid #1e2335;cursor:pointer;transition:border-color .2s}
+.mg-card:hover,.mg-card.sel{border-color:#2196F3}
+.mg-name{font-size:13px;font-weight:500;color:#fff;margin-bottom:4px}
+.mg-maker{font-size:10px;color:#546E7A;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
+.mg-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
+.mg-detail{font-size:12px;color:#B0BEC5;line-height:1.6;display:none;margin-top:8px;padding-top:8px;border-top:1px solid #1e2335}
+.mg-detail.show{display:block}
+.badge{display:inline-block;font-size:10px;font-weight:500;padding:2px 8px;border-radius:8px}
+.b-blue{background:rgba(33,150,243,.15);color:#90CAF9}
+.b-green{background:rgba(76,175,80,.15);color:#A5D6A7}
+.b-amber{background:rgba(255,152,0,.15);color:#FFD54F}
+.b-red{background:rgba(244,67,54,.15);color:#EF9A9A}
+.b-purple{background:rgba(103,58,183,.15);color:#CE93D8}
+.b-cyan{background:rgba(0,188,212,.15);color:#80DEEA}
+.tabla{width:100%;border-collapse:collapse;font-size:11px;margin:10px 0}
+.tabla th{background:#13151e;color:#90CAF9;padding:8px 10px;text-align:left;font-weight:500;border-bottom:1px solid #1e2335;white-space:nowrap}
+.tabla td{padding:8px 10px;color:#E0E0E0;border-bottom:1px solid #1e2335;line-height:1.5;vertical-align:top}
+.tabla tr:last-child td{border-bottom:none}
+.dot-g{color:#A5D6A7}
+.dot-r{color:#EF9A9A}
+.dot-a{color:#FFD54F}
+.cfg-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.cfg-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 12px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s;font-family:var(--font-sans,sans-serif)}
+.cfg-tab.active{background:rgba(33,150,243,.14);border-color:#2196F3;color:#90CAF9}
+.cfg-panel{display:none}
+.cfg-panel.show{display:block}
+.cfg-block{background:#0e1018;border-left:3px solid #2196F3;border-radius:0 10px 10px 0;padding:14px 16px;margin:8px 0;font-size:12px;color:#E0E0E0;line-height:1.7}
+.cfg-step{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
+.cfg-num{width:20px;height:20px;border-radius:50%;background:#2196F3;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;flex-shrink:0;margin-top:2px}
+.cfg-txt{font-size:12px;color:#E0E0E0;line-height:1.6;flex:1}
+.prompt-ex{font-family:monospace;font-size:11px;color:#E0E0E0;background:#0C0D12;border-radius:6px;padding:10px;line-height:1.6;white-space:pre-wrap;word-break:break-word;margin-top:8px;border-left:2px solid #2196F3}
+.qw{display:none}
+.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s;font-family:var(--font-sans,sans-serif)}
+.qopt:hover{border-color:#2196F3;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}
+.qnx.show{display:block}
+.completar-wrap{padding:20px 24px;display:none}
+.completar-wrap.show{display:block}
+.btn-completar{width:100%;padding:14px;background:transparent;border:2px solid #2196F3;border-radius:12px;color:#90CAF9;font-size:13px;font-weight:500;cursor:pointer;transition:all .3s;letter-spacing:.5px;font-family:var(--font-sans,sans-serif)}
+.btn-completar:hover{background:rgba(33,150,243,.12)}
+.btn-completar.done{background:#2196F3;color:#fff;border-color:#2196F3}
+.completar-confirm{text-align:center;font-size:11px;color:#A5D6A7;margin-top:8px;display:none}
+.completar-confirm.show{display:block}
+.lf{text-align:center;font-size:10px;color:#546E7A;padding:16px 24px;border-top:1px solid #1a2a3a;margin-top:0}
+.fl{color:#2196F3;cursor:pointer;text-decoration:underline}
+</style>
+
+<div class="lw">
+  <div class="lh">
+    <div class="lb">MÓDULO 1 · LECCIÓN 1.6</div>
+    <div class="lt">Modelos conversacionales: <span>evolución, versiones y consideraciones</span></div>
+    <div class="lm">
+      <div class="lmi"><div class="md" style="background:#2196F3"></div>85 minutos</div>
+      <div class="lmi"><div class="md" style="background:#A5D6A7"></div>4 secciones</div>
+      <div class="lmi"><div class="md" style="background:#FFB300"></div>Comparativa actualizada 2025</div>
+    </div>
+  </div>
+  <div class="pbw"><div class="pbb"><div class="pbf" id="pf"></div></div><div class="pbl" id="pl">0%</div></div>
+  <div class="snav">
+    <button class="nb active" id="t0" onclick="go(0)">📖 Intro</button>
+    <button class="nb" id="t1" onclick="go(1)">🤖 Modelos</button>
+    <button class="nb" id="t2" onclick="go(2)">⚙️ Configuración</button>
+    <button class="nb" id="t3" onclick="go(3)">✅ Test</button>
+  </div>
+
+  <div class="sec active" id="s0">
+    <div class="card">
+      <div class="ct">Objetivo</div>
+      <div class="cb">Navegar el ecosistema de herramientas de IA conversacional y seleccionar la más adecuada según necesidad clínica. Conocer las diferencias reales entre ChatGPT, Claude, Gemini y Copilot en contexto sanitario y aprender a configurarlas para uso médico profesional.</div>
+    </div>
+    <div class="simil">
+      <div class="sl">Analogía</div>
+      Elegir un modelo de IA sin conocer sus diferencias es como prescribir un antibiótico sin saber su espectro. Todos "sirven para infecciones" — pero la elección correcta depende del contexto, el perfil del paciente y las restricciones del entorno. Esta lección te da el antibiograma de los modelos de IA conversacional.
+    </div>
+    <div class="card">
+      <div class="ct">El panorama en 2025</div>
+      <div class="cb">En 2025 existen cuatro grandes modelos conversacionales usados en entornos sanitarios: ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google) y Copilot (Microsoft). Cada uno tiene fortalezas, limitaciones y consideraciones de privacidad distintas. Ninguno está certificado como producto sanitario — son herramientas de apoyo que requieren supervisión profesional.</div>
+    </div>
+    <div class="nav-actions"><span></span><button class="btn-p" onclick="go(1)">Ver modelos →</button></div>
+  </div>
+
+  <div class="sec" id="s1">
+    <div class="card">
+      <div class="ct">Los 4 modelos principales — toca para ver detalles clínicos</div>
+    </div>
+    <div class="modelo-grid">
+      <div class="mg-card" onclick="toggleModelo(this,'md0')">
+        <div class="mg-name">ChatGPT</div>
+        <div class="mg-maker">OpenAI</div>
+        <div class="mg-tags">
+          <span class="badge b-amber">El más conocido</span>
+          <span class="badge b-blue">GPT-4o</span>
+        </div>
+        <div class="mg-detail" id="md0">
+          <strong style="color:#90CAF9">Fortalezas clínicas:</strong> Gran base de usuarios sanitarios, plugins médicos, capacidad multimodal (texto + imagen), amplia documentación de casos de uso.<br><br>
+          <strong style="color:#90CAF9">Limitaciones:</strong> Mayor tasa de alucinaciones que Claude en preguntas clínicas específicas. Versión gratuita limitada en contexto.<br><br>
+          <strong style="color:#90CAF9">Privacidad:</strong> Sin DPA con SSPA. Versión Team/Enterprise ofrece acuerdos BAA para EE.UU. En España, uso solo con datos anonimizados.<br><br>
+          <strong style="color:#90CAF9">Coste:</strong> Gratuito (GPT-4o mini) · Plus 20$/mes · Team 30$/usuario/mes.
+        </div>
+      </div>
+      <div class="mg-card" onclick="toggleModelo(this,'md1')">
+        <div class="mg-name">Claude</div>
+        <div class="mg-maker">Anthropic</div>
+        <div class="mg-tags">
+          <span class="badge b-cyan">Recomendado clínica</span>
+          <span class="badge b-green">Menor alucinación</span>
+        </div>
+        <div class="mg-detail" id="md1">
+          <strong style="color:#90CAF9">Fortalezas clínicas:</strong> Menor tasa de alucinaciones en razonamiento médico complejo, mejor gestión del contexto largo (ideal para historias clínicas), respuestas más matizadas y con menor confidencia excesiva.<br><br>
+          <strong style="color:#90CAF9">Limitaciones:</strong> Menor integración con herramientas externas que GPT. Menos plugins disponibles.<br><br>
+          <strong style="color:#90CAF9">Privacidad:</strong> Sin DPA con SSPA en versión pública. Solo datos anonimizados. Versión Enterprise con acuerdos corporativos.<br><br>
+          <strong style="color:#90CAF9">Coste:</strong> Gratuito · Pro 20€/mes · Team/Enterprise con acuerdo institucional.
+        </div>
+      </div>
+      <div class="mg-card" onclick="toggleModelo(this,'md2')">
+        <div class="mg-name">Gemini</div>
+        <div class="mg-maker">Google</div>
+        <div class="mg-tags">
+          <span class="badge b-purple">Integración Google</span>
+          <span class="badge b-blue">Multimodal</span>
+        </div>
+        <div class="mg-detail" id="md2">
+          <strong style="color:#90CAF9">Fortalezas clínicas:</strong> Integración nativa con Google Workspace (Gmail, Drive, Docs). Capacidad multimodal avanzada. Acceso a búsqueda web en tiempo real. Versión Med-Gemini para uso clínico (en investigación).<br><br>
+          <strong style="color:#90CAF9">Limitaciones:</strong> Menos especializado en razonamiento clínico que Claude. Rendimiento variable según la tarea.<br><br>
+          <strong style="color:#90CAF9">Privacidad:</strong> Google Workspace for Healthcare ofrece acuerdos BAA. Versión pública sin garantías para datos de salud.<br><br>
+          <strong style="color:#90CAF9">Coste:</strong> Gratuito · Advanced 21,99€/mes (incluido en Google One).
+        </div>
+      </div>
+      <div class="mg-card" onclick="toggleModelo(this,'md3')">
+        <div class="mg-name">Copilot</div>
+        <div class="mg-maker">Microsoft</div>
+        <div class="mg-tags">
+          <span class="badge b-blue">Microsoft 365</span>
+          <span class="badge b-green">DPA posible SSPA</span>
+        </div>
+        <div class="mg-detail" id="md3">
+          <strong style="color:#90CAF9">Fortalezas clínicas:</strong> Integración nativa con el ecosistema Microsoft 365 (Word, Teams, Outlook). Los centros con acuerdo Microsoft pueden tener DPA incluido. Ideal para tareas administrativas y de gestión.<br><br>
+          <strong style="color:#90CAF9">Limitaciones:</strong> Menos potente en razonamiento clínico complejo que Claude o ChatGPT. Diseñado principalmente para productividad ofimática.<br><br>
+          <strong style="color:#90CAF9">Privacidad:</strong> Microsoft tiene acuerdos marco con Administraciones Públicas españolas. Consultar con el DPO del centro.<br><br>
+          <strong style="color:#90CAF9">Coste:</strong> Incluido en Microsoft 365 (según licencia) · Copilot Pro 22€/mes.
+        </div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <div class="ct">Comparativa rápida para uso sanitario</div>
+      <div style="overflow-x:auto">
+        <table class="tabla">
+          <tr><th>Criterio</th><th>ChatGPT</th><th>Claude</th><th>Gemini</th><th>Copilot</th></tr>
+          <tr><td>Razonamiento clínico</td><td><span class="dot-a">◎ Alto</span></td><td><span class="dot-g">◎ Muy alto</span></td><td><span class="dot-a">◎ Alto</span></td><td><span class="dot-a">◎ Medio</span></td></tr>
+          <tr><td>Tasa de alucinaciones</td><td><span class="dot-a">~ Media</span></td><td><span class="dot-g">✓ Baja</span></td><td><span class="dot-a">~ Media</span></td><td><span class="dot-a">~ Media</span></td></tr>
+          <tr><td>Uso con datos paciente</td><td><span class="dot-r">✗ Sin DPA</span></td><td><span class="dot-r">✗ Sin DPA</span></td><td><span class="dot-r">✗ Sin DPA</span></td><td><span class="dot-a">~ Consultar DPO</span></td></tr>
+          <tr><td>Integración ofimática</td><td><span class="dot-a">~ Plugins</span></td><td><span class="dot-r">✗ Limitada</span></td><td><span class="dot-g">✓ Google WS</span></td><td><span class="dot-g">✓ M365</span></td></tr>
+          <tr><td>Versión gratuita</td><td><span class="dot-g">✓ Sí</span></td><td><span class="dot-g">✓ Sí</span></td><td><span class="dot-g">✓ Sí</span></td><td><span class="dot-g">✓ Limitada</span></td></tr>
+          <tr><td>Español clínico</td><td><span class="dot-g">✓ Muy bueno</span></td><td><span class="dot-g">✓ Muy bueno</span></td><td><span class="dot-g">✓ Bueno</span></td><td><span class="dot-g">✓ Bueno</span></td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="nav-actions"><button class="btn-s" onclick="go(0)">← Atrás</button><button class="btn-p" onclick="go(2)">Configuración →</button></div>
+  </div>
+
+  <div class="sec" id="s2">
+    <div class="card">
+      <div class="ct">Configuración avanzada para uso médico profesional</div>
+      <div class="cb">Aprende a configurar cada herramienta para maximizar su utilidad clínica desde el primer uso. Selecciona el modelo que quieres configurar.</div>
+    </div>
+    <div class="cfg-tabs">
+      <div class="cfg-tab active" onclick="showCfg(this,0)">ChatGPT</div>
+      <div class="cfg-tab" onclick="showCfg(this,1)">Claude</div>
+      <div class="cfg-tab" onclick="showCfg(this,2)">Criterios de selección</div>
+    </div>
+
+    <div class="cfg-panel show" id="cfg0">
+      <div class="cfg-block">
+        <strong style="color:#90CAF9">Configuración de ChatGPT para uso clínico</strong>
+      </div>
+      <div class="cfg-step"><div class="cfg-num">1</div><div class="cfg-txt"><strong style="color:#fff">Activar memoria:</strong> Ajustes → Personalización → Memoria activada. Permite que recuerde tu especialidad y preferencias de formato entre conversaciones.</div></div>
+      <div class="cfg-step"><div class="cfg-num">2</div><div class="cfg-txt"><strong style="color:#fff">Instrucciones personalizadas:</strong> Ajustes → Personalización → Instrucciones personalizadas. Añade: "Soy [especialidad] en un hospital público español del SSPA. Responde siempre en español clínico. Cuando no estés seguro de algo, indícalo explícitamente."</div></div>
+      <div class="cfg-step"><div class="cfg-num">3</div><div class="cfg-txt"><strong style="color:#fff">Desactivar entrenamiento:</strong> Ajustes → Controles de datos → Desactivar "Mejorar el modelo para todos". Evita que tus prompts se usen para entrenar futuros modelos.</div></div>
+      <div class="cfg-step"><div class="cfg-num">4</div><div class="cfg-txt"><strong style="color:#fff">Crear un GPT personalizado (versión Plus):</strong> Explorar GPTs → Crear → Define el rol, el contexto de especialidad y las restricciones de seguridad para tu uso habitual.</div></div>
+      <div class="prompt-ex">Ejemplo de instrucción personalizada:
+"Soy médico especialista en medicina interna en un hospital universitario del SSPA (Sevilla). Responde siempre en español médico formal. Para preguntas farmacológicas, indica siempre si la respuesta debe verificarse en ficha técnica. Nunca uses datos de pacientes reales en tus ejemplos."</div>
+    </div>
+
+    <div class="cfg-panel" id="cfg1">
+      <div class="cfg-block">
+        <strong style="color:#90CAF9">Configuración de Claude para uso clínico</strong>
+      </div>
+      <div class="cfg-step"><div class="cfg-num">1</div><div class="cfg-txt"><strong style="color:#fff">Crear un Proyecto:</strong> En claude.ai, crea un Proyecto específico para tu uso clínico (ej. "Medicina Interna - HUCS"). Los proyectos mantienen instrucciones permanentes y contexto compartido entre conversaciones.</div></div>
+      <div class="cfg-step"><div class="cfg-num">2</div><div class="cfg-txt"><strong style="color:#fff">Instrucciones del proyecto:</strong> En el proyecto, añade las instrucciones de sistema que definen tu perfil, especialidad y requisitos de seguridad. Estas se aplican a todas las conversaciones dentro del proyecto.</div></div>
+      <div class="cfg-step"><div class="cfg-num">3</div><div class="cfg-txt"><strong style="color:#fff">Subir documentos de referencia:</strong> Los proyectos permiten subir documentos (guías clínicas, protocolos locales) que Claude puede consultar en todas las conversaciones del proyecto.</div></div>
+      <div class="cfg-step"><div class="cfg-num">4</div><div class="cfg-txt"><strong style="color:#fff">Gestión de memoria:</strong> Ajustes → Perfil → Preferencias de memoria. Configura qué información quieres que Claude recuerde entre sesiones. Nunca incluyas datos de pacientes reales en la memoria.</div></div>
+      <div class="prompt-ex">Ejemplo de instrucción de proyecto:
+"Soy especialista en medicina interna del Hospital Universitario Virgen del Rocío (SSPA). Contexto: hospital terciario, 1.000 camas. Responde en español clínico. Aplica siempre las guías de la SEMI y las GPC del SNS cuando estén disponibles. Indica explícitamente cuando tu respuesta requiere verificación en fuentes primarias."</div>
+    </div>
+
+    <div class="cfg-panel" id="cfg2">
+      <div class="card">
+        <div class="ct">¿Cuándo usar cada modelo?</div>
+        <div class="cb">
+          <strong style="color:#90CAF9">Usa Claude cuando:</strong> necesitas razonamiento clínico complejo, análisis de casos pluripatológicos, redacción de informes con alta calidad narrativa, o cuando quieres la menor tasa de alucinaciones posible.<br><br>
+          <strong style="color:#90CAF9">Usa ChatGPT cuando:</strong> necesitas integración con plugins o herramientas externas, generación de imágenes para docencia, o quieres aprovechar un ecosistema más amplio de extensiones médicas.<br><br>
+          <strong style="color:#90CAF9">Usa Copilot cuando:</strong> tu tarea es principalmente administrativa (actas, informes de gestión, correos) y tu centro tiene acuerdo Microsoft que cubre el DPA.<br><br>
+          <strong style="color:#90CAF9">Usa Gemini cuando:</strong> trabajas en el ecosistema Google Workspace y necesitas integración con Drive o Docs para documentación colaborativa.
+        </div>
+      </div>
+    </div>
+    <div class="nav-actions"><button class="btn-s" onclick="go(1)">← Modelos</button><button class="btn-p" onclick="go(3)">Test →</button></div>
+  </div>
+
+  <div class="sec" id="s3">
+    <div class="qw active" id="q1w">
+      <div class="qnum">Pregunta 1 de 3</div>
+      <div class="qtxt">Un médico de urgencias quiere usar IA para apoyar el razonamiento diagnóstico en casos complejos y reducir la tasa de errores por alucinación. ¿Qué modelo es más adecuado según la evidencia disponible en 2025?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,1)">ChatGPT, porque es el más conocido y tiene más usuarios sanitarios</button>
+        <button class="qopt" onclick="ans(this,true,1)">Claude, porque presenta menor tasa de alucinaciones en razonamiento clínico complejo y mejor gestión del contexto largo</button>
+        <button class="qopt" onclick="ans(this,false,1)">Copilot, porque Microsoft tiene acuerdos con la Administración española</button>
+        <button class="qopt" onclick="ans(this,false,1)">Gemini, porque tiene acceso a búsqueda web en tiempo real</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+      <div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div>
+    </div>
+    <div class="qw" id="q2w">
+      <div class="qnum">Pregunta 2 de 3</div>
+      <div class="qtxt">Una coordinadora de gestión del SSPA quiere usar IA para generar actas de reunión y correos institucionales. Su centro tiene licencia Microsoft 365. ¿Cuál es la opción más conveniente y por qué?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,2)">Claude, porque tiene mejor razonamiento clínico</button>
+        <button class="qopt" onclick="ans(this,false,2)">ChatGPT Plus, porque tiene más capacidades generales</button>
+        <button class="qopt" onclick="ans(this,true,2)">Microsoft Copilot, porque se integra nativamente con M365 y el centro puede tener DPA incluido en el acuerdo institucional</button>
+        <button class="qopt" onclick="ans(this,false,2)">Gemini, porque Google tiene mejor tecnología de búsqueda</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+      <div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div>
+    </div>
+    <div class="qw" id="q3w">
+      <div class="qnum">Pregunta 3 de 3</div>
+      <div class="qtxt">Al configurar Claude para uso clínico mediante las instrucciones de proyecto, ¿cuál de los siguientes elementos es imprescindible incluir?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,3)">El nombre completo del profesional y su número de colegiado</button>
+        <button class="qopt" onclick="ans(this,true,3)">La especialidad, el contexto institucional, el idioma requerido y la instrucción de indicar cuándo verificar en fuentes primarias</button>
+        <button class="qopt" onclick="ans(this,false,3)">Datos de pacientes frecuentes para personalizar las respuestas</button>
+        <button class="qopt" onclick="ans(this,false,3)">El historial completo de conversaciones anteriores</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+      <div class="qnx" id="nx3">
+        <div style="background:rgba(33,150,243,.09);border:1px solid rgba(33,150,243,.25);border-radius:10px;padding:16px;margin-top:8px">
+          <div style="font-size:13px;font-weight:500;color:#90CAF9;margin-bottom:6px">Lección 1.6 completada</div>
+          <div style="font-size:12px;color:#B0BEC5;line-height:1.6">Ya dominas el ecosistema de modelos conversacionales. La lección <strong style="color:#fff">1.7</strong> entra en la práctica bibliográfica: <strong style="color:#fff">traducción y resumen de artículos médicos con IA</strong>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="completar-wrap" id="cw">
+    <button class="btn-completar" id="bcmp" onclick="completar()">MARCAR LECCIÓN COMO COMPLETADA</button>
+    <div class="completar-confirm" id="cc">✓ Lección 1.6 registrada · DoncelProject</div>
+  </div>
+
+  <div class="lf">
+    <span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span>
+    <span> · Desarrollado por DoncelProject · doncel.project@gmail.com</span>
+  </div>
+</div>
+
+<script>
+let done=new Set([0]),cmp=false;
+function upd(){
+  const p=Math.round((done.size/4)*100);
+  document.getElementById('pf').style.width=p+'%';
+  document.getElementById('pl').textContent=p+'%';
+  if(done.size>=4)document.getElementById('cw').classList.add('show');
+}
+function go(n){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));
+  document.getElementById('s'+n).classList.add('active');
+  document.getElementById('t'+n).classList.add('active');
+  done.add(n);upd();
+}
+function toggleModelo(card,id){
+  const d=document.getElementById(id),open=d.classList.contains('show');
+  document.querySelectorAll('.mg-detail').forEach(x=>x.classList.remove('show'));
+  document.querySelectorAll('.mg-card').forEach(x=>x.classList.remove('sel'));
+  if(!open){d.classList.add('show');card.classList.add('sel');}
+}
+function showCfg(el,i){
+  document.querySelectorAll('.cfg-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.cfg-panel').forEach(p=>p.classList.remove('show'));
+  el.classList.add('active');
+  document.getElementById('cfg'+i).classList.add('show');
+}
+const fbs={
+  1:{ok:'✅ Correcto. En 2025, Claude de Anthropic presenta la menor tasa de alucinaciones documentada en razonamiento clínico complejo, especialmente en preguntas con alta incertidumbre diagnóstica. Además, su capacidad de contexto extendido lo hace ideal para analizar historias clínicas largas. La popularidad de una herramienta no equivale a su precisión clínica.',ko:'❌ Para razonamiento diagnóstico complejo con mínima alucinación, Claude es la opción más respaldada por evidencia en 2025. La popularidad (ChatGPT) o las integraciones corporativas (Copilot) no son el criterio correcto cuando el objetivo principal es la precisión clínica.'},
+  2:{ok:'✅ Correcto. Para tareas administrativas en un entorno con licencia Microsoft 365, Copilot es la elección más pragmática: integración nativa con las herramientas que ya usa el centro y posibilidad de DPA incluido en el acuerdo institucional. No tiene sentido pagar por una herramienta adicional cuando el ecosistema del centro ya la incluye.',ko:'❌ Cuando el centro tiene licencia Microsoft 365, Copilot es la opción más conveniente para tareas administrativas: integración nativa, coste ya cubierto y posibilidad de DPA incluido en el acuerdo institucional. Claude o ChatGPT tendrían más sentido para tareas de razonamiento clínico complejo.'},
+  3:{ok:'✅ Correcto. Las instrucciones de proyecto deben definir el contexto profesional (especialidad, centro, sistema sanitario), el idioma y estilo requeridos, y — fundamental para la seguridad clínica — la instrucción explícita de indicar cuándo una respuesta requiere verificación en fuentes primarias. Nunca se incluyen datos de pacientes ni datos personales del profesional.',ko:'❌ Las instrucciones de proyecto deben incluir contexto profesional, idioma y la directriz de seguridad clave: indicar siempre cuándo verificar en fuentes primarias. El nombre y número de colegiado nunca se incluyen en configuraciones de IA pública. Los datos de pacientes están estrictamente prohibidos.'}
+};
+function ans(btn,ok,n){
+  btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);
+  btn.classList.add(ok?'correct':'wrong');
+  const fb=document.getElementById('fb'+n);
+  fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;
+  fb.className='qfb show '+(ok?'ok':'ko');
+  document.getElementById('nx'+n).classList.add('show');
+  if(n===3){done.add(3);upd();}
+}
+function showQ(n){
+  document.getElementById('q'+(n-1)+'w').classList.remove('active');
+  document.getElementById('q'+n+'w').classList.add('active');
+}
+function completar(){
+  if(cmp)return;cmp=true;
+  const b=document.getElementById('bcmp');
+  b.textContent='✓ LECCIÓN COMPLETADA';
+  b.classList.add('done');
+  document.getElementById('cc').classList.add('show');
+  try{window.storage.set('completada_leccion_1_6',JSON.stringify({leccion:'1.6',titulo:'Modelos conversacionales',fecha:new Date().toLocaleDateString('es-ES'),ts:Date.now()})).catch(()=>{});}catch(e){}
+}
+upd();
+</script>

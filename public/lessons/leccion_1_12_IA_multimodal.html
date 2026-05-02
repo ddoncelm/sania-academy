@@ -1,0 +1,251 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:0}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(233,30,99,0.13);border:1px solid rgba(233,30,99,0.32);border-radius:20px;padding:4px 12px;font-size:11px;color:#F48FB1;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px;color:#fff}
+.lt span{color:#E91E63}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px;flex-wrap:wrap}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#E91E63;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:70px;font-family:var(--font-sans,sans-serif)}
+.nb.active{color:#E91E63;border-bottom-color:#E91E63;background:#0C0D12}
+.sec{display:none;padding:20px 24px}
+.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(233,30,99,0.07);border:1px solid rgba(233,30,99,0.2);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#F48FB1;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#E91E63;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500;font-family:var(--font-sans,sans-serif)}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer;font-family:var(--font-sans,sans-serif)}
+.badge{display:inline-block;font-size:10px;font-weight:500;padding:2px 8px;border-radius:8px;margin-right:4px}
+.b-pink{background:rgba(233,30,99,.15);color:#F48FB1}
+.b-green{background:rgba(76,175,80,.15);color:#A5D6A7}
+.b-amber{background:rgba(255,152,0,.15);color:#FFD54F}
+.b-blue{background:rgba(33,150,243,.15);color:#90CAF9}
+.b-purple{background:rgba(103,58,183,.15);color:#CE93D8}
+.mod-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.mod-card{background:#0e1018;border-radius:10px;padding:14px;border:1px solid #1e2335}
+.mod-icon{font-size:22px;margin-bottom:8px}
+.mod-title{font-size:12px;font-weight:500;color:#fff;margin-bottom:5px}
+.mod-desc{font-size:11px;color:#B0BEC5;line-height:1.6}
+.mod-uso{font-size:11px;color:#F48FB1;margin-top:6px;padding-top:6px;border-top:1px solid #1e2335}
+.app-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.app-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 12px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s;font-family:var(--font-sans,sans-serif)}
+.app-tab.active{background:rgba(233,30,99,.14);border-color:#E91E63;color:#F48FB1}
+.app-panel{display:none}
+.app-panel.show{display:block}
+.app-card{background:#0e1018;border-radius:10px;padding:14px 16px;margin-bottom:10px;border:1px solid #1e2335}
+.app-title{font-size:13px;font-weight:500;color:#fff;margin-bottom:8px}
+.app-row{display:flex;gap:8px;font-size:12px;color:#E0E0E0;line-height:1.5;margin-bottom:6px;align-items:flex-start}
+.app-lbl{font-size:10px;color:#F48FB1;font-weight:500;min-width:90px;flex-shrink:0;margin-top:1px;text-transform:uppercase;letter-spacing:.4px}
+.horizonte-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #1e2335;font-size:12px;color:#E0E0E0;line-height:1.6}
+.horizonte-item:last-child{border-bottom:none}
+.h-year{font-size:11px;font-weight:500;min-width:60px;flex-shrink:0;margin-top:1px}
+.qw{display:none}
+.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s;font-family:var(--font-sans,sans-serif)}
+.qopt:hover{border-color:#E91E63;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}
+.qnx.show{display:block}
+.completar-wrap{padding:20px 24px;display:none}
+.completar-wrap.show{display:block}
+.btn-completar{width:100%;padding:14px;background:transparent;border:2px solid #E91E63;border-radius:12px;color:#F48FB1;font-size:13px;font-weight:500;cursor:pointer;transition:all .3s;letter-spacing:.5px;font-family:var(--font-sans,sans-serif)}
+.btn-completar:hover{background:rgba(233,30,99,.12)}
+.btn-completar.done{background:#E91E63;color:#fff;border-color:#E91E63}
+.completar-confirm{text-align:center;font-size:11px;color:#A5D6A7;margin-top:8px;display:none}
+.completar-confirm.show{display:block}
+.lf{text-align:center;font-size:10px;color:#546E7A;padding:16px 24px;border-top:1px solid #1a2a3a}
+.fl{color:#2196F3;cursor:pointer;text-decoration:underline}
+</style>
+<div class="lw">
+  <div class="lh">
+    <div class="lb">MÓDULO 1 · LECCIÓN 1.12</div>
+    <div class="lt">Introducción a la <span>IA multimodal</span></div>
+    <div class="lm">
+      <div class="lmi"><div class="md" style="background:#E91E63"></div>57 minutos</div>
+      <div class="lmi"><div class="md" style="background:#FFB300"></div>4 secciones</div>
+      <div class="lmi"><div class="md" style="background:#A5D6A7"></div>Texto · Imagen · Voz · Datos</div>
+    </div>
+  </div>
+  <div class="pbw"><div class="pbb"><div class="pbf" id="pf"></div></div><div class="pbl" id="pl">0%</div></div>
+  <div class="snav">
+    <button class="nb active" id="t0" onclick="go(0)">📖 Intro</button>
+    <button class="nb" id="t1" onclick="go(1)">🔮 Modalidades</button>
+    <button class="nb" id="t2" onclick="go(2)">🏥 Aplicaciones</button>
+    <button class="nb" id="t3" onclick="go(3)">✅ Test</button>
+  </div>
+
+  <div class="sec active" id="s0">
+    <div class="card">
+      <div class="ct">Objetivo</div>
+      <div class="cb">Explorar el potencial de la IA que procesa múltiples tipos de datos simultáneamente: texto clínico, imagen médica, audio de voz y datos estructurados. Comprender las aplicaciones emergentes en radiología, dermatología, cirugía y documentación clínica por voz, y ubicar estas tecnologías en el horizonte temporal real para el SNS.</div>
+    </div>
+    <div class="simil">
+      <div class="sl">Qué cambia con la multimodalidad</div>
+      Hasta ahora, los sistemas de IA eran especialistas en una modalidad: unos procesaban texto, otros imagen, otros datos estructurados. La IA multimodal rompe esa compartimentación: un solo modelo puede recibir simultáneamente la nota de evolución del médico, la imagen del TAC, los valores de analítica y el audio del paciente describiendo sus síntomas, y generar una respuesta que integra todas las fuentes. Es cualitativamente distinto — no es mejor imagen o mejor texto, es comprensión clínica integrada.
+    </div>
+    <div class="card">
+      <div class="ct">Las cuatro modalidades en sanidad</div>
+      <div class="mod-grid">
+        <div class="mod-card"><div class="mod-icon">📝</div><div class="mod-title">Texto clínico</div><div class="mod-desc">Notas de evolución, informes, prescripciones, HCE. La modalidad más madura en IA sanitaria.</div><div class="mod-uso">Uso actual: síntesis, traducción, generación de informes</div></div>
+        <div class="mod-card"><div class="mod-icon">🖼️</div><div class="mod-title">Imagen médica</div><div class="mod-desc">TAC, RMN, radiografías, ecografías, dermatoscopia, histología digital. Avance muy rápido.</div><div class="mod-uso">Uso actual: detección de nódulos, triaje de imagen, análisis dermatológico</div></div>
+        <div class="mod-card"><div class="mod-icon">🎙️</div><div class="mod-title">Voz clínica</div><div class="mod-desc">Dictado médico, transcripción de consultas, análisis del habla para detectar deterioro cognitivo.</div><div class="mod-uso">Uso actual: documentación por voz, transcripción automática de consultas</div></div>
+        <div class="mod-card"><div class="mod-icon">📊</div><div class="mod-title">Datos estructurados</div><div class="mod-desc">Analíticas, constantes vitales, datos de wearables, registros de dispositivos IoT médicos.</div><div class="mod-uso">Uso actual: predicción de deterioro, dashboards de crónicos, alertas</div></div>
+      </div>
+    </div>
+    <div class="nav-actions"><span></span><button class="btn-p" onclick="go(1)">Modalidades →</button></div>
+  </div>
+
+  <div class="sec" id="s1">
+    <div class="card">
+      <div class="ct">Análisis combinado texto + imagen: radiología y dermatología</div>
+      <div class="cb">El salto cualitativo de la multimodalidad es que el modelo puede correlacionar lo que ve en la imagen con lo que lee en la historia clínica. Un hallazgo radiológico aislado tiene un significado; el mismo hallazgo en un paciente con fiebre de 3 semanas y pérdida de peso tiene otro.</div>
+    </div>
+    <div class="card">
+      <div class="ct">Ejemplo clínico — IA multimodal en radiología de tórax</div>
+      <div class="cb">
+        <strong style="color:#F48FB1">Entrada al modelo multimodal:</strong><br>
+        1. Imagen DICOM del TAC de tórax<br>
+        2. Nota clínica: "Varón 67 años, fumador 40 paq/año, tos productiva 6 semanas, pérdida de 4 kg"<br>
+        3. Analítica: PCR 48, LDH 380<br><br>
+        <strong style="color:#F48FB1">Output integrado:</strong> El modelo no solo detecta el nódulo de 1,8 cm en LSD — lo contextualiza con el perfil clínico, calcula la probabilidad de malignidad según la escala de Fleischner integrada con los factores de riesgo del texto, y propone el algoritmo de seguimiento con la justificación explícita de cada decisión.<br><br>
+        <strong style="color:#FFD54F">Diferencia clave:</strong> Un modelo solo de imagen detecta el nódulo. Un modelo multimodal lo interpreta en contexto. La diferencia clínica es enorme.
+      </div>
+    </div>
+    <div class="card">
+      <div class="ct">Procesamiento de voz para documentación clínica</div>
+      <div class="cb">
+        <strong style="color:#F48FB1">Dictado tradicional:</strong> el médico dicta → servicio de transcripción → revisión → inserción en HCE. Tiempo: 24-48h de media.<br><br>
+        <strong style="color:#F48FB1">IA de voz en tiempo real:</strong> el médico habla durante la consulta → el modelo transcribe, estructura en formato SOAP, extrae diagnósticos en CIE-10, identifica la medicación prescrita e inserta el registro en la HCE. Tiempo: segundos.<br><br>
+        <strong style="color:#F48FB1">Detección de deterioro cognitivo por voz:</strong> modelos que analizan patrones del habla (velocidad, pausas, coherencia semántica) pueden detectar señales de deterioro cognitivo antes de que sean evidentes en la exploración estándar. Están en fase de investigación avanzada.
+      </div>
+    </div>
+    <div class="nav-actions"><button class="btn-s" onclick="go(0)">← Atrás</button><button class="btn-p" onclick="go(2)">Aplicaciones clínicas →</button></div>
+  </div>
+
+  <div class="sec" id="s2">
+    <div class="card">
+      <div class="ct">Aplicaciones emergentes — selecciona el área</div>
+    </div>
+    <div class="app-tabs">
+      <div class="app-tab active" onclick="showApp(this,0)">Cirugía</div>
+      <div class="app-tab" onclick="showApp(this,1)">Dermatología</div>
+      <div class="app-tab" onclick="showApp(this,2)">Horizonte temporal</div>
+    </div>
+
+    <div class="app-panel show" id="ap0">
+      <div class="app-card">
+        <div class="app-title">IA multimodal en quirófano</div>
+        <div class="app-row"><div class="app-lbl">Estado actual</div><div>Sistemas de visión artificial que analizan el vídeo laparoscópico en tiempo real, identifican estructuras anatómicas, alertan sobre zonas de riesgo y detectan errores de técnica. En uso en hospitales de referencia de EE.UU. y Europa.</div></div>
+        <div class="app-row"><div class="app-lbl">Ejemplo real</div><div>Sistema de IA que durante colecistectomía laparoscópica superpone sobre el monitor quirúrgico el límite de la vía biliar principal, reduciendo el riesgo de lesión inadvertida. Validado en ensayos multicéntricos.</div></div>
+        <div class="app-row"><div class="app-lbl">En el SNS</div><div>Proyectos piloto en hospitales universitarios españoles. Requiere integración con el sistema de vídeo endoscópico y certificación CE como producto sanitario de clase III (alto riesgo).</div></div>
+        <div class="app-row"><div class="app-lbl">Para el clínico</div><div>El cirujano sigue siendo quien opera. La IA aporta una capa de seguridad adicional: una segunda vista que no se cansa, no pierde concentración y tiene acceso a miles de procedimientos previos como referencia.</div></div>
+      </div>
+    </div>
+
+    <div class="app-panel" id="ap1">
+      <div class="app-card">
+        <div class="app-title">IA multimodal en dermatología — análisis combinado imagen + anamnesis</div>
+        <div class="app-row"><div class="app-lbl">Estado actual</div><div>Modelos que analizan simultáneamente la imagen dermatoscópica y los datos clínicos del paciente (edad, fototipo, historia familiar, evolución de la lesión) para clasificar lesiones pigmentadas. Algunos superan la precisión diagnóstica del dermatólogo no especializado en lesiones aisladas.</div></div>
+        <div class="app-row"><div class="app-lbl">Aplicación AP</div><div>El médico de AP fotografía la lesión con el smartphone, introduce los datos clínicos del paciente, y el sistema genera una clasificación de riesgo con recomendación de derivación o seguimiento. Reduce derivaciones innecesarias a dermatología en un 30-40% en estudios piloto.</div></div>
+        <div class="app-row"><div class="app-lbl">Limitación clave</div><div>El rendimiento cae significativamente en lesiones en pieles oscuras, por infrarrepresentación en los conjuntos de entrenamiento. El sesgo racial es especialmente relevante en dermatología IA.</div></div>
+        <div class="app-row"><div class="app-lbl">En el SNS</div><div>Programa piloto en varias comunidades autónomas para triaje dermatológico desde AP mediante teleconsulta con IA de apoyo. En evaluación de impacto.</div></div>
+      </div>
+    </div>
+
+    <div class="app-panel" id="ap2">
+      <div class="card">
+        <div class="ct">Horizonte temporal de la IA multimodal en sanidad española</div>
+        <div class="cb" style="padding:0;margin-top:8px">
+          <div class="horizonte-item"><div class="h-year" style="color:#A5D6A7">2024-2025</div><div>Dictado clínico por voz integrado en HCE. IA de imagen en radiología (nódulos, hemorragias). Análisis dermatológico asistido desde AP.</div></div>
+          <div class="horizonte-item"><div class="h-year" style="color:#FFD54F">2025-2026</div><div>Primeros modelos multimodales texto+imagen integrados en workflow radiológico. Transcripción automática de consultas con estructuración en HCE en tiempo real.</div></div>
+          <div class="horizonte-item"><div class="h-year" style="color:#90CAF9">2026-2027</div><div>Modelos que integran texto+imagen+datos estructurados para apoyo diagnóstico complejo. IA quirúrgica en hospitales de referencia del SNS.</div></div>
+          <div class="horizonte-item"><div class="h-year" style="color:#CE93D8">2027-2030</div><div>Modelos clínicos completos que procesan toda la información disponible del paciente (HCE + imagen + voz + wearables) para apoyo diagnóstico y terapéutico integrado.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="nav-actions"><button class="btn-s" onclick="go(1)">← Modalidades</button><button class="btn-p" onclick="go(3)">Test →</button></div>
+  </div>
+
+  <div class="sec" id="s3">
+    <div class="qw active" id="q1w">
+      <div class="qnum">Pregunta 1 de 3</div>
+      <div class="qtxt">¿Cuál es la diferencia clínicamente relevante entre un modelo de IA de imagen monomodal y uno multimodal en el análisis de un nódulo pulmonar?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,1)">El modelo multimodal detecta nódulos más pequeños porque tiene mayor resolución</button>
+        <button class="qopt" onclick="ans(this,true,1)">El modelo multimodal contextualiza el hallazgo con la historia clínica del paciente, calculando la probabilidad de malignidad en función del perfil completo — no solo de las características de la imagen</button>
+        <button class="qopt" onclick="ans(this,false,1)">No hay diferencia clínica relevante: ambos detectan el mismo nódulo con igual precisión</button>
+        <button class="qopt" onclick="ans(this,false,1)">El modelo multimodal elimina la necesidad de revisión por el radiólogo</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+      <div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div>
+    </div>
+    <div class="qw" id="q2w">
+      <div class="qnum">Pregunta 2 de 3</div>
+      <div class="qtxt">Un modelo de IA dermatológica entrenado principalmente con imágenes de pacientes de fototipo I-III muestra menor precisión en pacientes de piel oscura. ¿Qué principio bioético de la lección 1.9 se ve comprometido?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,2)">Beneficencia — el modelo no genera beneficio para ningún paciente</button>
+        <button class="qopt" onclick="ans(this,false,2)">No maleficencia — el modelo produce errores en todos los pacientes por igual</button>
+        <button class="qopt" onclick="ans(this,true,2)">Justicia — el modelo es sistemáticamente menos preciso en poblaciones que ya sufren inequidades en el acceso al diagnóstico dermatológico, ampliando la brecha de desigualdad en salud</button>
+        <button class="qopt" onclick="ans(this,false,2)">Autonomía — los pacientes no saben que se usa IA para analizar su lesión</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+      <div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div>
+    </div>
+    <div class="qw" id="q3w">
+      <div class="qnum">Pregunta 3 de 3</div>
+      <div class="qtxt">¿Qué ventaja aporta la IA de voz con estructuración automática en HCE frente al dictado tradicional con servicio de transcripción?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,3)">El médico ya no necesita revisar el texto generado porque la IA no comete errores</button>
+        <button class="qopt" onclick="ans(this,false,3)">La voz es más precisa que el texto para transmitir información clínica compleja</button>
+        <button class="qopt" onclick="ans(this,true,3)">Elimina el tiempo de espera de 24-48h del dictado tradicional, estructura el texto en formato clínico estándar e inserta el registro directamente en la HCE en tiempo real durante la consulta</button>
+        <button class="qopt" onclick="ans(this,false,3)">La IA de voz es gratuita mientras que el servicio de transcripción tiene coste</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+      <div class="qnx" id="nx3">
+        <div style="background:rgba(233,30,99,.09);border:1px solid rgba(233,30,99,.25);border-radius:10px;padding:16px;margin-top:8px">
+          <div style="font-size:13px;font-weight:500;color:#F48FB1;margin-bottom:6px">Lección 1.12 completada</div>
+          <div style="font-size:12px;color:#B0BEC5;line-height:1.6">La última lección del Módulo 1: <strong style="color:#fff">1.13 — IA en Administración Pública Sanitaria Española</strong>. Marco estratégico, planes autonómicos y contratación pública de soluciones de IA.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="completar-wrap" id="cw">
+    <button class="btn-completar" id="bcmp" onclick="completar()">MARCAR LECCIÓN COMO COMPLETADA</button>
+    <div class="completar-confirm" id="cc">✓ Lección 1.12 registrada · DoncelProject</div>
+  </div>
+  <div class="lf">
+    <span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span>
+    <span> · Desarrollado por DoncelProject · doncel.project@gmail.com</span>
+  </div>
+</div>
+<script>
+let done=new Set([0]),cmp=false;
+function upd(){const p=Math.round((done.size/4)*100);document.getElementById('pf').style.width=p+'%';document.getElementById('pl').textContent=p+'%';if(done.size>=4)document.getElementById('cw').classList.add('show');}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function showApp(el,i){document.querySelectorAll('.app-tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.app-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById('ap'+i).classList.add('show');}
+const fbs={1:{ok:'✅ Correcto. Esta es la distinción fundamental entre monomodal y multimodal. El modelo de imagen ve el nódulo y lo describe. El modelo multimodal lo interpreta: un nódulo de 1,8 cm en un fumador de 40 paq/año con pérdida de peso y LDH elevada tiene una probabilidad de malignidad muy distinta al mismo nódulo en un no fumador de 35 años asintomático. El contexto clínico cambia la interpretación, y la multimodalidad lo integra automáticamente.',ko:'❌ La diferencia no es de resolución ni de necesidad de revisión. La IA multimodal no elimina al radiólogo — lo potencia. El cambio cualitativo es la contextualización: el mismo hallazgo imagen cobra un significado clínico diferente cuando se procesa junto a la historia, la analítica y los síntomas del paciente.'},2:{ok:'✅ Correcto. Este es un caso paradigmático de sesgo algorítmico que viola el principio de justicia. Las poblaciones con piel oscura ya tienen peor acceso al diagnóstico dermatológico precoz por múltiples factores socioeconómicos. Un modelo de IA menos preciso en ese grupo no solo no ayuda — amplifica activamente la inequidad existente, que es exactamente lo que el principio de justicia prohíbe.',ko:'❌ El principio comprometido es la justicia. No se trata de que el modelo dañe a todos por igual (no maleficencia) ni de que no genere beneficio en absoluto (beneficencia) — el modelo funciona bien para fototipos claros. El problema es que funciona peor específicamente para el grupo que ya sufre más inequidad en el acceso al diagnóstico.'},3:{ok:'✅ Correcto. Las tres ventajas son acumulativas: sin espera (tiempo real vs. 24-48h), con estructuración automática (formato clínico estándar sin trabajo adicional del médico) y con inserción directa en HCE (sin paso de revisión y re-inserción manual). Juntas, representan un cambio de flujo de trabajo radical. La revisión del texto sigue siendo responsabilidad del médico — la IA de voz también puede cometer errores terminológicos.',ko:'❌ La ventaja clave no es la precisión absoluta ni el coste. Es la eliminación del tiempo de espera combinada con la estructuración automática y la inserción directa en HCE. El médico siempre debe revisar el texto generado — la IA de voz puede cometer errores, especialmente con terminología especializada o nombres de fármacos poco comunes.'}};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');if(n===3){done.add(3);upd();}}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+function completar(){if(cmp)return;cmp=true;const b=document.getElementById('bcmp');b.textContent='✓ LECCIÓN COMPLETADA';b.classList.add('done');document.getElementById('cc').classList.add('show');try{window.storage.set('completada_leccion_1_12',JSON.stringify({leccion:'1.12',titulo:'IA multimodal',fecha:new Date().toLocaleDateString('es-ES'),ts:Date.now()})).catch(()=>{});}catch(e){}}
+upd();
+</script>

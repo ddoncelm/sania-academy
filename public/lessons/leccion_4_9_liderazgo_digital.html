@@ -1,0 +1,265 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:32px}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(33,150,243,.15);border:1px solid rgba(33,150,243,.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#90CAF9;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px}.lt span{color:#2196F3}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px;flex-wrap:wrap}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#2196F3;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:80px}
+.nb.active{color:#2196F3;border-bottom-color:#2196F3;background:#0C0D12}
+.sec{display:none;padding:20px 24px}.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(33,150,243,.08);border:1px solid rgba(33,150,243,.22);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#2196F3;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer}
+.tec-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.tec-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 14px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s}
+.tec-tab.active{background:rgba(33,150,243,.15);border-color:#2196F3;color:#90CAF9}
+.tec-panel{display:none}.tec-panel.show{display:block}
+.prompt-box{background:#0e1018;border:1px solid #1e2335;border-radius:10px;padding:14px;margin:10px 0}
+.prompt-label{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}
+.prompt-text{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.prompt-why{font-size:11px;color:#B0BEC5;line-height:1.6;margin-top:10px;padding-top:10px;border-top:1px solid #1e2335}
+.limit-item{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #1a2a3a}
+.limit-item:last-child{border-bottom:none}
+.li-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.li-title{font-size:12px;font-weight:600;color:#fff;margin-bottom:3px}
+.li-desc{font-size:11px;color:#B0BEC5;line-height:1.6}
+.flow-box{background:#0C0D12;border-radius:8px;padding:12px 14px;margin:10px 0;font-family:monospace;font-size:11px;color:#90CAF9;line-height:1.9;white-space:pre-wrap;word-break:break-word;border-left:2px solid #2196F3}
+.kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
+.kpi{background:rgba(33,150,243,.08);border:1px solid rgba(33,150,243,.2);border-radius:10px;padding:12px;text-align:center}
+.kv{font-size:22px;font-weight:700;color:#2196F3}
+.kl{font-size:10px;color:#B0BEC5;margin-top:4px;line-height:1.4}
+.alerta{border-radius:10px;padding:12px 14px;margin:12px 0;font-size:12px;line-height:1.6}
+.ao{background:rgba(76,175,80,.07);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.aw{background:rgba(255,152,0,.07);border:1px solid rgba(255,152,0,.22);color:#FFD54F}
+.alt{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px}
+.resistencia-card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px;margin-bottom:10px}
+.rc-tipo{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.7px;margin-bottom:4px;font-weight:600}
+.rc-titulo{font-size:13px;font-weight:600;color:#fff;margin-bottom:6px}
+.rc-desc{font-size:11px;color:#B0BEC5;line-height:1.6;margin-bottom:8px}
+.rc-respuesta{font-size:11px;color:#A5D6A7;line-height:1.6;padding:8px 12px;background:rgba(76,175,80,.07);border-radius:6px}
+.qw{display:none}.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s}
+.qopt:hover{border-color:#2196F3;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}.qnx.show{display:block}
+.complete-btn{width:100%;background:linear-gradient(135deg,#2196F3,#1565C0);color:#fff;border:none;border-radius:10px;padding:14px 20px;font-size:13px;font-weight:600;cursor:pointer;margin-top:16px;letter-spacing:.3px;transition:opacity .2s}
+.complete-btn:hover{opacity:.9}.complete-btn:disabled{opacity:.5;cursor:not-allowed}
+.lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a}
+.fl{color:#2196F3;cursor:pointer;text-decoration:underline}
+</style>
+<div class="lw">
+<div class="lh"><div class="lb">MÓDULO 4 · LECCIÓN 4.9</div><div class="lt">Liderazgo en transformación digital sanitaria:<br><span>framework de implementación, gestión de resistencias y ROI</span></div><div class="lm"><div class="lmi"><div class="md" style="background:#2196F3"></div>62 minutos</div><div class="lmi"><div class="md" style="background:#FFB300"></div>Nivel estratégico</div><div class="lmi"><div class="md" style="background:#A5D6A7"></div>Gestión del cambio</div></div></div>
+<div class="pbw"><div class="pbb"><div class="pbf" id="pbf49"></div></div><div class="pbl" id="pbl49">0%</div></div>
+<div class="snav"><button class="nb active" id="t1" onclick="go(1)">El líder digital sanitario</button><button class="nb" id="t2" onclick="go(2)">Framework de implementación</button><button class="nb" id="t3" onclick="go(3)">Gestión de resistencias</button><button class="nb" id="t4" onclick="go(4)">ROI y métricas de impacto</button><button class="nb" id="t5" onclick="go(5)">Test</button></div>
+
+<div class="sec active" id="s1">
+<div class="card"><div class="ct">Objetivo de la lección</div><div class="cb">Desarrollar las competencias de liderazgo necesarias para implementar proyectos de IA en entornos sanitarios complejos: construir el caso de negocio, gestionar las resistencias institucionales, comunicar el valor a distintos stakeholders y medir el impacto real de la transformación.</div></div>
+<div class="simil"><div class="sl">🎯 Analogía clínica</div>Implementar IA en un hospital es como introducir un nuevo protocolo clínico complejo: la evidencia científica (la tecnología funciona) es necesaria pero no suficiente. Necesitas el apoyo del jefe de servicio, la aprobación del comité de calidad, la formación de todos los profesionales, y un sistema de seguimiento que demuestre que el protocolo mejora los resultados. El médico que lidera un proyecto de IA en su servicio necesita las mismas habilidades de gestión del cambio que el que lidera la implantación de un nuevo protocolo clínico institucional.</div>
+<div class="card"><div class="ct">El perfil del líder de transformación digital sanitaria</div><div class="cb" style="margin-bottom:10px">No es el más técnico del hospital. Es el profesional que combina tres competencias que rara vez van juntas:</div>
+<div class="limit-item"><div class="li-icon">🔬</div><div class="li-body"><div class="li-title">Credibilidad clínica</div><div class="li-desc">Conoce suficientemente bien la práctica clínica del servicio como para identificar los problemas reales (no los imaginados) que la IA puede resolver. Los clínicos le respetan como colega, no como «el informático». Sabe cuándo una propuesta tecnológica es clínicamente inadecuada.</div></div></div>
+<div class="limit-item"><div class="li-icon">💻</div><div class="li-body"><div class="li-title">Suficiencia tecnológica</div><div class="li-desc">Entiende cómo funcionan las herramientas de IA lo suficiente para evaluar propuestas, detectar afirmaciones exageradas de proveedores, y comunicarse eficazmente con el equipo técnico. No necesita programar — necesita hacer las preguntas correctas.</div></div></div>
+<div class="limit-item"><div class="li-icon">🤝</div><div class="li-body"><div class="li-title">Habilidades de gestión del cambio</div><div class="li-desc">Sabe construir coaliciones, gestionar resistencias, comunicar de forma diferente a distintos stakeholders (clínicos, directivos, pacientes, sindicatos) y mantener la energía del proyecto durante los meses de implementación que inevitablemente incluyen contratiempos.</div></div></div>
+<div class="kpi-row">
+<div class="kpi"><div class="kv">70%</div><div class="kl">de proyectos de IA en sanidad fracasan por resistencia organizativa, no por fallos tecnológicos</div></div>
+<div class="kpi"><div class="kv">3-5</div><div class="kl">años es el horizonte realista para impacto sistémico de la IA en un hospital del SNS</div></div>
+<div class="kpi"><div class="kv">1</div><div class="kl">caso de éxito bien documentado vale más que 10 presentaciones de PowerPoint para convencer</div></div>
+</div>
+<div class="nav-actions"><div></div><button class="btn-p" onclick="go(2)">Framework de implementación →</button></div>
+</div>
+
+</div>
+<div class="sec" id="s2">
+<div class="card"><div class="ct">Framework de transformación digital en 5 horizontes</div><div class="cb">La transformación digital en sanidad no es un proyecto con fecha de fin — es un proceso de maduración organizacional. Este framework divide el camino en horizontes temporales con objetivos concretos y medibles para cada fase.</div></div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'fw-h1')">H1: Fundamentos</button><button class="tec-tab" onclick="showTab(this,'fw-h2')">H2: Primeros éxitos</button><button class="tec-tab" onclick="showTab(this,'fw-h3')">H3: Escala</button><button class="tec-tab" onclick="showTab(this,'fw-h4')">H4: Integración</button><button class="tec-tab" onclick="showTab(this,'fw-h5')">H5: Innovación</button></div>
+<div class="tec-panel show" id="fw-h1">
+<div class="card" style="border-color:rgba(33,150,243,.3)"><div class="ct" style="color:#90CAF9">Horizonte 1 — Fundamentos (meses 1-6)</div><div class="cb">El objetivo no es implementar IA — es preparar el terreno para que la IA tenga éxito. Sin esta fase, los proyectos del H2 fracasan.</div></div>
+<div class="limit-item"><div class="li-icon">📊</div><div class="li-body"><div class="li-title">Auditoría de madurez digital</div><div class="li-desc">¿Qué datos tienen formato digital y accesible? ¿Qué procesos están digitalizados? ¿Qué capacidades tiene el equipo TIC? ¿Cuál es el nivel de alfabetización digital del personal? Estas respuestas determinan qué proyectos de IA son viables a corto plazo y cuáles requieren preparación previa.</div></div></div>
+<div class="limit-item"><div class="li-icon">🤝</div><div class="li-body"><div class="li-title">Construcción de la coalición</div><div class="li-desc">Identificar los «early adopters» en el personal — los profesionales que ya usan IA por su cuenta, los más abiertos al cambio, los que tienen influencia informal entre sus pares. Estos son los primeros usuarios piloto y los futuros embajadores del proyecto cuando llegue el momento de escalar.</div></div></div>
+<div class="limit-item"><div class="li-icon">🎯</div><div class="li-body"><div class="li-title">Identificar el primer caso de uso de alto impacto y bajo riesgo</div><div class="li-desc">El primer proyecto debe elegirse estratégicamente: alto impacto visible (el servicio lo nota), bajo riesgo clínico (si falla, no hay consecuencias para el paciente), y accesible técnicamente (implementable con los recursos actuales). El éxito del primer proyecto es el mejor argumento para todos los siguientes.</div></div></div>
+</div>
+<div class="tec-panel" id="fw-h2">
+<div class="card" style="border-color:rgba(33,150,243,.3)"><div class="ct" style="color:#90CAF9">Horizonte 2 — Primeros éxitos (meses 6-18)</div><div class="cb">Implementar 2-3 proyectos piloto, medir su impacto con datos reales, y construir el caso de negocio para escalar.</div></div>
+<div class="limit-item"><div class="li-icon">🚀</div><div class="li-body"><div class="li-title">Proyectos piloto controlados</div><div class="li-desc">Implementar el primer caso de uso identificado en H1 con un grupo piloto pequeño (un servicio, un turno, un médico). Monitorizar intensamente, iterar rápido, documentar los resultados con datos cuantitativos. El piloto exitoso es la prueba de concepto que convence al resto.</div></div></div>
+<div class="limit-item"><div class="li-icon">📈</div><div class="li-body"><div class="li-title">Construcción del caso de negocio con datos reales</div><div class="li-desc">Tiempo ahorrado por profesional, reducción de errores, mejora en satisfacción del paciente — con datos del piloto real, no proyecciones. El caso de negocio con datos reales es mucho más convincente ante dirección que cualquier presentación teórica.</div></div></div>
+</div>
+<div class="tec-panel" id="fw-h3">
+<div class="card" style="border-color:rgba(33,150,243,.3)"><div class="ct" style="color:#90CAF9">Horizonte 3 — Escala (meses 18-36)</div><div class="cb">Extender los proyectos exitosos a más servicios, estandarizar las herramientas y los procesos, y construir capacidad interna.</div></div>
+<div class="limit-item"><div class="li-icon">🏗️</div><div class="li-body"><div class="li-title">Estandarización de la plataforma</div><div class="li-desc">Decidir qué plataformas son el estándar institucional (Zapier vs. Make vs. n8n, qué modelo de IA, qué base vectorial) para evitar la proliferación de soluciones incompatibles entre servicios. La estandarización permite compartir conocimiento, reducir costes de licencia y simplificar el mantenimiento.</div></div></div>
+<div class="limit-item"><div class="li-icon">🎓</div><div class="li-body"><div class="li-title">Construcción de capacidad interna</div><div class="li-desc">Identificar y formar a los «champions» de IA en cada servicio — los profesionales que aprenden las herramientas en profundidad y pueden dar soporte a sus colegas sin depender del equipo central. Sin esta red de champions, el conocimiento queda concentrado y el escalado es imposible.</div></div></div>
+</div>
+<div class="tec-panel" id="fw-h4">
+<div class="card" style="border-color:rgba(33,150,243,.3)"><div class="ct" style="color:#90CAF9">Horizonte 4 — Integración (años 3-4)</div><div class="cb">Integrar la IA en los procesos core del hospital: HIS, protocolos de calidad, formación MIR, evaluación del desempeño.</div></div>
+<div class="limit-item"><div class="li-icon">🔗</div><div class="li-body"><div class="li-title">IA como parte del proceso estándar</div><div class="li-desc">En esta fase, la IA ya no es un proyecto especial — es parte de cómo funciona el servicio. El informe de alta se genera con apoyo de IA por defecto. El dashboard de calidad se actualiza automáticamente. Los residentes aprenden a trabajar con IA como parte de su formación normalizada.</div></div></div>
+</div>
+<div class="tec-panel" id="fw-h5">
+<div class="card" style="border-color:rgba(33,150,243,.3)"><div class="ct" style="color:#90CAF9">Horizonte 5 — Innovación (años 4+)</div><div class="cb">Desarrollar proyectos de IA originales adaptados al contexto específico del hospital, colaborar con investigación y publicar los resultados.</div></div>
+<div class="limit-item"><div class="li-icon">🔬</div><div class="li-body"><div class="li-title">De usuario a creador</div><div class="li-desc">El hospital ya no solo implementa herramientas existentes — desarrolla soluciones propias para sus problemas específicos, colabora con grupos de investigación en IA médica, y publica los resultados de sus implementaciones en revistas especializadas. La transformación digital completa convierte al hospital en generador de innovación, no solo receptor.</div></div></div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(1)">← El líder digital</button><button class="btn-p" onclick="go(3)">Gestión de resistencias →</button></div>
+</div>
+
+<div class="sec" id="s3">
+<div class="card"><div class="ct">Gestión de resistencias: los cinco perfiles y cómo trabajar con ellos</div><div class="cb">La resistencia al cambio en sanidad no es irracional — tiene raíces legítimas: preocupación por la seguridad del paciente, incertidumbre sobre el propio rol futuro, experiencias negativas con proyectos tecnológicos fallidos, desconfianza ante afirmaciones exageradas. El líder que entiende las raíces de cada resistencia puede responder de forma eficaz.</div></div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'res-perfiles')">👥 Cinco perfiles</button><button class="tec-tab" onclick="showTab(this,'res-estrategias')">🎯 Estrategias</button><button class="tec-tab" onclick="showTab(this,'res-prompt')">📝 Comunicación</button></div>
+<div class="tec-panel show" id="res-perfiles">
+<div class="resistencia-card"><div class="rc-tipo">Perfil 1</div><div class="rc-titulo">El Escéptico Clínico</div><div class="rc-desc">«La IA no puede entender la complejidad de mis pacientes. Los estudios publicados no representan mi realidad clínica.» Raíz legítima: experiencia con herramientas tecnológicas que prometían mucho y entregaban poco.</div><div class="rc-respuesta">✓ Respuesta: No argues — muestra. Invítale al piloto. Deja que él defina las métricas de éxito. Un caso real resuelto por la herramienta en su propio servicio vale más que 100 estudios.</div></div>
+<div class="resistencia-card"><div class="rc-tipo">Perfil 2</div><div class="rc-titulo">El Protector de Datos</div><div class="rc-desc">«¿Dónde van los datos de mis pacientes? ¿Quién tiene acceso? ¿Hemos aprobado esto con el DPD?» Raíz legítima: responsabilidad real sobre la privacidad de los pacientes.</div><div class="rc-respuesta">✓ Respuesta: Tiene razón en preguntar. Presenta la arquitectura técnica de forma transparente: qué datos se usan, dónde se procesan, quién tiene acceso, qué protecciones RGPD están implementadas. El DPD debe estar en la sala, no ser mencionado después.</div></div>
+<div class="resistencia-card"><div class="rc-tipo">Perfil 3</div><div class="rc-titulo">El Preocupado por el Empleo</div><div class="rc-desc">«Si la IA hace mi trabajo, ¿qué hago yo?» Raíz legítima: incertidumbre legítima ante el cambio tecnológico.</div><div class="rc-respuesta">✓ Respuesta: La evidencia de proyectos reales muestra que la IA sanitaria no elimina puestos de trabajo — redirige el tiempo de los profesionales hacia las tareas de mayor valor. El médico que tardaba 45 min en documentar ahora tiene 45 min para el paciente. Mostrar datos reales de servicios que ya lo han implementado.</div></div>
+<div class="resistencia-card"><div class="rc-tipo">Perfil 4</div><div class="rc-titulo">El Agotado</div><div class="rc-desc">«No tengo tiempo para aprender esto. Bastante tengo con la carga asistencial actual.» Raíz legítima: sobrecarga real de trabajo.</div><div class="rc-respuesta">✓ Respuesta: Reducir la barrera de entrada al mínimo. El primer contacto con la herramienta debe generar valor inmediato (en la primera sesión de 20 minutos) para que el esfuerzo de aprendizaje se justifique desde el inicio. Prioriza los casos de uso que ahorran tiempo desde el primer uso.</div></div>
+<div class="resistencia-card"><div class="rc-tipo">Perfil 5</div><div class="rc-titulo">El Bloqueador Institucional</div><div class="rc-desc">«Esto requiere aprobación de la Comisión de TIC, del DPD, de la Dirección Médica, del Comité de Ética...» Raíz posible: preocupación legítima por el proceso correcto — o resistencia pasiva.</div><div class="rc-respuesta">✓ Respuesta: No intentes saltarte el proceso — acéleralo. Anticipa los requisitos de cada instancia, prepara la documentación antes de que la pidan, y lleva las aprobaciones en paralelo en lugar de en secuencia. Un proyecto de IA bien documentado desde el principio (RGPD, ENS, plan de piloto, métricas de éxito) atraviesa los comités mucho más rápido.</div></div>
+</div>
+<div class="tec-panel" id="res-estrategias">
+<div class="limit-item"><div class="li-icon">🎯</div><div class="li-body"><div class="li-title">Estrategia 1: Empieza con los convencidos</div><div class="li-desc">No intentes convencer a los más resistentes primero. Trabaja con los early adopters, consigue resultados con ellos, y deja que los resultados hablen. Cuando el escéptico clínico ve a su colega de confianza usando la herramienta con buenos resultados, la conversación cambia. La presión social positiva es más efectiva que la argumentación directa.</div></div></div>
+<div class="limit-item"><div class="li-icon">📊</div><div class="li-body"><div class="li-title">Estrategia 2: Datos locales, no estudios internacionales</div><div class="li-desc">«En el Hospital Johns Hopkins la IA redujo los reingresos un 30%» genera mucha menos tracción que «En nuestro Servicio de Cardiología, en los últimos 3 meses, los médicos han ahorrado una media de 35 minutos por turno de guardia». Los datos de tu propio hospital, de tu propio servicio, con tus propios pacientes, son irrefutables.</div></div></div>
+<div class="limit-item"><div class="li-icon">🔄</div><div class="li-body"><div class="li-title">Estrategia 3: Control local del proyecto</div><div class="li-desc">La resistencia aumenta cuando el proyecto se percibe como impuesto desde arriba o desde fuera. El éxito aumenta cuando el servicio tiene control real sobre el diseño, las métricas de éxito y el ritmo de implementación. El líder de transformación facilita, no impone.</div></div></div>
+</div>
+<div class="tec-panel" id="res-prompt">
+<div class="prompt-box">
+<div class="prompt-label">Prompt: preparar la presentación del proyecto a distintos stakeholders</div>
+<div class="prompt-text">Necesito presentar el siguiente proyecto de IA a diferentes audiencias en el hospital:
+
+PROYECTO: [descripción del proyecto, qué hace, qué problema resuelve]
+DATOS DEL PILOTO (si disponibles): [resultados cuantitativos del piloto]
+
+Prepara una presentación diferente para cada audiencia:
+
+1. DIRECCIÓN MÉDICA Y GERENCIA (5 minutos):
+   Enfoque: impacto económico, eficiencia, ventaja competitiva, alineación estratégica
+   Métricas clave: ROI, coste por caso, comparación con hospitales de referencia
+   Posibles objeciones y cómo responderlas
+
+2. JEFES DE SERVICIO Y CLÍNICOS SENIOR (15 minutos):
+   Enfoque: mejora de la calidad asistencial, reducción de carga documental, seguridad del paciente
+   Métricas clave: tiempo ahorrado por profesional, reducción de errores, satisfacción del equipo
+   Qué necesitan entender sobre cómo funciona la herramienta y qué no hace
+
+3. RESIDENTES Y PERSONAL JUNIOR (presentación informal):
+   Enfoque: herramienta práctica que les ayuda ahora, habilidad diferencial para su carrera
+   Tono: directo, práctico, sin promesas exageradas
+
+4. DPD Y COMITÉ DE ÉTICA:
+   Enfoque: cumplimiento RGPD, gobernanza del sistema, supervisión humana, trazabilidad
+   Documentación necesaria: qué deben aprobar explícitamente</div>
+<div class="prompt-why">La misma propuesta de proyecto puede fracasar o tener éxito dependiendo de cómo se presenta a cada audiencia. Un gerente no quiere escuchar sobre embeddings vectoriales; un clínico no quiere escuchar sobre ROI. Este prompt adapta el mensaje sin cambiar la sustancia del proyecto.</div>
+</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(2)">← Framework</button><button class="btn-p" onclick="go(4)">ROI y métricas →</button></div>
+</div>
+
+<div class="sec" id="s4">
+<div class="card"><div class="ct">ROI y métricas de impacto: cómo demostrar que la IA genera valor</div><div class="cb">El ROI de un proyecto de IA sanitaria no es solo económico — incluye valor clínico, satisfacción del profesional y mejora de resultados en salud. Medir solo el ahorro en euros es insuficiente y en muchos casos da una imagen incompleta del impacto real.</div></div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'roi-tipos')">💰 Tipos de valor</button><button class="tec-tab" onclick="showTab(this,'roi-como')">📊 Cómo calcularlo</button><button class="tec-tab" onclick="showTab(this,'roi-prompt')">🤖 Análisis con IA</button></div>
+<div class="tec-panel show" id="roi-tipos">
+<div class="limit-item"><div class="li-icon">⏱️</div><div class="li-body"><div class="li-title">Ahorro de tiempo del profesional</div><div class="li-desc">El más fácil de medir y el más convincente para los clínicos. Metodología: cronometrar el tiempo del proceso manual antes del piloto (muestra de 20 casos) vs. tiempo del proceso automatizado durante el piloto (muestra de 20 casos). La diferencia × frecuencia anual × coste hora-profesional = ahorro económico directo. Typical values: documentación de alta médica: 30-60 min → 5-10 min con IA.</div></div></div>
+<div class="limit-item"><div class="li-icon">🛡️</div><div class="li-body"><div class="li-title">Reducción de errores y eventos adversos</div><div class="li-desc">Más difícil de atribuir directamente a la IA, pero de mayor impacto potencial. Medir: tasa de errores de medicación antes/después de la conciliación IA, tasa de cancelaciones quirúrgicas por preparación incorrecta antes/después del sistema de recordatorios, tasa de no-show antes/después. Requiere período de observación suficiente (mínimo 3-6 meses) para detectar diferencias estadísticamente significativas.</div></div></div>
+<div class="limit-item"><div class="li-icon">😊</div><div class="li-body"><div class="li-title">Satisfacción del profesional</div><div class="li-desc">Encuesta antes/después con escala Likert sobre la percepción de carga documental, tiempo disponible para el paciente, y satisfacción general con el trabajo. La mejora en satisfacción del profesional está correlacionada con menor burnout y menor rotación — con coste económico real para el hospital cuando se pierde un profesional especializado.</div></div></div>
+<div class="limit-item"><div class="li-icon">📈</div><div class="li-body"><div class="li-title">Resultados en salud de los pacientes</div><div class="li-desc">El más difícil de medir pero el más relevante clínicamente. Para programas de telemonitorización: tasa de reingresos evitables antes/después. Para sistemas de alerta: tiempo hasta la intervención en eventos críticos. Para optimización de lista de espera: demora media antes/después. Requiere diseño de estudio prospectivo para control de factores de confusión.</div></div></div>
+</div>
+<div class="tec-panel" id="roi-como">
+<div class="flow-box">METODOLOGÍA PARA CALCULAR EL ROI DEL PROYECTO:
+
+PASO 1 — DEFINIR LAS MÉTRICAS ANTES DEL PILOTO (baseline):
+No medir después e intentar recordar cómo estaba antes.
+Documentar baseline con datos reales antes de implementar.
+
+PASO 2 — MEDIR DURANTE EL PILOTO:
+→ Con un grupo de intervención (usa la herramienta)
+→ Y un grupo control (continúa con el proceso manual) si es posible
+→ Si no es posible separar grupos: comparar con datos históricos del mismo período
+
+PASO 3 — CALCULAR EL VALOR ECONÓMICO:
+Ahorro tiempo: [horas ahorradas/mes] × [coste/hora profesional] = €/mes
+Reducción errores: [nº errores evitados] × [coste promedio por error] = €/mes
+Reducción reingresos (si aplica): [reingresos evitados] × [coste estancia] = €/año
+
+Coste del proyecto:
+  Licencias: [coste/mes de plataformas]
+  Tiempo de implementación: [horas] × [coste/hora]
+  Formación: [horas] × [coste/hora]
+  Mantenimiento estimado: [horas/mes] × [coste/hora]
+
+ROI = (Valor generado - Coste total) / Coste total × 100
+Payback period = Coste total / Valor mensual generado (en meses)
+
+TÍPICO EN PROYECTOS DE AUTOMATIZACIÓN SANITARIA:
+→ ROI a 12 meses: 200-800% (proyectos bien seleccionados)
+→ Payback period: 2-6 meses</div>
+</div>
+<div class="tec-panel" id="roi-prompt">
+<div class="prompt-box">
+<div class="prompt-label">Prompt: calcular y presentar el ROI de un proyecto de IA sanitaria</div>
+<div class="prompt-text">Quiero calcular el ROI del siguiente proyecto de IA implementado en nuestro servicio:
+
+DESCRIPCIÓN DEL PROYECTO: [qué hace, qué proceso automatiza]
+
+DATOS DE USO (del período de piloto):
+- Duración del piloto: [meses]
+- Número de usuarios activos: [N]
+- Frecuencia de uso por usuario: [veces/semana]
+
+MÉTRICAS DE IMPACTO MEDIDAS:
+- Tiempo proceso manual (baseline): [minutos] por caso
+- Tiempo proceso automatizado: [minutos] por caso
+- Volumen de casos: [N por mes]
+- Otros impactos cuantitativos medidos: [si aplica]
+
+COSTES DEL PROYECTO:
+- Licencias de plataformas: [€/mes]
+- Tiempo de implementación: [horas a €/hora]
+- Formación del equipo: [horas a €/hora]
+
+Proporciona:
+1. El cálculo completo del ROI económico a 6, 12 y 24 meses
+2. Los beneficios no económicos cuantificados (satisfacción, calidad, seguridad)
+3. El análisis de sensibilidad: cómo cambia el ROI si los supuestos clave varían ±20%
+4. La narrativa ejecutiva para presentar el ROI a la dirección del hospital en 2 minutos
+5. Las métricas de seguimiento a largo plazo para verificar que el ROI se mantiene</div>
+<div class="prompt-why">El análisis de ROI sin análisis de sensibilidad es incompleto — la dirección siempre preguntará «¿y si el volumen de uso cae a la mitad?». Con el análisis de sensibilidad preparado, el líder del proyecto demuestra rigor analítico y capacidad para gestionar la incertidumbre.</div>
+</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(3)">← Resistencias</button><button class="btn-p" onclick="go(5)">Test →</button></div>
+</div>
+
+<div class="sec" id="s5">
+<div class="qw active" id="q1w"><div class="qnum">Pregunta 1 de 3</div><div class="qtxt">El jefe del Servicio de Urgencias muestra resistencia al proyecto de IA argumentando: «Yo tengo 25 años de experiencia. Un algoritmo no puede replicar mi juicio clínico». ¿Cuál es la respuesta más efectiva del líder de transformación digital?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,1)">Presentar estudios publicados que demuestran la superioridad de los algoritmos sobre el juicio clínico humano en triaje</button><button class="qopt" onclick="ans(this,false,1)">Explicar técnicamente cómo funciona el modelo para disipar sus temores sobre «la caja negra»</button><button class="qopt" onclick="ans(this,true,1)">Reconocer que tiene razón: la herramienta no replicará su juicio. Reformular la propuesta: «no es para reemplazar su criterio — es para que usted tenga más tiempo para aplicarlo. La herramienta se encarga de la documentación repetitiva para que usted se concentre en los casos que realmente requieren 25 años de experiencia». Después: invitarle a definir él mismo las métricas con las que evaluará si la herramienta es útil en su servicio.</button><button class="qopt" onclick="ans(this,false,1)">Saltar al jefe de servicio y buscar apoyo en la dirección del hospital para implementar el proyecto sin su colaboración</button></div><div class="qfb" id="fb1"></div><div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div></div>
+<div class="qw" id="q2w"><div class="qnum">Pregunta 2 de 3</div><div class="qtxt">Siguiendo el framework de 5 horizontes, un hospital que acaba de nombrar a su primer responsable de transformación digital y quiere implementar IA está en el Horizonte 1. ¿Cuál es el error más frecuente que cometen los hospitales en esta fase?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,2)">Dedicar demasiado tiempo a la formación del personal antes de empezar a implementar</button><button class="qopt" onclick="ans(this,true,2)">Saltarse el H1 e intentar implementar proyectos ambiciosos sin haber realizado la auditoría de madurez digital, construido la coalición interna ni identificado el caso de uso correcto para empezar. Los proyectos que fracasan en esta fase suelen ser demasiado complejos, con datos insuficientemente digitalizados, o en servicios cuyo liderazgo no está comprometido</button><button class="qopt" onclick="ans(this,false,2)">Empezar con proyectos demasiado pequeños que no generan suficiente impacto para justificar la inversión</button><button class="qopt" onclick="ans(this,false,2)">No tener suficiente presupuesto — el H1 requiere una inversión inicial muy significativa</button></div><div class="qfb" id="fb2"></div><div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div></div>
+<div class="qw" id="q3w"><div class="qnum">Pregunta 3 de 3</div><div class="qtxt">Un proyecto de automatización de recordatorios muestra un ROI del 450% a 12 meses en el cálculo inicial. Al hacer el análisis de sensibilidad, si el volumen de uso cae un 40% (por baja adopción del personal), el ROI cae al 85%. ¿Qué implica esto para la gestión del proyecto?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,3)">El proyecto no debería implementarse — un ROI que varía tanto según el uso es demasiado incierto</button><button class="qopt" onclick="ans(this,false,3)">El ROI del 85% sigue siendo positivo — la adopción no es una variable relevante para el análisis económico</button><button class="qopt" onclick="ans(this,true,3)">La adopción es el factor más crítico del ROI: sin ella, el proyecto rentable se convierte en uno marginalmente positivo. Esto implica que la gestión del cambio y la formación deben ser prioridades igual de importantes que la implementación técnica. El plan del proyecto debe incluir métricas de adopción como KPIs primarios, y estrategias de intervención si la adopción está por debajo del objetivo</button><button class="qopt" onclick="ans(this,false,3)">Hay que revisar el cálculo — el ROI del 450% inicial probablemente esté sobrestimado</button></div><div class="qfb" id="fb3"></div><div class="qnx" id="nx3"><div style="background:rgba(33,150,243,.1);border:1px solid rgba(33,150,243,.28);border-radius:10px;padding:16px;margin-top:8px"><div style="font-size:13px;font-weight:500;color:#90CAF9;margin-bottom:6px">✓ Lección 4.9 completada</div><div style="font-size:12px;color:#B0BEC5;line-height:1.6">Tienes el framework de 5 horizontes para la transformación digital, las estrategias para gestionar cada perfil de resistencia, y la metodología de cálculo y presentación del ROI. La lección 4.10 cierra el Módulo 4 con <strong style="color:#fff">el uso legal y ético de datos clínicos: bases legales, técnicas de privacidad y auditoría de responsabilidad</strong>.</div></div><button class="complete-btn" id="completeBtn" onclick="markComplete()">✓ MARCAR LECCIÓN COMO COMPLETADA</button></div></div>
+</div>
+<div class="lf"><span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span> · Desarrollado por DoncelProject · doncel.project@gmail.com</div>
+</div>
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/5)*100);document.getElementById('pbf49').style.width=p+'%';document.getElementById('pbl49').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function showTab(el,id){const sec=el.closest('.sec');sec.querySelectorAll('.tec-tab').forEach(t=>t.classList.remove('active'));sec.querySelectorAll('.tec-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById(id).classList.add('show');}
+const fbs={
+1:{ok:'✅ Correcto. La respuesta a la resistencia del escéptico experto nunca es argumentar con datos que compiten con su experiencia — eso genera defensividad. La clave es reconocer su experiencia como un activo real y reformular la herramienta como un amplificador de esa experiencia, no como un sustituto. Dejar que él defina las métricas de éxito es especialmente poderoso: si el proyecto cumple sus propias condiciones, la resistencia se convierte en endorsement.',ko:'❌ Presentar estudios que muestran superioridad de los algoritmos es la peor estrategia con un clínico experto — activa la defensividad y convierte la conversación en un debate de quién tiene razón. La explicación técnica de cómo funciona el modelo tampoco resuelve la resistencia — el escéptico no está preocupado por la mecánica del modelo, sino por su rol profesional. Saltarse al director sin su colaboración genera un proyecto que nadie usa voluntariamente.'},
+2:{ok:'✅ Correcto. El error más frecuente en H1 es la impaciencia: querer implementar proyectos ambiciosos antes de haber construido las bases. Los proyectos que fracasan en esta fase típicamente tienen datos no suficientemente digitalizados para alimentar la IA, liderazgo clínico no comprometido, expectativas desajustadas de lo que la herramienta puede hacer, o un caso de uso demasiado complejo para un equipo sin experiencia previa. El H1 puede parecer «perder el tiempo» pero es lo que hace que el H2 tenga éxito.',ko:'❌ El H1 no requiere una inversión presupuestaria significativa — principalmente requiere tiempo de análisis y construcción de relaciones. Empezar con proyectos pequeños es precisamente lo correcto para el H1 y H2: generar éxitos rápidos con bajo riesgo, no grandes implementaciones institucionales. La formación tampoco es el factor limitante en H1 — la preparación organizativa sí lo es.'},
+3:{ok:'✅ Correcto. El análisis de sensibilidad revela que la adopción es el factor crítico del ROI — no la tecnología. Esto es consistente con el dato de que el 70% de los proyectos de IA en sanidad fracasan por resistencia organizativa. Un proyecto tecnológicamente perfecto con baja adopción genera poco valor real. Las métricas de adopción (% de usuarios activos, frecuencia de uso, funcionalidades utilizadas) deben ser KPIs de primer nivel del proyecto, y el plan de gestión del cambio debe ser tan riguroso como el plan técnico.',ko:'❌ Un ROI del 85% sigue siendo positivo y justifica el proyecto, pero la variación entre el 450% óptimo y el 85% con baja adopción revela exactamente cuál es el factor más crítico a gestionar. La adopción no es irrelevante — es el factor que determina si el proyecto genera valor real o se convierte en una herramienta infrautilizada. El ROI del 450% inicial puede ser perfectamente correcto si se asume plena adopción.'}
+};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+function markComplete(){document.getElementById('completeBtn').disabled=true;document.getElementById('completeBtn').textContent='✓ Completada';window.parent.postMessage({type:'LESSON_COMPLETE'},'*');}
+upd();
+</script>

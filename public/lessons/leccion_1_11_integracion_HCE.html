@@ -1,0 +1,275 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:0}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(0,188,212,0.13);border:1px solid rgba(0,188,212,0.32);border-radius:20px;padding:4px 12px;font-size:11px;color:#80DEEA;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px;color:#fff}
+.lt span{color:#00BCD4}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px;flex-wrap:wrap}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#00BCD4;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:70px;font-family:var(--font-sans,sans-serif)}
+.nb.active{color:#00BCD4;border-bottom-color:#00BCD4;background:#0C0D12}
+.sec{display:none;padding:20px 24px}
+.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(0,188,212,0.07);border:1px solid rgba(0,188,212,0.2);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#80DEEA;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#00BCD4;color:#0C0D12;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500;font-family:var(--font-sans,sans-serif)}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer;font-family:var(--font-sans,sans-serif)}
+.badge{display:inline-block;font-size:10px;font-weight:500;padding:2px 8px;border-radius:8px;margin-right:4px}
+.b-cyan{background:rgba(0,188,212,.15);color:#80DEEA}
+.b-green{background:rgba(76,175,80,.15);color:#A5D6A7}
+.b-amber{background:rgba(255,152,0,.15);color:#FFD54F}
+.b-blue{background:rgba(33,150,243,.15);color:#90CAF9}
+.b-purple{background:rgba(103,58,183,.15);color:#CE93D8}
+.b-red{background:rgba(244,67,54,.15);color:#EF9A9A}
+.est-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.est-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 12px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s;font-family:var(--font-sans,sans-serif)}
+.est-tab.active{background:rgba(0,188,212,.14);border-color:#00BCD4;color:#80DEEA}
+.est-panel{display:none}
+.est-panel.show{display:block}
+.est-card{background:#0e1018;border-radius:10px;padding:16px;border:1px solid #1e2335;margin-bottom:10px}
+.est-nombre{font-size:14px;font-weight:500;color:#80DEEA;margin-bottom:4px}
+.est-row{display:flex;gap:8px;font-size:12px;color:#E0E0E0;line-height:1.5;margin-bottom:7px;align-items:flex-start}
+.est-lbl{font-size:10px;color:#B0BEC5;font-weight:500;min-width:90px;flex-shrink:0;margin-top:1px;text-transform:uppercase;letter-spacing:.4px}
+.code-block{font-family:monospace;font-size:10px;color:#80DEEA;background:#0C0D12;border-radius:6px;padding:10px;line-height:1.6;overflow-x:auto;margin:8px 0;border-left:2px solid #00BCD4;white-space:pre}
+.hce-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:12px 0}
+.hce-card{background:#0e1018;border-radius:10px;padding:14px;border:1px solid #1e2335;text-align:center}
+.hce-nombre{font-size:13px;font-weight:500;color:#fff;margin-bottom:6px}
+.hce-maker{font-size:10px;color:#546E7A;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.hce-desc{font-size:11px;color:#B0BEC5;line-height:1.5;text-align:left}
+.flujo-step{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
+.flujo-num{width:22px;height:22px;border-radius:50%;background:#00BCD4;color:#0C0D12;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;flex-shrink:0;margin-top:2px}
+.flujo-txt{font-size:12px;color:#E0E0E0;line-height:1.6;flex:1}
+.flujo-arrow{color:#546E7A;font-size:12px;margin-left:32px;margin-bottom:4px}
+.qw{display:none}
+.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s;font-family:var(--font-sans,sans-serif)}
+.qopt:hover{border-color:#00BCD4;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}
+.qnx.show{display:block}
+.completar-wrap{padding:20px 24px;display:none}
+.completar-wrap.show{display:block}
+.btn-completar{width:100%;padding:14px;background:transparent;border:2px solid #00BCD4;border-radius:12px;color:#80DEEA;font-size:13px;font-weight:500;cursor:pointer;transition:all .3s;letter-spacing:.5px;font-family:var(--font-sans,sans-serif)}
+.btn-completar:hover{background:rgba(0,188,212,.12)}
+.btn-completar.done{background:#00BCD4;color:#0C0D12;border-color:#00BCD4}
+.completar-confirm{text-align:center;font-size:11px;color:#A5D6A7;margin-top:8px;display:none}
+.completar-confirm.show{display:block}
+.lf{text-align:center;font-size:10px;color:#546E7A;padding:16px 24px;border-top:1px solid #1a2a3a}
+.fl{color:#2196F3;cursor:pointer;text-decoration:underline}
+</style>
+<div class="lw">
+  <div class="lh">
+    <div class="lb">MÓDULO 1 · LECCIÓN 1.11</div>
+    <div class="lt">Integración con <span>Historias Clínicas Electrónicas</span></div>
+    <div class="lm">
+      <div class="lmi"><div class="md" style="background:#00BCD4"></div>71 minutos</div>
+      <div class="lmi"><div class="md" style="background:#FFB300"></div>4 secciones</div>
+      <div class="lmi"><div class="md" style="background:#A5D6A7"></div>HL7 FHIR · DICOM · Cerner · EPIC</div>
+    </div>
+  </div>
+  <div class="pbw"><div class="pbb"><div class="pbf" id="pf"></div></div><div class="pbl" id="pl">0%</div></div>
+  <div class="snav">
+    <button class="nb active" id="t0" onclick="go(0)">📖 Intro</button>
+    <button class="nb" id="t1" onclick="go(1)">📐 Estándares</button>
+    <button class="nb" id="t2" onclick="go(2)">🏥 HCE y casos</button>
+    <button class="nb" id="t3" onclick="go(3)">✅ Test</button>
+  </div>
+
+  <div class="sec active" id="s0">
+    <div class="card">
+      <div class="ct">Objetivo</div>
+      <div class="cb">Comprender la arquitectura técnica que permite integrar herramientas de IA con los sistemas de información hospitalarios (HIS) y las historias clínicas electrónicas (HCE). Conocer los estándares de interoperabilidad HL7 FHIR y DICOM, las plataformas más usadas en el SNS (Cerner, EPIC, SAP, Diraya) y los casos de integración exitosa.</div>
+    </div>
+    <div class="simil">
+      <div class="sl">Por qué importa al clínico</div>
+      El profesional no necesita programar estas integraciones — pero sí necesita entender qué es posible, qué preguntarle al proveedor de tecnología y qué exigir en términos de seguridad y privacidad. Un clínico que conoce los estándares es un interlocutor válido en los comités de digitalización hospitalaria. Uno que no los conoce, firma lo que le ponen delante.
+    </div>
+    <div class="card">
+      <div class="ct">El problema de la interoperabilidad en sanidad</div>
+      <div class="cb">Los hospitales españoles tienen de media 3-7 sistemas de información distintos que no se hablan entre sí: HCE, laboratorio, radiología (PACS/RIS), farmacia, urgencias. Una IA que solo accede a uno de ellos tiene una visión parcial del paciente. La interoperabilidad — la capacidad de los sistemas de intercambiar datos de forma útil — es el prerrequisito técnico para que la IA clínica sea realmente útil.</div>
+    </div>
+    <div class="nav-actions"><span></span><button class="btn-p" onclick="go(1)">Estándares →</button></div>
+  </div>
+
+  <div class="sec" id="s1">
+    <div class="card">
+      <div class="ct">Los estándares de interoperabilidad — selecciona</div>
+    </div>
+    <div class="est-tabs">
+      <div class="est-tab active" onclick="showEst(this,0)">HL7 FHIR</div>
+      <div class="est-tab" onclick="showEst(this,1)">DICOM</div>
+      <div class="est-tab" onclick="showEst(this,2)">Otros estándares</div>
+    </div>
+
+    <div class="est-panel show" id="ep0">
+      <div class="est-card">
+        <div class="est-nombre">HL7 FHIR — Fast Healthcare Interoperability Resources</div>
+        <div class="est-row"><div class="est-lbl">Qué es</div><div>El estándar internacional para el intercambio de datos clínicos entre sistemas sanitarios. Define cómo estructurar y transmitir información de salud usando tecnología web moderna (APIs REST, JSON, XML).</div></div>
+        <div class="est-row"><div class="est-lbl">Qué permite</div><div>Que una herramienta de IA pueda consultar la HCE de un paciente, obtener sus analíticas, su medicación activa o sus diagnósticos previos en tiempo real, sin que los sistemas necesiten estar del mismo proveedor.</div></div>
+        <div class="est-row"><div class="est-lbl">En el SNS</div><div>La Historia Clínica Digital del SNS (HCDSNS) está migrando a FHIR R4 como estándar de interoperabilidad entre comunidades autónomas. El SSPA tiene en marcha el proyecto de FHIR en Diraya.</div></div>
+        <div class="est-row"><div class="est-lbl">Para el clínico</div><div>Cuando un proveedor de IA dice que su sistema "se integra con tu HCE", la pregunta correcta es: "¿usa FHIR? ¿Qué recursos FHIR implementa?" Si no puede responder, la integración puede ser un desarrollo a medida que creará dependencia tecnológica.</div></div>
+      </div>
+      <div class="code-block">// Ejemplo simplificado: consulta FHIR de medicación activa de un paciente
+GET [base]/MedicationRequest?patient=12345&status=active
+
+// Respuesta: lista de medicamentos activos en formato estándar
+{
+  "resourceType": "Bundle",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "medicationCodeableConcept": {
+          "text": "Enalapril 10mg"
+        },
+        "dosageInstruction": [{"text": "1 comprimido cada 12 horas"}]
+      }
+    }
+  ]
+}</div>
+      <div style="font-size:11px;color:#546E7A;margin-top:6px">Este JSON estándar puede ser procesado por cualquier herramienta de IA o sistema compatible con FHIR, independientemente del proveedor de la HCE.</div>
+    </div>
+
+    <div class="est-panel" id="ep1">
+      <div class="est-card">
+        <div class="est-nombre">DICOM — Digital Imaging and Communications in Medicine</div>
+        <div class="est-row"><div class="est-lbl">Qué es</div><div>El estándar universal para el almacenamiento y transmisión de imágenes médicas digitales: TAC, RMN, radiografías, ecografías, endoscopias. Toda imagen médica digital en el mundo (prácticamente) está en formato DICOM.</div></div>
+        <div class="est-row"><div class="est-lbl">Qué permite</div><div>Que las herramientas de IA de imagen médica (Aidoc, Qure.ai, etc.) puedan acceder a los estudios del PACS hospitalario sin necesidad de conversión de formato. El sistema de IA "habla DICOM" con el PACS.</div></div>
+        <div class="est-row"><div class="est-lbl">Relevancia clínica</div><div>Cuando se implanta una IA de diagnóstico por imagen, la integración DICOM es el primer requisito técnico. Sin ella, el flujo de trabajo del radiólogo se interrumpe: tendría que exportar, convertir y reimportar las imágenes manualmente.</div></div>
+        <div class="est-row"><div class="est-lbl">DICOM + IA</div><div>Las herramientas de IA certificadas se integran en el worklist del radiólogo como un nodo DICOM más. El radiólogo ve los estudios con la anotación de la IA superpuesta sobre su visor habitual, sin salir de su flujo normal.</div></div>
+      </div>
+    </div>
+
+    <div class="est-panel" id="ep2">
+      <div class="est-card">
+        <div class="est-nombre">Otros estándares relevantes en el ecosistema HCE</div>
+        <div class="est-row"><div class="est-lbl">CDA (HL7)</div><div>Clinical Document Architecture — formato estándar para documentos clínicos estructurados (informes de alta, hojas de consulta). La IA puede generar documentos CDA directamente insertables en la HCE.</div></div>
+        <div class="est-row"><div class="est-lbl">SNOMED CT</div><div>Terminología clínica estándar internacional. Cuando una IA codifica diagnósticos o procedimientos en SNOMED, los datos son comparables entre sistemas y hospitales, facilitando el análisis poblacional y la investigación.</div></div>
+        <div class="est-row"><div class="est-lbl">ICD-10 / CIE-10</div><div>Clasificación Internacional de Enfermedades. La IA puede asistir en la codificación automática de diagnósticos al alta, reduciendo errores de codificación y mejorando la calidad del CMBD (Conjunto Mínimo Básico de Datos).</div></div>
+        <div class="est-row"><div class="est-lbl">LOINC</div><div>Estándar para nombrar pruebas de laboratorio y resultados clínicos. Permite que una IA interprete resultados de analítica de forma consistente independientemente del laboratorio que los generó.</div></div>
+      </div>
+    </div>
+    <div class="nav-actions"><button class="btn-s" onclick="go(0)">← Atrás</button><button class="btn-p" onclick="go(2)">HCE y casos →</button></div>
+  </div>
+
+  <div class="sec" id="s2">
+    <div class="card">
+      <div class="ct">Principales HCE en el SNS y su relación con la IA</div>
+    </div>
+    <div class="hce-grid">
+      <div class="hce-card">
+        <div class="hce-nombre">Diraya</div>
+        <div class="hce-maker">SSPA · Andalucía</div>
+        <div class="hce-desc">HCE propia del SSPA. En migración hacia FHIR. Proyecto Diraya IA en desarrollo para integración de módulos de IA en AP y hospitalaria. Base de datos de más de 8 millones de pacientes.</div>
+      </div>
+      <div class="hce-card">
+        <div class="hce-nombre">Cerner / Oracle Health</div>
+        <div class="hce-maker">Internacional · Varios centros SNS</div>
+        <div class="hce-desc">Implementado en hospitales del SNS (Navarra, País Vasco, entre otros). Tiene API FHIR nativa. Marketplace de aplicaciones IA certificadas que se integran directamente en el flujo de Cerner.</div>
+      </div>
+      <div class="hce-card">
+        <div class="hce-nombre">EPIC</div>
+        <div class="hce-maker">Internacional · Clínica Universidad Navarra</div>
+        <div class="hce-desc">La HCE más implantada en EE.UU. Tiene API FHIR robusta (MyChart). Integración nativa con herramientas de IA a través de Epic App Orchard. Implantación en España limitada pero creciente.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ct">Caso de integración exitosa — IA de conciliación farmacológica en Cerner</div>
+      <div class="cb" style="padding:0;margin-top:8px">
+        <div class="flujo-step"><div class="flujo-num">1</div><div class="flujo-txt"><strong style="color:#80DEEA">Trigger:</strong> el médico registra el ingreso del paciente en Cerner. El sistema lanza automáticamente una consulta FHIR a la HCE ambulatoria para obtener la medicación domiciliaria.</div></div>
+        <div class="flujo-arrow">↓</div>
+        <div class="flujo-step"><div class="flujo-num">2</div><div class="flujo-txt"><strong style="color:#80DEEA">Procesamiento IA:</strong> el módulo de IA recibe la lista de medicación domiciliaria + la prescripción hospitalaria inicial. Compara ambas listas y detecta omisiones, duplicidades e interacciones.</div></div>
+        <div class="flujo-arrow">↓</div>
+        <div class="flujo-step"><div class="flujo-num">3</div><div class="flujo-txt"><strong style="color:#80DEEA">Presentación:</strong> el farmacéutico y el médico ven el informe de conciliación directamente en Cerner, sin salir de su flujo de trabajo. Cada hallazgo tiene un nivel de severidad y una acción recomendada.</div></div>
+        <div class="flujo-arrow">↓</div>
+        <div class="flujo-step"><div class="flujo-num">4</div><div class="flujo-txt"><strong style="color:#80DEEA">Validación humana:</strong> el farmacéutico revisa y valida o modifica cada ítem. La decisión final es siempre humana. El sistema registra la validación en la HCE para trazabilidad.</div></div>
+      </div>
+    </div>
+    <div class="nav-actions"><button class="btn-s" onclick="go(1)">← Estándares</button><button class="btn-p" onclick="go(3)">Test →</button></div>
+  </div>
+
+  <div class="sec" id="s3">
+    <div class="qw active" id="q1w">
+      <div class="qnum">Pregunta 1 de 3</div>
+      <div class="qtxt">Un proveedor de IA clínica afirma que su sistema "se conecta perfectamente con cualquier HCE". ¿Cuál es la pregunta técnica correcta que debe hacer el responsable de digitalización del hospital antes de firmar el contrato?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,1)">¿Cuántos hospitales tienen ya este sistema instalado?</button>
+        <button class="qopt" onclick="ans(this,true,1)">¿El sistema usa FHIR? ¿Qué versión y qué recursos FHIR implementa? ¿Tiene certificación de interoperabilidad con nuestra HCE específica?</button>
+        <button class="qopt" onclick="ans(this,false,1)">¿El sistema funciona también con DICOM para las imágenes?</button>
+        <button class="qopt" onclick="ans(this,false,1)">¿Cuánto tiempo lleva el proveedor en el mercado sanitario español?</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+      <div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div>
+    </div>
+    <div class="qw" id="q2w">
+      <div class="qnum">Pregunta 2 de 3</div>
+      <div class="qtxt">Un radiólogo recibe en su visor habitual las imágenes de TAC con una anotación superpuesta generada por la IA, sin necesidad de salir de su flujo de trabajo ni abrir ningún sistema adicional. ¿Qué estándar hace posible esta integración?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,2)">HL7 FHIR, porque gestiona el intercambio de datos clínicos estructurados</button>
+        <button class="qopt" onclick="ans(this,false,2)">SNOMED CT, porque estandariza la terminología diagnóstica</button>
+        <button class="qopt" onclick="ans(this,true,2)">DICOM, porque es el estándar universal de imagen médica que permite a la IA integrarse como un nodo más en el PACS del radiólogo</button>
+        <button class="qopt" onclick="ans(this,false,2)">ICD-10, porque codifica los diagnósticos radiológicos</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+      <div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div>
+    </div>
+    <div class="qw" id="q3w">
+      <div class="qnum">Pregunta 3 de 3</div>
+      <div class="qtxt">En el caso de integración de IA de conciliación farmacológica en Cerner, ¿por qué es imprescindible que la validación final sea siempre realizada por el farmacéutico o el médico?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,3)">Porque el sistema de IA no puede procesar más de 10 fármacos simultáneamente</button>
+        <button class="qopt" onclick="ans(this,false,3)">Por razones de eficiencia: la IA es más lenta que el farmacéutico en casos simples</button>
+        <button class="qopt" onclick="ans(this,true,3)">Por imperativo ético, legal y de seguridad: la IA puede cometer errores, el AI Act exige supervisión humana en sistemas de alto riesgo, y la responsabilidad clínica recae siempre en el profesional que valida</button>
+        <button class="qopt" onclick="ans(this,false,3)">Porque la HCE no puede registrar decisiones generadas por IA sin validación humana previa</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+      <div class="qnx" id="nx3">
+        <div style="background:rgba(0,188,212,.09);border:1px solid rgba(0,188,212,.25);border-radius:10px;padding:16px;margin-top:8px">
+          <div style="font-size:13px;font-weight:500;color:#80DEEA;margin-bottom:6px">Lección 1.11 completada</div>
+          <div style="font-size:12px;color:#B0BEC5;line-height:1.6">Ya entiendes la arquitectura de integración HCE. La lección <strong style="color:#fff">1.12</strong> abre un nuevo horizonte: <strong style="color:#fff">Introducción a la IA multimodal</strong> — texto, imagen, voz y datos combinados en un solo modelo clínico.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="completar-wrap" id="cw">
+    <button class="btn-completar" id="bcmp" onclick="completar()">MARCAR LECCIÓN COMO COMPLETADA</button>
+    <div class="completar-confirm" id="cc">✓ Lección 1.11 registrada · DoncelProject</div>
+  </div>
+  <div class="lf">
+    <span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span>
+    <span> · Desarrollado por DoncelProject · doncel.project@gmail.com</span>
+  </div>
+</div>
+<script>
+let done=new Set([0]),cmp=false;
+function upd(){const p=Math.round((done.size/4)*100);document.getElementById('pf').style.width=p+'%';document.getElementById('pl').textContent=p+'%';if(done.size>=4)document.getElementById('cw').classList.add('show');}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function showEst(el,i){document.querySelectorAll('.est-tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.est-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById('ep'+i).classList.add('show');}
+const fbs={1:{ok:'✅ Correcto. La pregunta técnica correcta siempre es sobre el estándar de interoperabilidad. "Se conecta con cualquier HCE" puede significar desde una integración FHIR robusta hasta un desarrollo a medida que genera dependencia tecnológica permanente del proveedor. Exigir FHIR y pedir la certificación de interoperabilidad con tu HCE específica protege al hospital de integraciones frágiles y costosas.',ko:'❌ La pregunta crítica es técnica: ¿usa FHIR? La experiencia del proveedor o el número de instalaciones son datos comerciales, no garantías de interoperabilidad real. "Se conecta con cualquier HCE" sin FHIR puede significar un desarrollo a medida que funciona solo con tu versión de HCE y se rompe en cada actualización.'},2:{ok:'✅ Correcto. DICOM es el estándar que hace posible que la IA se integre en el flujo radiológico sin interrumpirlo. La herramienta de IA se registra como un nodo DICOM en la red del hospital y puede enviar sus anotaciones directamente al visor del radiólogo en el formato que este ya usa. Sin DICOM, el radiólogo tendría que salir de su flujo habitual para consultar la IA en un sistema separado.',ko:'❌ DICOM es el estándar de imagen médica que permite esta integración. FHIR gestiona datos clínicos estructurados (analíticas, diagnósticos, medicación), no imágenes. La integración de la IA en el worklist del radiólogo sin interrumpir el flujo de trabajo solo es posible si ambos sistemas hablan DICOM.'},3:{ok:'✅ Correcto. La validación humana obligatoria en la conciliación farmacológica responde a tres imperativos simultáneos: ético (la responsabilidad del cuidado es del profesional), legal (el AI Act exige supervisión humana en sistemas de alto riesgo sanitario) y de seguridad (la IA puede cometer errores en contextos que no estaban en su conjunto de entrenamiento). Los tres imperativos convergen en la misma conclusión: la IA apoya, el profesional decide.',ko:'❌ La validación humana obligatoria no es una limitación técnica ni de eficiencia — es un imperativo ético, legal y de seguridad simultáneo. La IA puede cometer errores en casos fuera de su distribución de entrenamiento. El AI Act clasifica los sistemas de apoyo a la prescripción como alto riesgo y exige supervisión humana. Y la responsabilidad clínica recae siempre en el profesional que valida la decisión.'}};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');if(n===3){done.add(3);upd();}}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+function completar(){if(cmp)return;cmp=true;const b=document.getElementById('bcmp');b.textContent='✓ LECCIÓN COMPLETADA';b.classList.add('done');document.getElementById('cc').classList.add('show');try{window.storage.set('completada_leccion_1_11',JSON.stringify({leccion:'1.11',titulo:'Integración con HCE',fecha:new Date().toLocaleDateString('es-ES'),ts:Date.now()})).catch(()=>{});}catch(e){}}
+upd();
+</script>

@@ -1,0 +1,297 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:0}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(255,152,0,0.13);border:1px solid rgba(255,152,0,0.32);border-radius:20px;padding:4px 12px;font-size:11px;color:#FFD54F;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px;color:#fff}
+.lt span{color:#FFB300}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px;flex-wrap:wrap}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#FFB300;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:70px;font-family:var(--font-sans,sans-serif)}
+.nb.active{color:#FFB300;border-bottom-color:#FFB300;background:#0C0D12}
+.sec{display:none;padding:20px 24px}
+.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(255,152,0,0.07);border:1px solid rgba(255,152,0,0.2);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#FFD54F;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#FFB300;color:#0C0D12;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500;font-family:var(--font-sans,sans-serif)}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer;font-family:var(--font-sans,sans-serif)}
+.badge{display:inline-block;font-size:10px;font-weight:500;padding:2px 8px;border-radius:8px;margin-right:4px}
+.b-amber{background:rgba(255,152,0,.15);color:#FFD54F}
+.b-green{background:rgba(76,175,80,.15);color:#A5D6A7}
+.b-red{background:rgba(244,67,54,.15);color:#EF9A9A}
+.b-blue{background:rgba(33,150,243,.15);color:#90CAF9}
+.b-purple{background:rgba(103,58,183,.15);color:#CE93D8}
+.principio{background:#0e1018;border-radius:10px;margin-bottom:10px;overflow:hidden;border:1px solid #1e2335;cursor:pointer}
+.pr-hd{display:flex;align-items:center;gap:12px;padding:13px 16px}
+.pr-letra{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:500;flex-shrink:0}
+.pr-title{font-size:13px;font-weight:500;color:#fff;flex:1}
+.pr-body{display:none;padding:0 16px 14px 60px;font-size:12px;color:#B0BEC5;line-height:1.7}
+.pr-body.show{display:block}
+.pr-caso{background:#0C0D12;border-radius:6px;padding:10px 12px;margin-top:8px;font-size:11px;color:#E0E0E0;line-height:1.6;border-left:2px solid #FFB300}
+.sesgo-item{background:#0e1018;border-radius:10px;padding:14px 16px;margin-bottom:10px;border-left:3px solid}
+.sesgo-title{font-size:12px;font-weight:500;color:#fff;margin-bottom:5px}
+.sesgo-desc{font-size:12px;color:#B0BEC5;line-height:1.6}
+.sesgo-sol{font-size:11px;margin-top:8px;padding-top:8px;border-top:1px solid #1e2335;color:#A5D6A7}
+.norma-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.norma-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 12px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s;font-family:var(--font-sans,sans-serif)}
+.norma-tab.active{background:rgba(255,152,0,.14);border-color:#FFB300;color:#FFD54F}
+.norma-panel{display:none}
+.norma-panel.show{display:block}
+.norma-card{background:#0e1018;border-radius:10px;padding:14px 16px;margin:8px 0;border:1px solid #1e2335}
+.norma-nombre{font-size:13px;font-weight:500;color:#FFD54F;margin-bottom:8px}
+.norma-row{display:flex;gap:8px;font-size:12px;color:#E0E0E0;line-height:1.5;margin-bottom:6px;align-items:flex-start}
+.norma-lbl{font-size:10px;color:#B0BEC5;font-weight:500;min-width:80px;flex-shrink:0;margin-top:1px;text-transform:uppercase;letter-spacing:.4px}
+.qw{display:none}
+.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s;font-family:var(--font-sans,sans-serif)}
+.qopt:hover{border-color:#FFB300;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}
+.qnx.show{display:block}
+.completar-wrap{padding:20px 24px;display:none}
+.completar-wrap.show{display:block}
+.btn-completar{width:100%;padding:14px;background:transparent;border:2px solid #FFB300;border-radius:12px;color:#FFD54F;font-size:13px;font-weight:500;cursor:pointer;transition:all .3s;letter-spacing:.5px;font-family:var(--font-sans,sans-serif)}
+.btn-completar:hover{background:rgba(255,152,0,.12)}
+.btn-completar.done{background:#FFB300;color:#0C0D12;border-color:#FFB300}
+.completar-confirm{text-align:center;font-size:11px;color:#A5D6A7;margin-top:8px;display:none}
+.completar-confirm.show{display:block}
+.lf{text-align:center;font-size:10px;color:#546E7A;padding:16px 24px;border-top:1px solid #1a2a3a}
+.fl{color:#2196F3;cursor:pointer;text-decoration:underline}
+</style>
+
+<div class="lw">
+  <div class="lh">
+    <div class="lb">MÓDULO 1 · LECCIÓN 1.9</div>
+    <div class="lt">Principios éticos básicos para el <span>uso seguro de IA</span></div>
+    <div class="lm">
+      <div class="lmi"><div class="md" style="background:#FFB300"></div>57 minutos</div>
+      <div class="lmi"><div class="md" style="background:#CE93D8"></div>4 secciones</div>
+      <div class="lmi"><div class="md" style="background:#A5D6A7"></div>Bioética + RGPD + AI Act</div>
+    </div>
+  </div>
+  <div class="pbw"><div class="pbb"><div class="pbf" id="pf"></div></div><div class="pbl" id="pl">0%</div></div>
+  <div class="snav">
+    <button class="nb active" id="t0" onclick="go(0)">📖 Intro</button>
+    <button class="nb" id="t1" onclick="go(1)">⚖️ Principios</button>
+    <button class="nb" id="t2" onclick="go(2)">📋 Normativa</button>
+    <button class="nb" id="t3" onclick="go(3)">✅ Test</button>
+  </div>
+
+  <div class="sec active" id="s0">
+    <div class="card">
+      <div class="ct">Objetivo</div>
+      <div class="cb">Establecer un marco ético robusto para la implementación responsable de IA en entornos clínicos. Comprender los cuatro principios bioéticos aplicados a la IA, identificar y gestionar sesgos algorítmicos en poblaciones vulnerables, y conocer el cumplimiento normativo esencial: RGPD, Ley de IA europea y normativa sanitaria española.</div>
+    </div>
+    <div class="simil">
+      <div class="sl">Por qué la ética no es opcional</div>
+      Un sistema de IA puede ser técnicamente brillante y éticamente inaceptable. La ética en IA sanitaria no es un añadido al final del proceso — es el marco dentro del cual se diseña, implementa y evalúa cualquier herramienta. El profesional que usa IA sin este marco no protege a sus pacientes; el que lo integra genera confianza y mejora la calidad asistencial.
+    </div>
+    <div class="card">
+      <div class="ct">El triángulo ético de la IA sanitaria</div>
+      <div class="cb">
+        <strong style="color:#FFD54F">Bioética clásica:</strong> los cuatro principios de Beauchamp y Childress aplicados a la IA — beneficencia, no maleficencia, autonomía y justicia.<br><br>
+        <strong style="color:#FFD54F">Sesgos algorítmicos:</strong> cómo los datos de entrenamiento reproducen desigualdades en salud y qué puede hacer el profesional para detectarlos.<br><br>
+        <strong style="color:#FFD54F">Marco normativo:</strong> RGPD, AI Act europeo y normativa sanitaria española — qué obliga, qué prohíbe y qué exige verificación.
+      </div>
+    </div>
+    <div class="nav-actions"><span></span><button class="btn-p" onclick="go(1)">Principios →</button></div>
+  </div>
+
+  <div class="sec" id="s1">
+    <div class="card">
+      <div class="ct">Los 4 principios bioéticos aplicados a la IA — toca para desplegar</div>
+    </div>
+
+    <div class="principio" onclick="togglePr(0)">
+      <div class="pr-hd">
+        <div class="pr-letra" style="background:rgba(76,175,80,.2);color:#A5D6A7">B</div>
+        <div class="pr-title">Beneficencia — la IA debe producir beneficio real y demostrable</div>
+      </div>
+      <div class="pr-body" id="prb0">
+        La IA en sanidad solo es éticamente aceptable si genera un beneficio neto para el paciente o el sistema. No basta con que sea tecnológicamente avanzada o que ahorre tiempo al profesional — debe mejorar resultados en salud o la calidad del cuidado.
+        <div class="pr-caso">Aplicación clínica: antes de implementar una herramienta de IA en tu servicio, define qué indicador de resultado mejorará (ej. reducción de errores de medicación, mejora de adherencia al tratamiento, detección más precoz de deterioro). Si no puedes medir el beneficio, no puedes demostrar la beneficencia.</div>
+      </div>
+    </div>
+
+    <div class="principio" onclick="togglePr(1)">
+      <div class="pr-hd">
+        <div class="pr-letra" style="background:rgba(244,67,54,.2);color:#EF9A9A">NM</div>
+        <div class="pr-title">No maleficencia — primero, no dañar con la IA</div>
+      </div>
+      <div class="pr-body" id="prb1">
+        Los riesgos más documentados de daño por IA en clínica son: alucinaciones que llevan a decisiones incorrectas, sesgos que infradosifican analgésicos en grupos étnicos específicos, y automatización excesiva que desplaza la supervisión humana en momentos críticos.
+        <div class="pr-caso">Aplicación clínica: el protocolo de verificación (checklist antes de firmar un output de IA) es la implementación práctica del principio de no maleficencia. Sin supervisión humana documentada, el uso de IA en decisiones clínicas viola este principio.</div>
+      </div>
+    </div>
+
+    <div class="principio" onclick="togglePr(2)">
+      <div class="pr-hd">
+        <div class="pr-letra" style="background:rgba(33,150,243,.2);color:#90CAF9">A</div>
+        <div class="pr-title">Autonomía — el paciente tiene derecho a saber que la IA interviene</div>
+      </div>
+      <div class="pr-body" id="prb2">
+        El AI Act europeo y la ética clínica coinciden: los pacientes deben ser informados cuando una IA participa en una decisión que les afecta. No es necesario explicar el algoritmo, pero sí que se está usando apoyo de IA y que un profesional supervisa y asume la responsabilidad final.
+        <div class="pr-caso">Aplicación clínica: si usas un sistema de IA para apoyar el diagnóstico diferencial o la prescripción, el paciente tiene derecho a saberlo y a solicitar que la decisión sea revisada por un profesional sin IA si lo prefiere. Esto debe quedar reflejado en el consentimiento informado cuando el sistema de IA sea de alto riesgo según el AI Act.</div>
+      </div>
+    </div>
+
+    <div class="principio" onclick="togglePr(3)">
+      <div class="pr-hd">
+        <div class="pr-letra" style="background:rgba(255,152,0,.2);color:#FFD54F">J</div>
+        <div class="pr-title">Justicia — la IA no debe ampliar las desigualdades en salud</div>
+      </div>
+      <div class="pr-body" id="prb3">
+        Si un sistema de IA fue entrenado principalmente con datos de población blanca, de mediana edad y urbana, sus predicciones serán menos precisas para mujeres, personas mayores, poblaciones migrantes o grupos socioeconómicamente vulnerables. Esto no es un fallo técnico — es un problema de justicia distributiva.
+        <div class="pr-caso">Aplicación clínica: cuando uses un sistema de IA predictivo (ej. predictor de reingreso, calculador de riesgo cardiovascular), pregúntate: "¿En qué población fue validado este modelo? ¿Es comparable a mis pacientes?" Si no tienes esa información, aplica el resultado con mayor cautela en pacientes fuera del perfil de validación.</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <div class="ct">Sesgos algorítmicos documentados en sanidad</div>
+      <div class="cb" style="padding:0;margin-top:8px">
+        <div class="sesgo-item" style="border-color:#EF9A9A">
+          <div class="sesgo-title">Sesgo de género en dolor y analgesia</div>
+          <div class="sesgo-desc">Modelos entrenados con datos históricos reproducen el patrón documentado de infravaloración del dolor en mujeres. Un predictor de necesidad analgésica puede sistemáticamente asignar puntuaciones más bajas a pacientes femeninas.</div>
+          <div class="sesgo-sol">Mitigación: verifica si el modelo informa la distribución por sexo en su conjunto de validación. Si no lo hace, aplica juicio clínico propio para poblaciones no representadas.</div>
+        </div>
+        <div class="sesgo-item" style="border-color:#FFD54F">
+          <div class="sesgo-title">Sesgo racial en predicción de función renal</div>
+          <div class="sesgo-desc">La fórmula CKD-EPI clásica incluía un factor corrector para pacientes de raza negra que sobreestimaba la función renal, llevando a infratratamiento. Un sesgo presente en los datos de entrenamiento se perpetúa en el modelo.</div>
+          <div class="sesgo-sol">Mitigación: usa la versión 2021 de CKD-EPI (sin corrector racial). Cuando el modelo no tiene versión revisada, aplica precaución adicional en poblaciones fuera del perfil de validación original.</div>
+        </div>
+        <div class="sesgo-item" style="border-color:#90CAF9">
+          <div class="sesgo-title">Sesgo de edad en modelos de deterioro</div>
+          <div class="sesgo-desc">Los modelos predictivos de deterioro en UCI entrenados con adultos de mediana edad tienen peor rendimiento en pacientes geriátricos, donde la presentación clínica del deterioro es más atípica y los biomarcadores tienen umbrales diferentes.</div>
+          <div class="sesgo-sol">Mitigación: verifica el rango de edad del conjunto de validación del modelo. Para pacientes muy mayores o muy jóvenes, el score de IA es orientativo, no decisorio.</div>
+        </div>
+      </div>
+    </div>
+    <div class="nav-actions"><button class="btn-s" onclick="go(0)">← Atrás</button><button class="btn-p" onclick="go(2)">Normativa →</button></div>
+  </div>
+
+  <div class="sec" id="s2">
+    <div class="card">
+      <div class="ct">Marco normativo — selecciona la norma</div>
+    </div>
+    <div class="norma-tabs">
+      <div class="norma-tab active" onclick="showNorma(this,0)">RGPD</div>
+      <div class="norma-tab" onclick="showNorma(this,1)">AI Act UE</div>
+      <div class="norma-tab" onclick="showNorma(this,2)">Normativa sanitaria ES</div>
+    </div>
+
+    <div class="norma-panel show" id="np0">
+      <div class="norma-card">
+        <div class="norma-nombre">RGPD — Reglamento General de Protección de Datos (UE 2016/679)</div>
+        <div class="norma-row"><div class="norma-lbl">Qué protege</div><div>Los datos de salud como "categoría especial" (Art. 9). Su tratamiento está prohibido salvo excepciones expresas, siendo la más habitual en clínica la asistencia sanitaria directa (Art. 9.2.h).</div></div>
+        <div class="norma-row"><div class="norma-lbl">Obliga a</div><div>Firmar DPA (Data Processing Agreement) con cualquier herramienta IA externa que procese datos de pacientes. Realizar EIPD (Evaluación de Impacto) cuando el tratamiento sea a gran escala o de alto riesgo.</div></div>
+        <div class="norma-row"><div class="norma-lbl">Prohíbe</div><div>Introducir datos identificativos de pacientes en herramientas IA sin DPA firmado. Decisiones automatizadas que afecten significativamente al paciente sin revisión humana (Art. 22).</div></div>
+        <div class="norma-row"><div class="norma-lbl">Regla práctica</div><div>Antes de usar cualquier herramienta IA con datos de pacientes: ¿tiene DPA firmado con mi centro? Si la respuesta es no o "no sé", solo datos anonimizados.</div></div>
+      </div>
+    </div>
+
+    <div class="norma-panel" id="np1">
+      <div class="norma-card">
+        <div class="norma-nombre">AI Act — Reglamento Europeo de Inteligencia Artificial (2024/1689)</div>
+        <div class="norma-row"><div class="norma-lbl">Clasificación</div><div>Los sistemas de IA en sanidad que apoyan diagnóstico, tratamiento o monitorización son <strong style="color:#EF9A9A">alto riesgo</strong> (Anexo III). Las IAs conversacionales de propósito general (Claude, ChatGPT) no son alto riesgo por sí mismas — el riesgo lo determina el uso clínico.</div></div>
+        <div class="norma-row"><div class="norma-lbl">Obliga a</div><div>Supervisión humana obligatoria de cada decisión asistida. Registro en base de datos europea de IA. Documentación técnica y trazabilidad de decisiones. Información al paciente cuando aplique.</div></div>
+        <div class="norma-row"><div class="norma-lbl">Cronograma</div><div>Vigente desde agosto 2024. Prohibiciones absolutas: febrero 2025. Alto riesgo en salud: agosto 2026. Aplicación plena: agosto 2027.</div></div>
+        <div class="norma-row"><div class="norma-lbl">Para el profesional</div><div>Si usas una IA como herramienta de apoyo a la decisión clínica real (no solo formativa), debes documentar la supervisión humana. La responsabilidad del profesional no se delega al sistema.</div></div>
+      </div>
+    </div>
+
+    <div class="norma-panel" id="np2">
+      <div class="norma-card">
+        <div class="norma-nombre">Normativa sanitaria española relevante</div>
+        <div class="norma-row"><div class="norma-lbl">Ley 41/2002</div><div>Autonomía del paciente: cualquier informe generado con IA que se incorpore a la HCE tiene el mismo estatus legal que cualquier documento clínico. El profesional que lo firma asume la responsabilidad de su contenido.</div></div>
+        <div class="norma-row"><div class="norma-lbl">LOPDGDD 3/2018</div><div>Adapta el RGPD al ordenamiento español. Investigación con datos de salud requiere EIPD. El SSPA, como responsable del tratamiento, exige DPA a cualquier herramienta IA externa.</div></div>
+        <div class="norma-row"><div class="norma-lbl">RD 1090/2015</div><div>Regula los ensayos clínicos. Si usas IA para análisis de datos de investigación clínica, la metodología debe estar especificada en el protocolo aprobado por el CEI.</div></div>
+        <div class="norma-row"><div class="norma-lbl">ACSA</div><div>El programa de acreditación hospitalaria del SSPA incorpora criterios de gobernanza de herramientas digitales. La evaluación de IA clínica empieza a ser parte del proceso de acreditación.</div></div>
+      </div>
+    </div>
+    <div class="nav-actions"><button class="btn-s" onclick="go(1)">← Principios</button><button class="btn-p" onclick="go(3)">Test →</button></div>
+  </div>
+
+  <div class="sec" id="s3">
+    <div class="qw active" id="q1w">
+      <div class="qnum">Pregunta 1 de 3</div>
+      <div class="qtxt">Un hospital implanta un sistema de IA para predicción de reingreso a 30 días. El modelo fue validado en una cohorte de EE.UU. compuesta en un 78% por pacientes blancos de entre 45 y 70 años. ¿Qué principio bioético alerta sobre el uso de este modelo en pacientes geriátricos y migrantes del SSPA?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,1)">Beneficencia — el modelo no genera beneficio demostrable</button>
+        <button class="qopt" onclick="ans(this,false,1)">No maleficencia — el modelo producirá errores en todos los pacientes</button>
+        <button class="qopt" onclick="ans(this,true,1)">Justicia — el modelo puede ser menos preciso en poblaciones no representadas en el conjunto de validación, amplificando desigualdades en salud</button>
+        <button class="qopt" onclick="ans(this,false,1)">Autonomía — los pacientes no han dado consentimiento para el uso del modelo</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+      <div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div>
+    </div>
+    <div class="qw" id="q2w">
+      <div class="qnum">Pregunta 2 de 3</div>
+      <div class="qtxt">Una médica de urgencias usa Claude para generar el diagnóstico diferencial de un caso complejo. Antes de ver al paciente, lanza el prompt y obtiene la respuesta. ¿Qué principio está en riesgo si actúa directamente sobre esa respuesta sin evaluación clínica previa?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,2)">Justicia — no todos los pacientes tienen acceso a IA en urgencias</button>
+        <button class="qopt" onclick="ans(this,false,2)">Autonomía — el paciente no sabe que se usó IA</button>
+        <button class="qopt" onclick="ans(this,true,2)">No maleficencia — actuar sobre un output de IA sin supervisión clínica previa elimina la barrera de seguridad que previene daños por alucinaciones o errores del modelo</button>
+        <button class="qopt" onclick="ans(this,false,2)">Beneficencia — la IA no genera beneficio si se usa antes de la evaluación</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+      <div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div>
+    </div>
+    <div class="qw" id="q3w">
+      <div class="qnum">Pregunta 3 de 3</div>
+      <div class="qtxt">Según el AI Act, un sistema de IA que analiza imágenes de TAC para detectar nódulos pulmonares y genera un informe de apoyo diagnóstico, ¿qué clasificación recibe y qué implica para su uso en el SSPA?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,3)">Riesgo mínimo — es una herramienta de apoyo que no toma decisiones autónomas</button>
+        <button class="qopt" onclick="ans(this,false,3)">Riesgo limitado — solo requiere que el paciente sepa que existe</button>
+        <button class="qopt" onclick="ans(this,true,3)">Alto riesgo — requiere supervisión humana obligatoria, registro europeo, documentación técnica y trazabilidad de cada decisión asistida</button>
+        <button class="qopt" onclick="ans(this,false,3)">Inaceptable — los sistemas de diagnóstico por imagen están prohibidos por el AI Act</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+      <div class="qnx" id="nx3">
+        <div style="background:rgba(255,152,0,.09);border:1px solid rgba(255,152,0,.25);border-radius:10px;padding:16px;margin-top:8px">
+          <div style="font-size:13px;font-weight:500;color:#FFD54F;margin-bottom:6px">Lección 1.9 completada</div>
+          <div style="font-size:12px;color:#B0BEC5;line-height:1.6">Ya tienes el marco ético y normativo completo. La lección <strong style="color:#fff">1.10</strong> aterriza todo en casos reales: <strong style="color:#fff">éxitos y lecciones aprendidas de implementaciones de IA en hospitales españoles e internacionales</strong>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="completar-wrap" id="cw">
+    <button class="btn-completar" id="bcmp" onclick="completar()">MARCAR LECCIÓN COMO COMPLETADA</button>
+    <div class="completar-confirm" id="cc">✓ Lección 1.9 registrada · DoncelProject</div>
+  </div>
+  <div class="lf">
+    <span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span>
+    <span> · Desarrollado por DoncelProject · doncel.project@gmail.com</span>
+  </div>
+</div>
+<script>
+let done=new Set([0]),cmp=false;
+function upd(){const p=Math.round((done.size/4)*100);document.getElementById('pf').style.width=p+'%';document.getElementById('pl').textContent=p+'%';if(done.size>=4)document.getElementById('cw').classList.add('show');}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function togglePr(i){const b=document.getElementById('prb'+i),open=b.classList.contains('show');document.querySelectorAll('.pr-body').forEach(x=>x.classList.remove('show'));if(!open)b.classList.add('show');}
+function showNorma(el,i){document.querySelectorAll('.norma-tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.norma-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById('np'+i).classList.add('show');}
+const fbs={1:{ok:'✅ Correcto. El principio de justicia exige que la IA no amplíe las desigualdades existentes. Un modelo validado en una población no representativa de los pacientes del SSPA (mayoría de edad avanzada, alta diversidad étnica y socioeconómica) puede ser sistemáticamente menos preciso en esos grupos, reproduciendo y amplificando las inequidades en salud que ya existen.',ko:'❌ El principio relevante es la justicia. No se trata de que el modelo "no funcione para nadie" (no maleficencia) ni de que no genere beneficio en absoluto (beneficencia) — sino de que puede funcionar peor específicamente para las poblaciones más vulnerables, que son precisamente quienes más necesitan una atención equitativa.'},2:{ok:'✅ Correcto. El principio de no maleficencia exige que la IA no cause daño. Actuar directamente sobre un output de IA sin evaluación clínica previa elimina la barrera de seguridad esencial: la supervisión humana experta que detecta alucinaciones, sesgos o errores del modelo antes de que se traduzcan en una decisión clínica incorrecta.',ko:'❌ El principio en riesgo es la no maleficencia. La IA puede alucinar o cometer errores sin advertirlo. La evaluación clínica directa del paciente debe preceder siempre al uso del output de IA como orientación — no al revés. Sin esa secuencia, se elimina la protección que previene daños.'},3:{ok:'✅ Correcto. El AI Act clasifica los sistemas de IA que apoyan decisiones diagnósticas como alto riesgo (Anexo III). Esto implica cuatro obligaciones operativas: supervisión humana obligatoria de cada informe generado, registro en la base de datos europea de IA, documentación técnica completa del sistema y trazabilidad de todas las decisiones asistidas. No están prohibidos — están regulados.',ko:'❌ Los sistemas de diagnóstico por imagen con IA no están prohibidos — están clasificados como alto riesgo. La diferencia es crucial: alto riesgo significa que pueden usarse, pero con requisitos estrictos: supervisión humana, registro europeo, documentación técnica y trazabilidad. El riesgo mínimo o limitado se aplica a usos sin impacto en decisiones clínicas directas.'}};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');if(n===3){done.add(3);upd();}}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+function completar(){if(cmp)return;cmp=true;const b=document.getElementById('bcmp');b.textContent='✓ LECCIÓN COMPLETADA';b.classList.add('done');document.getElementById('cc').classList.add('show');try{window.storage.set('completada_leccion_1_9',JSON.stringify({leccion:'1.9',titulo:'Principios éticos básicos',fecha:new Date().toLocaleDateString('es-ES'),ts:Date.now()})).catch(()=>{});}catch(e){}}
+upd();
+</script>

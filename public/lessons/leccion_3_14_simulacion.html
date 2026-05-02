@@ -1,0 +1,316 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:32px}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(0,184,212,.15);border:1px solid rgba(0,184,212,.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#80DEEA;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px}.lt span{color:#00B8D4}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px;flex-wrap:wrap}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#00B8D4;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:80px}
+.nb.active{color:#00B8D4;border-bottom-color:#00B8D4;background:#0C0D12}
+.sec{display:none;padding:20px 24px}.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(0,184,212,.08);border:1px solid rgba(0,184,212,.22);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#80DEEA;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#00B8D4;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer}
+.tec-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.tec-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 14px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s}
+.tec-tab.active{background:rgba(0,184,212,.15);border-color:#00B8D4;color:#80DEEA}
+.tec-panel{display:none}.tec-panel.show{display:block}
+.prompt-box{background:#0e1018;border:1px solid #1e2335;border-radius:10px;padding:14px;margin:10px 0}
+.prompt-label{font-size:10px;color:#80DEEA;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}
+.prompt-text{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.prompt-why{font-size:11px;color:#B0BEC5;line-height:1.6;margin-top:10px;padding-top:10px;border-top:1px solid #1e2335}
+.limit-item{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #1a2a3a}
+.limit-item:last-child{border-bottom:none}
+.li-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.li-title{font-size:12px;font-weight:600;color:#fff;margin-bottom:3px}
+.li-desc{font-size:11px;color:#B0BEC5;line-height:1.6}
+.flow-box{background:#0C0D12;border-radius:8px;padding:12px 14px;margin:10px 0;font-family:monospace;font-size:11px;color:#80DEEA;line-height:1.9;white-space:pre-wrap;word-break:break-word;border-left:2px solid #00B8D4}
+.concepto-final{background:rgba(0,184,212,.06);border:1px solid rgba(0,184,212,.18);border-radius:12px;padding:18px 20px;margin:14px 0}
+.cf-titulo{font-size:13px;font-weight:600;color:#00B8D4;margin-bottom:8px}
+.cf-cuerpo{font-size:12px;color:#E0E0E0;line-height:1.8}
+.resumen-modulo{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:20px;margin:14px 0}
+.rm-titulo{font-size:14px;font-weight:700;color:#fff;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #1e2335}
+.rm-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #1a2a3a}
+.rm-item:last-child{border-bottom:none}
+.rm-num{background:rgba(0,184,212,.2);color:#80DEEA;font-size:10px;font-weight:700;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.rm-text{font-size:11px;color:#E0E0E0;line-height:1.6}
+.rm-badge{font-size:10px;color:#546E7A;margin-top:2px}
+.alerta{border-radius:10px;padding:12px 14px;margin:12px 0;font-size:12px;line-height:1.6}
+.ao{background:rgba(76,175,80,.07);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.aw{background:rgba(255,152,0,.07);border:1px solid rgba(255,152,0,.22);color:#FFD54F}
+.alt{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px}
+.qw{display:none}.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s}
+.qopt:hover{border-color:#00B8D4;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}.qnx.show{display:block}
+.complete-btn{width:100%;background:linear-gradient(135deg,#00B8D4,#0097A7);color:#fff;border:none;border-radius:10px;padding:14px 20px;font-size:13px;font-weight:600;cursor:pointer;margin-top:16px;letter-spacing:.3px;transition:opacity .2s}
+.complete-btn:hover{opacity:.9}.complete-btn:disabled{opacity:.5;cursor:not-allowed}
+.modulo-complete{background:linear-gradient(135deg,rgba(0,184,212,.15),rgba(0,151,167,.1));border:1px solid rgba(0,184,212,.35);border-radius:14px;padding:24px;margin-top:20px;text-align:center}
+.mc-titulo{font-size:18px;font-weight:700;color:#00B8D4;margin-bottom:8px}
+.mc-sub{font-size:12px;color:#B0BEC5;line-height:1.7}
+.lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a}
+.fl{color:#00B8D4;cursor:pointer;text-decoration:underline}
+</style>
+<div class="lw">
+<div class="lh"><div class="lb">MÓDULO 3 · LECCIÓN 3.14 · FINAL</div><div class="lt">Simulación de flujos clínico-asistenciales:<br><span>validar y optimizar procesos antes de la implementación real</span></div><div class="lm"><div class="lmi"><div class="md" style="background:#00B8D4"></div>70 minutos</div><div class="lmi"><div class="md" style="background:#FFB300"></div>Síntesis del módulo</div><div class="lmi"><div class="md" style="background:#A5D6A7"></div>Proyecto integrador</div></div></div>
+<div class="pbw"><div class="pbb"><div class="pbf" id="pbf314"></div></div><div class="pbl" id="pbl314">0%</div></div>
+<div class="snav"><button class="nb active" id="t1" onclick="go(1)">Por qué simular primero</button><button class="nb" id="t2" onclick="go(2)">Técnicas de simulación</button><button class="nb" id="t3" onclick="go(3)">Proyecto integrador</button><button class="nb" id="t4" onclick="go(4)">Síntesis del Módulo 3</button><button class="nb" id="t5" onclick="go(5)">Test final</button></div>
+
+<div class="sec active" id="s1">
+<div class="card"><div class="ct">Objetivo de la lección</div><div class="cb">Aprender a simular flujos clínico-asistenciales antes de implementarlos — usando herramientas de modelado de procesos, datos sintéticos y revisión con los usuarios finales — para detectar fallos, cuellos de botella y problemas de diseño antes de que afecten a pacientes o profesionales en producción.</div></div>
+<div class="simil"><div class="sl">✈️ Analogía clínica</div>Los pilotos comerciales simulan cada escenario de emergencia en el simulador de vuelo antes de enfrentarlo en el aire. Los cirujanos ensayan procedimientos nuevos en modelos anatómicos o cadáveres antes de operar al primer paciente real. La simulación de flujos de automatización es exactamente esto: el simulador de vuelo de tus procesos clínicos digitales. Descubrir que el flujo de alertas de valores críticos tiene un fallo en la rama de escalado — en el simulador — tarda 30 minutos y no afecta a nadie. Descubrirlo en producción puede tardar días y puede tener consecuencias.</div>
+<div class="card"><div class="ct">Los tres tipos de error que solo detecta la simulación</div></div>
+<div class="limit-item"><div class="li-icon">🔍</div><div class="li-body"><div class="li-title">Error tipo 1: Supuestos incorrectos sobre el proceso real</div><div class="li-desc">El diseño del flujo se basa en cómo crees que funciona el proceso. La simulación con los usuarios reales revela cómo funciona realmente — incluyendo las excepciones informales que nadie documentó. Ejemplo: el flujo asume que todas las citas tienen número de teléfono del paciente, pero en la simulación con datos reales se descubre que el 12% no lo tienen.</div></div></div>
+<div class="limit-item"><div class="li-icon">🌊</div><div class="li-body"><div class="li-title">Error tipo 2: Cuellos de botella bajo carga real</div><div class="li-desc">El flujo funciona perfectamente con 10 registros de prueba. Cuando procesa los 380 pacientes del lunes, el paso que llama a la API del HIS excede el rate limit y empieza a fallar. La simulación con volumen real — o extrapolación calculada — detecta estos límites de escala antes del despliegue.</div></div></div>
+<div class="limit-item"><div class="li-icon">👥</div><div class="li-body"><div class="li-title">Error tipo 3: Comportamiento inesperado del usuario final</div><div class="li-desc">El flujo envía un WhatsApp con botones de «Confirmar» y «Cancelar». En la simulación con pacientes reales del perfil demográfico del servicio, el 40% no responde a los botones y el 25% llama al teléfono del hospital en lugar de responder por WhatsApp. El diseño del flujo asumía tasas de respuesta digital que no se cumplen en este perfil.</div></div></div>
+<div class="nav-actions"><div></div><button class="btn-p" onclick="go(2)">Técnicas de simulación →</button></div>
+</div>
+
+<div class="sec" id="s2">
+<div class="card"><div class="ct">Técnicas de simulación aplicadas a flujos clínicos</div><div class="cb">Cuatro técnicas que pueden usarse de forma progresiva — de menor a mayor fidelidad y coste — para validar un flujo antes de desplegarlo en producción.</div></div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'sim-papel')">📋 Walkthrough con papel</button><button class="tec-tab" onclick="showTab(this,'sim-datos')">💾 Datos sintéticos</button><button class="tec-tab" onclick="showTab(this,'sim-piloto')">👥 Piloto controlado</button><button class="tec-tab" onclick="showTab(this,'sim-ia')">🤖 IA como simulador</button></div>
+<div class="tec-panel show" id="sim-papel">
+<div class="card"><div class="ct">Técnica 1: Walkthrough con papel (desk check)</div><div class="cb">La más rápida y barata. El equipo se reúne y recorre el flujo paso a paso sobre papel o pizarra, con datos inventados representativos. Detecta errores de lógica y supuestos incorrectos sin necesidad de configurar nada técnico.</div></div>
+<div class="flow-box">PROTOCOLO DE WALKTHROUGH:
+
+PARTICIPANTES: Diseñador del flujo + usuario final que ejecutará el proceso actual
+               + (opcional) TIC + responsable de calidad
+
+MATERIALES: Diagrama del flujo en papel grande / pizarra / Miro
+            Datos de ejemplo representativos (5-10 casos distintos)
+
+PROCESO (2-3 horas):
+1. El diseñador explica el flujo paso a paso
+2. Por cada paso: el usuario final dice qué ocurre realmente en su práctica
+   → Preguntas clave: "¿Siempre es así?" "¿Qué pasa cuando...?" "¿Quién lo hace?"
+3. Anotar todas las discrepancias entre el flujo diseñado y la realidad
+4. Para cada caso de datos de ejemplo: seguir el flujo mentalmente
+   → ¿Llega al final correctamente? ¿Hay bifurcaciones no consideradas?
+5. Identificar las 3-5 correcciones más importantes antes de implementar
+
+REGLA DE ORO: Cualquier cosa que el usuario final dice "ah, pero a veces también..."
+es un caso de excepción que el flujo debe manejar. Documenar todos.</div>
+<div class="prompt-box">
+<div class="prompt-label">Prompt: preparar el walkthrough del flujo con el equipo</div>
+<div class="prompt-text">Voy a hacer un walkthrough de validación del siguiente flujo de automatización con el equipo clínico antes de implementarlo:
+
+[DESCRIPCIÓN DEL FLUJO: trigger, pasos, condiciones, acciones, manejo de errores]
+
+El flujo se aplicará en el contexto de: [servicio, tipo de pacientes, volumen]
+
+Prepara para el walkthrough:
+1. Lista de preguntas específicas para hacerle al usuario final en cada paso del flujo
+   (qué excepciones pueden ocurrir, qué datos pueden faltar, quién hace qué)
+2. Los 10 casos de datos de ejemplo más representativos y más desafiantes que debo
+   recorrer manualmente (incluyendo 3 casos límite y 2 casos de excepción)
+3. La lista de supuestos del diseño que tengo que verificar explícitamente con el usuario
+4. Las métricas de éxito del walkthrough: ¿cómo sé si el flujo está listo para el siguiente nivel?
+5. Un formulario de recogida de incidencias durante el walkthrough</div>
+<div class="prompt-why">Un walkthrough sin preparación es una conversación informal. Con esta preparación, el walkthrough es un proceso de validación estructurado que garantiza que se detectan las excepciones antes de implementar. El formulario de recogida de incidencias convierte las observaciones en elementos de backlog con prioridad.</div>
+</div>
+</div>
+<div class="tec-panel" id="sim-datos">
+<div class="card"><div class="ct">Técnica 2: Prueba con datos sintéticos realistas</div><div class="cb">Implementar el flujo en el entorno de pruebas y ejecutarlo con datos sintéticos que replican fielmente la variabilidad real de los datos del servicio. Más costoso que el walkthrough pero detecta problemas técnicos reales.</div></div>
+<div class="flow-box">GENERACIÓN DE DATASET SINTÉTICO PARA PRUEBAS:
+
+Características del dataset ideal:
+→ Mismo formato exacto que los datos reales (mismas columnas, mismos tipos)
+→ Volumen representativo (al menos el 10% del volumen real máximo esperado)
+→ Casos normales: 60-70% del dataset
+→ Casos límite: 15% (valores en el umbral de las condiciones del flujo)
+→ Casos de error conocidos: 15% (campos vacíos, formatos incorrectos, valores imposibles)
+→ Sin datos reales de pacientes — completamente sintético
+
+Prompt para generar el dataset:
+"Genera un dataset de [N] filas en formato CSV con estas columnas: [lista de columnas].
+El dataset simula [descripción del proceso]. Incluye:
+- 70% de casos estándar con valores normales
+- 15% de casos límite: [describir casos límite específicos]
+- 10% de casos con datos faltantes (campos vacíos en las columnas críticas)
+- 5% de casos con datos malformados (teléfonos incorrectos, fechas inválidas, etc.)
+Los valores deben ser plausibles pero completamente ficticios (sin datos reales)."</div>
+<div class="prompt-box">
+<div class="prompt-label">Prompt: generar datos sintéticos para prueba de flujo</div>
+<div class="prompt-text">Necesito generar un dataset sintético para probar el flujo de [DESCRIPCIÓN DEL FLUJO] en el entorno de pruebas.
+
+El dataset debe simular los datos de [N] pacientes/registros del Servicio de [ESPECIALIDAD].
+
+Estructura del dataset (columnas y tipos de dato):
+[LISTA DE COLUMNAS: nombre, tipo, formato, valores posibles o rango]
+
+Reglas de generación:
+- Los nombres deben ser completamente ficticios (no usar nombres reales)
+- Los teléfonos deben ser ficticios pero válidos en formato (+34 6XX XXX XXX)
+- Las fechas deben ser coherentes entre sí (alta posterior a ingreso, etc.)
+- El 70% debe ser casos estándar sin problemas
+
+Genera también estos casos de prueba específicos:
+1. [Caso 1: descripción del caso límite o de excepción a probar]
+2. [Caso 2: ...]
+3. [Caso 3: dato faltante en campo crítico]
+4. [Caso 4: dato con formato incorrecto]
+5. [Caso 5: valor en exactamente el umbral de la condición del flujo]
+
+Formato de salida: CSV con headers en la primera fila.</div>
+<div class="prompt-why">Los datos sintéticos bien diseñados son el equivalente clínico de las vignettes de examen: casos representativos que cubren el espacio de posibilidades de forma sistemática. La clave está en incluir deliberadamente los casos problemáticos — no solo los que funcionan bien.</div>
+</div>
+</div>
+<div class="tec-panel" id="sim-piloto">
+<div class="card"><div class="ct">Técnica 3: Piloto controlado con usuarios reales</div><div class="cb">Desplegar el flujo en producción pero limitado a un subconjunto controlado: un servicio, un médico, una semana, un tipo de paciente. Detecta los problemas que ni el walkthrough ni los datos sintéticos pueden encontrar — el comportamiento humano real en condiciones reales.</div></div>
+<div class="limit-item"><div class="li-icon">✅</div><div class="li-body"><div class="li-title">Criterios de selección del piloto</div><div class="li-desc">Elegir un contexto donde el fallo tiene impacto limitado y hay capacidad de monitorización intensa. Ideal: un servicio pequeño, con un médico entusiasta y disponible para dar feedback, con pacientes que no son los más vulnerables del hospital, y en un período sin picos de actividad (no en agosto ni en enero).</div></div></div>
+<div class="limit-item"><div class="li-icon">📊</div><div class="li-body"><div class="li-title">Qué monitorizar intensamente durante el piloto</div><div class="li-desc">Tasa de respuesta de los pacientes (¿contestaron al SMS/WhatsApp?). Errores técnicos del flujo (frecuencia y tipo). Comportamientos no previstos de los usuarios (llamadas al hospital en lugar de responder, respuestas en formatos inesperados). Feedback activo del personal que interactúa con el flujo. Comparación con el proceso manual paralelo (¿el flujo hizo lo mismo que hubiese hecho el humano?).</div></div></div>
+<div class="limit-item"><div class="li-icon">🔄</div><div class="li-body"><div class="li-title">Proceso de iteración rápida</div><div class="li-desc">Durante el piloto, habilitar un canal de feedback rápido (un grupo de WhatsApp o Teams del equipo piloto) donde cualquier miembro puede reportar un comportamiento inesperado del flujo en tiempo real. El responsable del ecosistema corrige en el mismo día si es un problema menor, o pausa el flujo si es un problema mayor.</div></div></div>
+</div>
+<div class="tec-panel" id="sim-ia">
+<div class="card"><div class="ct">Técnica 4: IA como simulador de escenarios clínicos</div><div class="cb">La IA puede actuar como simulador de los distintos actores del proceso (paciente, médico, enfermería) para probar el comportamiento del flujo ante múltiples escenarios sin necesidad de usuarios reales ni datos reales.</div></div>
+<div class="prompt-box">
+<div class="prompt-label">Prompt: simular el comportamiento del paciente ante el flujo de comunicación</div>
+<div class="prompt-text">Actúa como un paciente crónico de 72 años con insuficiencia cardíaca, viudo, que vive solo y tiene dificultades moderadas con la tecnología. Tiene un smartphone básico de Android y usa principalmente WhatsApp para comunicarse con su familia.
+
+Recibes el siguiente mensaje de WhatsApp de tu hospital:
+[PEGAR EL MENSAJE QUE ENVIARÍA EL FLUJO AUTOMATIZADO]
+
+Responde como este paciente respondería realmente. Considera:
+- ¿Entiende el mensaje claramente?
+- ¿Puede completar la acción que le pide (clic en botón, responder SI/NO, completar el formulario)?
+- ¿Qué dudas o confusiones podría tener?
+- ¿Respondería por WhatsApp o llamaría al hospital?
+- ¿Completaría el cuestionario de 5 preguntas o lo abandonaría a la mitad?
+
+Después de la simulación de respuesta: analiza qué cambios en el mensaje o en el flujo mejorarían la tasa de completación para este perfil de paciente.</div>
+<div class="prompt-why">El mayor riesgo de los flujos de comunicación con pacientes es diseñarlos pensando en usuarios técnicamente competentes. Este prompt simula el perfil real del paciente más difícil — mayor, solo, con dificultades tecnológicas — que es exactamente quien más necesita el seguimiento y quien más probabilidades tiene de no completarlo sin un diseño cuidadoso.</div>
+</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(1)">← Por qué simular</button><button class="btn-p" onclick="go(3)">Proyecto integrador →</button></div>
+</div>
+
+<div class="sec" id="s3">
+<div class="card"><div class="ct">Proyecto integrador: diseña tu primera automatización real</div><div class="cb">Esta es la lección más importante del módulo. En lugar de otro flujo didáctico, la lección 3.14 te pide que diseñes la automatización real que vas a implementar en tu servicio en las próximas semanas. El proyecto integrador aplica todo lo aprendido en las lecciones 3.1-3.13.</div></div>
+<div class="concepto-final">
+<div class="cf-titulo">🎯 Las 7 fases del proyecto integrador</div>
+<div class="cf-cuerpo">
+<strong>Fase 1 — Selección del proceso</strong><br>
+Elige el proceso de tu servicio con mayor potencial de automatización. Criterios: alto volumen (>20 veces/semana), bajo valor añadido del trabajo humano en él, datos disponibles digitalmente, impacto positivo en el profesional o en el paciente.<br><br>
+<strong>Fase 2 — Análisis as-is</strong><br>
+Documenta el proceso exactamente como se realiza hoy, incluyendo las excepciones. Entrevista a quien lo hace. Identifica los cuellos de botella y los errores más frecuentes.<br><br>
+<strong>Fase 3 — Diseño to-be</strong><br>
+Diseña el proceso mejorado. Elimina pasos sin valor antes de automatizar. Define todas las reglas de decisión explícitamente (si esto → entonces aquello).<br><br>
+<strong>Fase 4 — Selección de herramientas</strong><br>
+Aplica el árbol de decisión de la lección 3.2: ¿qué plataforma? ¿Qué integraciones necesita? ¿Qué datos procesa? ¿Qué cumplimiento RGPD/ENS requiere?<br><br>
+<strong>Fase 5 — Simulación antes de implementar</strong><br>
+Walkthrough con el equipo + datos sintéticos. Corrige los problemas detectados antes de construir el flujo real.<br><br>
+<strong>Fase 6 — Implementación y piloto</strong><br>
+Construir el flujo según las fases 3.3. Piloto controlado con subconjunto. Iterar.<br><br>
+<strong>Fase 7 — Despliegue y monitorización</strong><br>
+Despliegue completo según la arquitectura de 3.13. Dashboard de salud del flujo. Revisión mensual.
+</div>
+</div>
+<div class="prompt-box">
+<div class="prompt-label">Prompt maestro: diseñar el proyecto integrador completo</div>
+<div class="prompt-text">Soy [ROL] en el Servicio de [ESPECIALIDAD] del [NOMBRE HOSPITAL], un hospital del [SNS / privado] con [N] camas.
+
+He completado el Módulo 3 de formación en automatización clínica y quiero implementar mi primera automatización real.
+
+El proceso que quiero automatizar:
+- Nombre del proceso: [descripción breve]
+- Frecuencia: [cuántas veces por semana/mes]
+- Personas que lo ejecutan actualmente: [perfiles y tiempo dedicado]
+- Sistemas implicados: [HIS, Google Sheets, email, SMS, otros]
+- Problema principal que quiero resolver: [descripción del dolor]
+
+Ayúdame a completar las 7 fases del proyecto integrador:
+
+FASE 1: ¿Es este proceso el más adecuado para empezar? ¿Hay otro más accesible con mayor impacto?
+
+FASE 2: ¿Qué preguntas debo hacerle al equipo para documentar el proceso as-is completo, incluyendo las excepciones?
+
+FASE 3: Diseña el proceso to-be con el flujo lógico completo (trigger, pasos, condiciones, acciones, manejo de errores, trazabilidad)
+
+FASE 4: ¿Qué plataforma recomiendas (Zapier/Make/n8n) y por qué para este caso específico?
+
+FASE 5: Genera los 10 casos de prueba para el walkthrough de validación
+
+FASE 6: Plan de implementación en 4 semanas (qué implementar en cada semana)
+
+FASE 7: KPIs para medir que la automatización está generando valor (indicadores de éxito a 30, 60 y 90 días)</div>
+<div class="prompt-why">Este es el prompt que convierte la formación en implementación. No lo uses para generar un proyecto genérico — usa los datos reales de tu servicio, tu hospital, y el proceso que genuinamente quieres automatizar. El output es tu hoja de ruta real para las próximas semanas.</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(2)">← Técnicas de simulación</button><button class="btn-p" onclick="go(4)">Síntesis del Módulo 3 →</button></div>
+</div>
+
+<div class="sec" id="s4">
+<div class="resumen-modulo">
+<div class="rm-titulo">📚 Módulo 3 completo — Lo que has aprendido</div>
+<div class="rm-item"><div class="rm-num">1</div><div><div class="rm-text"><strong>Lección 3.1</strong> — Mapeo de procesos y matriz esfuerzo-impacto: cómo identificar las automatizaciones con mayor ROI en tu servicio</div><div class="rm-badge">Fundamentos</div></div></div>
+<div class="rm-item"><div class="rm-num">2</div><div><div class="rm-text"><strong>Lección 3.2</strong> — Zapier, Make y n8n: árbol de decisión para elegir la plataforma correcta según contexto, datos y presupuesto</div><div class="rm-badge">Herramientas</div></div></div>
+<div class="rm-item"><div class="rm-num">3</div><div><div class="rm-text"><strong>Lección 3.3</strong> — Metodología 6 fases y anatomía de flujos: triggers, acciones, filtros, manejo de errores y 3 flujos clínicos completos</div><div class="rm-badge">Metodología</div></div></div>
+<div class="rm-item"><div class="rm-num">4</div><div><div class="rm-text"><strong>Lección 3.4</strong> — Comunicación multicanal: recordatorios SMS/WA/email, interconsultas automáticas y listas de espera</div><div class="rm-badge">Comunicación</div></div></div>
+<div class="rm-item"><div class="rm-num">5</div><div><div class="rm-text"><strong>Lección 3.5</strong> — Pipeline RGPD-compliant de anonimización + traducción médica: los datos identificativos nunca salen del hospital</div><div class="rm-badge">RGPD · Documentación</div></div></div>
+<div class="rm-item"><div class="rm-num">6</div><div><div class="rm-text"><strong>Lección 3.6</strong> — PubMed API, ClinicalTrials y Cochrane RSS: vigilancia bibliográfica automatizada con filtrado por IA</div><div class="rm-badge">Evidencia científica</div></div></div>
+<div class="rm-item"><div class="rm-num">7</div><div><div class="rm-text"><strong>Lección 3.7</strong> — Dashboards en Looker Studio y Power BI: KPIs clínicos con semáforo automático y alertas en tiempo real</div><div class="rm-badge">Visualización</div></div></div>
+<div class="rm-item"><div class="rm-num">8</div><div><div class="rm-text"><strong>Lección 3.8</strong> — Encuestas PRO automatizadas: timing óptimo, análisis de sentimiento con IA y sistema de alertas NPS</div><div class="rm-badge">Experiencia del paciente</div></div></div>
+<div class="rm-item"><div class="rm-num">9</div><div><div class="rm-text"><strong>Lección 3.9</strong> — HL7 FHIR R4, APIs del HIS, webhooks y estrategias sin API: conectar automatizaciones al núcleo hospitalario</div><div class="rm-badge">Interoperabilidad</div></div></div>
+<div class="rm-item"><div class="rm-num">10</div><div><div class="rm-text"><strong>Lección 3.10</strong> — Marco SNS: transparencia activa, ENS, contratación pública, Cl@ve, FACe y Reglamento Europeo de IA</div><div class="rm-badge">Normativa pública</div></div></div>
+<div class="rm-item"><div class="rm-num">11</div><div><div class="rm-text"><strong>Lección 3.11</strong> — Automatización perioperatoria: programación T-21 a T-0, checklists OMS digitales y coordinación simultánea</div><div class="rm-badge">Circuito quirúrgico</div></div></div>
+<div class="rm-item"><div class="rm-num">12</div><div><div class="rm-text"><strong>Lección 3.12</strong> — Crónicos: PROs validados, scoring combinado de señales, alertas de deterioro y programa de adherencia</div><div class="rm-badge">Cronicidad</div></div></div>
+<div class="rm-item"><div class="rm-num">13</div><div><div class="rm-text"><strong>Lección 3.13</strong> — Orquestación: dependencias entre flujos, circuit breaker, dashboard de salud y mantenimiento continuo</div><div class="rm-badge">Arquitectura</div></div></div>
+<div class="rm-item"><div class="rm-num">14</div><div><div class="rm-text"><strong>Lección 3.14</strong> — Simulación: walkthrough, datos sintéticos, piloto controlado e IA como simulador de escenarios</div><div class="rm-badge">Validación</div></div></div>
+</div>
+<div class="concepto-final">
+<div class="cf-titulo">🚀 De la formación a la implementación</div>
+<div class="cf-cuerpo">El Módulo 3 te ha dado las herramientas para implementar automatizaciones clínicas reales. El siguiente paso no es continuar con el Módulo 4 — es <strong>implementar al menos un flujo en tu servicio antes de seguir</strong>. La formación sin implementación es conocimiento inerte. Un flujo funcionando en tu servicio, aunque sea pequeño, vale más que 10 lecciones adicionales no aplicadas.<br><br>
+Cuando hayas implementado tu primer flujo y tengas datos reales de su funcionamiento, el Módulo 4 (Creación y personalización de modelos de IA) te dará las herramientas para ir más allá de la automatización de procesos hacia la personalización de modelos que razonan sobre tus datos clínicos específicos.</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(3)">← Proyecto integrador</button><button class="btn-p" onclick="go(5)">Test final →</button></div>
+</div>
+
+<div class="sec" id="s5">
+<div class="qw active" id="q1w"><div class="qnum">Pregunta 1 de 3 — Test final Módulo 3</div><div class="qtxt">Durante el walkthrough de validación de un flujo de recordatorios para el Servicio de Traumatología, la enfermera que actualmente gestiona las citas dice: «ah, pero los pacientes que son del programa de ortopedia de rodilla siempre necesitan un email adicional con las instrucciones de preparación para el ejercicio, no solo el recordatorio de cita». ¿Qué implicación tiene esto para el diseño del flujo?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,1)">Es un caso de excepción demasiado específico — el flujo no necesita cubrirlo y la enfermera puede gestionarlo manualmente</button><button class="qopt" onclick="ans(this,true,1)">Es exactamente el tipo de excepción informal que el walkthrough debe detectar. El diseño del flujo debe añadir una condición: si tipo_consulta = «ortopedia rodilla» → enviar además el email de instrucciones de ejercicio. Este es el valor del walkthrough: descubrir los «ah, pero a veces también» antes de implementar</button><button class="qopt" onclick="ans(this,false,1)">El flujo ya está diseñado — documentar la excepción para una segunda versión del flujo en el futuro</button><button class="qopt" onclick="ans(this,false,1)">Rediseñar todo el flujo desde cero incorporando esta excepción como el caso principal</button></div><div class="qfb" id="fb1"></div><div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div></div>
+<div class="qw" id="q2w"><div class="qnum">Pregunta 2 de 3</div><div class="qtxt">Un flujo de recordatorios funciona perfectamente en el walkthrough con 10 casos de prueba. Cuando se prueba con un dataset sintético de 400 registros representativos del lunes más cargado del año, el paso que llama a la API de Twilio empieza a fallar al 87% de los registros con error «429 Too Many Requests». ¿Qué detectó la simulación y cuál es la solución?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,2)">Un error en la configuración de las credenciales de Twilio — hay que regenerar el token de API</button><button class="qopt" onclick="ans(this,false,2)">El dataset sintético está mal generado — los datos reales no tendrían este problema</button><button class="qopt" onclick="ans(this,true,2)">La simulación detectó un límite de rate limiting de la API de Twilio — el flujo envía demasiadas peticiones en muy poco tiempo. La solución es añadir un delay entre cada petición (ej: 500ms entre SMS) o implementar el envío en lotes con pausa entre lotes, para mantenerse dentro de los límites de Twilio</button><button class="qopt" onclick="ans(this,false,2)">El servidor de Make no puede gestionar 400 operaciones simultáneas — hay que dividir el flujo en 4 escenarios separados de 100 cada uno</button></div><div class="qfb" id="fb2"></div><div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div></div>
+<div class="qw" id="q3w"><div class="qnum">Pregunta 3 de 3 — Síntesis del Módulo 3</div><div class="qtxt">Un médico internista quiere implementar un sistema de seguimiento de sus 180 pacientes con insuficiencia cardíaca, incluyendo cuestionario PRO, monitorización de peso con báscula conectada, y alertas de deterioro. El hospital usa SAP IS-H con módulo FHIR disponible. El médico no tiene soporte TIC dedicado pero hay un técnico de sistemas en el hospital. ¿Qué arquitectura recomiendas?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,3)">Zapier para todo — es la plataforma más fácil y no necesita TIC</button><button class="qopt" onclick="ans(this,true,3)">n8n self-hosted (con soporte del técnico de sistemas) para los flujos que consumen datos FHIR del SAP IS-H y datos de la báscula conectada, ya que estos flujos manejan datos clínicos identificables que no deben salir de la infraestructura del hospital. Make o Zapier para los flujos de comunicación con el paciente (cuestionario PRO por WhatsApp, recordatorios) que solo manejan datos pseudonimizados. Los datos clínicos nunca pasan por la plataforma cloud.</button><button class="qopt" onclick="ans(this,false,3)">Make para todo con servidores UE — al estar en Europa cumple el RGPD y puede manejar todos los datos</button><button class="qopt" onclick="ans(this,false,3)">No es posible implementar este sistema sin un equipo de TIC dedicado — el proyecto debe esperar a tener más recursos técnicos</button></div><div class="qfb" id="fb3"></div><div class="qnx" id="nx3">
+<div class="modulo-complete">
+<div class="mc-titulo">🎓 Módulo 3 completado</div>
+<div class="mc-sub" style="margin-top:10px">Has completado las 14 lecciones del Módulo 3: Automatización Clínica y Administrativa No-Code. Has pasado de conocer la existencia de Zapier, Make y n8n a dominar flujos clínicos reales, arquitecturas RGPD-compliant, integración con HIS vía FHIR, seguimiento de crónicos, orquestación de ecosistemas y metodología de simulación.<br><br>
+<strong style="color:#00B8D4">El siguiente paso es implementar antes de continuar.</strong> Elige el proceso de tu servicio, aplica el prompt integrador de la lección 3.14, y construye tu primer flujo real. Cuando lo tengas funcionando, el Módulo 4 te espera con la personalización avanzada de modelos de IA específicos para tu práctica clínica.</div>
+</div>
+<button class="complete-btn" id="completeBtn" onclick="markComplete()">✓ MARCAR LECCIÓN 3.14 Y MÓDULO 3 COMO COMPLETADOS</button>
+</div></div>
+</div>
+<div class="lf"><span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span> · Desarrollado por DoncelProject · doncel.project@gmail.com</div>
+</div>
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/5)*100);document.getElementById('pbf314').style.width=p+'%';document.getElementById('pbl314').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function showTab(el,id){const sec=el.closest('.sec');sec.querySelectorAll('.tec-tab').forEach(t=>t.classList.remove('active'));sec.querySelectorAll('.tec-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById(id).classList.add('show');}
+const fbs={
+1:{ok:'✅ Correcto. El walkthrough es exactamente para detectar estos casos de excepción informal — los «ah, pero a veces también» que no están en ningún protocolo escrito pero que quien lo hace en la práctica conoce perfectamente. Un flujo que no incorpora esta excepción antes del despliegue generará envíos incompletos a los pacientes de ortopedia de rodilla desde el primer día. La regla es: cualquier excepción descubierta en el walkthrough que ocurre en más del 5% de los casos debe incorporarse al flujo antes de implementar.',ko:'❌ Dejar las excepciones informales para «una segunda versión» garantiza que la primera versión funciona mal desde el primer día para un subconjunto de pacientes. El objetivo del walkthrough es exactamente evitar esto — recoger todas las excepciones antes de implementar. Una condición adicional en el flujo (tipo_consulta = «ortopedia rodilla» → email adicional) es un cambio menor que tarda 15 minutos de implementación y evita un flujo incompleto para el 100% de estos pacientes.'},
+2:{ok:'✅ Correcto. El error 429 «Too Many Requests» es la respuesta de la API de Twilio cuando se superan sus límites de velocidad de envío. Con 10 casos de prueba, el flujo envía 10 SMS en unos segundos — dentro del límite. Con 400 registros, intenta enviar 400 SMS prácticamente simultáneos, superando el rate limit. La simulación con volumen real detectó este problema crítico antes del despliegue. La solución estándar es añadir un delay entre peticiones (en Make: módulo «Sleep» entre el módulo Twilio y el siguiente) para mantenerse dentro de los límites de la API.',ko:'❌ El error 429 es específicamente «Too Many Requests» — la API está rechazando peticiones por exceso de velocidad, no por credenciales incorrectas. Los datos sintéticos bien generados replican fielmente la distribución real — si el lunes más cargado tiene 400 citas, el dataset de 400 registros es exactamente la simulación correcta. El problema no es de Make sino del rate limiting de Twilio, que aplica igual en cualquier plataforma.'},
+3:{ok:'✅ Correcto. Esta arquitectura híbrida es la solución óptima cuando hay datos clínicos identificables (datos FHIR del HIS, mediciones de la báscula conectada) que no deben salir de la infraestructura hospitalaria, y datos de comunicación (envío del cuestionario PRO, recordatorios) que pueden procesarse en plataformas cloud seguras. n8n self-hosted (con el apoyo del técnico de sistemas) maneja la parte sensible dentro del hospital. Make o Zapier maneja la comunicación con el paciente con datos pseudonimizados. Esta separación cumple simultáneamente con el RGPD, el ENS y los requisitos de privacidad del SNS.',ko:'❌ Los flujos que consumen datos FHIR del HIS y datos de dispositivos conectados de pacientes con IC manejan datos de salud identificables — no pueden pasar por Zapier (servidores EEUU) ni por Make cloud sin las garantías adecuadas y sin que los datos clínicos salgan de la infraestructura hospitalaria. El proyecto es perfectamente viable con el técnico de sistemas disponible para instalar y mantener n8n self-hosted; no requiere un equipo dedicado, sino un profesional TIC con dedicación parcial.'}
+};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+function markComplete(){document.getElementById('completeBtn').disabled=true;document.getElementById('completeBtn').textContent='✓ Módulo 3 Completado';window.parent.postMessage({type:'LESSON_COMPLETE'},'*');}
+upd();
+</script>

@@ -1,0 +1,261 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:32px}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(33,150,243,.15);border:1px solid rgba(33,150,243,.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#90CAF9;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px}.lt span{color:#2196F3}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px;flex-wrap:wrap}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#2196F3;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:80px}
+.nb.active{color:#2196F3;border-bottom-color:#2196F3;background:#0C0D12}
+.sec{display:none;padding:20px 24px}.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(33,150,243,.08);border:1px solid rgba(33,150,243,.22);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#2196F3;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer}
+.tec-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.tec-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 14px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s}
+.tec-tab.active{background:rgba(33,150,243,.15);border-color:#2196F3;color:#90CAF9}
+.tec-panel{display:none}.tec-panel.show{display:block}
+.prompt-box{background:#0e1018;border:1px solid #1e2335;border-radius:10px;padding:14px;margin:10px 0}
+.prompt-label{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}
+.prompt-text{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.prompt-why{font-size:11px;color:#B0BEC5;line-height:1.6;margin-top:10px;padding-top:10px;border-top:1px solid #1e2335}
+.limit-item{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #1a2a3a}
+.limit-item:last-child{border-bottom:none}
+.li-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.li-title{font-size:12px;font-weight:600;color:#fff;margin-bottom:3px}
+.li-desc{font-size:11px;color:#B0BEC5;line-height:1.6}
+.flow-box{background:#0C0D12;border-radius:8px;padding:12px 14px;margin:10px 0;font-family:monospace;font-size:11px;color:#90CAF9;line-height:1.9;white-space:pre-wrap;word-break:break-word;border-left:2px solid #2196F3}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:12px 0}
+.cg-item{background:#13151e;border:1px solid #1e2335;border-radius:10px;padding:14px}
+.cg-icon{font-size:20px;margin-bottom:6px}
+.cg-title{font-size:12px;font-weight:600;color:#fff;margin-bottom:4px}
+.cg-desc{font-size:11px;color:#B0BEC5;line-height:1.6}
+.alerta{border-radius:10px;padding:12px 14px;margin:12px 0;font-size:12px;line-height:1.6}
+.ao{background:rgba(76,175,80,.07);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.aw{background:rgba(255,152,0,.07);border:1px solid rgba(255,152,0,.22);color:#FFD54F}
+.ad{background:rgba(244,67,54,.07);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.alt{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px}
+.matriz{width:100%;border-collapse:collapse;font-size:11px;margin:12px 0}
+.matriz th{background:#13151e;color:#90CAF9;font-weight:500;padding:10px 12px;text-align:left;border:1px solid #1e2335}
+.matriz td{padding:9px 12px;border:1px solid #1e2335;color:#E0E0E0;line-height:1.5;vertical-align:top}
+.matriz tr:nth-child(odd) td{background:#0e1018}
+.matriz tr:nth-child(even) td{background:#13151e}
+.qw{display:none}.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s}
+.qopt:hover{border-color:#2196F3;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}.qnx.show{display:block}
+.complete-btn{width:100%;background:linear-gradient(135deg,#2196F3,#1565C0);color:#fff;border:none;border-radius:10px;padding:14px 20px;font-size:13px;font-weight:600;cursor:pointer;margin-top:16px;letter-spacing:.3px;transition:opacity .2s}
+.complete-btn:hover{opacity:.9}.complete-btn:disabled{opacity:.5;cursor:not-allowed}
+.lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a}
+.fl{color:#2196F3;cursor:pointer;text-decoration:underline}
+</style>
+<div class="lw">
+<div class="lh"><div class="lb">MÓDULO 4 · LECCIÓN 4.1</div><div class="lt">Fundamentos de entrenamiento en salud:<br><span>fine-tuning, prompt engineering y RAG — cuándo usar cada técnica</span></div><div class="lm"><div class="lmi"><div class="md" style="background:#2196F3"></div>62 minutos</div><div class="lmi"><div class="md" style="background:#FFB300"></div>Nivel fundacional</div><div class="lmi"><div class="md" style="background:#A5D6A7"></div>Machine Learning clínico</div></div></div>
+<div class="pbw"><div class="pbb"><div class="pbf" id="pbf41"></div></div><div class="pbl" id="pbl41">0%</div></div>
+<div class="snav"><button class="nb active" id="t1" onclick="go(1)">Tres estrategias</button><button class="nb" id="t2" onclick="go(2)">Fine-tuning clínico</button><button class="nb" id="t3" onclick="go(3)">RAG médico</button><button class="nb" id="t4" onclick="go(4)">Árbol de decisión</button><button class="nb" id="t5" onclick="go(5)">Test</button></div>
+
+<div class="sec active" id="s1">
+<div class="card"><div class="ct">Objetivo de la lección</div><div class="cb">Entender las tres grandes estrategias para adaptar modelos de IA a contextos clínicos específicos — prompt engineering avanzado, fine-tuning y RAG (Retrieval-Augmented Generation) — y saber elegir la correcta para cada necesidad sin necesidad de conocimientos de programación profundos.</div></div>
+<div class="simil"><div class="sl">🎓 Analogía clínica</div>Adaptar un modelo de IA a tu especialidad es como formar a un médico de nueva incorporación al servicio. El prompt engineering es darle el briefing de guardia: «en este servicio hacemos las cosas así, el protocolo es este». El RAG es darle acceso a la biblioteca del servicio: «si tienes dudas, consulta estas guías». El fine-tuning es el equivalente a la residencia completa en la especialidad: el médico interioriza profundamente el conocimiento hasta que responde como un especialista, no como un médico de guardia con briefing. Cada estrategia tiene su momento y su coste.</div>
+<div class="concept-grid">
+<div class="cg-item"><div class="cg-icon">📝</div><div class="cg-title">Prompt Engineering</div><div class="cg-desc">Instruir al modelo en el momento de la consulta. Sin datos de entrenamiento. Resultado inmediato. La más rápida y barata. Limitada por el contexto de la ventana.</div></div>
+<div class="cg-item"><div class="cg-icon">📚</div><div class="cg-title">RAG (Retrieval-Augmented Generation)</div><div class="cg-desc">El modelo consulta una base de conocimiento externa antes de responder. Escalable. Siempre actualizable. Sin cambiar el modelo. Ideal para protocolos y evidencia.</div></div>
+<div class="cg-item"><div class="cg-icon">🧠</div><div class="cg-title">Fine-tuning</div><div class="cg-desc">Reentrenar el modelo con datos propios del dominio. Cambia los pesos del modelo. El resultado más especializado pero también el más costoso y el más difícil de actualizar.</div></div>
+</div>
+<div class="card"><div class="ct">Por qué esto importa en sanidad</div><div class="cb">Un modelo de IA generalista sabe de medicina, pero no sabe cómo funciona tu servicio, qué protocolos usa tu hospital, o cuál es la terminología que usáis internamente. Las tres estrategias permiten cerrar esa brecha — a costes y complejidades muy distintos. Elegir mal puede significar gastar meses en un fine-tuning cuando bastaba un RAG con los protocolos del hospital.</div></div>
+<div class="nav-actions"><div></div><button class="btn-p" onclick="go(2)">Fine-tuning clínico →</button></div>
+</div>
+
+<div class="sec" id="s2">
+<div class="card"><div class="ct">Fine-tuning: cuándo es realmente necesario</div><div class="cb">El fine-tuning es la estrategia más sobreestimada en el ecosistema de IA clínica. Muchos proyectos que se anuncian como «modelo entrenado con datos de nuestro hospital» obtienen resultados equivalentes o peores que un buen RAG con el mismo coste veinte veces mayor. Aquí está la guía honesta de cuándo es la opción correcta.</div></div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'ft-cuando')">✅ Cuándo usarlo</button><button class="tec-tab" onclick="showTab(this,'ft-proceso')">⚙️ Proceso técnico</button><button class="tec-tab" onclick="showTab(this,'ft-etica')">⚖️ Ética y datos</button></div>
+<div class="tec-panel show" id="ft-cuando">
+<div class="limit-item"><div class="li-icon">✅</div><div class="li-body"><div class="li-title">Cuándo el fine-tuning es la respuesta correcta</div><div class="li-desc">Cuando el modelo necesita <strong>cambiar su formato de respuesta</strong> de forma consistente (ej: siempre responder en formato SOAP, siempre en castellano clínico, siempre con un nivel de tecnicismo específico). Cuando el dominio es <strong>tan especializado</strong> que el modelo base comete errores frecuentes incluso con prompts elaborados. Cuando el volumen de uso es muy alto y el coste de incluir contexto extenso en cada prompt se vuelve inasumible. Cuando necesitas que el modelo funcione <strong>sin conexión a internet</strong> o con datos que nunca deben salir al cloud.</div></div></div>
+<div class="limit-item"><div class="li-icon">❌</div><div class="li-body"><div class="li-title">Cuándo NO usar fine-tuning</div><div class="li-desc">Para actualizar el conocimiento del modelo con documentos recientes (protocolos nuevos, guías publicadas este año): usa RAG. Para que el modelo recuerde información de conversaciones anteriores: usa memoria o context management. Para que el modelo «sepa» el protocolo de tu UCI: prueba primero con RAG. Para resolver un problema de alucinaciones: el fine-tuning no las elimina — puede empeorarlas si los datos de entrenamiento son insuficientes.</div></div></div>
+<div class="alerta aw"><div class="alt">⚠️ El error más común en proyectos de IA clínica</div>Equipos que invierten 6 meses preparando datos de entrenamiento y 50.000€ en fine-tuning para obtener un modelo que responde peor que Claude o GPT-4 con un buen prompt del sistema. Antes de iniciar cualquier proyecto de fine-tuning, demuestra que ni prompt engineering ni RAG resuelven el problema. La carga de la prueba está en justificar el fine-tuning, no al revés.</div>
+</div>
+<div class="tec-panel" id="ft-proceso">
+<div class="card"><div class="ct">El proceso de fine-tuning simplificado</div></div>
+<div class="flow-box">PROCESO DE FINE-TUNING (sin programación):
+
+PASO 1 — DEFINIR EL CASO DE USO CONCRETO:
+  No: «mejorar el modelo para nuestro hospital»
+  Sí: «que el modelo genere siempre informes de alta en formato HUCS
+      con las secciones en el orden estándar de nuestro servicio»
+
+PASO 2 — PREPARAR EL DATASET:
+  Formato requerido por OpenAI/Anthropic/Ollama: JSONL
+  Cada línea es un ejemplo: {«prompt»: «input», «completion»: «output ideal»}
+  Cantidad mínima: 50-100 ejemplos para resultados básicos
+               500-1000 ejemplos para resultados robustos
+  Calidad > Cantidad: 100 ejemplos de alta calidad > 1000 ejemplos mediocres
+
+PASO 3 — LIMPIEZA Y CURACIÓN:
+  Eliminar ejemplos con errores clínicos o de formato
+  Verificar que el dataset es representativo de todos los casos
+  Anonimizar / pseudonimizar (NUNCA usar datos reales de pacientes sin
+  anonimización completa previamente verificada)
+
+PASO 4 — ENTRENAMIENTO (en plataforma):
+  OpenAI Fine-tuning API: sube el JSONL, elige el modelo base (gpt-4o-mini
+  es la opción más coste-eficiente), lanza el job, espera 30-120 min
+  Google Vertex AI: para modelos Gemini
+  Hugging Face AutoTrain: para modelos open source (Llama, Mistral)
+
+PASO 5 — EVALUACIÓN:
+  Comparar el modelo fine-tuneado vs. modelo base con el mismo prompt
+  en al menos 50 casos de prueba no vistos durante el entrenamiento
+  Si no hay mejora significativa en esos 50 casos: el problema no era
+  fine-tuning — volver a step 1</div>
+</div>
+<div class="tec-panel" id="ft-etica">
+<div class="limit-item"><div class="li-icon">🔐</div><div class="li-body"><div class="li-title">Datos de entrenamiento: las reglas absolutas en sanidad</div><div class="li-desc">NUNCA usar datos de pacientes identificables para entrenamiento sin anonimización completa verificada y sin aprobación del Comité de Ética e Investigación (CEI). La anonimización debe cumplir el estándar del test de Mosaic (imposibilidad de reidentificación por combinación de campos). Las notas clínicas, informes de alta y resultados de pruebas solo pueden usarse como datos de entrenamiento si están completamente anonimizados.</div></div></div>
+<div class="limit-item"><div class="li-icon">📋</div><div class="li-body"><div class="li-title">Consentimiento y base legal</div><div class="li-desc">El RGPD exige una base legal para el tratamiento de datos con fines de entrenamiento de IA. En la práctica hospitalaria, la base más robusta es el interés público o el consentimiento explícito para investigación. Antes de cualquier proyecto de fine-tuning con datos clínicos, consultar con el DPD del hospital y el CEI. El proceso puede tomar 3-6 meses.</div></div></div>
+<div class="limit-item"><div class="li-icon">☁️</div><div class="li-body"><div class="li-title">¿Dónde entrenar? Cloud vs. local</div><div class="li-desc">Para datos que no pueden salir del hospital (incluso anonimizados): entrenamiento local con Ollama + modelos open source (Llama 3, Mistral) en servidores propios. Para datos anonimizados con garantías: plataformas cloud con DPA y servidores UE (OpenAI Enterprise, Azure OpenAI). La elección afecta al presupuesto, al tiempo y al nivel de control.</div></div></div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(1)">← Tres estrategias</button><button class="btn-p" onclick="go(3)">RAG médico →</button></div>
+</div>
+
+<div class="sec" id="s3">
+<div class="card"><div class="ct">RAG médico: la estrategia más potente para sanidad</div><div class="cb">RAG (Retrieval-Augmented Generation) permite que el modelo consulte una base de conocimiento externa — protocolos del hospital, guías clínicas, evidencia científica — en el momento en que el usuario hace la pregunta, sin necesidad de reentrenar el modelo. Es la estrategia más versátil y mantenible para entornos sanitarios.</div></div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'rag-como')">🔍 Cómo funciona</button><button class="tec-tab" onclick="showTab(this,'rag-fuentes')">📚 Fuentes para sanidad</button><button class="tec-tab" onclick="showTab(this,'rag-impl')">⚙️ Implementación práctica</button></div>
+<div class="tec-panel show" id="rag-como">
+<div class="flow-box">ARQUITECTURA RAG — PASO A PASO:
+
+1. INDEXACIÓN (se hace una vez, se actualiza cuando hay cambios):
+   → Los documentos (protocolos, guías, evidencia) se dividen en fragmentos (chunks)
+   → Cada chunk se convierte en un vector numérico (embedding) que captura su significado
+   → Los vectores se guardan en una base de datos vectorial (Pinecone, Weaviate,
+     Chroma, pgvector en Supabase)
+
+2. EN CADA CONSULTA:
+   → El usuario hace una pregunta: «¿cuál es la dosis de vancomicina en IR grave?»
+   → La pregunta se convierte en vector
+   → La base vectorial busca los chunks más similares semánticamente
+   → Los 3-5 chunks más relevantes se incluyen en el contexto del prompt
+   → El modelo responde basándose en esos chunks + su conocimiento base
+   → La respuesta incluye las fuentes (qué protocolo, qué sección)
+
+3. VENTAJAS SOBRE FINE-TUNING:
+   → Actualizable: cuando cambia un protocolo, se re-indexa ese documento
+   → Trazable: el modelo cita las fuentes que usó para responder
+   → Auditorio: puedes ver exactamente qué documentos influyeron en la respuesta
+   → Más barato: no requiere reentrenamiento, solo mantenimiento de la base</div>
+</div>
+<div class="tec-panel" id="rag-fuentes">
+<div class="limit-item"><div class="li-icon">📋</div><div class="li-body"><div class="li-title">Protocolos y procedimientos del hospital</div><div class="li-desc">Los protocolos del servicio en PDF o Word son la fuente más valiosa para RAG clínico. El modelo puede responder preguntas de guardia («¿cuándo se activa el protocolo de sepsis?») citando exactamente el protocolo en vigor. Ventaja clave: los protocolos se actualizan sin reentrenar el modelo.</div></div></div>
+<div class="limit-item"><div class="li-icon">📖</div><div class="li-body"><div class="li-title">Guías clínicas de sociedades científicas (ESC, AHA, SEPAR…)</div><div class="li-desc">Las guías en PDF pueden indexarse directamente. El modelo puede responder preguntas sobre recomendaciones con el grado de evidencia correcto, citando la sección exacta de la guía. Requiere una estrategia de actualización: cuando la sociedad publica una guía nueva, se re-indexa.</div></div></div>
+<div class="limit-item"><div class="li-icon">🔬</div><div class="li-body"><div class="li-title">PubMed abstracts (visto en lección 3.6)</div><div class="li-desc">El sistema de vigilancia bibliográfica del módulo 3 puede alimentar automáticamente la base vectorial con los abstracts de los artículos más relevantes. El modelo responde preguntas clínicas con evidencia publicada en los últimos 90 días — algo imposible con un modelo base con fecha de corte.</div></div></div>
+<div class="limit-item"><div class="li-icon">💊</div><div class="li-body"><div class="li-title">Vademécum / ficha técnica de medicamentos</div><div class="li-desc">La AEMPS publica las fichas técnicas de todos los medicamentos aprobados en España. Indexarlas permite que el modelo responda preguntas de dosis, contraindicaciones e interacciones con las fichas oficiales actualizadas como fuente, no solo con su conocimiento de entrenamiento.</div></div></div>
+</div>
+<div class="tec-panel" id="rag-impl">
+<div class="prompt-box">
+<div class="prompt-label">Prompt: diseñar el sistema RAG para el servicio</div>
+<div class="prompt-text">Necesito diseñar un sistema RAG (Retrieval-Augmented Generation) para el Servicio de [ESPECIALIDAD].
+
+El objetivo es que el personal del servicio pueda hacer preguntas en lenguaje natural sobre:
+[LISTA DE CASOS DE USO: consultas de protocolo, dosis de medicamentos, criterios de ingreso, etc.]
+
+Documentos disponibles para indexar:
+[LISTA: protocolos PDF, guías clínicas, vademécum local, SPC de medicamentos]
+
+Proporciona:
+1. Arquitectura recomendada: qué base vectorial usar según el presupuesto y la privacidad requerida
+   (Supabase pgvector si datos pueden estar en cloud con DPA / Chroma local si no pueden salir)
+2. Estrategia de chunking: cómo dividir los documentos para que los fragmentos sean coherentes
+   (capítulo por capítulo, página por página, por sección marcada con H2, etc.)
+3. Proceso de indexación: paso a paso para subir los primeros 10 documentos
+4. Prompt del sistema para el asistente RAG (cómo debe comportarse, cómo citar fuentes,
+   qué hacer cuando no encuentra la respuesta en los documentos)
+5. Interfaz de usuario: cómo hacer accesible el sistema al personal sin conocimientos técnicos
+6. Política de actualización: con qué frecuencia re-indexar y cómo detectar que un documento
+   está desactualizado en la base vectorial</div>
+<div class="prompt-why">El éxito de un sistema RAG en sanidad depende más del diseño de la base de conocimiento que de la tecnología. Un buen chunking con documentos bien seleccionados supera a una tecnología sofisticada con documentos mal estructurados. Este prompt produce el diseño completo antes de tocar ninguna tecnología.</div>
+</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(2)">← Fine-tuning</button><button class="btn-p" onclick="go(4)">Árbol de decisión →</button></div>
+</div>
+
+<div class="sec" id="s4">
+<div class="card"><div class="ct">Árbol de decisión: ¿prompt engineering, RAG o fine-tuning?</div><div class="cb">La tabla comparativa honesta para elegir la estrategia correcta para cada necesidad clínica concreta. Basada en criterios prácticos, no en marketing de tecnología.</div></div>
+<div style="overflow-x:auto"><table class="matriz">
+<tr><th>Criterio</th><th>Prompt Engineering</th><th>RAG</th><th>Fine-tuning</th></tr>
+<tr><td><strong>Velocidad de implementación</strong></td><td>Horas</td><td>Días-semanas</td><td>Semanas-meses</td></tr>
+<tr><td><strong>Coste inicial</strong></td><td>Muy bajo</td><td>Bajo-medio</td><td>Alto</td></tr>
+<tr><td><strong>Actualización del conocimiento</strong></td><td>Inmediata (cambias el prompt)</td><td>Fácil (re-indexas el doc)</td><td>Costosa (reentrenamiento)</td></tr>
+<tr><td><strong>Trazabilidad de fuentes</strong></td><td>No</td><td>Sí (cita los documentos)</td><td>No</td></tr>
+<tr><td><strong>Conocimiento muy especializado</strong></td><td>Limitado por contexto</td><td>Bueno (si el doc existe)</td><td>Excelente (si hay datos)</td></tr>
+<tr><td><strong>Formato de respuesta consistente</strong></td><td>Bueno con instrucciones</td><td>Bueno</td><td>Excelente</td></tr>
+<tr><td><strong>Sin conexión / sin cloud</strong></td><td>Solo con modelo local</td><td>Posible (Chroma local)</td><td>Posible (Ollama local)</td></tr>
+<tr><td><strong>Privacidad de datos de entrenamiento</strong></td><td>N/A</td><td>Solo documentos, no datos</td><td>Datos de pacientes (riesgo)</td></tr>
+<tr><td><strong>Perfil técnico necesario</strong></td><td>Ninguno</td><td>Básico</td><td>Medio-alto</td></tr>
+<tr><td><strong>Riesgo de alucinaciones</strong></td><td>Moderado</td><td>Bajo (base en documentos)</td><td>Variable (depende del dataset)</td></tr>
+</table></div>
+<div class="prompt-box">
+<div class="prompt-label">Prompt: elegir la estrategia correcta para un caso concreto</div>
+<div class="prompt-text">Quiero adaptar un modelo de IA para el siguiente caso de uso en el Servicio de [ESPECIALIDAD]:
+
+NECESIDAD CONCRETA:
+[Descripción detallada: qué pregunta debe responder el modelo, qué formato debe tener la respuesta, con qué frecuencia se consultará, quién lo consultará]
+
+CONTEXTO:
+- Disponemos de: [documentos propios / datos de casos anteriores / solo conocimiento general del dominio]
+- Presupuesto: [bajo / medio / alto]
+- Plazo: [urgente (<2 semanas) / medio plazo / largo plazo]
+- Requisitos de privacidad: [datos deben quedar en el hospital / pueden ir a cloud UE / sin restricciones]
+- Perfil técnico del equipo: [ninguno / básico / avanzado]
+
+Analiza la necesidad y recomienda:
+1. La estrategia óptima (prompt engineering / RAG / fine-tuning / combinación)
+2. Por qué las otras estrategias no son la mejor opción para este caso
+3. Los primeros 3 pasos concretos para implementar la estrategia recomendada
+4. Cómo medir si la implementación está siendo exitosa (métricas de evaluación)
+5. Si recomiendas RAG: qué documentos indexar primero y cómo estructurar el prompt del sistema</div>
+<div class="prompt-why">La elección de estrategia es la decisión más importante — equivocarse supone meses de trabajo perdido. Este prompt fuerza un análisis multidimensional antes de comprometerse con una dirección técnica. Úsalo en la fase de diseño, no después de empezar a construir.</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(3)">← RAG médico</button><button class="btn-p" onclick="go(5)">Test →</button></div>
+</div>
+
+<div class="sec" id="s5">
+<div class="qw active" id="q1w"><div class="qnum">Pregunta 1 de 3</div><div class="qtxt">El jefe del Servicio de Urgencias quiere que el modelo de IA responda siempre preguntas sobre los criterios de activación de los códigos del hospital (código sepsis, código ictus, código trauma) citando el protocolo vigente en ese hospital. El protocolo se actualiza cada 6-12 meses. ¿Qué estrategia es la más adecuada?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,1)">Fine-tuning con los casos reales de activación de códigos de los últimos 3 años</button><button class="qopt" onclick="ans(this,true,1)">RAG con los protocolos de activación de códigos indexados en una base vectorial. Cuando el protocolo se actualice, se re-indexa el documento en minutos. El modelo cita la sección exacta del protocolo vigente — trazabilidad perfecta. El fine-tuning no sería actualizable sin reentrenamiento cada vez que cambia el protocolo</button><button class="qopt" onclick="ans(this,false,1)">Prompt engineering con los criterios de activación escritos directamente en el system prompt</button><button class="qopt" onclick="ans(this,false,1)">Fine-tuning + RAG combinados — siempre es mejor usar las dos estrategias simultáneamente</button></div><div class="qfb" id="fb1"></div><div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div></div>
+<div class="qw" id="q2w"><div class="qnum">Pregunta 2 de 3</div><div class="qtxt">Un hospital quiere usar datos de informes de alta de los últimos 5 años (con nombre del paciente, diagnóstico, evolución clínica y médico firmante) para entrenar un modelo de IA. ¿Qué condición es absolutamente imprescindible antes de poder usar esos datos?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,2)">Obtener autorización del director médico del hospital</button><button class="qopt" onclick="ans(this,true,2)">Anonimización completa verificada que pase el test de Mosaic (imposibilidad de reidentificación por combinación de campos), aprobación del CEI (Comité de Ética e Investigación), base legal para el tratamiento con fines de entrenamiento de IA, y validación por el DPD del hospital. Sin estas condiciones, el uso de datos de pacientes para entrenamiento viola el RGPD</button><button class="qopt" onclick="ans(this,false,2)">Anonimizar únicamente el nombre del paciente y el número de historia clínica</button><button class="qopt" onclick="ans(this,false,2)">Convertir los datos a formato JSONL — el formato estructurado de por sí garantiza la privacidad</button></div><div class="qfb" id="fb2"></div><div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div></div>
+<div class="qw" id="q3w"><div class="qnum">Pregunta 3 de 3</div><div class="qtxt">Un servicio ha implementado RAG con los protocolos del hospital y observa que el modelo a veces «alucina» información no presente en los protocolos indexados. ¿Cuál es la causa más probable y la solución?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,3)">El modelo base es demasiado viejo — hay que actualizar a la versión más reciente del modelo</button><button class="qopt" onclick="ans(this,false,3)">El dataset de fine-tuning tiene errores — hay que reentrenar el modelo</button><button class="qopt" onclick="ans(this,true,3)">El prompt del sistema no instruye al modelo explícitamente a responder SOLO con información de los documentos recuperados. La solución es añadir al system prompt: «Responde únicamente basándote en los documentos proporcionados. Si la respuesta no está en los documentos, di explícitamente que no tienes esa información en los protocolos disponibles — no uses tu conocimiento general»</button><button class="qopt" onclick="ans(this,false,3)">La base vectorial tiene demasiados documentos — hay que reducirla a menos de 10 protocolos</button></div><div class="qfb" id="fb3"></div><div class="qnx" id="nx3"><div style="background:rgba(33,150,243,.1);border:1px solid rgba(33,150,243,.28);border-radius:10px;padding:16px;margin-top:8px"><div style="font-size:13px;font-weight:500;color:#90CAF9;margin-bottom:6px">✓ Lección 4.1 completada</div><div style="font-size:12px;color:#B0BEC5;line-height:1.6">Entiendes las tres estrategias de adaptación de modelos — cuándo usar cada una, qué coste implica y qué requisitos de privacidad exige cada enfoque. La lección 4.2 entra en <strong style="color:#fff">las aplicaciones por rol sanitario y especialidad: cómo personalizar modelos para medicina, enfermería, farmacia y gestión según sus necesidades específicas</strong>.</div></div><button class="complete-btn" id="completeBtn" onclick="markComplete()">✓ MARCAR LECCIÓN COMO COMPLETADA</button></div></div>
+</div>
+<div class="lf"><span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span> · Desarrollado por DoncelProject · doncel.project@gmail.com</div>
+</div>
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/5)*100);document.getElementById('pbf41').style.width=p+'%';document.getElementById('pbl41').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function showTab(el,id){const sec=el.closest('.sec');sec.querySelectorAll('.tec-tab').forEach(t=>t.classList.remove('active'));sec.querySelectorAll('.tec-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById(id).classList.add('show');}
+const fbs={
+1:{ok:'✅ Correcto. RAG es la estrategia perfecta para este caso: el conocimiento está en documentos explícitos (protocolos), se actualiza periódicamente, y se requiere trazabilidad de la fuente (citar el protocolo exacto). El fine-tuning no sería actualizable sin reentrenamiento. El prompt engineering tiene una ventana de contexto limitada para incorporar protocolos completos. La combinación de RAG + actualización automática cuando se publica un nuevo protocolo es exactamente el caso de uso para el que RAG fue diseñado.',ko:'❌ El fine-tuning con casos históricos entrenaría el modelo en las decisiones pasadas, no en los criterios del protocolo vigente — y cada vez que el protocolo cambie habría que reentrenar. El prompt engineering tiene límites de longitud que dificultan incluir protocolos completos. La combinación siempre no es mejor — añade complejidad sin necesidad cuando una sola estrategia resuelve el problema.'},
+2:{ok:'✅ Correcto. La anonimización parcial (solo nombre y NHC) no es suficiente — la combinación de diagnóstico + fecha + hospital + edad puede ser suficiente para reidentificar a un paciente. El proceso completo requiere: (1) anonimización que pase el test de Mosaic, (2) aprobación del CEI para uso con fines de investigación/IA, (3) base legal bajo RGPD (interés público o consentimiento), y (4) validación del DPD. La autorización del director médico es necesaria a nivel organizativo pero no suficiente a nivel legal.',ko:'❌ La autorización del director médico no sustituye la obligación legal del RGPD. El formato JSONL no tiene ninguna propiedad de privacidad. La anonimización parcial (solo nombre y NHC) es insuficiente — múltiples combinaciones de campos pueden identificar a un paciente. El proceso legal y ético para usar datos clínicos en entrenamiento de IA es exigente y necesario para proteger los derechos de los pacientes.'},
+3:{ok:'✅ Correcto. En sistemas RAG, el modelo tiene dos fuentes de información: los documentos recuperados por el sistema de búsqueda vectorial Y su conocimiento de entrenamiento base. Sin instrucción explícita de usar SOLO los documentos, el modelo puede combinar ambas fuentes — a veces correctamente, a veces «alucinando» al mezclar conocimiento general con el contenido de los documentos. La instrucción explícita «responde solo con los documentos proporcionados» es el control más efectivo para este comportamiento.',ko:'❌ La versión del modelo base raramente es la causa de alucinaciones en RAG. El fine-tuning tampoco es la solución — no existe un dataset de fine-tuning que corrija este comportamiento. El número de documentos en la base vectorial tampoco es el factor determinante. El sistema prompt es la palanca más directa para controlar qué fuentes usa el modelo al responder.'}
+};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+function markComplete(){document.getElementById('completeBtn').disabled=true;document.getElementById('completeBtn').textContent='✓ Completada';window.parent.postMessage({type:'LESSON_COMPLETE'},'*');}
+upd();
+</script>

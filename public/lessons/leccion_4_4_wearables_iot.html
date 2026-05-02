@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:sans-serif;border-radius:16px;overflow:hidden;padding-bottom:32px}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(33,150,243,.15);border:1px solid rgba(33,150,243,.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#90CAF9;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px}.lt span{color:#2196F3}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px;flex-wrap:wrap}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#2196F3;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:80px}
+.nb.active{color:#2196F3;border-bottom-color:#2196F3;background:#0C0D12}
+.sec{display:none;padding:20px 24px}.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(33,150,243,.08);border:1px solid rgba(33,150,243,.22);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#2196F3;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer}
+.tec-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.tec-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 14px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s}
+.tec-tab.active{background:rgba(33,150,243,.15);border-color:#2196F3;color:#90CAF9}
+.tec-panel{display:none}.tec-panel.show{display:block}
+.prompt-box{background:#0e1018;border:1px solid #1e2335;border-radius:10px;padding:14px;margin:10px 0}
+.prompt-label{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}
+.prompt-text{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.prompt-why{font-size:11px;color:#B0BEC5;line-height:1.6;margin-top:10px;padding-top:10px;border-top:1px solid #1e2335}
+.limit-item{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #1a2a3a}
+.limit-item:last-child{border-bottom:none}
+.li-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.li-title{font-size:12px;font-weight:600;color:#fff;margin-bottom:3px}
+.li-desc{font-size:11px;color:#B0BEC5;line-height:1.6}
+.flow-box{background:#0C0D12;border-radius:8px;padding:12px 14px;margin:10px 0;font-family:monospace;font-size:11px;color:#90CAF9;line-height:1.9;white-space:pre-wrap;word-break:break-word;border-left:2px solid #2196F3}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.cgi{background:#13151e;border:1px solid #1e2335;border-radius:10px;padding:14px}
+.cgi-icon{font-size:20px;margin-bottom:6px}
+.cgi-title{font-size:12px;font-weight:600;color:#fff;margin-bottom:4px}
+.cgi-desc{font-size:11px;color:#B0BEC5;line-height:1.6}
+.qw{display:none}.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s}
+.qopt:hover{border-color:#2196F3;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}.qnx.show{display:block}
+.complete-btn{width:100%;background:linear-gradient(135deg,#2196F3,#1565C0);color:#fff;border:none;border-radius:10px;padding:14px 20px;font-size:13px;font-weight:600;cursor:pointer;margin-top:16px;letter-spacing:.3px;transition:opacity .2s}
+.complete-btn:hover{opacity:.9}.complete-btn:disabled{opacity:.5;cursor:not-allowed}
+.lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a}
+.fl{color:#2196F3;cursor:pointer;text-decoration:underline}
+</style>
+</head><body>
+<div class="lw">
+<div class="lh"><div class="lb">MODULO 4 · LECCION 4.4</div><div class="lt">Integracion con wearables e IoT clinico:<br><span>protocolos de conexion, senales biometricas y alertas inteligentes</span></div><div class="lm"><div class="lmi"><div class="md" style="background:#2196F3"></div>62 minutos</div><div class="lmi"><div class="md" style="background:#FFB300"></div>Nivel avanzado</div><div class="lmi"><div class="md" style="background:#A5D6A7"></div>IoT medico</div></div></div>
+<div class="pbw"><div class="pbb"><div class="pbf" id="pbf44"></div></div><div class="pbl" id="pbl44">0%</div></div>
+<div class="snav">
+<button class="nb active" id="t1" onclick="go(1)">El ecosistema IoT</button>
+<button class="nb" id="t2" onclick="go(2)">APIs y protocolos</button>
+<button class="nb" id="t3" onclick="go(3)">Dispositivos por patologia</button>
+<button class="nb" id="t4" onclick="go(4)">Alertas inteligentes</button>
+<button class="nb" id="t5" onclick="go(5)">Test</button>
+</div>
+
+<div class="sec active" id="s1">
+<div class="card"><div class="ct">Objetivo de la leccion</div><div class="cb">Entender como conectar dispositivos de monitorizacion clinica (wearables, sensores IoT, glucometros, oximetros, tensiometros inteligentes) con sistemas de IA que procesan senales biometricas en tiempo real y generan alertas que permiten intervenir antes de que el paciente llegue a urgencias.</div></div>
+<div class="simil"><div class="sl">Analogia clinica</div>El IoT clinico es la extension del monitor del paciente hasta su domicilio. En UCI, monitorizar 10 parametros continuamente salva vidas. El IoT clinico lleva esa logica al cronica en casa: la tension de la manana, el peso diario, la saturacion nocturna. La IA procesa esas senales y detecta el patron de deterioro 5 dias antes de que llegue a urgencias. No es ciencia ficcion — es lo que los mejores programas de telemonitorizacion ya hacen con tecnologia disponible hoy.</div>
+<div class="cg">
+<div class="cgi"><div class="cgi-icon">⌚</div><div class="cgi-title">Wearables de consumo</div><div class="cgi-desc">Apple Watch, Garmin, Fitbit. FC, SpO2, actividad. APIs disponibles. No certificados CE como dispositivo medico pero utiles para tendencias en programas informales.</div></div>
+<div class="cgi"><div class="cgi-icon">🏥</div><div class="cgi-title">Dispositivos medicos certificados</div><div class="cgi-desc">Withings, Nonin, Beurer. Certificacion CE como dispositivo medico. APIs documentadas. Datos clinicamente validados. Los adecuados para programas hospitalarios formales.</div></div>
+<div class="cgi"><div class="cgi-icon">💉</div><div class="cgi-title">Monitorizacion continua</div><div class="cgi-desc">Dexcom G7 (MCG), AliveCor Kardia (ECG). Flujo continuo de datos. El nivel mas avanzado de telemonitorizacion domiciliaria actualmente disponible.</div></div>
+<div class="cgi"><div class="cgi-icon">🔐</div><div class="cgi-title">Datos de salud bajo RGPD</div><div class="cgi-desc">Los datos biometricos de wearables son datos de salud de categoria especial (Art. 9 RGPD) cuando se asocian a persona identificable. Requieren DPA, base legal y consentimiento especifico.</div></div>
+</div>
+<div class="nav-actions"><div></div><button class="btn-p" onclick="go(2)">APIs y protocolos →</button></div>
+</div>
+
+<div class="sec" id="s2">
+<div class="card"><div class="ct">APIs y protocolos de integracion</div><div class="cb">Tres vias para recibir datos de dispositivos IoT en el sistema clinico, ordenadas de mas a menos latencia.</div></div>
+<div class="tec-tabs">
+<button class="tec-tab active" onclick="showTab(this,'p-rest')">🌐 API REST (polling)</button>
+<button class="tec-tab" onclick="showTab(this,'p-mqtt')">📡 MQTT (push tiempo real)</button>
+<button class="tec-tab" onclick="showTab(this,'p-fhir')">🏥 FHIR Observation</button>
+</div>
+<div class="tec-panel show" id="p-rest">
+<div class="card"><div class="ct">API REST — el protocolo mas accesible</div><div class="cb">El sistema clinico llama periodicamente a la API del fabricante para obtener los datos mas recientes. Latencia maxima = intervalo de polling. Mas facil de implementar en Make o n8n.</div></div>
+<div class="flow-box">EJEMPLO — API Withings (tensiometro + bascula certificados CE):
+GET https://wbsapi.withings.net/measure?action=getmeas&meastypes=1,9,10
+→ meastypes: 1=peso (kg), 9=TA diastolica, 10=TA sistolica
+→ Autenticacion: OAuth 2.0 (el paciente autoriza el acceso)
+→ Devuelve: [{timestamp, value, type, unit}]
+
+EJEMPLO — API Dexcom (MCG glucosa):
+GET https://api.dexcom.com/v2/users/self/egvs?startDate=X&endDate=Y
+→ Devuelve: glucosa intersticial cada 5 min + tendencia
+→ trend: "DoubleUp" | "SingleUp" | "Flat" | "SingleDown" | "DoubleDown"
+→ trendRate: mg/dL por minuto (positivo = subiendo)
+
+EN MAKE:
+→ Schedule cada 15-30 min → HTTP Request a API → procesar respuesta
+→ Latencia maxima: 15-30 minutos (suficiente para seguimiento diario)
+→ NO suficiente para alertas urgentes (usar MQTT en esos casos)</div>
+<div class="prompt-box">
+<div class="prompt-label">Prompt: diseno del sistema de integracion IoT</div>
+<div class="prompt-text">Necesito integrar datos de dispositivos IoT en el programa de telemonitorizacion del Servicio de [ESPECIALIDAD].
+
+Dispositivos disponibles o previstos:
+[LISTA: nombre del dispositivo, fabricante, que mide, si tiene API documentada]
+
+Requisitos:
+- Frecuencia de datos necesaria: [tiempo real / cada hora / una vez al dia]
+- Latencia maxima aceptable para alertas criticas: [minutos]
+- Infraestructura disponible: [Make/n8n self-hosted / solo Make cloud]
+- Numero de pacientes en el programa: [N]
+
+Proporciona:
+1. El protocolo de integracion recomendado para cada dispositivo (API REST / MQTT / FHIR)
+2. La arquitectura completa del flujo de datos desde el dispositivo hasta el medico
+3. Los pasos para configurar OAuth 2.0 con cada fabricante
+4. Como manejar la revocacion del consentimiento del paciente
+5. La estructura de datos para almacenar las series temporales de cada paciente
+6. Como personalizar los umbrales de alerta por paciente (no umbrales genericos)</div>
+<div class="prompt-why">Cada dispositivo tiene su API con sus particularidades. Este prompt genera el diseno especifico para tus dispositivos concretos, evitando el error de aplicar la misma arquitectura a todos los dispositivos independientemente de sus capacidades tecnicas.</div>
+</div>
+</div>
+<div class="tec-panel" id="p-mqtt">
+<div class="card"><div class="ct">MQTT — Push en tiempo real para alertas criticas</div><div class="cb">El dispositivo publica datos en un broker MQTT en el momento de la medicion. El sistema clinico esta suscrito y los recibe en segundos. Latencia: 2-10 segundos. Ideal para SpO2, FC, glucosa.</div></div>
+<div class="flow-box">ARQUITECTURA MQTT:
+
+DISPOSITIVO (oximetro Nonin) → publica en broker:
+  Topic: "paciente/12345/spo2"
+  Payload: {"ts":"2025-01-15T09:32:00Z","spo2":94,"hr":87}
+  Frecuencia: cada 5 minutos
+
+BROKER MQTT (en servidor del hospital):
+  Mosquitto (open source) / HiveMQ (enterprise)
+  Gestiona autenticacion y enrutamiento
+
+n8n SELF-HOSTED (suscrito al broker):
+  Trigger: "MQTT message received"
+  Topic: "paciente/+/spo2" (wildcard + = cualquier paciente)
+  Accion: extraer patient_id → comparar con umbral personalizado
+  Si SpO2 menor que umbral: activar alerta en segundos
+
+DIFERENCIA CLAVE vs. API REST:
+API REST polling 15min: si la desaturacion ocurre a las 09:00,
+el sistema no sabe hasta las 09:15 (en el peor caso).
+MQTT: sabe a las 09:00:05. En una desaturacion severa,
+esos 15 minutos pueden ser clinicamente relevantes.</div>
+</div>
+<div class="tec-panel" id="p-fhir">
+<div class="card"><div class="ct">FHIR Observation — Estandar sanitario para datos de dispositivos</div><div class="cb">Los datos de dispositivos IoT pueden enviarse directamente al HIS como recursos FHIR Observation, integrando la telemonitorizacion en la historia clinica electronica sin sistemas intermediarios propietarios.</div></div>
+<div class="flow-box">FHIR Observation para SpO2 de oximetro domiciliario:
+{
+  "resourceType": "Observation",
+  "status": "final",
+  "code": {"coding": [{"system":"http://loinc.org",
+                        "code":"59408-5",
+                        "display":"Oxygen saturation"}]},
+  "subject": {"reference": "Patient/12345"},
+  "device": {"reference": "Device/nonin-3230-serial123"},
+  "effectiveDateTime": "2025-01-15T09:32:00Z",
+  "valueQuantity": {"value": 94, "unit": "%"},
+  "interpretation": [{"coding": [{"code": "L", "display": "Low"}]}]
+}
+
+Codigos LOINC utiles:
+59408-5 = SpO2
+55284-4 = TA (sistolica + diastolica)
+8302-2  = Talla
+29463-7 = Peso
+2339-0  = Glucosa en sangre
+8867-4  = Frecuencia cardiaca</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(1)">← El ecosistema</button><button class="btn-p" onclick="go(3)">Dispositivos →</button></div>
+</div>
+
+<div class="sec" id="s3">
+<div class="card"><div class="ct">Dispositivos clave por patologia y umbrales personalizados</div></div>
+<div class="tec-tabs">
+<button class="tec-tab active" onclick="showTab(this,'d-ic')">❤️ Insuficiencia Cardiaca</button>
+<button class="tec-tab" onclick="showTab(this,'d-epoc')">🫁 EPOC</button>
+<button class="tec-tab" onclick="showTab(this,'d-dm')">💉 Diabetes</button>
+</div>
+<div class="tec-panel show" id="d-ic">
+<div class="limit-item"><div class="li-icon">⚖️</div><div class="li-body"><div class="li-title">Bascula conectada — el dispositivo mas impactante en IC</div><div class="li-desc">Withings Body Scan (CE clase IIa) o Beurer BF700. Pesaje diario en ayunas. Umbral de alerta estandar: +2 kg en 24h o +3.5 kg en 7 dias respecto al peso basal del paciente. Evidencia publicada: reduccion de reingresos por IC del 30-45% en programas con telemonitorizacion de peso. El medico define el umbral personalizado para cada paciente al inscribirlo en el programa.</div></div></div>
+<div class="limit-item"><div class="li-icon">💓</div><div class="li-body"><div class="li-title">Tensiometro y pulsioximetro conectados</div><div class="li-desc">Withings BPM Connect (validado clinicamente). Umbrales tipicos: TAS mayor de 180 o menor de 90 / FC mayor de 120 o menor de 50 en dos mediciones consecutivas. Los umbrales deben personalizarse segun el tratamiento de base del paciente (ej: un paciente en beta-bloqueante puede tener FC habitual de 55 lpm — el umbral bajo de 50 seria correcto, no 60).</div></div></div>
+</div>
+<div class="tec-panel" id="d-epoc">
+<div class="limit-item"><div class="li-icon">🩸</div><div class="li-body"><div class="li-title">Oximetro de pulso — fundamental en EPOC y fibrosis</div><div class="li-desc">Nonin 3230 (certificacion FDA/CE dispositivo medico). Umbral de alerta estandar: SpO2 menor del 92% en dos mediciones o menor del 90% en una sola. Para EPOC grave: el umbral DEBE individualizarse — pacientes con SpO2 basal del 88-90% necesitan umbrales distintos. Sin individualizacion, el sistema genera alertas permanentes en pacientes estables o suprime alertas reales.</div></div></div>
+<div class="limit-item"><div class="li-icon">🌬️</div><div class="li-body"><div class="li-title">Telespirometro domiciliario</div><div class="li-desc">Nuvoair (CE, telespirometria validada). Mide FEV1 y FVC. Umbral de alerta: caida del FEV1 mayor del 20% respecto al mejor valor personal = senal de exacerbacion incipiente. Permite intervenir con tratamiento oral antes de que la exacerbacion requiera ingreso hospitalario.</div></div></div>
+</div>
+<div class="tec-panel" id="d-dm">
+<div class="limit-item"><div class="li-icon">💉</div><div class="li-body"><div class="li-title">Monitor Continuo de Glucosa (MCG)</div><div class="li-desc">Abbott FreeStyle Libre 3 o Dexcom G7. Dato de glucosa intersticial cada 5 minutos. Umbrales: hipoglucemia menor de 70 mg/dL / hiperglucemia mayor de 250 mg/dL. La tendencia (DoubleDown = bajando 2 mg/dL/min) es tan importante como el valor: glucemia de 100 con DoubleDown puede llegar a hipoglucemia en 15 minutos — alerta preventiva antes de que cruce el umbral.</div></div></div>
+<div class="flow-box">LOGICA DE ALERTA CON TENDENCIA (MCG):
+valor_actual = 100 mg/dL  ← en rango normal
+trendRate = -2.0 mg/dL/min  ← DoubleDown
+tiempo_hasta_hipoglucemia = (100 - 70) / 2 = 15 minutos
+
+if tiempo_hasta_hipoglucemia < 20:
+    ALERTA PREVENTIVA → "Su glucemia esta bajando rapidamente.
+    Considere tomar carbohidratos de absorcion rapida."
+
+Esto es lo que diferencia el MCG de la glucemia capilar:
+no mide el valor actual sino la trayectoria → capacidad predictiva.</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(2)">← APIs</button><button class="btn-p" onclick="go(4)">Alertas →</button></div>
+</div>
+
+<div class="sec" id="s4">
+<div class="card"><div class="ct">Alertas inteligentes: mas alla del umbral simple</div><div class="cb">Los sistemas de alerta simples (si X mayor que umbral → alerta) generan demasiados falsos positivos. La IA permite alertas contextuales que consideran la tendencia, el patron temporal y el historial del paciente.</div></div>
+<div class="limit-item"><div class="li-icon">📊</div><div class="li-body"><div class="li-title">Tendencia vs. valor puntual</div><div class="li-desc">Un paciente con IC que pesa 75.2 kg hoy: si ayer pesaba 75.0 kg → sin alerta. Si hace 4 dias pesaba 73.5 kg y lleva subiendo 0.4 kg/dia → alerta de acumulacion progresiva aunque ningun valor individual haya cruzado el umbral de +2 kg en 24h. La IA analiza la serie temporal completa.</div></div></div>
+<div class="limit-item"><div class="li-icon">🔗</div><div class="li-body"><div class="li-title">Correlacion entre multiples senales</div><div class="li-desc">+2 kg de peso solo puede ser IC o simplemente haber comido mucho. Combinar con FC elevada + SpO2 bajando + cuestionario PRO con mas disnea → el patron combinado apunta a descompensacion incipiente con alta probabilidad. La correlacion reduce los falsos positivos del umbral simple.</div></div></div>
+<div class="prompt-box">
+<div class="prompt-label">Prompt: analisis de serie temporal IoT con contexto clinico</div>
+<div class="prompt-text">Eres un medico especialista en [ESPECIALIDAD] revisando datos de telemonitorizacion.
+
+DATOS DEL PACIENTE:
+- Diagnostico: [diagnostico]
+- Tratamiento: [medicacion]
+- Umbrales personalizados: [umbrales definidos por su medico]
+- Ultima visita: [fecha y hallazgos]
+
+DATOS ULTIMOS 14 DIAS (series temporales):
+Peso (kg): [datos con fechas]
+TA sistolica / diastolica: [datos]
+FC: [datos]
+SpO2 (si disponible): [datos]
+
+Analiza y proporciona:
+1. TENDENCIA: parametros con tendencia de deterioro sostenida
+2. PATRONES PREOCUPANTES: combinaciones de senales sugestivas de descompensacion
+3. VARIACION NORMAL: cambios dentro de la variabilidad esperada para este paciente
+4. RECOMENDACION: a) seguimiento normal / b) contacto telefonico 48h /
+   c) adelantar visita / d) evaluacion urgente esta semana
+5. ALARMA: que parametro, si empeora en 48h, requiere evaluacion urgente
+
+Aviso: este analisis es de apoyo. La decision clinica es responsabilidad del medico.</div>
+<div class="prompt-why">Convierte datos brutos de IoT en analisis clinico accionable en 30 segundos. El medico se enfoca en los pacientes con patron preocupante en lugar de revisar todos los datos de todos los pacientes cada dia — exactamente el beneficio esperado de la telemonitorizacion basada en IA.</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(3)">← Dispositivos</button><button class="btn-p" onclick="go(5)">Test →</button></div>
+</div>
+
+<div class="sec" id="s5">
+<div class="qw active" id="q1w">
+<div class="qnum">Pregunta 1 de 3</div>
+<div class="qtxt">Un paciente con EPOC grave tiene SpO2 basal habitual del 89-91%. Su oximetro registra hoy 88%. El sistema de alertas configurado con umbral estandar de 92% genera una alerta roja. ¿Cual es el problema y la solucion?</div>
+<div class="qopts">
+<button class="qopt" onclick="ans(this,false,1)">No hay problema — el umbral del 92% es el correcto y la alerta esta bien generada</button>
+<button class="qopt" onclick="ans(this,true,1)">El problema es que el umbral estandar del 92% no esta individualizado para este paciente. Con SpO2 basal del 89-91%, el 88% puede ser su variacion normal. El medico debe definir un umbral personalizado para este paciente (por ejemplo, 85%) basado en su SpO2 basal, y configurarlo en el sistema en lugar del umbral estandar de la poblacion general</button>
+<button class="qopt" onclick="ans(this,false,1)">Llamar directamente a urgencias — cualquier SpO2 menor del 90% es emergencia</button>
+<button class="qopt" onclick="ans(this,false,1)">No hay solucion — los pacientes con EPOC grave no son candidatos a telemonitorizacion</button>
+</div>
+<div class="qfb" id="fb1"></div>
+<div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div>
+</div>
+<div class="qw" id="q2w">
+<div class="qnum">Pregunta 2 de 3</div>
+<div class="qtxt">Un paciente diabetico con MCG tiene glucemia de 100 mg/dL (en rango normal) y tendencia "DoubleDown" (-2 mg/dL por minuto). ¿Debe generarse una alerta?</div>
+<div class="qopts">
+<button class="qopt" onclick="ans(this,false,2)">No — 100 mg/dL esta en rango normal (70-180). Solo se alerta cuando el valor ya esta fuera del rango</button>
+<button class="qopt" onclick="ans(this,true,2)">Si — la tendencia DoubleDown indica que en 15 minutos la glucemia estara en hipoglucemia (100 - 2 x 15 = 70 mg/dL). La alerta preventiva es exactamente el valor diferencial del MCG sobre la glucemia puntual: permite actuar antes de que ocurra la hipoglucemia real</button>
+<button class="qopt" onclick="ans(this,false,2)">Solo si el paciente esta dormido, no durante el dia</button>
+<button class="qopt" onclick="ans(this,false,2)">No — las alertas por tendencia generan demasiados falsos positivos</button>
+</div>
+<div class="qfb" id="fb2"></div>
+<div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Ultima →</button></div>
+</div>
+<div class="qw" id="q3w">
+<div class="qnum">Pregunta 3 de 3</div>
+<div class="qtxt">Cual es la diferencia practica entre MQTT y API REST para recibir datos de un oximetro en un programa de telemonitorizacion de EPOC?</div>
+<div class="qopts">
+<button class="qopt" onclick="ans(this,false,3)">No hay diferencia — ambos tienen la misma latencia en entornos modernos</button>
+<button class="qopt" onclick="ans(this,false,3)">MQTT es mas caro — API REST es siempre la mejor opcion</button>
+<button class="qopt" onclick="ans(this,true,3)">MQTT es push en tiempo real (latencia de segundos — el dispositivo envia el dato en el momento de la medicion), mientras que API REST es pull periodico (latencia maxima = intervalo de polling, tipicamente 15-30 minutos). Para telemonitorizacion de SpO2 en EPOC, donde la desaturacion puede ser rapida, MQTT ofrece ventana de respuesta mucho mas estrecha — relevante para seguridad clinica</button>
+<button class="qopt" onclick="ans(this,false,3)">MQTT solo puede usarse con dispositivos medicos certificados</button>
+</div>
+<div class="qfb" id="fb3"></div>
+<div class="qnx" id="nx3">
+<div style="background:rgba(33,150,243,.1);border:1px solid rgba(33,150,243,.28);border-radius:10px;padding:16px;margin-top:8px">
+<div style="font-size:13px;font-weight:500;color:#90CAF9;margin-bottom:6px">Leccion 4.4 completada</div>
+<div style="font-size:12px;color:#B0BEC5;line-height:1.6">Dominas la integracion de dispositivos IoT clinicos: APIs REST, MQTT para tiempo real, FHIR Observation para el HIS, y alertas inteligentes basadas en tendencia. La leccion 4.5 entra en <strong style="color:#fff">validacion clinica cruzada: sensibilidad, especificidad y como comparar el modelo con gold standards</strong>.</div>
+</div>
+<button class="complete-btn" id="completeBtn" onclick="markComplete()">MARCAR LECCION COMO COMPLETADA</button>
+</div>
+</div>
+</div>
+
+<div class="lf"><span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span> · Desarrollado por DoncelProject · doncel.project@gmail.com</div>
+</div>
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/5)*100);document.getElementById('pbf44').style.width=p+'%';document.getElementById('pbl44').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function showTab(el,id){const sec=el.closest('.sec');sec.querySelectorAll('.tec-tab').forEach(t=>t.classList.remove('active'));sec.querySelectorAll('.tec-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById(id).classList.add('show');}
+const fbs={
+1:{ok:'Correcto. Los umbrales de alertas deben individualizarse para cada paciente, especialmente en EPOC donde la SpO2 basal puede ser significativamente menor que el estandar poblacional. El medico responsable del programa define el umbral personalizado al inscribir al paciente — un umbral unico para todos los pacientes EPOC genera alertas permanentes en pacientes estables o suprime alertas reales.',ko:'Los umbrales estandar de SpO2 estan disenados para la poblacion general. Los pacientes con EPOC grave pueden tener SpO2 basales mucho menores. El medico debe definir el umbral personalizado en funcion de la SpO2 basal documentada de cada paciente en condicion estable.'},
+2:{ok:'Correcto. El valor diferencial del MCG sobre la glucemia puntual es exactamente la tendencia. Con DoubleDown de -2 mg/dL/min, la glucemia estara en hipoglucemia en 15 minutos aunque ahora este en 100. La alerta preventiva permite actuar antes del evento — que es el objetivo de la monitorizacion proactiva.',ko:'Una glucemia de 100 con tendencia DoubleDown es el caso de uso tipico para el que el MCG fue disenado. Esperar a que cruce el umbral de 70 mg/dL elimina la capacidad predictiva del dispositivo. La tendencia es tan informacion clinica como el valor absoluto.'},
+3:{ok:'Correcto. MQTT push (latencia segundos) vs. API REST pull (latencia = intervalo de polling, tipicamente 15-30 min). Para SpO2 en EPOC, donde la desaturacion puede ocurrir en minutos, la diferencia temporal es clinicamente relevante. MQTT es mas complejo de configurar pero justificado para alertas de tiempo critico.',ko:'La diferencia entre MQTT y API REST es de arquitectura de comunicacion y latencia, no de coste ni de certificacion de dispositivos. MQTT no es inherentemente mas caro — requiere configurar un broker (Mosquitto es gratuito). Ambos protocolos son compatibles con distintos tipos de dispositivos independientemente de su certificacion.'}
+};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+function markComplete(){document.getElementById('completeBtn').disabled=true;document.getElementById('completeBtn').textContent='Completada';window.parent.postMessage({type:'LESSON_COMPLETE'},'*');}
+upd();
+</script>
+</body></html>

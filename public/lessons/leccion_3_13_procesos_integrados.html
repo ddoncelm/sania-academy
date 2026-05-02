@@ -1,0 +1,349 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:32px}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(0,184,212,.15);border:1px solid rgba(0,184,212,.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#80DEEA;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px}.lt span{color:#00B8D4}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px;flex-wrap:wrap}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#00B8D4;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:80px}
+.nb.active{color:#00B8D4;border-bottom-color:#00B8D4;background:#0C0D12}
+.sec{display:none;padding:20px 24px}.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(0,184,212,.08);border:1px solid rgba(0,184,212,.22);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#80DEEA;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#00B8D4;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer}
+.tec-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.tec-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 14px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s}
+.tec-tab.active{background:rgba(0,184,212,.15);border-color:#00B8D4;color:#80DEEA}
+.tec-panel{display:none}.tec-panel.show{display:block}
+.prompt-box{background:#0e1018;border:1px solid #1e2335;border-radius:10px;padding:14px;margin:10px 0}
+.prompt-label{font-size:10px;color:#80DEEA;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}
+.prompt-text{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.prompt-why{font-size:11px;color:#B0BEC5;line-height:1.6;margin-top:10px;padding-top:10px;border-top:1px solid #1e2335}
+.limit-item{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #1a2a3a}
+.limit-item:last-child{border-bottom:none}
+.li-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.li-title{font-size:12px;font-weight:600;color:#fff;margin-bottom:3px}
+.li-desc{font-size:11px;color:#B0BEC5;line-height:1.6}
+.flow-box{background:#0C0D12;border-radius:8px;padding:12px 14px;margin:10px 0;font-family:monospace;font-size:11px;color:#80DEEA;line-height:1.9;white-space:pre-wrap;word-break:break-word;border-left:2px solid #00B8D4}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.cg-item{background:#13151e;border:1px solid #1e2335;border-radius:10px;padding:14px}
+.cg-icon{font-size:20px;margin-bottom:6px}
+.cg-title{font-size:12px;font-weight:600;color:#fff;margin-bottom:4px}
+.cg-desc{font-size:11px;color:#B0BEC5;line-height:1.6}
+.alerta{border-radius:10px;padding:12px 14px;margin:12px 0;font-size:12px;line-height:1.6}
+.ao{background:rgba(76,175,80,.07);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.aw{background:rgba(255,152,0,.07);border:1px solid rgba(255,152,0,.22);color:#FFD54F}
+.ad{background:rgba(244,67,54,.07);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.alt{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px}
+.qw{display:none}.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s}
+.qopt:hover{border-color:#00B8D4;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}.qnx.show{display:block}
+.complete-btn{width:100%;background:linear-gradient(135deg,#00B8D4,#0097A7);color:#fff;border:none;border-radius:10px;padding:14px 20px;font-size:13px;font-weight:600;cursor:pointer;margin-top:16px;letter-spacing:.3px;transition:opacity .2s}
+.complete-btn:hover{opacity:.9}.complete-btn:disabled{opacity:.5;cursor:not-allowed}
+.lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a}
+.fl{color:#00B8D4;cursor:pointer;text-decoration:underline}
+</style>
+<div class="lw">
+<div class="lh"><div class="lb">MÓDULO 3 · LECCIÓN 3.13</div><div class="lt">Orquestación de automatizaciones complejas:<br><span>dependencias, sincronización y monitorización del ecosistema</span></div><div class="lm"><div class="lmi"><div class="md" style="background:#00B8D4"></div>88 minutos</div><div class="lmi"><div class="md" style="background:#FFB300"></div>Nivel avanzado</div><div class="lmi"><div class="md" style="background:#A5D6A7"></div>Arquitectura de automatización</div></div></div>
+<div class="pbw"><div class="pbb"><div class="pbf" id="pbf313"></div></div><div class="pbl" id="pbl313">0%</div></div>
+<div class="snav"><button class="nb active" id="t1" onclick="go(1)">Del flujo al ecosistema</button><button class="nb" id="t2" onclick="go(2)">Gestión de dependencias</button><button class="nb" id="t3" onclick="go(3)">Monitorización y alertas</button><button class="nb" id="t4" onclick="go(4)">Mantenimiento y mejora</button><button class="nb" id="t5" onclick="go(5)">Test</button></div>
+
+<div class="sec active" id="s1">
+<div class="card"><div class="ct">Objetivo de la lección</div><div class="cb">Pasar de gestionar flujos individuales a orquestar un ecosistema de automatizaciones que trabajan coordinadas: gestionar las dependencias entre flujos, sincronizar datos compartidos, detectar y recuperarse de fallos del sistema, y mantener el ecosistema actualizado y funcionando a lo largo del tiempo.</div></div>
+<div class="simil"><div class="sl">🏥 Analogía clínica</div>Un único flujo de automatización es como un protocolo clínico aislado — valioso por sí mismo pero limitado. Un ecosistema de automatizaciones orquestadas es como el sistema de guardia de un hospital: múltiples equipos (urgencias, quirófano, UCI, laboratorio) que trabajan de forma autónoma pero coordinada, con protocolos de comunicación entre ellos, un sistema de información que los conecta, y un coordinador de guardia que gestiona cuando hay conflictos o fallos. La orquestación es exactamente ese coordinador.</div>
+<div class="card"><div class="ct">Del flujo aislado al ecosistema integrado</div><div class="cb" style="margin-bottom:10px">Después de implementar los flujos de las lecciones anteriores, el hospital tiene decenas de automatizaciones activas. Sin orquestación, surgen tres problemas:</div>
+<div class="limit-item"><div class="li-icon">⚠️</div><div class="li-body"><div class="li-title">Conflictos de datos</div><div class="li-desc">El flujo de recordatorios usa Google Sheets como fuente de verdad para las citas. El flujo de gestión de listas de espera también escribe en esa hoja. El flujo de reporting lee de ella. Si dos flujos escriben simultáneamente sin coordinación, los datos se corrompen. Se necesita gestión de concurrencia.</div></div></div>
+<div class="limit-item"><div class="li-icon">⚠️</div><div class="li-body"><div class="li-title">Dependencias ocultas</div><div class="li-desc">El flujo de encuestas post-alta depende de que el flujo de altas lo haya procesado primero. El flujo de dashboard depende de que los flujos de calidad hayan actualizado los datos a las 7:00 AM. Si un flujo falla, los que dependen de él también fallan — silenciosamente si no hay monitorización.</div></div></div>
+<div class="limit-item"><div class="li-icon">⚠️</div><div class="li-body"><div class="li-title">Imposibilidad de mantener sin documentación</div><div class="li-desc">Seis meses después de implementar 20 flujos, nadie recuerda exactamente qué hace cada uno, qué datos usa, de dónde los toma, qué servicios externos necesita, y qué pasa si alguno falla. La documentación y la monitorización son la única forma de que el ecosistema sea mantenible a largo plazo.</div></div></div>
+<div class="nav-actions"><div></div><button class="btn-p" onclick="go(2)">Gestión de dependencias →</button></div>
+</div>
+
+</div>
+<div class="sec" id="s2">
+<div class="card"><div class="ct">Gestión de dependencias entre flujos</div><div class="cb">Una dependencia es cuando un flujo B necesita que el flujo A haya completado correctamente antes de poder ejecutarse. Identificar, documentar y gestionar estas dependencias es la base de un ecosistema estable.</div></div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'dep-map')">🗺️ Mapa de dependencias</button><button class="tec-tab" onclick="showTab(this,'dep-sync')">🔄 Sincronización</button><button class="tec-tab" onclick="showTab(this,'dep-circuit')">⚡ Circuit breaker</button></div>
+<div class="tec-panel show" id="dep-map">
+<div class="card"><div class="ct">Cómo documentar el mapa de dependencias del ecosistema</div></div>
+<div class="flow-box">INVENTARIO DE FLUJOS — plantilla de documentación:
+
+Para cada flujo en el ecosistema, registrar:
+┌─────────────────────────────────────────────────────┐
+│ FLUJO: [nombre descriptivo]                         │
+│ ID: [código único, ej: F-003]                       │
+│ Plataforma: Make / n8n / Zapier                     │
+│ Trigger: [tipo y fuente]                            │
+│ Frecuencia: [schedule o event-driven]               │
+│                                                     │
+│ ENTRADAS (fuentes de datos que consume):            │
+│ - [fuente 1]: [tipo de dato, con qué frecuencia]    │
+│ - [fuente 2]: ...                                   │
+│                                                     │
+│ SALIDAS (datos que produce o sistemas que modifica):│
+│ - [destino 1]: [qué escribe/actualiza]              │
+│ - [destino 2]: ...                                  │
+│                                                     │
+│ DEPENDENCIAS:                                       │
+│ - Depende de: [F-001, F-002] (no puede ejecutarse  │
+│   si estos fallan)                                  │
+│ - Bloqueado por: [F-005] (no deben ejecutarse a la │
+│   vez porque escriben en la misma fuente)           │
+│                                                     │
+│ SERVICIOS EXTERNOS:                                 │
+│ - [servicio 1]: [qué usa, endpoint, credenciales]   │
+│                                                     │
+│ QUÉ PASA SI FALLA:                                 │
+│ - Impacto: [describe el impacto clínico/operativo]  │
+│ - Tiempo máximo de inactividad tolerable: [horas]   │
+│ - Procedimiento manual de respaldo: [descripción]   │
+└─────────────────────────────────────────────────────┘</div>
+<div class="prompt-box">
+<div class="prompt-label">Prompt: auditar y documentar el ecosistema de automatizaciones del servicio</div>
+<div class="prompt-text">Soy responsable del ecosistema de automatizaciones del Servicio de [ESPECIALIDAD]. Tenemos los siguientes flujos activos:
+[LISTA DE FLUJOS: nombre, plataforma, frecuencia, descripción breve de qué hace]
+
+Para cada flujo, necesito que me ayudes a:
+1. Identificar las dependencias con otros flujos del ecosistema (¿cuál necesita que otro esté funcionando?)
+2. Identificar las dependencias con servicios externos (¿qué APIs, plataformas de terceros usa?)
+3. Detectar posibles conflictos de escritura (¿dos flujos modifican la misma fuente de datos?)
+4. Ordenar los flujos por criticidad: ¿cuáles tienen impacto clínico directo si fallan?
+5. Para los flujos más críticos: ¿cuál sería el procedimiento manual de respaldo si la automatización falla?
+
+Genera:
+- El mapa de dependencias en formato visual (árbol o lista anidada)
+- La clasificación por criticidad (crítico / importante / auxiliar)
+- Los 3 puntos de fallo único más peligrosos del ecosistema actual
+- Recomendaciones para reducir esos puntos de fallo</div>
+<div class="prompt-why">Un ecosistema de automatizaciones sin documentación es una deuda técnica que crece silenciosamente. Esta auditoría, hecha periódicamente (trimestral o tras cada cambio significativo), mantiene el control de lo que existe, cómo interactúa, y qué pasa cuando algo falla.</div>
+</div>
+</div>
+<div class="tec-panel" id="dep-sync">
+<div class="card"><div class="ct">Sincronización: evitar conflictos de escritura concurrente</div><div class="cb">Cuando dos flujos leen y escriben en la misma fuente de datos (Google Sheets, Airtable, base de datos), pueden producirse condiciones de carrera — ambos leen el valor antiguo, ambos calculan en paralelo, ambos escriben — y el resultado final es incorrecto.</div></div>
+<div class="limit-item"><div class="li-icon">⏰</div><div class="li-body"><div class="li-title">Solución 1: separación temporal</div><div class="li-desc">Si dos flujos deben escribir en la misma fuente, programarlos en horarios que no se solapen. El flujo de reporting que actualiza el dashboard ejecuta a las 7:00 AM; el flujo de calidad que alimenta los datos ejecuta a las 6:30 AM. 30 minutos de separación garantiza que uno termina antes de que el otro empiece.</div></div></div>
+<div class="limit-item"><div class="li-icon">🔒</div><div class="li-body"><div class="li-title">Solución 2: flag de «en proceso»</div><div class="li-desc">El flujo que empieza a escribir marca una celda/campo como «PROCESANDO» al inicio. El segundo flujo, antes de escribir, comprueba ese flag. Si está en «PROCESANDO», espera o se re-agenda. Al terminar el primero, marca como «LIBRE». Implementable con una celda adicional en Sheets o un campo en Airtable.</div></div></div>
+<div class="limit-item"><div class="li-icon">📋</div><div class="li-body"><div class="li-title">Solución 3: datos solo de lectura para flujos secundarios</div><div class="li-desc">Designar una fuente de datos como «fuente de verdad» que solo un flujo principal escribe. Los flujos secundarios solo leen de ella — nunca escriben. Los flujos secundarios escriben en sus propias hojas/tablas si necesitan registrar algo. Elimina el problema de raíz para la mayoría de los casos.</div></div></div>
+</div>
+<div class="tec-panel" id="dep-circuit">
+<div class="card"><div class="ct">Circuit breaker: desconectar automáticamente flujos cuando el sistema está inestable</div><div class="cb">El patrón «circuit breaker» (disyuntor automático) es un mecanismo que desactiva temporalmente un flujo cuando detecta que está fallando repetidamente — antes de que el fallo en cascada afecte a todo el ecosistema.</div></div>
+<div class="flow-box">IMPLEMENTACIÓN DE CIRCUIT BREAKER EN MAKE:
+
+ESTADO INICIAL: Cerrado (flujo funcionando normal)
+
+MONITORIZACIÓN: contador de fallos consecutivos en campo de Sheets
+
+Si el flujo falla en una ejecución:
+  → Incrementar contador_fallos + 1
+  → Si contador_fallos < 3: reintentar (reintentos normales de Make)
+  → Si contador_fallos >= 3 (umbral):
+     → ABRIR el circuito: desactivar el escenario en Make
+     → Enviar alerta al administrador:
+       "CIRCUIT BREAKER ACTIVADO: Flujo [nombre] desactivado tras 3 fallos consecutivos.
+        Última vez: [hora]. Error: [descripción]. Acción requerida antes de reactivar."
+     → Activar procedimiento manual de respaldo si existe
+
+CONDICIÓN DE REACTIVACIÓN (manual):
+  → Administrador investiga la causa del fallo
+  → Corrige el problema
+  → Resetea contador_fallos a 0
+  → Reactiva manualmente el escenario en Make
+
+EJEMPLO CLÍNICO: Flujo de alertas de valores críticos del laboratorio
+  → Si el webhook del HIS empieza a enviar datos malformados y el flujo falla
+    3 veces seguidas, el circuit breaker desactiva el flujo automatizado
+    e inmediatamente notifica al equipo para activar el protocolo manual
+    de notificación de valores críticos — evitando que sigan fallando
+    sin que nadie lo sepa mientras los valores críticos no se comunican</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(1)">← Del flujo al ecosistema</button><button class="btn-p" onclick="go(3)">Monitorización →</button></div>
+</div>
+
+<div class="sec" id="s3">
+<div class="card"><div class="ct">Monitorización del ecosistema de automatizaciones</div><div class="cb">No puedes gestionar lo que no monitorizas. Un ecosistema de 20 flujos activos necesita un sistema de monitorización que detecte fallos antes de que generen impacto clínico o que los detecte en el momento en que ocurren para activar los procedimientos de respaldo.</div></div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'mon-dashboard')">📊 Dashboard de salud</button><button class="tec-tab" onclick="showTab(this,'mon-alertas')">🚨 Sistema de alertas</button><button class="tec-tab" onclick="showTab(this,'mon-logs')">📝 Logs centralizados</button></div>
+<div class="tec-panel show" id="mon-dashboard">
+<div class="flow-box">DASHBOARD DE SALUD DEL ECOSISTEMA — estructura en Looker Studio:
+
+VISTA PRINCIPAL: "Estado actual del ecosistema"
+Actualización: cada 15 minutos (desde Google Sheets de monitorización)
+
+Para cada flujo del ecosistema:
+┌───────────────────────────────────────────────────┐
+│ 🟢 Flujo recordatorios citas               ACTIVO │
+│ Última ejecución: hace 12 min             OK      │
+│ Ejecuciones hoy: 47          Fallos: 0    100%    │
+├───────────────────────────────────────────────────┤
+│ 🟡 Flujo altas HIS                        LENTO  │
+│ Última ejecución: hace 48 min            ⚠️ SLOW  │
+│ Ejecuciones hoy: 3           Fallos: 1   94%      │
+├───────────────────────────────────────────────────┤
+│ 🔴 Flujo valores críticos lab             ERROR   │
+│ Última ejecución: hace 3h              ❌ FALLO   │
+│ Ejecuciones hoy: 0           Fallos: 5   0%       │
+│ ⚡ CIRCUIT BREAKER ACTIVADO — Requiere atención   │
+└───────────────────────────────────────────────────┘
+
+MÉTRICAS AGREGADAS:
+→ Tasa de éxito global del ecosistema (hoy): 97.2%
+→ Flujos activos: 18/20 (2 con incidencias)
+→ Total ejecuciones hoy: 342
+→ Total fallos hoy: 9 (2.6%)
+→ Tendencia vs. ayer: ↓ mejor</div>
+</div>
+<div class="tec-panel" id="mon-alertas">
+<div class="limit-item"><div class="li-icon">🔴</div><div class="li-body"><div class="li-title">Alerta crítica: fallo en flujo de impacto clínico directo</div><div class="li-desc">Para flujos con impacto clínico (alertas de valores críticos, seguimiento de crónicos): SMS inmediato + llamada al administrador del ecosistema. Incluir: nombre del flujo, error detectado, última ejecución exitosa, y enlace directo a Make/n8n para acceso rápido. Tiempo de respuesta objetivo: <15 minutos.</div></div></div>
+<div class="limit-item"><div class="li-icon">🟡</div><div class="li-body"><div class="li-title">Alerta media: degradación de rendimiento</div><div class="li-desc">Para flujos que no fallan completamente pero tardan más de lo normal (ej: el flujo de recordatorios tarda 45 min en lugar de los 10 habituales): email al administrador en el mismo día. Puede indicar sobrecarga de una API externa, degradación del HIS, o aumento del volumen de datos que requiere optimización.</div></div></div>
+<div class="limit-item"><div class="li-icon">📊</div><div class="li-body"><div class="li-title">Informe semanal de salud del ecosistema</div><div class="li-desc">Cada lunes: email automático con el resumen de la semana. Número de ejecuciones totales, tasa de éxito, flujos con mayor número de fallos, tendencia de rendimiento, cambios realizados en la semana, y próximo mantenimiento planificado. Este informe es la base para la reunión mensual de revisión del ecosistema.</div></div></div>
+</div>
+<div class="tec-panel" id="mon-logs">
+<div class="flow-box">CENTRALIZACIÓN DE LOGS DEL ECOSISTEMA:
+
+FLUJO DE LOGGING UNIVERSAL — Make/n8n:
+Cada flujo envía un registro al inicio y al final de cada ejecución:
+
+Inicio:
+{
+  "flujo_id": "F-003",
+  "flujo_nombre": "Recordatorios citas consultas externas",
+  "timestamp_inicio": "2025-01-15T09:00:02Z",
+  "trigger": "schedule_lunes_9am",
+  "estado": "INICIADO"
+}
+
+Fin (exitoso):
+{
+  "flujo_id": "F-003",
+  "timestamp_fin": "2025-01-15T09:08:43Z",
+  "estado": "COMPLETADO",
+  "registros_procesados": 47,
+  "acciones_exitosas": 47,
+  "acciones_fallidas": 0,
+  "duracion_segundos": 521
+}
+
+Fin (con error):
+{
+  "flujo_id": "F-003",
+  "timestamp_fin": "2025-01-15T09:03:12Z",
+  "estado": "ERROR",
+  "paso_fallido": "Twilio SMS - Send message",
+  "codigo_error": "21211",
+  "mensaje_error": "The 'To' number +3469XXX is not a valid phone number",
+  "registros_procesados": 12,
+  "acciones_exitosas": 11,
+  "acciones_fallidas": 1
+}
+
+DESTINO: Google Sheets "Log_Ecosistema" (una fila por ejecución)
+→ Alimenta el dashboard de salud
+→ Consultable para diagnóstico de incidencias
+→ Retención: 90 días (purga automática de registros más antiguos)</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(2)">← Dependencias</button><button class="btn-p" onclick="go(4)">Mantenimiento →</button></div>
+</div>
+
+<div class="sec" id="s4">
+<div class="card"><div class="ct">Mantenimiento y mejora continua del ecosistema</div><div class="cb">Un ecosistema de automatizaciones no es un proyecto que se termina — es una infraestructura que se mantiene y evoluciona. Las APIs cambian, el HIS se actualiza, los procesos clínicos se modifican, aparecen nuevas necesidades. El mantenimiento planificado es la diferencia entre un ecosistema que crece ordenadamente y uno que colapsa por acumulación de deuda técnica.</div></div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'mant-rutina')">📅 Rutina de mantenimiento</button><button class="tec-tab" onclick="showTab(this,'mant-cambio')">🔄 Gestión del cambio</button><button class="tec-tab" onclick="showTab(this,'mant-opt')">⚡ Optimización</button></div>
+<div class="tec-panel show" id="mant-rutina">
+<div class="flow-box">CALENDARIO DE MANTENIMIENTO DEL ECOSISTEMA:
+
+DIARIO (automatizado):
+→ Revisión del dashboard de salud (primer acceso del administrador: 8:00 AM)
+→ Verificar que los flujos críticos ejecutaron correctamente durante la noche
+→ Revisar alertas pendientes de resolución
+
+SEMANAL (manual + automatizado):
+→ Informe semanal de salud generado automáticamente
+→ Revisión de flujos con rendimiento degradado
+→ Limpieza de logs de ejecución de flujos no críticos
+
+MENSUAL (manual):
+→ Revisión del inventario de flujos: ¿alguno ha quedado obsoleto?
+→ Verificar que las credenciales de APIs no han expirado
+→ Revisar los límites de uso de las plataformas (operaciones Make, SMS Twilio)
+→ Comprobar que las DPAs con proveedores están vigentes
+→ Actualizar la documentación de los flujos modificados
+
+TRIMESTRAL:
+→ Auditoría completa del ecosistema con el prompt de auditoría
+→ Revisión de KPIs de los flujos: ¿están generando el valor esperado?
+→ Planificación de nuevas automatizaciones para el siguiente trimestre
+
+ANUAL:
+→ Renovación de contratos con proveedores (Make, Zapier, Twilio)
+→ Evaluación de si la plataforma actual sigue siendo la más adecuada
+→ Revisión completa de cumplimiento RGPD y ENS</div>
+</div>
+<div class="tec-panel" id="mant-cambio">
+<div class="limit-item"><div class="li-icon">🔄</div><div class="li-body"><div class="li-title">Gestión de cambios en el HIS o en los procesos</div><div class="li-desc">Cuando el HIS se actualiza, puede cambiar el formato de los datos que exporta, la estructura de la API, o los campos disponibles. Antes de cualquier actualización del HIS, el responsable del ecosistema debe revisar qué flujos usan ese sistema y probarlos en el entorno de pruebas con los nuevos datos.</div></div></div>
+<div class="limit-item"><div class="li-icon">📋</div><div class="li-body"><div class="li-title">Control de versiones de los flujos</div><div class="li-desc">Make y n8n tienen historial de versiones de los escenarios/workflows. Antes de modificar un flujo en producción, crear una copia de seguridad con la versión actual. Si el cambio genera problemas, el rollback a la versión anterior es cuestión de minutos.</div></div></div>
+<div class="limit-item"><div class="li-icon">🧪</div><div class="li-body"><div class="li-title">Entorno de pruebas del ecosistema</div><div class="li-desc">Mantener una instancia separada (o escenarios de «prueba» en Make) donde se prueban los cambios antes de desplegarlos a producción. Especialmente importante para cambios en flujos críticos: nunca modificar directamente el flujo de alertas de valores críticos en producción sin haberlo probado en el entorno de pruebas primero.</div></div></div>
+</div>
+<div class="tec-panel" id="mant-opt">
+<div class="prompt-box">
+<div class="prompt-label">Prompt: optimizar un flujo que ha empezado a fallar o a funcionar lento</div>
+<div class="prompt-text">Tengo un flujo de automatización en [Make/n8n] que empezó a funcionar correctamente pero en las últimas semanas está generando errores frecuentes o tarda mucho más de lo normal.
+
+SÍNTOMAS:
+- Flujo: [nombre y descripción breve]
+- Problema observado: [fallos / lentitud / datos incorrectos]
+- Frecuencia del problema: [cuántas ejecuciones de cada X fallan]
+- Últimos cambios realizados (en el flujo o en los sistemas que usa): [descripción]
+- Mensaje de error más frecuente (si aplica): [pegar el error]
+- Tendencia: [empeoró de golpe / empeoró gradualmente]
+
+Ayúdame a diagnosticar:
+1. Las causas más probables del problema según los síntomas descritos
+2. Cómo verificar cada hipótesis (qué revisar, en qué orden)
+3. Soluciones para cada causa probable
+4. Cómo prevenir que el problema se repita
+5. Si el problema es un límite de la plataforma actual, alternativas para escalar o migrar</div>
+<div class="prompt-why">El diagnóstico de un flujo que falla sin saber por qué puede tomar horas si no hay metodología. Este prompt aplica un proceso de diagnóstico estructurado — de lo más probable a lo menos probable — ahorrando tiempo y evitando los cambios «a ciegas» que pueden generar problemas nuevos.</div>
+</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(3)">← Monitorización</button><button class="btn-p" onclick="go(5)">Test →</button></div>
+</div>
+
+<div class="sec" id="s5">
+<div class="qw active" id="q1w"><div class="qnum">Pregunta 1 de 3</div><div class="qtxt">El flujo de alertas de valores críticos de laboratorio ha fallado 3 veces consecutivas porque el HIS ha cambiado el formato del webhook que envía. El circuit breaker se activa y desconecta el flujo. ¿Cuál es la secuencia correcta de acciones?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,1)">Reactivar inmediatamente el flujo en Make y esperar a que funcione solo — los errores transitorios se resuelven solos</button><button class="qopt" onclick="ans(this,true,1)">1) Activar el procedimiento manual de notificación de valores críticos, 2) Diagnosticar la causa (nuevo formato del webhook del HIS), 3) Corregir el flujo en el entorno de pruebas con el nuevo formato, 4) Validar que funciona correctamente con datos de prueba, 5) Desplegar a producción y resetear el circuit breaker</button><button class="qopt" onclick="ans(this,false,1)">Desactivar el circuit breaker y volver a activar el flujo original sin modificaciones — quizás el problema se resolverá en la próxima ejecución</button><button class="qopt" onclick="ans(this,false,1)">Esperar a que el equipo de TIC actualice el HIS de vuelta al formato anterior — la automatización no debe adaptarse a los cambios del HIS</button></div><div class="qfb" id="fb1"></div><div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div></div>
+<div class="qw" id="q2w"><div class="qnum">Pregunta 2 de 3</div><div class="qtxt">Dos flujos (el de recordatorios y el de gestión de lista de espera) escriben simultáneamente en la misma hoja de Google Sheets. Esta mañana los datos aparecen incorrectos. ¿Cuál es la solución arquitectónica correcta?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,2)">Aumentar la velocidad de ambos flujos para que terminen antes de interferirse</button><button class="qopt" onclick="ans(this,true,2)">Designar una «fuente de verdad» que solo el flujo principal (recordatorios) escribe, y hacer que el flujo de lista de espera solo lea de esa fuente y escriba en su propia hoja separada. Alternativamente, implementar un flag de «en proceso» que coordine el acceso exclusivo a la hoja compartida</button><button class="qopt" onclick="ans(this,false,2)">Combinar ambos flujos en uno solo para que ejecuten secuencialmente</button><button class="qopt" onclick="ans(this,false,2)">Mover ambos flujos a n8n self-hosted — Make no puede gestionar escritura concurrente</button></div><div class="qfb" id="fb2"></div><div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div></div>
+<div class="qw" id="q3w"><div class="qnum">Pregunta 3 de 3</div><div class="qtxt">El responsable del ecosistema detecta en el informe mensual que el flujo de reporting semanal de calidad ha tardado un promedio de 47 minutos en las últimas 4 semanas, cuando antes tardaba 8 minutos. No hay errores, solo lentitud. ¿Cuál es la causa más probable y cómo verificarla?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,3)">La plataforma Make ha degradado su rendimiento global — contactar con soporte de Make</button><button class="qopt" onclick="ans(this,false,3)">El flujo tiene un error de código que se ha introducido recientemente y que ralentiza el procesamiento</button><button class="qopt" onclick="ans(this,true,3)">El volumen de datos procesados ha aumentado significativamente (más indicadores, más servicios, más registros históricos que analizar) — verificar cuántos registros procesaba hace 4 semanas vs. ahora. Si el volumen creció 5x, la solución es optimizar el flujo para procesar en lotes o filtrar solo datos del período relevante en lugar de releer todo el histórico</button><button class="qopt" onclick="ans(this,false,3)">Una API externa que usa el flujo ha impuesto rate limiting — verificar los logs de errores de las llamadas externas</button></div><div class="qfb" id="fb3"></div><div class="qnx" id="nx3"><div style="background:rgba(0,184,212,.1);border:1px solid rgba(0,184,212,.28);border-radius:10px;padding:16px;margin-top:8px"><div style="font-size:13px;font-weight:500;color:#80DEEA;margin-bottom:6px">✓ Lección 3.13 completada</div><div style="font-size:12px;color:#B0BEC5;line-height:1.6">Sabes orquestar un ecosistema de automatizaciones: mapear dependencias, evitar conflictos de escritura, implementar circuit breakers, monitorizar la salud del sistema y mantenerlo a lo largo del tiempo. La lección 3.14 cierra el Módulo 3 con <strong style="color:#fff">la simulación de flujos clínico-asistenciales: validar y optimizar procesos antes de la implementación real</strong>.</div></div><button class="complete-btn" id="completeBtn" onclick="markComplete()">✓ MARCAR LECCIÓN COMO COMPLETADA</button></div></div>
+</div>
+<div class="lf"><span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span> · Desarrollado por DoncelProject · doncel.project@gmail.com</div>
+</div>
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/5)*100);document.getElementById('pbf313').style.width=p+'%';document.getElementById('pbl313').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function showTab(el,id){const sec=el.closest('.sec');sec.querySelectorAll('.tec-tab').forEach(t=>t.classList.remove('active'));sec.querySelectorAll('.tec-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById(id).classList.add('show');}
+const fbs={
+1:{ok:'✅ Correcto. El circuit breaker tiene dos propósitos: detener el fallo en cascada Y forzar la intervención humana antes de reactivar. La secuencia correcta siempre empieza por activar el procedimiento manual de respaldo — en este caso, la notificación manual de valores críticos — para que no haya período sin cobertura clínica. Solo después de resolver la causa raíz y validar en pruebas se reactiva el flujo en producción. Reactivar sin corregir reproduce exactamente el mismo fallo.',ko:'❌ Reactivar un flujo sin corregir la causa raíz garantiza que seguirá fallando — y con ello, que los valores críticos seguirán sin notificarse. El circuit breaker existe precisamente para forzar esta pausa reflexiva. El riesgo clínico de un flujo de valores críticos no funcionando es mayor que el de tener el circuit breaker activado durante el tiempo necesario para diagnóstico y corrección.'},
+2:{ok:'✅ Correcto. La solución arquitectónica correcta para conflictos de escritura concurrente es separar responsabilidades: una fuente de datos tiene un único propietario que la escribe. Los consumidores solo leen. Si ambos flujos necesitan registrar información, cada uno tiene su propia hoja/tabla de salida. El flag de «en proceso» es la alternativa cuando la separación completa no es posible y los flujos deben coordinarse para acceder a la misma fuente.',ko:'❌ Aumentar la velocidad empeora el problema de concurrencia — cuanto más rápido ejecutan, más probable es que coincidan. Combinarlos en un único flujo puede ser una opción, pero aumenta la complejidad y la dificultad de mantenimiento. El problema no es específico de Make — cualquier plataforma que ejecute dos procesos simultáneos que escriben en el mismo archivo puede tener condiciones de carrera.'},
+3:{ok:'✅ Correcto. En un flujo de reporting sin errores que se vuelve progresivamente más lento, la causa más frecuente es el crecimiento del volumen de datos procesados. Si el flujo lee todos los registros históricos para calcular indicadores (en lugar de solo el período relevante), cada semana tiene más filas que procesar — y la duración crece linealmente con el volumen. La solución es filtrar los datos en origen: «dame solo los datos de esta semana», no «dame todos los datos y luego filtraré». El rate limiting de APIs genera errores, no solo lentitud.',ko:'❌ El rate limiting genera errores (código 429 Too Many Requests), no simplemente lentitud. La degradación de rendimiento de Make afectaría a todos los escenarios simultáneamente, no solo a este flujo específico. El síntoma de «más lento cada semana, sin errores, de forma progresiva» apunta casi siempre a crecimiento del volumen de datos procesados — la firma temporal progresiva es el dato diagnóstico clave.'}
+};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+function markComplete(){document.getElementById('completeBtn').disabled=true;document.getElementById('completeBtn').textContent='✓ Completada';window.parent.postMessage({type:'LESSON_COMPLETE'},'*');}
+upd();
+</script>

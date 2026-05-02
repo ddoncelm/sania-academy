@@ -1,0 +1,320 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:32px}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(33,150,243,0.15);border:1px solid rgba(33,150,243,0.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#90CAF9;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px}
+.lt span{color:#2196F3}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#2196F3;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:70px}
+.nb.active{color:#2196F3;border-bottom-color:#2196F3;background:#0C0D12}
+.sec{display:none;padding:20px 24px}
+.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(33,150,243,0.08);border:1px solid rgba(33,150,243,0.22);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#2196F3;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer}
+.uso-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.uso-card{background:#13151e;border:1px solid #1e2335;border-radius:10px;padding:14px}
+.uso-icon{font-size:20px;margin-bottom:8px}
+.uso-title{font-size:13px;font-weight:500;color:#fff;margin-bottom:6px}
+.uso-desc{font-size:12px;color:#B0BEC5;line-height:1.5}
+.prompt-box{background:#0e1018;border:1px solid #1e2335;border-radius:10px;padding:14px;margin:10px 0}
+.prompt-label{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}
+.prompt-text{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.prompt-why{font-size:11px;color:#B0BEC5;line-height:1.6;margin-top:10px;padding-top:10px;border-top:1px solid #1e2335}
+.sim-demo{background:#13151e;border:1px solid #1e2335;border-radius:12px;overflow:hidden;margin:12px 0}
+.sim-header{background:#1a1c24;padding:10px 14px;font-size:11px;color:#90CAF9;font-weight:500;border-bottom:1px solid #1e2335}
+.sim-body{padding:14px}
+.sim-msg{margin-bottom:10px}
+.sim-msg-ia{background:#0e1018;border:1px solid #1e2335;border-radius:8px;padding:10px 12px;font-size:12px;color:#E0E0E0;line-height:1.6}
+.sim-msg-user{background:rgba(33,150,243,.08);border:1px solid rgba(33,150,243,.2);border-radius:8px;padding:10px 12px;font-size:12px;color:#90CAF9;line-height:1.6;text-align:right}
+.sim-label{font-size:10px;color:#546E7A;margin-bottom:4px}
+.sim-label-r{font-size:10px;color:#546E7A;margin-bottom:4px;text-align:right}
+.eval-grid{display:grid;grid-template-columns:1fr;gap:8px;margin:12px 0}
+.eval-item{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:12px 14px;display:flex;gap:10px}
+.eval-icon{font-size:14px;flex-shrink:0}
+.eval-body{}
+.eval-title{font-size:12px;font-weight:500;color:#fff;margin-bottom:3px}
+.eval-desc{font-size:11px;color:#B0BEC5;line-height:1.5}
+.lab-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.lab-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 12px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s}
+.lab-tab.active{background:rgba(33,150,243,.15);border-color:#2196F3;color:#90CAF9}
+.lab-panel{display:none}
+.lab-panel.show{display:block}
+.qw{display:none}.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s}
+.qopt:hover{border-color:#2196F3;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}.qnx.show{display:block}
+.lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a}
+.fl{color:#2196F3;cursor:pointer;text-decoration:underline}
+</style>
+
+<div class="lw">
+  <div class="lh">
+    <div class="lb">MÓDULO 2 · LECCIÓN 2.10</div>
+    <div class="lt">Simulaciones interactivas: <span>pacientes virtuales y role-playing clínico</span></div>
+    <div class="lm">
+      <div class="lmi"><div class="md" style="background:#2196F3"></div>60 minutos</div>
+      <div class="lmi"><div class="md" style="background:#00B8D4"></div>Pacientes virtuales</div>
+      <div class="lmi"><div class="md" style="background:#FFB300"></div>Situaciones difíciles</div>
+    </div>
+  </div>
+  <div class="pbw"><div class="pbb"><div class="pbf" id="pf210"></div></div><div class="pbl" id="pl210">0%</div></div>
+  <div class="snav">
+    <button class="nb active" id="t1" onclick="go(1)">Usos clínicos</button>
+    <button class="nb" id="t2" onclick="go(2)">Ejemplo en vivo</button>
+    <button class="nb" id="t3" onclick="go(3)">Biblioteca</button>
+    <button class="nb" id="t4" onclick="go(4)">Test</button>
+  </div>
+
+  <div class="sec active" id="s1">
+    <div class="card"><div class="ct">Objetivo</div><div class="cb">Utilizar la IA para formación y entrenamiento clínico mediante escenarios simulados. El role-playing con IA como paciente virtual permite practicar situaciones comunicativas difíciles, preparar conversaciones complejas y entrenar habilidades clínicas sin riesgo para pacientes reales.</div></div>
+    <div class="simil"><div class="sl">Por qué es transformador</div>Antes de la IA, practicar una conversación difícil requería un colega disponible para el role-play o esperar a que la situación ocurriera en la vida real. Ahora puedes practicar el anuncio de un diagnóstico grave a las 2 AM antes de una guardia, repetirlo cuantas veces quieras, y recibir feedback inmediato sobre tu comunicación.</div>
+
+    <div class="uso-grid">
+      <div class="uso-card">
+        <div class="uso-icon">🏥</div>
+        <div class="uso-title">Pacientes virtuales con historia compleja</div>
+        <div class="uso-desc">Simula entrevistas clínicas con pacientes de alta complejidad: pluripatológicos, con barreras de comunicación, ansiosos, negacionistas o con creencias que interfieren con el tratamiento.</div>
+      </div>
+      <div class="uso-card">
+        <div class="uso-icon">💬</div>
+        <div class="uso-title">Situaciones comunicativas difíciles</div>
+        <div class="uso-desc">Practica el anuncio de malas noticias, el manejo de la agresividad, el consentimiento informado complejo, o la comunicación de errores clínicos con el paciente o la familia.</div>
+      </div>
+      <div class="uso-card">
+        <div class="uso-icon">🩺</div>
+        <div class="uso-title">Anamnesis y exploración guiada</div>
+        <div class="uso-desc">Entrena la anamnesis sistemática: el paciente virtual responde a tus preguntas como lo haría un paciente real, con síntomas coherentes y la complejidad de la comunicación humana.</div>
+      </div>
+      <div class="uso-card">
+        <div class="uso-icon">📊</div>
+        <div class="uso-title">Evaluación objetiva de competencias</div>
+        <div class="uso-card"><div class="uso-desc">Tras la simulación, pide a la IA que evalúe tu desempeño comunicativo: qué preguntas hiciste, cuáles omitiste, cómo fue tu comunicación empática y qué podrías mejorar.</div></div>
+      </div>
+    </div>
+    <div class="nav-actions"><div></div><button class="btn-p" onclick="go(2)">Ejemplo →</button></div>
+  </div>
+
+  <div class="sec" id="s2">
+    <div class="card"><div class="ct">Ejemplo de simulación en vivo — Anuncio de diagnóstico grave</div><div class="cb">Así funciona una simulación de paciente virtual. El profesional envía el prompt inicial y luego mantiene la conversación con la IA que interpreta al paciente. Al final, pide feedback.</div></div>
+
+    <div class="sim-demo">
+      <div class="sim-header">Simulación: Anuncio de cáncer de colon — Rol del médico</div>
+      <div class="sim-body">
+        <div class="sim-msg">
+          <div class="sim-label">MÉDICO — Prompt inicial de configuración</div>
+          <div class="sim-msg-user">Vamos a hacer un role-play clínico. Tú eres el paciente. Características: varón 58 años, empresario, muy controlador, ha venido solo a recoger resultados de colonoscopia. Tiene adenocarcinoma de colon estadio II. No sospecha nada grave. Responde como respondería este paciente real: con las emociones, las preguntas, los silencios y las reacciones que son humanas y realistas. Yo soy el médico que le va a dar la noticia. Empieza cuando yo entre a la consulta.</div>
+        </div>
+        <div class="sim-msg">
+          <div class="sim-label">IA — Respuesta como paciente</div>
+          <div class="sim-msg-ia">*Está sentado mirando el móvil, con expresión impaciente. Al entrar el médico, lo guarda rápidamente.*<br><br>"Buenas tardes, doctor. Perdone que haya llegado un poco tarde, es que he tenido una reunión que se ha alargado. Espero que esto no sea largo porque tengo otra llamada en media hora. ¿Todo bien con la prueba esa? Porque yo me encuentro perfectamente, lo que pasa es que me insistieron desde el centro de salud..."</div>
+        </div>
+        <div class="sim-msg">
+          <div class="sim-label">MÉDICO — Continúa la consulta</div>
+          <div class="sim-msg-user">Buenos días, Sr. [nombre]. Siéntese, por favor. Tiene razón en que ha venido para los resultados. ¿Cómo se ha encontrado estas semanas?</div>
+        </div>
+        <div class="sim-msg">
+          <div class="sim-label">IA — Respuesta del paciente</div>
+          <div class="sim-msg-ia">"Bien, bien. Algo cansado pero bueno, el trabajo... ¿Puedo ver los resultados directamente? Es que si me da el papel yo luego lo leo con calma en casa. ¿Hay algo raro o es todo normal?"<br><br>*Empieza a ponerse en pie ligeramente, como queriendo terminar rápido.*</div>
+        </div>
+        <div class="sim-msg">
+          <div class="sim-label">MÉDICO — Petición de feedback al final de la simulación</div>
+          <div class="sim-msg-user">[FIN DEL ROLE-PLAY] Ahora sal del personaje. Como experto en comunicación clínica, evalúa cómo he manejado el inicio de esta consulta: qué he hecho bien, qué podría mejorar y qué recomendarías para el momento del anuncio de la noticia grave que viene a continuación.</div>
+        </div>
+        <div class="sim-msg">
+          <div class="sim-label">IA — Feedback estructurado</div>
+          <div class="sim-msg-ia"><strong style="color:#A5D6A7">Lo que has hecho bien:</strong> Has establecido contacto visual invitándole a sentarse, has empezado con una pregunta abierta sobre su estado antes de ir a los resultados — esto es la técnica correcta para preparar el terreno.<br><br><strong style="color:#FFD54F">Punto de mejora:</strong> No has detectado ni abordado su señal de alerta no verbal (querer levantarse, la prisa). En comunicación de malas noticias, controlar el ritmo de la consulta antes de la noticia es fundamental.<br><br><strong style="color:#90CAF9">Recomendación para el anuncio:</strong> Usa la técnica "disparo de advertencia": "Antes de ver los resultados juntos, necesito contarle algo importante. ¿Está en un buen momento para escucharme con calma?" Esto frena su prisa y prepara el contexto emocional.</div>
+        </div>
+      </div>
+    </div>
+    <div class="nav-actions"><button class="btn-s" onclick="go(1)">← Usos</button><button class="btn-p" onclick="go(3)">Biblioteca →</button></div>
+  </div>
+
+  <div class="sec" id="s3">
+    <div class="card"><div class="ct">Biblioteca de prompts de simulación</div><div class="cb">Prompts configurados para las simulaciones más útiles en formación clínica. Copia, personaliza y empieza la simulación.</div></div>
+
+    <div class="lab-tabs">
+      <button class="lab-tab active" onclick="showLab(this,1)">Malas noticias</button>
+      <button class="lab-tab" onclick="showLab(this,2)">Paciente agresivo</button>
+      <button class="lab-tab" onclick="showLab(this,3)">Consentimiento</button>
+      <button class="lab-tab" onclick="showLab(this,4)">Anamnesis</button>
+    </div>
+
+    <div class="lab-panel show" id="lab1">
+      <div class="prompt-box">
+        <div class="prompt-label">Simulación — Comunicación de malas noticias (protocolo SPIKES)</div>
+        <div class="prompt-text">Vamos a hacer un role-play para practicar la comunicación de malas noticias usando el protocolo SPIKES.
+
+ROL DEL PACIENTE (tú):
+Perfil: [edad, sexo, situación familiar, nivel educativo, estado emocional inicial]
+Diagnóstico que se comunicará: [diagnóstico grave]
+Nivel de sospecha previa: [no sospecha nada / tiene algún miedo / ya lo sospecha]
+Reacción emocional esperada: [negación / llanto / ira / preguntas compulsivas / silencio]
+
+REGLAS DE LA SIMULACIÓN:
+- Responde como respondería este paciente real, con sus emociones, silencios y reacciones humanas
+- Haz preguntas cuando sea natural hacerlas
+- No facilites la conversación — el paciente no está entrenado para recibirla
+- Mantén el personaje aunque yo cometa errores comunicativos
+
+Yo seré el médico. Empieza cuando yo entre a la consulta diciendo "Buenos días".
+
+[Al final, cuando yo diga FIN, sal del personaje y evalúa mi comunicación según el protocolo SPIKES: Setting, Perception, Invitation, Knowledge, Emotions, Strategy]</div>
+        <div class="prompt-why">Permite practicar el protocolo SPIKES tantas veces como necesites con perfiles de paciente distintos, sin riesgo y con feedback inmediato.</div>
+      </div>
+    </div>
+
+    <div class="lab-panel" id="lab2">
+      <div class="prompt-box">
+        <div class="prompt-label">Simulación — Manejo de paciente agresivo o demandante</div>
+        <div class="prompt-text">Role-play para entrenar el manejo de un paciente agresivo o extremadamente demandante en consulta.
+
+ROL DEL PACIENTE (tú):
+Motivo de consulta: [situación: espera larga en urgencias / negativa a alta / discrepancia con diagnóstico / error percibido]
+Perfil de agresividad: [verbal escalante / pasivo-agresivo / amenazas de queja / acompañante agresivo]
+Fondo real del problema: [miedo encubierto / mala experiencia previa / estrés / desinformación]
+
+REGLAS:
+- Escala la agresividad gradualmente si el profesional no la gestiona bien
+- Si el profesional usa técnicas correctas de desescalada, responde positivamente
+- Si sube el tono o actúa defensivamente, reactiva la agresividad
+- Nunca seas físicamente agresivo — solo verbal
+
+Yo seré el profesional sanitario. Empieza expresando tu queja inicial.
+
+[Al FIN evalúa: técnicas de desescalada usadas, errores cometidos, qué frase concreta cambió el tono de la interacción]</div>
+        <div class="prompt-why">Las situaciones de agresividad son las más difíciles de preparar sin un colega disponible. Esta simulación permite entrenar la respuesta emocional y técnica en un entorno seguro.</div>
+      </div>
+    </div>
+
+    <div class="lab-panel" id="lab3">
+      <div class="prompt-box">
+        <div class="prompt-label">Simulación — Consentimiento informado complejo</div>
+        <div class="prompt-text">Role-play para practicar el proceso de consentimiento informado de un procedimiento con riesgo significativo.
+
+ROL DEL PACIENTE (tú):
+Procedimiento: [nombre del procedimiento]
+Perfil: [edad, nivel educativo, grado de ansiedad, creencias relevantes si aplica]
+Obstáculos que presentará: [miedo a la anestesia / negativa inicial / preguntas sobre alternativas / influencia familiar contraria / dudas religiosas o culturales]
+
+REGLAS:
+- Presenta dudas y miedos realistas, no exagerados
+- Exige que se expliquen los riesgos de forma comprensible
+- No firmes hasta que sientas que has entendido y que tus miedos han sido escuchados
+- Reacciona negativamente si el médico minimiza los riesgos o no escucha
+
+Yo seré el médico que obtiene el consentimiento. Empieza diciendo que tienes dudas antes de firmar.
+
+[Al FIN evalúa: información proporcionada, manejo de dudas, empatía, cumplimiento de los elementos legales del CI]</div>
+        <div class="prompt-why">Permite practicar el consentimiento informado como proceso comunicativo, no solo como firma de un documento.</div>
+      </div>
+    </div>
+
+    <div class="lab-panel" id="lab4">
+      <div class="prompt-box">
+        <div class="prompt-label">Simulación — Anamnesis sistemática con paciente complejo</div>
+        <div class="prompt-text">Role-play para practicar la anamnesis clínica estructurada.
+
+ROL DEL PACIENTE (tú):
+Motivo de consulta principal: [síntoma/s]
+Historia clínica completa que conoces pero solo revelarás si te preguntan directamente: [antecedentes, medicación, alergias, hábitos tóxicos, historia familiar, contexto psicosocial]
+Características comunicativas: [buena memoria / poca memoria / tendencia a divagar / vergüenza para hablar de ciertos temas / minimiza síntomas]
+Información que el paciente no conecta pero es relevante: [dato clave que el médico debe descubrir preguntando]
+
+REGLAS:
+- Solo revela información si te preguntan directamente
+- Si te hacen preguntas cerradas, responde solo sí/no
+- Si te hacen preguntas abiertas, da respuestas más ricas
+- Al FIN, dime qué información importante no descubrió el médico por no preguntar
+
+Empieza con tu motivo de consulta cuando yo te diga "¿Qué le trae por aquí hoy?"</div>
+        <div class="prompt-why">Entrena la anamnesis como habilidad activa: el paciente virtual retiene la información hasta que el profesional hace la pregunta correcta, igual que en la vida real.</div>
+      </div>
+    </div>
+
+    <div class="nav-actions"><button class="btn-s" onclick="go(2)">← Ejemplo</button><button class="btn-p" onclick="go(4)">Test →</button></div>
+  </div>
+
+  <div class="sec" id="s4">
+    <div class="qw active" id="q1w">
+      <div class="qnum">Pregunta 1 de 3</div>
+      <div class="qtxt">¿Cuál es la principal ventaja del role-playing con IA respecto al role-playing tradicional con un colega para practicar comunicación clínica?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,1)">La IA simula emociones más reales que un colega entrenado</button>
+        <button class="qopt" onclick="ans(this,true,1)">Disponibilidad ilimitada, posibilidad de repetir tantas veces como necesites, y feedback estructurado inmediato sin depender de la disponibilidad de otro profesional</button>
+        <button class="qopt" onclick="ans(this,false,1)">La IA puede evaluar competencias clínicas con validez legal para acreditación</button>
+        <button class="qopt" onclick="ans(this,false,1)">No requiere ninguna configuración inicial — funciona sin prompt</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+      <div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div>
+    </div>
+    <div class="qw" id="q2w">
+      <div class="qnum">Pregunta 2 de 3</div>
+      <div class="qtxt">En la simulación de anamnesis, ¿por qué es importante la instrucción "solo revela información si te preguntan directamente"?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,2)">Para que la simulación sea más corta y eficiente</button>
+        <button class="qopt" onclick="ans(this,false,2)">Para que la IA no cometa errores al generar información médica compleja</button>
+        <button class="qopt" onclick="ans(this,true,2)">Replica el comportamiento real del paciente, que no sabe qué datos son clínicamente relevantes — entrenando al profesional a hacer las preguntas correctas, no a recibir la información pasivamente</button>
+        <button class="qopt" onclick="ans(this,false,2)">Para cumplir con los principios éticos del role-playing simulado</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+      <div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div>
+    </div>
+    <div class="qw" id="q3w">
+      <div class="qnum">Pregunta 3 de 3</div>
+      <div class="qtxt">Un tutor quiere usar simulaciones con IA para evaluar las competencias comunicativas de sus residentes. ¿Qué limitación importante debe tener en cuenta?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,3)">La IA no puede simular pacientes con enfermedades reales, solo condiciones ficticias</button>
+        <button class="qopt" onclick="ans(this,true,3)">El feedback de la IA no tiene validez psicométrica para acreditación formal — es una herramienta de aprendizaje formativo, no de evaluación sumativa con consecuencias curriculares</button>
+        <button class="qopt" onclick="ans(this,false,3)">La IA solo puede simular un tipo de paciente por sesión</button>
+        <button class="qopt" onclick="ans(this,false,3)">Los residentes pueden sentirse evaluados y esto invalida los resultados de la simulación</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+      <div class="qnx" id="nx3">
+        <div style="background:rgba(33,150,243,.1);border:1px solid rgba(33,150,243,.28);border-radius:10px;padding:16px;margin-top:8px">
+          <div style="font-size:13px;font-weight:500;color:#90CAF9;margin-bottom:6px">✓ Lección 2.10 completada — Módulo 2 finalizado</div>
+          <div style="font-size:12px;color:#B0BEC5;line-height:1.6">Has completado el Módulo 2 completo: ingeniería de prompts, adaptación de lenguaje, memoria, seguridad, informes, modelos, validación, RAG y simulaciones. El <strong style="color:#fff">Módulo 3 aborda la automatización clínica y administrativa sin código: Zapier, Make, n8n y flujos de trabajo para liberar tiempo asistencial</strong>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lf"><span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span><span> · Desarrollado por DoncelProject · doncel.project@gmail.com</span></div>
+</div>
+
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/4)*100);document.getElementById('pf210').style.width=p+'%';document.getElementById('pl210').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function showLab(el,i){document.querySelectorAll('.lab-tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.lab-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById('lab'+i).classList.add('show');}
+const fbs={
+  1:{ok:'✅ Correcto. La disponibilidad ilimitada y la independencia de un colega son las ventajas diferenciales clave. Puedes practicar a las 3 AM antes de una guardia, repetir la misma situación 10 veces con variaciones del perfil del paciente, y recibir feedback estructurado inmediato — algo imposible con role-play tradicional.',ko:'❌ Un colega entrenado en role-play suele simular emociones más ricas que la IA. La ventaja no es la calidad emocional de la simulación sino la disponibilidad ilimitada, la capacidad de repetición sin agotamiento del "paciente" y el feedback estructurado inmediato que la IA puede proporcionar al final.'},
+  2:{ok:'✅ Correcto. Esta instrucción es el corazón del valor formativo de la simulación de anamnesis. Un paciente real no sabe qué datos son relevantes para el médico — el profesional tiene que descubrirlos haciendo las preguntas correctas. Si la IA volcase toda la información sin que se la pidan, se convertiría en un ejercicio de lectura, no de entrevista clínica.',ko:'❌ La instrucción no tiene que ver con eficiencia ni con los errores de la IA. Su valor es pedagógico: replica el comportamiento real del paciente, que no sabe qué información es clínicamente relevante y no la ofrece espontáneamente. Esto obliga al profesional a desarrollar la habilidad de preguntar activamente, que es exactamente lo que se entrena.'},
+  3:{ok:'✅ Correcto. El feedback de la IA sobre competencias comunicativas es útil para el aprendizaje formativo (mejorar) pero no tiene validez psicométrica para evaluaciones con consecuencias curriculares (aprobar/suspender, acreditar). Para uso en evaluación sumativa, sería necesaria una validación metodológica rigurosa del sistema que actualmente no existe.',ko:'❌ La IA puede simular cualquier tipo de paciente, gestiona múltiples casos en paralelo, y la conciencia de ser evaluado es inherente a cualquier evaluación — no es específica de la IA. La limitación real y relevante es la falta de validez psicométrica del feedback de la IA para evaluación formal con consecuencias curriculares.'}
+};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+upd();
+</script>

@@ -1,0 +1,373 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:32px}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(0,184,212,.15);border:1px solid rgba(0,184,212,.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#80DEEA;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px}.lt span{color:#00B8D4}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px;flex-wrap:wrap}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#00B8D4;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:80px}
+.nb.active{color:#00B8D4;border-bottom-color:#00B8D4;background:#0C0D12}
+.sec{display:none;padding:20px 24px}.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(0,184,212,.08);border:1px solid rgba(0,184,212,.22);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#80DEEA;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#00B8D4;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer}
+.tec-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.tec-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 14px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s}
+.tec-tab.active{background:rgba(0,184,212,.15);border-color:#00B8D4;color:#80DEEA}
+.tec-panel{display:none}.tec-panel.show{display:block}
+.prompt-box{background:#0e1018;border:1px solid #1e2335;border-radius:10px;padding:14px;margin:10px 0}
+.prompt-label{font-size:10px;color:#80DEEA;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}
+.prompt-text{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.prompt-why{font-size:11px;color:#B0BEC5;line-height:1.6;margin-top:10px;padding-top:10px;border-top:1px solid #1e2335}
+.limit-item{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #1a2a3a}
+.limit-item:last-child{border-bottom:none}
+.li-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.li-title{font-size:12px;font-weight:600;color:#fff;margin-bottom:3px}
+.li-desc{font-size:11px;color:#B0BEC5;line-height:1.6}
+.flow-box{background:#0C0D12;border-radius:8px;padding:12px 14px;margin:10px 0;font-family:monospace;font-size:11px;color:#80DEEA;line-height:1.9;white-space:pre-wrap;word-break:break-word;border-left:2px solid #00B8D4}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:12px 0}
+.cg-item{background:#13151e;border:1px solid #1e2335;border-radius:10px;padding:14px}
+.cg-icon{font-size:20px;margin-bottom:6px}
+.cg-title{font-size:12px;font-weight:600;color:#fff;margin-bottom:4px}
+.cg-desc{font-size:11px;color:#B0BEC5;line-height:1.6}
+.alerta{border-radius:10px;padding:12px 14px;margin:12px 0;font-size:12px;line-height:1.6}
+.ao{background:rgba(76,175,80,.07);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.aw{background:rgba(255,152,0,.07);border:1px solid rgba(255,152,0,.22);color:#FFD54F}
+.ad{background:rgba(244,67,54,.07);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.alt{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px}
+.qw{display:none}.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s}
+.qopt:hover{border-color:#00B8D4;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}.qnx.show{display:block}
+.complete-btn{width:100%;background:linear-gradient(135deg,#00B8D4,#0097A7);color:#fff;border:none;border-radius:10px;padding:14px 20px;font-size:13px;font-weight:600;cursor:pointer;margin-top:16px;letter-spacing:.3px;transition:opacity .2s}
+.complete-btn:hover{opacity:.9}.complete-btn:disabled{opacity:.5;cursor:not-allowed}
+.lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a}
+.fl{color:#00B8D4;cursor:pointer;text-decoration:underline}
+</style>
+<div class="lw">
+<div class="lh"><div class="lb">MÓDULO 3 · LECCIÓN 3.11</div><div class="lt">Automatización perioperatoria:<br><span>programación quirúrgica, checklists digitales y coordinación de servicios</span></div><div class="lm"><div class="lmi"><div class="md" style="background:#00B8D4"></div>75 minutos</div><div class="lmi"><div class="md" style="background:#FFB300"></div>Nivel avanzado</div><div class="lmi"><div class="md" style="background:#A5D6A7"></div>Circuito quirúrgico</div></div></div>
+<div class="pbw"><div class="pbb"><div class="pbf" id="pbf311"></div></div><div class="pbl" id="pbl311">0%</div></div>
+<div class="snav"><button class="nb active" id="t1" onclick="go(1)">El circuito quirúrgico</button><button class="nb" id="t2" onclick="go(2)">Programación automatizada</button><button class="nb" id="t3" onclick="go(3)">Checklists digitales</button><button class="nb" id="t4" onclick="go(4)">Coordinación multiservicio</button><button class="nb" id="t5" onclick="go(5)">Test</button></div>
+
+<div class="sec active" id="s1">
+<div class="card"><div class="ct">Objetivo de la lección</div><div class="cb">Diseñar flujos de automatización para el circuito perioperatorio completo: desde la indicación quirúrgica hasta el alta post-operatoria. El objetivo es reducir las cancelaciones de última hora, garantizar la preparación correcta del paciente, y coordinar automáticamente los servicios implicados sin cadenas de llamadas telefónicas.</div></div>
+<div class="simil"><div class="sl">🏥 Analogía clínica</div>El circuito quirúrgico sin automatización es como una carrera de relevos donde cada corredor tiene que buscar al siguiente antes de pasarle el testigo — y si no lo encuentra, el testigo se queda en el suelo. Con automatización es como un relevo en el que el sistema sabe exactamente quién es el siguiente corredor, le avisa con antelación suficiente, confirma que está en posición, y solo entonces entrega el testigo. Cada servicio recibe la información correcta en el momento exacto, sin que nadie tenga que hacer la llamada.</div>
+<div class="card"><div class="ct">Los cuatro grandes problemas del circuito quirúrgico actual</div></div>
+<div class="limit-item"><div class="li-icon">❌</div><div class="li-body"><div class="li-title">Cancelaciones en el día de la intervención</div><div class="li-desc">La tasa de cancelación el mismo día de la cirugía en hospitales españoles está entre el 8-15%. Las causas más frecuentes y evitables con automatización: paciente no está en ayunas (no recibió instrucciones claras o no las leyó), análisis preoperatorios incompletos o caducados, falta de cama disponible en UCI/URPA, material quirúrgico no confirmado por esterilización.</div></div></div>
+<div class="limit-item"><div class="li-icon">📞</div><div class="li-body"><div class="li-title">Coordinación por teléfono entre servicios</div><div class="li-desc">Anestesia, quirófano, URPA, UCI, banco de sangre, esterilización, farmacia, celadores y el propio servicio quirúrgico se coordinan principalmente por teléfono. Cada llamada consume tiempo, genera malentendidos y carece de trazabilidad. Un cambio en la programación quirúrgica desencadena una cadena de llamadas que puede tardar horas en completarse.</div></div></div>
+<div class="limit-item"><div class="li-icon">📋</div><div class="li-body"><div class="li-title">Checklists en papel y sin cumplimentación verificada</div><div class="li-desc">La OMS estableció que el checklist quirúrgico salva vidas — pero en muchos hospitales se cumplimenta en papel, sin verificación de que todos los ítems fueron revisados realmente, y sin trazabilidad digital del resultado. La automatización permite checklists digitales con firma electrónica, registro de timestamp por ítem y alertas si alguno queda sin verificar.</div></div></div>
+<div class="limit-item"><div class="li-icon">⏰</div><div class="li-body"><div class="li-title">Gestión ineficiente del tiempo de quirófano</div><div class="li-desc">El tiempo de quirófano es uno de los recursos hospitalarios más caros y escasos. Los cambios de programación de última hora, la búsqueda manual del siguiente paciente cuando hay un hueco, y el desconocimiento del estado de preparación de cada paciente generan tiempos muertos que podrían evitarse con automatización.</div></div></div>
+<div class="nav-actions"><div></div><button class="btn-p" onclick="go(2)">Programación automatizada →</button></div>
+</div>
+
+<div class="sec" id="s2">
+<div class="card"><div class="ct">Automatización de la programación quirúrgica</div><div class="cb">Desde el momento en que el cirujano indica la intervención hasta que el paciente entra al quirófano, hay múltiples pasos que pueden automatizarse. El objetivo es que el paciente reciba toda la información correcta, en el momento correcto, sin que nadie tenga que buscarlo, llamarle, o recordarle manualmente.</div></div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'pq-flujo')">⚙️ Flujo completo</button><button class="tec-tab" onclick="showTab(this,'pq-prep')">💊 Preparación del paciente</button><button class="tec-tab" onclick="showTab(this,'pq-cancel')">🚫 Gestión de cancelaciones</button></div>
+<div class="tec-panel show" id="pq-flujo">
+<div class="flow-box">FLUJO: Programación quirúrgica automatizada T-21 días a T-0
+
+T-21 DÍAS (indicación quirúrgica):
+TRIGGER: Cirujano registra indicación en HIS → webhook a Make
+→ Crear registro en hoja "Programación_Quirúrgica": paciente, tipo de intervención,
+   cirujano, fecha propuesta, ASA, necesidades especiales
+→ Notificar a consultas de anestesia: "Nueva indicación para valoración preanestésica"
+→ Solicitar automáticamente analítica preoperatoria si no hay reciente (<30 días)
+
+T-14 DÍAS:
+→ Enviar SMS al paciente: fecha de la intervención + instrucciones generales
+→ Enviar link a vídeo/PDF de preparación específica para su tipo de cirugía
+→ Confirmar cita de valoración anestésica
+→ Notificar a banco de sangre si la cirugía requiere reserva de hemoderivados
+
+T-7 DÍAS:
+→ Verificar automáticamente que la analítica está disponible en el HIS
+  → Si no: alertar al servicio para solicitarla urgente
+→ Verificar que la valoración anestésica está completada
+  → Si no: recordatorio automático a anestesia + al paciente para confirmar cita
+→ Notificar a esterilización: tipo de instrumental necesario para la cirugía
+
+T-3 DÍAS:
+→ SMS/WhatsApp al paciente con instrucciones específicas de preparación:
+  - Hora de ayuno desde [hora calculada automáticamente según horario de cirugía]
+  - Medicación que debe tomar/no tomar
+  - Hora de llegada al hospital (2h antes de la intervención)
+  - Documentación que debe traer
+  - Número de contacto para dudas
+
+T-1 DÍA:
+→ Llamada automática (Twilio Voice) de confirmación final
+→ Notificación al coordinador de quirófano: programación del día siguiente confirmada
+→ Verificar disponibilidad de cama: URPA + UCI si es cirugía mayor
+  → Si no hay cama disponible: alertar a coordinación para tomar decisión
+
+T-0 (DÍA DE LA INTERVENCIÓN):
+→ SMS de "buenos días" a las 7:00 AM: "Hola [Nombre], recuerde que su cirugía es hoy
+  a las [hora]. Llegue a las [hora-2h] a Admisión de Quirófano. [Tel urgencias]"
+→ Notificar a celadores la hora de traslado desde planta si el paciente está ingresado
+→ Activar checklist digital preoperatorio (detallado en sección siguiente)</div>
+</div>
+<div class="tec-panel" id="pq-prep">
+<div class="prompt-box">
+<div class="prompt-label">Prompt: generar instrucciones de preparación específicas por tipo de cirugía</div>
+<div class="prompt-text">Necesito crear las instrucciones de preparación preoperatoria para los 10 tipos de cirugía más frecuentes en nuestro servicio de [ESPECIALIDAD].
+
+Para cada tipo de cirugía, genera un documento de instrucciones para el paciente que incluya:
+
+1. AYUNO:
+   - Sólidos: número de horas exacto antes de la hora de la cirugía
+   - Líquidos claros: número de horas (según protocolo ERAS si aplica)
+   - Si toma medicación crónica: cuál toma con un sorbo de agua y cuál suspende
+
+2. MEDICACIÓN:
+   - Anticoagulantes/antiagregantes: cuándo suspender (específico por fármaco: AAS, clopidogrel, acenocumarol, DOACs)
+   - Antidiabéticos orales: cuándo suspender, qué hacer con insulina
+   - Otros fármacos relevantes para esta cirugía específica
+
+3. PREPARACIÓN FÍSICA:
+   - Ducha con clorhexidina si aplica
+   - Rasurado: sí/no, zona si aplica
+   - Ropa interior/prótesis/joyas
+
+4. DOCUMENTACIÓN A TRAER:
+   - Tarjeta sanitaria, DNI
+   - Informes previos relevantes
+   - Lista de medicación actual
+
+5. SEÑALES DE ALARMA:
+   - Qué síntomas deben hacerle llamar para cancelar/modificar la cirugía
+
+Formato: texto claro para paciente (nivel comprensión 8º de primaria), sin tecnicismos, con pictogramas si es posible describir en texto.</div>
+<div class="prompt-why">Las instrucciones genéricas de preparación son la causa más frecuente de cancelación el día de la cirugía. Este prompt genera instrucciones específicas para cada tipo de intervención — el paciente de apendicectomía recibe instrucciones distintas al de cirugía bariátrica. Se integran directamente en el SMS del T-3 días.</div>
+</div>
+</div>
+<div class="tec-panel" id="pq-cancel">
+<div class="flow-box">FLUJO: Gestión de cancelación el día de la intervención
+
+TRIGGER: Coordinador de quirófano registra cancelación en sistema
+         → webhook con motivo: paciente_no_preparado / sin_cama / material /
+           paciente_rechaza / causa_médica / causa_organizativa
+
+PASO 1 — Notificación inmediata:
+→ SMS al paciente: "[Hospital] Lamentamos informarle que su intervención de hoy
+  ha sido aplazada. Le contactaremos en las próximas 24-48h para reprogramar.
+  Motivo: [motivo genérico para el paciente]. [Tel. para dudas]"
+→ Email al cirujano: "Cirugía de [código paciente] cancelada. Motivo: [motivo completo]"
+
+PASO 2 — Gestión del hueco generado:
+→ Si motivo = causa_organizativa o sin_cama:
+   → Buscar en lista de espera paciente con cirugía programable ese mismo día
+   → Notificar al siguiente candidato: oferta de cirugía hoy
+→ Si motivo = paciente_no_preparado o paciente_rechaza:
+   → Mantener hueco como libre, notificar al coordinador
+
+PASO 3 — Registro para análisis de calidad:
+→ Actualizar hoja "Cancelaciones_Quirúrgicas": fecha, tipo de cirugía, servicio, motivo
+→ Este registro alimenta el dashboard de tasa de cancelación semanal
+
+PASO 4 — Reprogramación:
+→ Trigger cuando cirujano programa nueva fecha para este paciente
+→ Reiniciar el flujo de preparación desde T-7 días con la nueva fecha</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(1)">← El circuito</button><button class="btn-p" onclick="go(3)">Checklists digitales →</button></div>
+</div>
+
+<div class="sec" id="s3">
+<div class="card"><div class="ct">Checklists digitales perioperatorios</div><div class="cb">El checklist de la OMS para la seguridad quirúrgica es una de las intervenciones más eficaces para reducir mortalidad y complicaciones perioperatorias. Su versión digital automatizada añade trazabilidad, verificación de completitud y alertas en tiempo real.</div></div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'ck-oms')">✅ Checklist OMS digital</button><button class="tec-tab" onclick="showTab(this,'ck-pre')">🔍 Prequirúrgico</button><button class="tec-tab" onclick="showTab(this,'ck-post')">🔄 Postoperatorio</button></div>
+<div class="tec-panel show" id="ck-oms">
+<div class="card"><div class="ct">Estructura del checklist OMS en formato digital</div><div class="cb">El checklist OMS tiene tres momentos: Sign In (antes de la anestesia), Time Out (antes de la incisión) y Sign Out (antes de que el paciente salga del quirófano). En formato digital, cada ítem queda registrado con el profesional que lo verificó y el timestamp exacto.</div></div>
+<div class="flow-box">CHECKLIST DIGITAL OMS — Implementación en Google Forms + Make:
+
+SIGN IN (antes de anestesia) — verificado por enfermería/anestesia:
+□ Identidad del paciente confirmada (nombre, fecha nacimiento, NHC)
+□ Sitio quirúrgico marcado (si aplica)
+□ Consentimiento informado firmado y en historia
+□ Alergias conocidas verificadas
+□ Vía aérea / riesgo de aspiración evaluado
+□ Riesgo de hemorragia evaluado y sangre disponible si necesaria
+
+TIME OUT (antes de incisión) — verificado por todo el equipo quirúrgico:
+□ Confirmación de identidad del paciente por todos los miembros del equipo
+□ Confirmación del procedimiento y del sitio quirúrgico
+□ Antibiótico profiláctico administrado en los últimos 60 min
+□ Eventos críticos anticipados:
+   - Cirujano: ¿pasos críticos? ¿duración estimada? ¿pérdida de sangre esperada?
+   - Anestesia: ¿preocupaciones específicas del paciente?
+   - Enfermería: ¿instrumental esterilizado? ¿equipos especiales disponibles?
+
+SIGN OUT (antes de salida del quirófano):
+□ Nombre del procedimiento realizado registrado
+□ Recuento de instrumental, gasas y agujas correcto
+□ Muestra anatomopatológica etiquetada correctamente
+□ Problemas con equipos durante la intervención registrados
+□ Instrucciones de recuperación comunicadas al equipo de URPA
+
+TRIGGER de alerta si ítem crítico no verificado en 5 min:
+→ Notificación al coordinador de quirófano
+→ Bloqueo de apertura de campo quirúrgico hasta completar Sign In
+→ Registro del ítem no completado con justificación obligatoria</div>
+</div>
+<div class="tec-panel" id="ck-pre">
+<div class="limit-item"><div class="li-icon">📋</div><div class="li-body"><div class="li-title">Checklist prequirúrgico en planta (noche anterior)</div><div class="li-desc">Verificación por enfermería de planta la tarde/noche anterior: analítica disponible y dentro de rango, ECG si precisa, ayuno correcto, rasurado si procede, medicación preoperatoria administrada, consentimiento informado firmado, historia clínica completa y accesible, vía periférica permeable, alergias documentadas en pulsera, paciente informado de hora de traslado.</div></div></div>
+<div class="flow-box">IMPLEMENTACIÓN DIGITAL DEL CHECKLIST PREQUIRÚRGICO:
+
+Enfermería accede a formulario digital (tablet o PC):
+→ URL: [intranet]/checklist-preq/[código_paciente]
+→ Se pre-rellena con datos del HIS: nombre, fecha cirugía, tipo intervención
+
+Para cada ítem: tres opciones — ✅ Verificado / ❌ No cumplido / N/A No aplica
+→ Si "No cumplido": campo obligatorio de texto explicando la incidencia
+
+Al completar el formulario:
+→ Registro automático con profesional + timestamp en hoja "Checklists_PreQ"
+→ Si todos ✅: notificación al coordinador de quirófano "Paciente [código] listo"
+→ Si algún ❌ crítico: alerta inmediata al médico responsable + jefe de guardia
+→ El resultado del checklist es visible en el dashboard de quirófano en tiempo real</div>
+</div>
+<div class="tec-panel" id="ck-post">
+<div class="limit-item"><div class="li-icon">🔄</div><div class="li-body"><div class="li-title">Automatización del postoperatorio inmediato</div><div class="li-desc">Al registrar el alta del quirófano en el HIS o en el checklist Sign Out digital, el sistema desencadena automáticamente: notificación a la familia en sala de espera (cuando el sistema lo permite), activación del protocolo de URPA específico para el tipo de cirugía, solicitud de cama en planta o UCI según lo indicado, y creación de las tareas de seguimiento en enfermería de planta.</div></div></div>
+<div class="prompt-box">
+<div class="prompt-label">Prompt: diseñar el checklist digital para tu especialidad</div>
+<div class="prompt-text">Necesito digitalizar el checklist perioperatorio del Servicio de [ESPECIALIDAD QUIRÚRGICA].
+
+Actualmente usamos el checklist OMS estándar en papel + algunos ítems adicionales propios del servicio.
+
+Nuestras particularidades:
+- Tipos de cirugía más frecuentes: [lista]
+- Complicaciones que hemos tenido relacionadas con checklist incompleto: [describir si aplica]
+- Sistemas digitales disponibles: [tablets en quirófano, PCs en planta, HIS con o sin API]
+- Equipo que participa en el checklist: [cirujano, anestesista, enfermería, celadores]
+
+Diseña:
+1. La estructura completa del checklist digital para nuestro servicio (Sign In, Time Out, Sign Out + prequirúrgico de planta)
+2. Los ítems adicionales específicos para nuestras cirugías más frecuentes
+3. La lógica de alertas: qué ítems bloquean el avance si no están verificados
+4. Cómo implementarlo en Google Forms (o en Typeform como alternativa)
+5. Cómo conectarlo a Make para los flujos de notificación
+6. Qué datos capturar para el análisis de calidad mensual</div>
+<div class="prompt-why">El checklist genérico de la OMS es el punto de partida, pero cada especialidad tiene particularidades que lo hacen más efectivo. Un checklist de cirugía ortopédica tiene ítems sobre lateralidad y marcaje que no existen en cirugía abdominal. Este prompt genera el checklist específico para tu servicio, listo para implementar.</div>
+</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(2)">← Programación</button><button class="btn-p" onclick="go(4)">Coordinación multiservicio →</button></div>
+</div>
+
+<div class="sec" id="s4">
+<div class="card"><div class="ct">Coordinación automática entre servicios perioperatorios</div><div class="cb">Una cirugía mayor implica la coordinación de 6-10 servicios distintos: el quirúrgico, anestesia, URPA, UCI, banco de sangre, esterilización, farmacia, celadores y, en muchos casos, radiología, laboratorio y anatomía patológica. Cada cambio en la programación debe propagarse automáticamente a todos los implicados.</div></div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'coord-map')">🗺️ Mapa de dependencias</button><button class="tec-tab" onclick="showTab(this,'coord-cambio')">🔄 Gestión de cambios</button><button class="tec-tab" onclick="showTab(this,'coord-kpi')">📊 KPIs de quirófano</button></div>
+<div class="tec-panel show" id="coord-map">
+<div class="flow-box">MAPA DE DEPENDENCIAS PARA UNA CIRUGÍA MAYOR PROGRAMADA:
+
+Servicio quirúrgico (nodo central)
+├── Anestesia
+│   └── Necesita: valoración preanestésica completada, ASA, plan anestésico
+│   └── Notificar: confirmación de cirugía, cambios de horario, cancelaciones
+├── Quirófano / Instrumentación
+│   └── Necesita: tipo de cirugía, instrumental específico, duración estimada
+│   └── Notificar: hora de inicio, material adicional de urgencia
+├── URPA (Unidad de Recuperación Post-Anestésica)
+│   └── Necesita: tipo de cirugía, anestesia usada, complicaciones intraoperatorias
+│   └── Notificar: alta de quirófano, incidencias, destino (planta/UCI)
+├── UCI (si cirugía de alto riesgo)
+│   └── Necesita: reserva de cama previa, tipo de cirugía, estado hemodinámico
+│   └── Notificar: salida de quirófano, estado del paciente
+├── Banco de Sangre
+│   └── Necesita: grupo y Rh, reserva de hemoderivados, cirugía de alto riesgo
+│   └── Notificar: si cirugía se cancela (liberar reserva)
+├── Esterilización
+│   └── Necesita: tipo de instrumental, hora prevista de inicio
+│   └── Notificar: cambios de programación con 24h de antelación mínima
+└── Farmacia
+    └── Necesita: medicación específica (profilaxis antibiótica, anestesia especial)
+    └── Notificar: cirugías con requerimientos farmacológicos especiales</div>
+</div>
+<div class="tec-panel" id="coord-cambio">
+<div class="flow-box">FLUJO: Propagación automática de cambio en programación quirúrgica
+
+TRIGGER: Coordinador de quirófano modifica hora o fecha de cirugía en el sistema
+         (cambio detectado por webhook del HIS o actualización en Google Sheets)
+
+PASO 1 — Identificar qué servicios están afectados:
+  → Tipo de cirugía: ¿requiere UCI? ¿hemoderivados? ¿material especial?
+  → Router: notificar solo a los servicios que tenían dependencia con esta cirugía
+
+PASO 2 — Notificaciones simultáneas (todas en paralelo, no en secuencia):
+  → Anestesia: SMS al anestesista asignado + email al jefe de sección
+  → URPA: actualización en calendario del servicio + SMS al coordinador
+  → UCI: si había cama reservada, liberarla o cambiar la reserva
+  → Banco de Sangre: actualizar hora de disponibilidad de hemoderivados
+  → Esterilización: nuevo horario de preparación del instrumental
+  → Celadores: actualizar hora de traslado del paciente
+
+PASO 3 — Notificación al paciente:
+  → SMS: "Su intervención del [día] ha sido reprogramada para las [nueva hora].
+     No cambia ninguna instrucción de preparación. [Tel. dudas]"
+  → Si el cambio es de día (no solo de hora): reiniciar flujo de preparación
+
+PASO 4 — Confirmación de recepción:
+  → Cada servicio responde con "Recibido" en el formulario digital
+  → Si algún servicio no confirma en 30 minutos: escalado al coordinador de quirófano</div>
+</div>
+<div class="tec-panel" id="coord-kpi">
+<div class="limit-item"><div class="li-icon">📊</div><div class="li-body"><div class="li-title">KPIs clave del circuito quirúrgico automatizados</div><div class="li-desc"><strong>Tasa de cancelación:</strong> cancelaciones / programadas × 100 (objetivo <5%). <strong>Motivo de cancelación:</strong> clasificado automáticamente en las categorías del flujo. <strong>Tiempo entre primera disponibilidad y cirugía:</strong> días de espera real. <strong>Ocupación de quirófano:</strong> minutos usados / minutos disponibles × 100 (objetivo >85%). <strong>Tiempo de cambio entre cirugías:</strong> desde alta de quirófano hasta incisión siguiente (objetivo <30 min). <strong>Checklists completados vs. con incidencias:</strong> % de checklists con todos los ítems verificados.</div></div></div>
+<div class="prompt-box">
+<div class="prompt-label">Prompt: analizar causas de cancelación quirúrgica para reducirlas</div>
+<div class="prompt-text">Soy coordinador de un bloque quirúrgico. Tenemos una tasa de cancelación del [X]% en el último trimestre. Los datos de cancelaciones registrados muestran los siguientes motivos:
+
+[PEGAR DATOS: fecha, servicio, motivo de cancelación, momento de la cancelación (1 semana antes / 1 día antes / mismo día)]
+
+Analiza estos datos e identifica:
+1. Los 3 motivos de cancelación más frecuentes y su porcentaje sobre el total
+2. Si hay patrones por servicio, día de la semana, o tipo de cirugía
+3. Qué motivos son evitables con automatización vs. inevitables (causa médica del paciente)
+4. Para cada causa evitable: qué automatización específica la habría prevenido
+5. Estimación del impacto económico de las cancelaciones (coste/hora de quirófano × horas perdidas)
+6. Plan de acción priorizado: qué implementar primero para mayor impacto con menor esfuerzo</div>
+<div class="prompt-why">El análisis de las causas reales de cancelación es el primer paso antes de diseñar cualquier automatización perioperatoria. Sin datos, se automatiza lo que parece lógico pero no lo que realmente produce cancelaciones. Con datos, se puede calcular el ROI de cada automatización específica.</div>
+</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(3)">← Checklists</button><button class="btn-p" onclick="go(5)">Test →</button></div>
+</div>
+
+<div class="sec" id="s5">
+<div class="qw active" id="q1w"><div class="qnum">Pregunta 1 de 3</div><div class="qtxt">El Servicio de Cirugía quiere reducir su tasa de cancelación por «paciente no preparado correctamente» del 4.2% actual. Según el flujo automatizado descrito, ¿cuál es la intervención más efectiva en el timeline de preparación para prevenir esta causa específica?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,1)">Llamar al paciente el mismo día de la intervención para verificar que está en ayunas</button><button class="qopt" onclick="ans(this,true,1)">El SMS de T-3 días con instrucciones específicas de preparación para el tipo de cirugía concreto, incluyendo hora exacta de inicio de ayuno calculada en función del horario de su intervención, medicación que toma y no toma, y número de contacto para dudas — complementado con llamada automática de confirmación a T-1 día</button><button class="qopt" onclick="ans(this,false,1)">Reforzar las instrucciones verbales en la consulta preanestésica, que es el momento en que el paciente presta más atención</button><button class="qopt" onclick="ans(this,false,1)">Reprogramar todas las cirugías para el turno de tarde, cuando los pacientes han tenido más tiempo para prepararse</button></div><div class="qfb" id="fb1"></div><div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div></div>
+<div class="qw" id="q2w"><div class="qnum">Pregunta 2 de 3</div><div class="qtxt">Durante el Time Out del checklist OMS digital, el anestesista no verifica el ítem «antibiótico profiláctico administrado en los últimos 60 min» y el sistema lo marca como pendiente. ¿Cuál debe ser la respuesta del sistema automatizado?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,2)">Registrar el ítem como incompleto pero permitir continuar — el Time Out no puede detener la cirugía</button><button class="qopt" onclick="ans(this,true,2)">Generar alerta inmediata visible en la pantalla del quirófano y notificar al cirujano. El sistema debe marcar el ítem como crítico — la omisión de profilaxis antibiótica es una de las causas más documentadas de infección de herida quirúrgica. La incisión no debe iniciarse hasta que se verifique o se registre la decisión clínica de no administrar con justificación</button><button class="qopt" onclick="ans(this,false,2)">Notificar solo al jefe de anestesia, sin interrumpir el flujo del quirófano en ese momento</button><button class="qopt" onclick="ans(this,false,2)">Esperar 10 minutos y volver a preguntar al anestesista — puede ser que esté administrando el antibiótico en ese momento</button></div><div class="qfb" id="fb2"></div><div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div></div>
+<div class="qw" id="q3w"><div class="qnum">Pregunta 3 de 3</div><div class="qtxt">Un cambio de horario de cirugía de 9:00 a 13:00 del mismo día afecta a 6 servicios. ¿Por qué es crítico que las notificaciones a todos los servicios se envíen en paralelo y no en secuencia uno tras otro?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,3)">No es crítico — en la práctica da igual enviarlas en secuencia porque todos los servicios tienen tiempo suficiente para adaptarse</button><button class="qopt" onclick="ans(this,true,3)">Las notificaciones en paralelo garantizan que todos los servicios reciben la información al mismo tiempo — si se envían en secuencia, el último servicio en recibir la notificación puede haber tomado ya decisiones incompatibles basadas en el horario antiguo (ej: esterilización prepara el instrumental para las 9h, banco de sangre ha distribuido los hemoderivados a otro quirófano)</div><button class="qopt" onclick="ans(this,false,3)">Para ahorrar créditos en la plataforma de automatización — las notificaciones en paralelo usan menos operaciones</button><button class="qopt" onclick="ans(this,false,3)">Para que el coordinador de quirófano pueda verificar cada notificación antes de enviar la siguiente</button></div><div class="qfb" id="fb3"></div><div class="qnx" id="nx3"><div style="background:rgba(0,184,212,.1);border:1px solid rgba(0,184,212,.28);border-radius:10px;padding:16px;margin-top:8px"><div style="font-size:13px;font-weight:500;color:#80DEEA;margin-bottom:6px">✓ Lección 3.11 completada</div><div style="font-size:12px;color:#B0BEC5;line-height:1.6">Dominas la automatización perioperatoria completa: programación T-21 a T-0, checklists OMS digitales con trazabilidad, y coordinación simultánea de todos los servicios implicados. La lección 3.12 entra en <strong style="color:#fff">seguimiento automatizado de pacientes crónicos: cuestionarios validados, alertas de deterioro y gestión de la adherencia</strong>.</div></div><button class="complete-btn" id="completeBtn" onclick="markComplete()">✓ MARCAR LECCIÓN COMO COMPLETADA</button></div></div>
+</div>
+<div class="lf"><span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span> · Desarrollado por DoncelProject · doncel.project@gmail.com</div>
+</div>
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/5)*100);document.getElementById('pbf311').style.width=p+'%';document.getElementById('pbl311').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function showTab(el,id){const sec=el.closest('.sec');sec.querySelectorAll('.tec-tab').forEach(t=>t.classList.remove('active'));sec.querySelectorAll('.tec-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById(id).classList.add('show');}
+const fbs={
+1:{ok:'✅ Correcto. La causa «paciente no preparado» se origina principalmente en información insuficiente o mal recibida. El SMS de T-3 días es el momento clave porque: (1) es suficientemente próximo para que el paciente le preste atención real, (2) permite tiempo de reacción si hay dudas, y (3) puede ser específico para el tipo exacto de cirugía del paciente. La clave es la personalización: hora de ayuno calculada en función del horario real de la intervención, y medicación específica para las patologías del paciente. La llamada de T-1 día es el refuerzo que captura a los pacientes que no leyeron el SMS.',ko:'❌ Llamar el mismo día es demasiado tarde para resolver la mayoría de los problemas de preparación — si el paciente desayunó porque no entendió las instrucciones, ya no hay solución. Las instrucciones verbales en la consulta preanestésica son importantes pero el paciente tiene semanas hasta la cirugía y generalmente las olvida. El timing óptimo para recordatorios de preparación es 3 días antes (suficientemente próximo para ser relevante y suficientemente lejos para poder actuar).'},
+2:{ok:'✅ Correcto. La profilaxis antibiótica administrada dentro de los 60 minutos previos a la incisión es uno de los ítems más críticos del Time Out — su omisión está directamente relacionada con un aumento de la tasa de infección de herida quirúrgica. El sistema debe generar una alerta visible y bloquear la progresión hasta que el ítem sea verificado o se registre explícitamente la decisión clínica de no administrar con justificación. Esta es exactamente la funcionalidad que diferencia el checklist digital del papel: en papel, un ítem sin marcar puede pasar inadvertido; en digital, genera una alerta activa.',ko:'❌ El Time Out tiene valor precisamente porque puede — y debe — pausar la cirugía cuando se detecta un incumplimiento crítico. El checklist digital no debe ser un registro pasivo de lo que ocurre sino un sistema activo de alerta que fuerza la verificación de los ítems críticos. La notificación solo al jefe de anestesia sin interrumpir el flujo elimina el valor de seguridad del checklist.'},
+3:{ok:'✅ Correcto. La simultaneidad es crítica porque los servicios implicados en una cirugía son interdependientes — las acciones de uno afectan a los demás. Si banco de sangre recibe la notificación con 30 minutos de retraso respecto a esterilización, puede haber tomado decisiones (distribuir hemoderivados, preparar otro paciente) que son incompatibles con el nuevo horario. La notificación simultánea a todos los servicios garantiza que todos parten del mismo estado de información en el mismo momento.',ko:'❌ La secuencia no es equivalente a la simultaneidad cuando los servicios son interdependientes. El último servicio en recibir la notificación puede haber actuado ya sobre información obsoleta, tomando decisiones que luego son incompatibles con las de los servicios que recibieron la notificación primero. En un entorno dinámico como un bloque quirúrgico, una diferencia de 15-30 minutos en la información puede tener consecuencias operativas reales.'}
+};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+function markComplete(){document.getElementById('completeBtn').disabled=true;document.getElementById('completeBtn').textContent='✓ Completada';window.parent.postMessage({type:'LESSON_COMPLETE'},'*');}
+upd();
+</script>

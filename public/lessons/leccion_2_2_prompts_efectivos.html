@@ -1,0 +1,565 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:32px}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(33,150,243,0.15);border:1px solid rgba(33,150,243,0.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#90CAF9;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px}
+.lt span{color:#2196F3}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#2196F3;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:70px}
+.nb.active{color:#2196F3;border-bottom-color:#2196F3;background:#0C0D12}
+.sec{display:none;padding:20px 24px}
+.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(33,150,243,0.08);border:1px solid rgba(33,150,243,0.22);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#2196F3;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer}
+.anatomy{display:grid;grid-template-columns:1fr;gap:8px;margin:12px 0}
+.part{border-radius:10px;overflow:hidden;cursor:pointer}
+.part-hd{display:flex;align-items:center;gap:10px;padding:12px 14px}
+.part-icon{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.part-name{font-size:13px;font-weight:500}
+.part-short{font-size:11px;margin-left:auto;opacity:.7}
+.part-body{font-size:12px;line-height:1.7;padding:0 14px 12px 52px;display:none}
+.part-body.show{display:block}
+.part-ex{font-family:monospace;font-size:11px;border-radius:6px;padding:10px 12px;margin-top:8px;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+.compare-wrap{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.cv{border-radius:10px;padding:14px}
+.cv-bad{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2)}
+.cv-good{background:rgba(76,175,80,.08);border:1px solid rgba(76,175,80,.2)}
+.cv-label{font-size:10px;font-weight:500;margin-bottom:8px;letter-spacing:.6px}
+.cv-bad .cv-label{color:#EF9A9A}
+.cv-good .cv-label{color:#A5D6A7}
+.cv-prompt{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.6;background:#0C0D12;border-radius:6px;padding:10px;white-space:pre-wrap;word-break:break-word}
+.cv-why{font-size:11px;margin-top:8px;padding-top:8px;border-top:1px solid #1e2335;line-height:1.5}
+.cv-bad .cv-why{color:#EF9A9A}
+.cv-good .cv-why{color:#A5D6A7}
+.lab-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.lab-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 12px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s}
+.lab-tab.active{background:rgba(33,150,243,.15);border-color:#2196F3;color:#90CAF9}
+.lab-panel{display:none}
+.lab-panel.show{display:block}
+.prompt-box{background:#0e1018;border:1px solid #1e2335;border-radius:10px;padding:14px;margin:10px 0}
+.prompt-label{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}
+.prompt-text{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.prompt-why{font-size:11px;color:#B0BEC5;line-height:1.6;margin-top:10px;padding-top:10px;border-top:1px solid #1e2335}
+.prompt-badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:8px;margin-right:4px;font-weight:500}
+.pb-rol{background:rgba(33,150,243,.15);color:#90CAF9}
+.pb-ctx{background:rgba(255,152,0,.15);color:#FFD54F}
+.pb-tarea{background:rgba(76,175,80,.15);color:#A5D6A7}
+.pb-fmt{background:rgba(0,184,212,.15);color:#80DEEA}
+.pb-rest{background:rgba(244,67,54,.15);color:#EF9A9A}
+.tec-badge{display:inline-block;font-size:10px;padding:3px 10px;border-radius:20px;font-weight:500;margin-bottom:8px}
+.tec-cot{background:rgba(33,150,243,.15);color:#90CAF9}
+.tec-few{background:rgba(0,184,212,.15);color:#80DEEA}
+.tec-rol{background:rgba(124,77,255,.15);color:#CE93D8}
+.tec-grid{display:grid;grid-template-columns:1fr;gap:10px;margin:12px 0}
+.tec-card{background:#13151e;border:1px solid #1e2335;border-radius:10px;padding:14px 16px}
+.tec-title{font-size:13px;font-weight:500;color:#fff;margin-bottom:6px}
+.tec-desc{font-size:12px;color:#B0BEC5;line-height:1.6;margin-bottom:10px}
+.tec-ex{font-family:monospace;font-size:11px;color:#E0E0E0;background:#0C0D12;border-radius:6px;padding:10px;line-height:1.6;white-space:pre-wrap;word-break:break-word;border-left:2px solid #2196F3}
+.qw{display:none}
+.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s}
+.qopt:hover{border-color:#2196F3;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}
+.qnx.show{display:block}
+.lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a}
+.fl{color:#2196F3;cursor:pointer;text-decoration:underline}
+</style>
+
+<div class="lw">
+
+  <div class="lh">
+    <div class="lb">MÓDULO 2 · LECCIÓN 2.2</div>
+    <div class="lt">Diseño de prompts efectivos: <span>anatomía, biblioteca y técnicas avanzadas</span></div>
+    <div class="lm">
+      <div class="lmi"><div class="md" style="background:#2196F3"></div>78 minutos</div>
+      <div class="lmi"><div class="md" style="background:#00B8D4"></div>4 secciones</div>
+      <div class="lmi"><div class="md" style="background:#FFB300"></div>Biblioteca por especialidad</div>
+    </div>
+  </div>
+
+  <div class="pbw">
+    <div class="pbb"><div class="pbf" id="pf22"></div></div>
+    <div class="pbl" id="pl22">0%</div>
+  </div>
+
+  <div class="snav">
+    <button class="nb active" id="t1" onclick="go(1)">Anatomía</button>
+    <button class="nb" id="t2" onclick="go(2)">Comparativa</button>
+    <button class="nb" id="t3" onclick="go(3)">Biblioteca</button>
+    <button class="nb" id="t4" onclick="go(4)">Test</button>
+  </div>
+
+  <!-- SECCIÓN 1: ANATOMÍA DEL PROMPT -->
+  <div class="sec active" id="s1">
+    <div class="card">
+      <div class="ct">Objetivo de la lección</div>
+      <div class="cb">Crear prompts optimizados según tu rol profesional y objetivo clínico específico. Aprenderás la anatomía del prompt perfecto y las técnicas avanzadas que multiplican la precisión y utilidad de las respuestas de IA en entornos sanitarios.</div>
+    </div>
+
+    <div class="simil">
+      <div class="sl">Marco de referencia</div>
+      Un prompt clínico mal construido es como una petición de interconsulta incompleta: sin motivo claro, sin datos relevantes y sin lo que necesitas que te respondan. La IA, como el especialista, solo puede ser útil si le das la información correcta en el formato correcto.
+    </div>
+
+    <div class="ct" style="margin-top:4px">Los 4 componentes del prompt perfecto — toca cada uno para ver detalles</div>
+
+    <div class="anatomy">
+
+      <div class="part" style="background:#13151e;border:1px solid #1e2335" onclick="togglePart(1)">
+        <div class="part-hd">
+          <div class="part-icon" style="background:rgba(33,150,243,.18);color:#90CAF9">01</div>
+          <div class="part-name">Contexto</div>
+          <div class="part-short" style="color:#90CAF9">¿Quién eres y qué situación hay?</div>
+        </div>
+        <div class="part-body" id="pb1">
+          Define tu rol profesional, especialidad, entorno asistencial y, si es relevante, el perfil del paciente (sin datos identificativos). El contexto condiciona el nivel de tecnicismo, los supuestos que la IA puede hacer y la pertinencia clínica de la respuesta.
+          <div class="part-ex" style="background:#0C0D12;color:#90CAF9">Actúa como médico de familia en consulta de atención primaria. Paciente de 67 años, HTA, DM2 y EPOC GOLD II, polimedicado con 8 fármacos...</div>
+        </div>
+      </div>
+
+      <div class="part" style="background:#13151e;border:1px solid #1e2335" onclick="togglePart(2)">
+        <div class="part-hd">
+          <div class="part-icon" style="background:rgba(255,152,0,.18);color:#FFD54F">02</div>
+          <div class="part-name">Instrucción / Tarea</div>
+          <div class="part-short" style="color:#FFD54F">¿Qué necesitas exactamente?</div>
+        </div>
+        <div class="part-body" id="pb2">
+          Especifica la acción concreta con un verbo claro: resumir, listar, redactar, comparar, generar, explicar. Cuanto más acotada sea la tarea, más útil será la respuesta. Evita verbos vagos como "dime algo sobre..." o "ayúdame con...".
+          <div class="part-ex" style="background:#0C0D12;color:#FFD54F">Tarea: Identifica las 3 interacciones farmacológicas más clínicamente relevantes en este paciente y propón el ajuste o sustitución para cada una.</div>
+        </div>
+      </div>
+
+      <div class="part" style="background:#13151e;border:1px solid #1e2335" onclick="togglePart(3)">
+        <div class="part-hd">
+          <div class="part-icon" style="background:rgba(0,184,212,.18);color:#80DEEA">03</div>
+          <div class="part-name">Formato de salida</div>
+          <div class="part-short" style="color:#80DEEA">¿Cómo quieres la respuesta?</div>
+        </div>
+        <div class="part-body" id="pb3">
+          Define la estructura de la respuesta: tabla comparativa, lista numerada, nota SOAP, resumen PICO, texto narrativo, diagrama de flujo en texto... Sin indicar formato, la IA elige uno por defecto que puede no ser útil para tu contexto.
+          <div class="part-ex" style="background:#0C0D12;color:#80DEEA">Formato: tabla con columnas → Fármaco | Interacción con | Gravedad (leve/moderada/grave) | Recomendación concreta.</div>
+        </div>
+      </div>
+
+      <div class="part" style="background:#13151e;border:1px solid #1e2335" onclick="togglePart(4)">
+        <div class="part-hd">
+          <div class="part-icon" style="background:rgba(244,67,54,.18);color:#EF9A9A">04</div>
+          <div class="part-name">Restricciones</div>
+          <div class="part-short" style="color:#EF9A9A">¿Qué debe evitar?</div>
+        </div>
+        <div class="part-body" id="pb4">
+          Las restricciones son el componente de seguridad del prompt clínico. Delimitan explícitamente lo que la IA no debe hacer: inventar referencias, dar diagnósticos definitivos, superar cierta extensión, usar un nivel de tecnicismo inadecuado, incluir datos que no le hayas proporcionado.
+          <div class="part-ex" style="background:#0C0D12;color:#EF9A9A">Restricciones: No prescribas fármacos nuevos. Si no tienes datos suficientes para alguna interacción, indícalo con [REVISAR MANUALMENTE]. Máximo 5 ítems.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="tec-grid" style="margin-top:16px">
+      <div class="tec-card">
+        <span class="tec-badge tec-cot">Chain-of-Thought</span>
+        <div class="tec-title">Razonamiento paso a paso</div>
+        <div class="tec-desc">Pide a la IA que muestre su razonamiento antes de dar la respuesta final. Imprescindible en diagnóstico diferencial y decisiones terapéuticas donde el proceso importa tanto como el resultado.</div>
+        <div class="tec-ex">Añade al final del prompt:
+"Razona paso a paso antes de dar tu respuesta final. Muestra explícitamente el proceso de descarte diagnóstico."</div>
+      </div>
+      <div class="tec-card">
+        <span class="tec-badge tec-few">Few-Shot Learning</span>
+        <div class="tec-title">Aprendizaje por ejemplos</div>
+        <div class="tec-desc">Proporciona 1-3 ejemplos del formato o estilo deseado dentro del propio prompt. Mejora drásticamente la consistencia y calidad de la salida, especialmente para informes y documentación clínica.</div>
+        <div class="tec-ex">Añade antes de la tarea:
+"El formato que necesito es exactamente este: [ejemplo real]. Ahora hazlo para el caso que te presento a continuación."</div>
+      </div>
+      <div class="tec-card">
+        <span class="tec-badge tec-rol">Role Prompting</span>
+        <div class="tec-title">Asignación de rol experto</div>
+        <div class="tec-desc">Define una identidad profesional específica con nivel de experiencia. "Especialista en nefrología con 15 años en trasplante renal" condiciona el nivel de detalle, el vocabulario y los supuestos clínicos de la respuesta.</div>
+        <div class="tec-ex">Inicia siempre con:
+"Actúa como [rol] con experiencia en [área específica]. Tu objetivo es [propósito clínico concreto]."</div>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <div></div>
+      <button class="btn-p" onclick="go(2)">Comparativa →</button>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 2: COMPARATIVA PROMPTS DÉBILES VS SÓLIDOS -->
+  <div class="sec" id="s2">
+    <div class="card">
+      <div class="ct">Por qué importa la estructura</div>
+      <div class="cb">La diferencia entre un prompt vago y uno bien construido no es estilo: es la diferencia entre una respuesta inutilizable y una que puedes incorporar directamente a tu práctica clínica. Analiza los siguientes pares.</div>
+    </div>
+
+    <div class="ct" style="margin:12px 0 4px">Caso 1 — Médico de urgencias: diagnóstico diferencial</div>
+    <div class="compare-wrap">
+      <div class="cv cv-bad">
+        <div class="cv-label">❌ PROMPT DÉBIL</div>
+        <div class="cv-prompt">¿Cuáles son las causas de disnea aguda?</div>
+        <div class="cv-why">Respuesta: lista de 20 diagnósticos genéricos sin priorización, sin contexto del paciente, sin estructura accionable. Tiempo perdido filtrando información no aplicable.</div>
+      </div>
+      <div class="cv cv-good">
+        <div class="cv-label">✅ PROMPT SÓLIDO</div>
+        <div class="cv-prompt">Actúa como urgenciólogo experto. Paciente: mujer 58 años, disnea aguda 2h, SatO2 89%, FC 118, antecedentes de TEP hace 3 años y FA crónica anticoagulada. Sin fiebre.
+
+Lista los 4 diagnósticos más probables ordenados por urgencia vital, con el signo diferencial clave para cada uno y la prueba diagnóstica inmediata prioritaria.
+
+Formato: tabla. Restricción: no repitas datos que ya te he dado.</div>
+        <div class="cv-why">Respuesta: tabla accionable en 30 segundos, directamente aplicable al paciente concreto que tienes delante.</div>
+      </div>
+    </div>
+
+    <div class="ct" style="margin:16px 0 4px">Caso 2 — Enfermería: educación al alta</div>
+    <div class="compare-wrap">
+      <div class="cv cv-bad">
+        <div class="cv-label">❌ PROMPT DÉBIL</div>
+        <div class="cv-prompt">Hazme una hoja de educación para paciente con insuficiencia cardíaca.</div>
+        <div class="cv-why">Resultado: texto técnico de 600 palabras con terminología que el paciente no comprenderá. Inutilizable sin reescritura completa.</div>
+      </div>
+      <div class="cv cv-good">
+        <div class="cv-label">✅ PROMPT SÓLIDO</div>
+        <div class="cv-prompt">Actúa como enfermera especialista en cardiología. Redacta la hoja de educación al alta para un paciente de 74 años con IC con fracción de eyección reducida, nivel de lectura básico, vive solo.
+
+Incluye: qué es su enfermedad (2 líneas), 5 señales de alarma para llamar al 112, cómo pesarse cada día y cuándo avisar, y cuándo es su próxima cita.
+
+Formato: párrafos cortos, sin tecnicismos, frases de máximo 15 palabras. Extensión: máximo 1 cara A4.</div>
+        <div class="cv-why">Resultado: documento listo para imprimir. El paciente lo comprende sin ayuda adicional.</div>
+      </div>
+    </div>
+
+    <div class="ct" style="margin:16px 0 4px">Caso 3 — Gestión: análisis de indicadores</div>
+    <div class="compare-wrap">
+      <div class="cv cv-bad">
+        <div class="cv-label">❌ PROMPT DÉBIL</div>
+        <div class="cv-prompt">Analiza estos datos de mi servicio: estancia media 8,2 días, reingresos 12%, satisfacción 72%.</div>
+        <div class="cv-why">Sin contexto del servicio ni estándar de referencia, la IA genera comentarios genéricos sin valor real para la toma de decisiones.</div>
+      </div>
+      <div class="cv cv-good">
+        <div class="cv-label">✅ PROMPT SÓLIDO</div>
+        <div class="cv-prompt">Actúa como gestor sanitario del SNS especializado en mejora de procesos. Mi servicio es Medicina Interna de hospital terciario, 30 camas. Datos 2024: estancia media 8,2 días (estándar CMBD nacional: 6,8), reingresos a 30 días 12% (umbral ACSA: ≤9%), satisfacción 72% (objetivo: ≥80%).
+
+Identifica los 3 problemas prioritarios, propón una acción concreta para cada uno con responsable y plazo, y estima el impacto esperable si se consigue el estándar.
+
+Formato: tabla. Tono: informe ejecutivo para dirección médica.</div>
+        <div class="cv-why">Resultado: informe que puedes llevar directamente a la dirección del hospital, con argumentación y plan de acción fundamentado.</div>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <button class="btn-s" onclick="go(1)">← Anatomía</button>
+      <button class="btn-p" onclick="go(3)">Biblioteca →</button>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 3: BIBLIOTECA POR ESPECIALIDAD -->
+  <div class="sec" id="s3">
+    <div class="card">
+      <div class="ct">Biblioteca de prompts clínicos</div>
+      <div class="cb">Prompts listos para usar, estructurados por perfil profesional. Los corchetes <span style="color:#90CAF9;font-family:monospace">[...]</span> son los parámetros que debes completar con los datos reales de tu caso. Nunca incluyas datos identificativos del paciente.</div>
+    </div>
+
+    <div class="lab-tabs">
+      <button class="lab-tab active" onclick="showLab(this,1)">Medicina</button>
+      <button class="lab-tab" onclick="showLab(this,2)">Enfermería</button>
+      <button class="lab-tab" onclick="showLab(this,3)">Farmacia</button>
+      <button class="lab-tab" onclick="showLab(this,4)">Gestión</button>
+      <button class="lab-tab" onclick="showLab(this,5)">Residente</button>
+    </div>
+
+    <div class="lab-panel show" id="lab1">
+      <div class="prompt-box">
+        <div class="prompt-label">Diagnóstico diferencial estructurado</div>
+        <div style="margin-bottom:8px">
+          <span class="prompt-badge pb-rol">Rol</span>
+          <span class="prompt-badge pb-ctx">Contexto</span>
+          <span class="prompt-badge pb-tarea">Tarea</span>
+          <span class="prompt-badge pb-fmt">Formato</span>
+          <span class="prompt-badge pb-rest">Restricción</span>
+        </div>
+        <div class="prompt-text">Actúa como médico internista experto en diagnóstico. Paciente de [edad] años con [síntoma principal] de [duración]. Antecedentes relevantes: [lista breve]. Constantes: [datos disponibles].
+
+Tarea: proporciona los 5 diagnósticos diferenciales más probables ordenados por probabilidad descendente.
+
+Formato: tabla con columnas → Diagnóstico | Probabilidad estimada | Clave clínica diferenciadora | Prueba confirmatoria inmediata.
+
+Restricciones: basa el razonamiento solo en los datos que te proporciono. Si algún dato es insuficiente para estimar probabilidad, indícalo con [DATO INSUFICIENTE]. No prescribas tratamiento.</div>
+        <div class="prompt-why">Genera un diferencial estructurado y priorizado en segundos. Úsalo como punto de partida, no como sustituto del juicio clínico.</div>
+      </div>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Resumen PICO para revisión bibliográfica</div>
+        <div style="margin-bottom:8px">
+          <span class="prompt-badge pb-rol">Rol</span>
+          <span class="prompt-badge pb-tarea">Tarea</span>
+          <span class="prompt-badge pb-fmt">Formato</span>
+        </div>
+        <div class="prompt-text">Actúa como metodólogo de investigación clínica. Tengo esta pregunta clínica: en pacientes con [población], ¿el uso de [intervención] comparado con [comparación] reduce/mejora [desenlace] en [tiempo de seguimiento]?
+
+Resume la evidencia disponible estructurada en formato PICO. Incluye: nivel de evidencia (Oxford CEBM o GRADE), principales estudios de referencia con sus conclusiones en una frase, NNT o NNH si está disponible, y limitaciones conocidas de la evidencia.
+
+Restricción: si no conoces estudios específicos sobre este tema, indícalo explícitamente en lugar de generar referencias ficticias.</div>
+        <div class="prompt-why">Ahorra 30-45 minutos de búsqueda inicial. Siempre valida las referencias en PubMed antes de citar.</div>
+      </div>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Nota clínica formato SOAP</div>
+        <div style="margin-bottom:8px">
+          <span class="prompt-badge pb-tarea">Tarea</span>
+          <span class="prompt-badge pb-fmt">Formato</span>
+          <span class="prompt-badge pb-rest">Restricción</span>
+        </div>
+        <div class="prompt-text">Transforma la siguiente información desestructurada en una nota clínica formal en formato SOAP para historia clínica hospitalaria:
+
+[Pega aquí tus notas en bruto]
+
+Formato SOAP: S (subjetivo: síntomas referidos por el paciente), O (objetivo: exploración y pruebas), A (análisis: impresión diagnóstica y razonamiento), P (plan: diagnóstico, terapéutico y educativo).
+
+Restricciones: usa terminología médica precisa. No inventes datos que no estén en la información que te proporciono. Indica con [PENDIENTE DE VALORAR] los apartados con datos insuficientes. Extensión máxima: 200 palabras.</div>
+        <div class="prompt-why">Transforma notas dictadas o en bruto en documentación clínica estructurada. Revisa siempre antes de incorporar a la HCE.</div>
+      </div>
+    </div>
+
+    <div class="lab-panel" id="lab2">
+      <div class="prompt-box">
+        <div class="prompt-label">Plan de cuidados NANDA-NIC-NOC</div>
+        <div style="margin-bottom:8px">
+          <span class="prompt-badge pb-rol">Rol</span>
+          <span class="prompt-badge pb-ctx">Contexto</span>
+          <span class="prompt-badge pb-tarea">Tarea</span>
+          <span class="prompt-badge pb-fmt">Formato</span>
+        </div>
+        <div class="prompt-text">Actúa como enfermera experta en planes de cuidados con formación en taxonomías NANDA-NIC-NOC. Paciente: [diagnóstico médico principal], [situación actual: encamado/autónomo/dependiente parcial], [complicación o riesgo más relevante].
+
+Elabora los 3 diagnósticos enfermeros NANDA prioritarios para este paciente, ordenados por riesgo vital. Para cada uno: código y etiqueta NANDA, NOC principal con puntuación diana, e intervenciones NIC más relevantes (máximo 3 por diagnóstico).
+
+Formato: tabla estructurada. Justifica brevemente la priorización en una frase por diagnóstico.</div>
+        <div class="prompt-why">Genera el borrador del plan de cuidados en minutos. La enfermera valida y adapta al paciente real antes de registrarlo.</div>
+      </div>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Educación sanitaria al alta adaptada al paciente</div>
+        <div style="margin-bottom:8px">
+          <span class="prompt-badge pb-ctx">Contexto</span>
+          <span class="prompt-badge pb-tarea">Tarea</span>
+          <span class="prompt-badge pb-fmt">Formato</span>
+          <span class="prompt-badge pb-rest">Restricción</span>
+        </div>
+        <div class="prompt-text">Redacta una hoja de educación al alta para un paciente de [edad] años, nivel educativo [bajo/medio/alto], diagnóstico de [enfermedad], que vive [solo/con familia/en residencia].
+
+Incluye estos apartados: (1) qué es tu enfermedad en 3 frases sencillas, (2) señales de alarma para llamar al 112 (máximo 5 puntos), (3) cómo tomar la medicación más importante, (4) cuándo es tu próxima cita y con quién.
+
+Restricciones: lenguaje sin tecnicismos. Frases de máximo 15 palabras. Extensión: máximo 1 cara A4. No incluyas información que no te haya proporcionado.</div>
+        <div class="prompt-why">Material listo para imprimir. Reducción demostrada de reingresos cuando el paciente comprende su alta.</div>
+      </div>
+    </div>
+
+    <div class="lab-panel" id="lab3">
+      <div class="prompt-box">
+        <div class="prompt-label">Conciliación de medicación al ingreso</div>
+        <div style="margin-bottom:8px">
+          <span class="prompt-badge pb-rol">Rol</span>
+          <span class="prompt-badge pb-ctx">Contexto</span>
+          <span class="prompt-badge pb-tarea">Tarea</span>
+          <span class="prompt-badge pb-fmt">Formato</span>
+        </div>
+        <div class="prompt-text">Actúa como farmacéutico clínico hospitalario con experiencia en conciliación de medicación. El paciente ingresa con la siguiente medicación domiciliaria: [lista de fármacos con dosis y pauta]. Va a recibir el siguiente tratamiento hospitalario: [lista]. Datos del paciente: función renal FG [valor] ml/min, función hepática [normal/alterada], edad [años], peso [kg].
+
+Identifica y prioriza: (1) interacciones clínicamente relevantes (grado C o superior según clasificación estándar), (2) duplicidades terapéuticas, (3) fármacos que requieren ajuste de dosis por función renal.
+
+Formato: tabla priorizada por gravedad clínica con columnas → Problema detectado | Fármacos implicados | Gravedad | Recomendación.</div>
+        <div class="prompt-why">El farmacéutico clínico valida todas las alertas antes de comunicarlas al equipo prescriptor.</div>
+      </div>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Hoja informativa de nuevo tratamiento para paciente</div>
+        <div style="margin-bottom:8px">
+          <span class="prompt-badge pb-tarea">Tarea</span>
+          <span class="prompt-badge pb-fmt">Formato</span>
+          <span class="prompt-badge pb-rest">Restricción</span>
+        </div>
+        <div class="prompt-text">Redacta una hoja informativa para un paciente que inicia tratamiento con [nombre del medicamento] para [indicación]. El paciente tiene [edad] años y nivel de comprensión [básico/medio].
+
+Incluye: para qué sirve este medicamento (1 párrafo breve), cómo y cuándo tomarlo, qué hacer si olvida una dosis, los 3 efectos adversos más frecuentes explicados de forma sencilla, cuándo debe llamar a su farmacéutico o médico.
+
+Restricciones: lenguaje accesible, sin nombres químicos complejos. Extensión máxima: 1 cara A4. No incluyas información sobre interacciones con otros medicamentos que no sean los que ya tiene pautados.</div>
+        <div class="prompt-why">Mejora la adherencia terapéutica desde el primer día. Revisión farmacéutica obligatoria antes de entregar al paciente.</div>
+      </div>
+    </div>
+
+    <div class="lab-panel" id="lab4">
+      <div class="prompt-box">
+        <div class="prompt-label">Análisis de indicadores de calidad asistencial</div>
+        <div style="margin-bottom:8px">
+          <span class="prompt-badge pb-rol">Rol</span>
+          <span class="prompt-badge pb-ctx">Contexto</span>
+          <span class="prompt-badge pb-tarea">Tarea</span>
+          <span class="prompt-badge pb-fmt">Formato</span>
+        </div>
+        <div class="prompt-text">Actúa como gestor sanitario especialista en calidad asistencial del SNS. Mi servicio es [nombre del servicio] en [tipo de hospital]. Datos del periodo [año]: [indicador 1: valor real vs estándar], [indicador 2: valor real vs estándar], [indicador 3: valor real vs estándar].
+
+Analiza la situación, identifica los 3 puntos de mejora prioritarios y para cada uno propón: acción concreta, responsable de implementación, plazo realista e impacto esperado si se alcanza el estándar.
+
+Formato: informe ejecutivo en tabla. Tono: formal, apto para presentar a dirección médica y gerencia. Restricción: no inventes valores de referencia que no conozcas con certeza; si no tienes el estándar, indícalo.</div>
+        <div class="prompt-why">Transforma datos crudos en argumentación para la toma de decisiones directiva en minutos.</div>
+      </div>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Justificación de proyecto de mejora asistencial</div>
+        <div style="margin-bottom:8px">
+          <span class="prompt-badge pb-tarea">Tarea</span>
+          <span class="prompt-badge pb-fmt">Formato</span>
+          <span class="prompt-badge pb-rest">Restricción</span>
+        </div>
+        <div class="prompt-text">Redacta la sección "Justificación y objetivos" de un proyecto de mejora asistencial para abordar el siguiente problema: [descripción del problema] en [unidad/servicio] del [hospital/centro de salud].
+
+Incluye: cuantificación del problema con los datos que te proporciono ([datos]), impacto en seguridad del paciente y eficiencia del sistema, objetivo principal SMART y 2 objetivos secundarios.
+
+Formato: redacción formal, estructura de proyecto de mejora SSPA/acreditación. Extensión: máximo 400 palabras. Restricción: no inventes cifras que no te haya proporcionado; si necesitas un dato que no tienes, indícalo entre corchetes con [DATO PENDIENTE DE OBTENER].</div>
+        <div class="prompt-why">Acelera la redacción de proyectos de mejora para acreditación ACSA o convocatorias de calidad de la SSPA.</div>
+      </div>
+    </div>
+
+    <div class="lab-panel" id="lab5">
+      <div class="prompt-box">
+        <div class="prompt-label">Caso clínico docente con razonamiento clínico (chain-of-thought)</div>
+        <div style="margin-bottom:8px">
+          <span class="prompt-badge pb-rol">Rol</span>
+          <span class="prompt-badge pb-tarea">Tarea</span>
+          <span class="prompt-badge pb-fmt">Formato</span>
+          <span class="prompt-badge pb-rest">Restricción</span>
+        </div>
+        <div class="prompt-text">Actúa como tutor de residentes de [especialidad] con experiencia en formación clínica. Necesito un caso clínico docente sobre [tema/patología] de dificultad [básica/intermedia/avanzada] para residentes de [año de residencia].
+
+El caso debe incluir: (1) presentación inicial con datos incompletos intencionados, (2) 3 preguntas de razonamiento clínico con su respuesta justificada paso a paso, (3) evolución y diagnóstico definitivo, (4) 3 puntos de aprendizaje clave.
+
+Restricciones: el caso debe ser clínicamente verosímil pero no obvio. No reveles el diagnóstico hasta el apartado 3. Usa terminología médica técnica adecuada al nivel del residente indicado. El caso debe ser ficticio.</div>
+        <div class="prompt-why">Genera material docente de alta calidad en minutos. El tutor lo revisa y adapta, ahorrando horas de preparación de sesiones.</div>
+      </div>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Explicación de concepto complejo para presentar en sesión</div>
+        <div style="margin-bottom:8px">
+          <span class="prompt-badge pb-rol">Rol</span>
+          <span class="prompt-badge pb-ctx">Contexto</span>
+          <span class="prompt-badge pb-tarea">Tarea</span>
+        </div>
+        <div class="prompt-text">Actúa como docente universitario de medicina con habilidad para explicar conceptos complejos de forma accesible. Necesito preparar una explicación de [concepto/mecanismo] para presentar en una sesión clínica de [10/20/30] minutos para residentes de [año].
+
+Explícame el concepto usando: (1) analogía clínica comprensible, (2) mecanismo fisiopatológico en 5 pasos secuenciales, (3) implicación práctica en la toma de decisiones, (4) error conceptual frecuente que debo aclarar.
+
+Nivel de detalle: comprensible para un R[número] de [especialidad] con formación universitaria pero sin experiencia previa específica en este tema.</div>
+        <div class="prompt-why">Prepara sesiones docentes en la mitad de tiempo. El residente-ponente siempre valida el contenido con su tutor antes de presentar.</div>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <button class="btn-s" onclick="go(2)">← Comparativa</button>
+      <button class="btn-p" onclick="go(4)">Test →</button>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 4: TEST -->
+  <div class="sec" id="s4">
+
+    <div class="qw active" id="q1w">
+      <div class="qnum">Pregunta 1 de 3</div>
+      <div class="qtxt">Una médica de atención primaria escribe este prompt: "¿Cómo manejo a un diabético con HTA?". ¿Cuál es el problema fundamental de este prompt para uso clínico real?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,1)">La IA no puede responder preguntas sobre manejo de enfermedades crónicas</button>
+        <button class="qopt" onclick="ans(this,true,1)">Carece de contexto clínico específico, tarea acotada, formato de salida y restricciones — la respuesta será un texto genérico inaplicable a ningún paciente concreto</button>
+        <button class="qopt" onclick="ans(this,false,1)">El prompt es demasiado corto y la IA necesita más palabras para entenderlo</button>
+        <button class="qopt" onclick="ans(this,false,1)">Debería incluir el nombre y NHC del paciente para que la IA personalice la respuesta</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+      <div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div>
+    </div>
+
+    <div class="qw" id="q2w">
+      <div class="qnum">Pregunta 2 de 3</div>
+      <div class="qtxt">Un farmacéutico quiere que la IA le genere una tabla de interacciones medicamentosas para un paciente polimedicado. ¿Qué restricción es imprescindible incluir en el prompt para garantizar la seguridad del resultado?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,2)">Indicar que la respuesta debe tener menos de 200 palabras para que sea más legible</button>
+        <button class="qopt" onclick="ans(this,false,2)">Pedir que la IA incluya el prospecto completo de cada medicamento</button>
+        <button class="qopt" onclick="ans(this,true,2)">Indicar explícitamente que si no conoce una interacción con certeza debe señalarlo, y que no tome decisiones de cambio de tratamiento sin revisión humana</button>
+        <button class="qopt" onclick="ans(this,false,2)">Pedir que use únicamente fármacos del vademécum español</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+      <div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div>
+    </div>
+
+    <div class="qw" id="q3w">
+      <div class="qnum">Pregunta 3 de 3</div>
+      <div class="qtxt">Un residente quiere usar la técnica Chain-of-Thought para preparar un diagnóstico diferencial complejo. ¿Qué instrucción debe añadir a su prompt para activar correctamente esta técnica?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,3)">Pedir la respuesta en formato de tabla con columnas predefinidas</button>
+        <button class="qopt" onclick="ans(this,false,3)">Indicar que la respuesta no supere los 3 diagnósticos posibles</button>
+        <button class="qopt" onclick="ans(this,true,3)">Añadir "Razona paso a paso antes de dar tu respuesta final, mostrando explícitamente el proceso de descarte diagnóstico"</button>
+        <button class="qopt" onclick="ans(this,false,3)">Asignar a la IA el rol de paciente para que simule los síntomas</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+      <div class="qnx" id="nx3">
+        <div style="background:rgba(33,150,243,.1);border:1px solid rgba(33,150,243,.28);border-radius:10px;padding:16px;margin-top:8px">
+          <div style="font-size:13px;font-weight:500;color:#90CAF9;margin-bottom:6px">✓ Lección 2.2 completada</div>
+          <div style="font-size:12px;color:#B0BEC5;line-height:1.6">Dominas la anatomía del prompt perfecto (Contexto · Tarea · Formato · Restricciones), la biblioteca por especialidad y las técnicas avanzadas Chain-of-Thought, Few-Shot y Role Prompting. La lección 2.3 trabaja la <strong style="color:#fff">adaptación del lenguaje según la audiencia: paciente, residente y especialista</strong>.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="lf">
+    <span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span>
+    <span> · Desarrollado por DoncelProject · doncel.project@gmail.com</span>
+  </div>
+
+</div>
+
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/4)*100);document.getElementById('pf22').style.width=p+'%';document.getElementById('pl22').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function togglePart(i){const b=document.getElementById('pb'+i);const open=b.classList.contains('show');document.querySelectorAll('.part-body').forEach(x=>x.classList.remove('show'));if(!open)b.classList.add('show');}
+function showLab(el,i){document.querySelectorAll('.lab-tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.lab-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById('lab'+i).classList.add('show');}
+const fbs={
+  1:{
+    ok:'✅ Correcto. El prompt carece de los 4 componentes esenciales: no hay contexto clínico del paciente (edad, comorbilidades, situación actual), la tarea no está acotada (¿qué aspecto del manejo?), no hay formato definido (¿tabla, lista, protocolo?) y no hay restricciones de seguridad. La IA responderá con un texto genérico de manual que no es aplicable a ningún paciente real.',
+    ko:'❌ El problema no es la longitud ni la ausencia del paciente real — incluir datos identificativos en prompts de IA es una vulneración de privacidad. El fallo es estructural: sin contexto clínico específico, sin tarea acotada, sin formato y sin restricciones, cualquier IA generará una respuesta genérica de manual que no sirve para el paciente que tienes delante.'
+  },
+  2:{
+    ok:'✅ Correcto. En prompts de farmacología clínica, la restricción de incertidumbre es la más crítica para la seguridad: la IA debe señalar explícitamente cuando no conoce una interacción con certeza (para evitar falsos negativos peligrosos) y aclarar que no debe tomarse ninguna decisión de cambio de tratamiento sin revisión farmacéutica y médica. Sin esta restricción, el sistema puede generar confianza falsa.',
+    ko:'❌ Aunque la extensión y el vademécum son consideraciones válidas, la restricción imprescindible para la seguridad es la que gestiona la incertidumbre: la IA debe indicar explícitamente cuando no tiene certeza sobre una interacción, y nunca debe dar por válida una decisión clínica sin revisión humana. Los errores de omisión (no detectar una interacción real) son más peligrosos que los de formato.'
+  },
+  3:{
+    ok:'✅ Correcto. La técnica Chain-of-Thought se activa explícitamente pidiendo a la IA que muestre su razonamiento antes de dar la conclusión final. Esta instrucción hace que el modelo externalice el proceso de descarte diagnóstico paso a paso, lo que permite al clínico identificar errores de razonamiento antes de actuar y aprender del proceso, no solo del resultado.',
+    ko:'❌ El formato tabla y limitar el número de diagnósticos son decisiones de formato y restricción, no de técnica de razonamiento. Chain-of-Thought se activa específicamente pidiendo que la IA desarrolle el proceso de razonamiento antes de la respuesta final — esto transforma la salida de una lista de diagnósticos en un razonamiento clínico auditable y educativo.'
+  }
+};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+upd();
+</script>

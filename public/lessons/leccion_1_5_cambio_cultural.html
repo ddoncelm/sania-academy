@@ -1,0 +1,273 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:32px}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(76,175,80,0.12);border:1px solid rgba(76,175,80,0.3);border-radius:20px;padding:4px 12px;font-size:11px;color:#A5D6A7;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px;color:#fff}
+.lt span{color:#4CAF50}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px;flex-wrap:wrap}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#4CAF50;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:70px;font-family:var(--font-sans,sans-serif)}
+.nb.active{color:#4CAF50;border-bottom-color:#4CAF50;background:#0C0D12}
+.sec{display:none;padding:20px 24px}
+.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(76,175,80,0.08);border:1px solid rgba(76,175,80,0.2);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#A5D6A7;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#4CAF50;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500;font-family:var(--font-sans,sans-serif)}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer;font-family:var(--font-sans,sans-serif)}
+.badge{display:inline-block;font-size:10px;font-weight:500;padding:3px 8px;border-radius:10px;margin-left:6px}
+.b-green{background:rgba(76,175,80,.15);color:#A5D6A7}
+.b-amber{background:rgba(255,152,0,.15);color:#FFD54F}
+.b-blue{background:rgba(33,150,243,.15);color:#90CAF9}
+.b-red{background:rgba(244,67,54,.15);color:#EF9A9A}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.stat{background:#13151e;border:1px solid #1e2335;border-radius:10px;padding:14px;text-align:center}
+.stat-n{font-size:22px;font-weight:500;color:#4CAF50}
+.stat-l{font-size:11px;color:#B0BEC5;margin-top:4px;line-height:1.4}
+.arrow-row{display:flex;align-items:center;gap:6px;margin:10px 0;flex-wrap:wrap}
+.arrow-box{background:#0e1018;border:1px solid #1e2335;border-radius:8px;padding:8px 12px;font-size:12px;color:#E0E0E0;flex:1;text-align:center;min-width:80px}
+.arrow-box small{display:block;font-size:10px;color:#B0BEC5;margin-top:3px}
+.arrow-txt{color:#546E7A;font-size:16px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.barrier{background:#13151e;border:1px solid #1e2335;border-radius:10px;padding:14px}
+.barr-icon{font-size:20px;margin-bottom:6px}
+.barr-t{font-size:12px;font-weight:500;color:#fff;margin-bottom:4px}
+.barr-b{font-size:11px;color:#B0BEC5;line-height:1.5}
+.barr-b strong{color:#E0E0E0}
+.phase{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+.phase-num{min-width:28px;height:28px;border-radius:50%;background:#4CAF50;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;flex-shrink:0;margin-top:2px}
+.phase-body .pt{font-size:13px;font-weight:500;color:#fff;margin-bottom:4px}
+.phase-body .pb{font-size:12px;color:#B0BEC5;line-height:1.6}
+.hl{background:rgba(76,175,80,0.08);border-left:3px solid #4CAF50;border-radius:0 8px 8px 0;padding:12px 14px;margin:14px 0;font-size:12px;color:#E0E0E0;line-height:1.7}
+.qw{display:none}
+.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s;font-family:var(--font-sans,sans-serif)}
+.qopt:hover{border-color:#4CAF50;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;color:#B0BEC5;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}
+.qnx.show{display:block}
+.caso{background:#0e1018;border-radius:10px;padding:14px 16px;margin-bottom:10px;border-left:4px solid}
+.caso-t{font-size:12px;font-weight:500;color:#fff;margin-bottom:6px}
+.caso-d{font-size:11px;color:#B0BEC5;line-height:1.6}
+.caso-v{font-size:11px;margin-top:8px;padding-top:8px;border-top:1px solid #1e2335}
+.sum-box{background:#13151e;border:1px solid #1e2335;border-radius:12px;overflow:hidden}
+.sum-item{display:flex;align-items:flex-start;gap:10px;padding:12px 16px;border-bottom:1px solid #1e2335}
+.sum-item:last-child{border-bottom:none}
+.sum-check{width:20px;height:20px;border-radius:50%;background:#4CAF50;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;font-size:11px}
+.sum-txt{font-size:12px;color:#B0BEC5;line-height:1.5}
+.sum-txt strong{color:#E0E0E0}
+.lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a;padding-left:24px;padding-right:24px}
+.fl{color:#2196F3;cursor:pointer;text-decoration:underline}
+@media(max-width:500px){.grid2{grid-template-columns:1fr}.stat-row{grid-template-columns:1fr 1fr}}
+</style>
+
+<div class="lw">
+  <div class="lh">
+    <div class="lb">MÓDULO 1 · LECCIÓN 1.5</div>
+    <div class="lt">La IA como <span>motor de cambio</span> en la cultura sanitaria</div>
+    <div class="lm">
+      <div class="lmi"><div class="md" style="background:#4CAF50"></div>57 minutos</div>
+      <div class="lmi"><div class="md" style="background:#2196F3"></div>4 secciones</div>
+      <div class="lmi"><div class="md" style="background:#FFB300"></div>Gestión del cambio</div>
+    </div>
+  </div>
+  <div class="pbw"><div class="pbb"><div class="pbf" id="pf5"></div></div><div class="pbl" id="pl5">0%</div></div>
+  <div class="snav">
+    <button class="nb active" id="t0" onclick="go(0)">📖 Intro</button>
+    <button class="nb" id="t1" onclick="go(1)">🧱 Resistencias</button>
+    <button class="nb" id="t2" onclick="go(2)">🚀 Adopción</button>
+    <button class="nb" id="t3" onclick="go(3)">✅ Test</button>
+  </div>
+
+  <div class="sec active" id="s0">
+    <div class="card">
+      <div class="ct">Objetivo</div>
+      <div class="cb">Comprender por qué la IA fracasa en entornos sanitarios cuando no se gestiona el cambio cultural. Identificar los tipos de resistencia profesional y aprender a diseñar una estrategia de adopción progresiva para tu servicio o unidad.</div>
+    </div>
+    <div class="simil">
+      <div class="sl">Punto de partida</div>
+      Implantar IA sin gestión del cambio es como instalar un TAC de última generación sin formar a los técnicos ni cambiar el circuito de solicitudes. El problema no es la máquina — es el sistema que la rodea.
+    </div>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-n">73%</div><div class="stat-l">de profesionales cita la resistencia al cambio como barrera principal</div></div>
+      <div class="stat"><div class="stat-n">4–7</div><div class="stat-l">años tarda un cambio cultural en consolidarse en organizaciones sanitarias</div></div>
+      <div class="stat"><div class="stat-n">3×</div><div class="stat-l">más probable adoptar IA cuando existe un caso piloto del propio servicio</div></div>
+    </div>
+    <div class="card">
+      <div class="ct">El cambio cultural en 3 capas</div>
+      <div class="cb">
+        <div class="arrow-row">
+          <div class="arrow-box">Creencias<small>"¿Para qué sirve?"</small></div>
+          <span class="arrow-txt">→</span>
+          <div class="arrow-box">Actitudes<small>"¿Lo quiero usar?"</small></div>
+          <span class="arrow-txt">→</span>
+          <div class="arrow-box">Comportamiento<small>"Lo uso a diario"</small></div>
+        </div>
+        <div style="font-size:12px;color:#B0BEC5;margin-top:10px">El cambio sostenible requiere actuar en las tres capas. Imponer el comportamiento sin modificar las creencias produce adopción superficial que se abandona en cuanto desaparece la presión externa.</div>
+      </div>
+    </div>
+    <div class="nav-actions"><span></span><button class="btn-p" onclick="go(1)">Empezar →</button></div>
+  </div>
+
+  <div class="sec" id="s1">
+    <div class="card">
+      <div class="ct">Mapa de resistencias en sanidad</div>
+      <div class="cb">Conocer el tipo de resistencia permite elegir la intervención correcta. Cada perfil necesita un mensaje diferente.</div>
+    </div>
+    <div class="grid2">
+      <div class="barrier">
+        <div class="barr-icon">🔒</div>
+        <div class="barr-t">Resistencia técnica</div>
+        <div class="barr-b">"No sé usarla." Falta de competencia digital. Ansiedad ante lo desconocido.<br><br><strong>Solución:</strong> formación progresiva con casos del propio servicio.</div>
+      </div>
+      <div class="barrier">
+        <div class="barr-icon">⚖️</div>
+        <div class="barr-t">Resistencia ética</div>
+        <div class="barr-b">"¿Y si se equivoca? ¿Quién responde?" Desconfianza en fiabilidad y responsabilidad legal.<br><br><strong>Solución:</strong> explicar modelo de responsabilidad: la IA asiste, el profesional decide.</div>
+      </div>
+      <div class="barrier">
+        <div class="barr-icon">👔</div>
+        <div class="barr-t">Resistencia identitaria</div>
+        <div class="barr-b">"Esto no es medicina, es tecnología." Amenaza percibida a la identidad profesional.<br><br><strong>Solución:</strong> enmarcar IA como herramienta, no como sustituto.</div>
+      </div>
+      <div class="barrier">
+        <div class="barr-icon">⏱️</div>
+        <div class="barr-t">Resistencia práctica</div>
+        <div class="barr-b">"No tengo tiempo de aprender esto ahora." Sobrecarga asistencial percibida.<br><br><strong>Solución:</strong> demostrar ahorro de tiempo desde la primera sesión.</div>
+      </div>
+    </div>
+    <div class="hl">En servicios con alta presión asistencial (urgencias, UCI, oncología) la resistencia práctica es la dominante. El primer mensaje debe ser: <strong style="color:#fff">"Esto te devuelve 20 minutos al día."</strong></div>
+    <div class="card" style="margin-top:0">
+      <div class="ct">Casos documentados en el SSPA</div>
+      <div class="cb" style="padding:0">
+        <div class="caso" style="border-color:#EF9A9A;margin-top:10px">
+          <div class="caso-t">Proyecto paralizado — Servicio de Medicina Interna <span class="badge b-red">Resistencia identitaria</span></div>
+          <div class="caso-d">Implementación de IA para resumen de informes de alta. El jefe de servicio consideró que "resumir es trabajo médico" y bloqueó el piloto. El error fue no involucrar al liderazgo desde el inicio ni demostrar que la herramienta amplía, no reduce, el rol del médico.</div>
+          <div class="caso-v" style="color:#EF9A9A">Lección: el líder formal es la primera barrera a gestionar, no la última.</div>
+        </div>
+        <div class="caso" style="border-color:#A5D6A7">
+          <div class="caso-t">Adopción exitosa — UGC Nefrología HUCS <span class="badge b-green">Early adopter strategy</span></div>
+          <div class="caso-d">Un adjunto con perfil tecnológico comenzó usando IA para redactar cartas de derivación. Compartió los resultados en sesión clínica. En 3 meses, el 60% del servicio la usaba de forma voluntaria. La dirección incorporó el caso al plan de formación.</div>
+          <div class="caso-v" style="color:#A5D6A7">Lección: un early adopter visible con resultado concreto es más efectivo que cualquier formación obligatoria.</div>
+        </div>
+      </div>
+    </div>
+    <div class="nav-actions"><button class="btn-s" onclick="go(0)">← Atrás</button><button class="btn-p" onclick="go(2)">Plan de adopción →</button></div>
+  </div>
+
+  <div class="sec" id="s2">
+    <div class="card">
+      <div class="ct">Modelo de adopción para entornos sanitarios</div>
+      <div class="cb">Basado en Rogers (Difusión de Innovaciones) adaptado a cultura SSPA. Cuatro fases progresivas que minimizan la resistencia y consolidan el cambio.</div>
+    </div>
+    <div class="phase">
+      <div class="phase-num">1</div>
+      <div class="phase-body">
+        <div class="pt">Identificar early adopters <span class="badge b-green">5–10% del servicio</span></div>
+        <div class="pb">Localiza 1–2 profesionales con curiosidad tecnológica. No tienen que ser los más jóvenes ni los jefes. Son los que ya buscan soluciones por su cuenta. Dales acceso prioritario y conviértelos en referentes internos visibles.</div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-num">2</div>
+      <div class="phase-body">
+        <div class="pt">Construir un caso de uso propio <span class="badge b-blue">Primeros 30 días</span></div>
+        <div class="pb">El caso debe resolverse con IA de forma visible para el equipo. No "IA en general": "Claude me redactó 8 informes de alta en 40 minutos que habrían tardado 2 horas." La evidencia concreta en tu contexto supera cualquier argumento teórico.</div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-num">3</div>
+      <div class="phase-body">
+        <div class="pt">Demostración en contexto real</div>
+        <div class="pb">Organiza una sesión de 20 min en sesión clínica o claustro. El early adopter muestra el caso resuelto. El equipo lo prueba en directo. El impacto percibido en el propio contexto es exponencialmente más efectivo que cualquier formación genérica.</div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-num">4</div>
+      <div class="phase-body">
+        <div class="pt">Escalar con estructura <span class="badge b-amber">Meses 2–6</span></div>
+        <div class="pb">Incorpora el uso de IA en los protocolos del servicio. Define qué herramientas, para qué tareas, con qué criterios de revisión. Documenta el tiempo ahorrado. Presenta resultados a dirección con datos. La institucionalización consolida el cambio.</div>
+      </div>
+    </div>
+    <div class="hl">La trampa más común: empezar por el más reacio en lugar de por el más receptivo. <strong style="color:#fff">El cambio cultural se contagia, no se impone.</strong></div>
+    <div class="nav-actions"><button class="btn-s" onclick="go(1)">← Atrás</button><button class="btn-p" onclick="go(3)">Test →</button></div>
+  </div>
+
+  <div class="sec" id="s3">
+    <div class="qw active" id="q1w">
+      <div class="qnum">Pregunta 1 de 3</div>
+      <div class="qtxt">Un adjunto de tu servicio dice: "Si la IA se equivoca en un diagnóstico, ¿quién responde?" ¿Qué tipo de resistencia es y cuál es la intervención más efectiva?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,1)">Resistencia técnica. Ofrécele formación en el uso de la herramienta.</button>
+        <button class="qopt" onclick="ans(this,true,1)">Resistencia ética. Explica que la IA asiste, pero el profesional siempre decide y firma — la responsabilidad clínica no se delega.</button>
+        <button class="qopt" onclick="ans(this,false,1)">Resistencia identitaria. Muéstrale que la IA no sustituye su rol clínico.</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+      <div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div>
+    </div>
+    <div class="qw" id="q2w">
+      <div class="qnum">Pregunta 2 de 3</div>
+      <div class="qtxt">Quieres convencer a la dirección de tu hospital para que apoye un proyecto de IA en tu servicio. ¿Qué argumento es más efectivo?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,2)">Mostrar que otras comunidades autónomas ya lo están implantando.</button>
+        <button class="qopt" onclick="ans(this,false,2)">Explicar el potencial transformador de la IA en sanidad a largo plazo.</button>
+        <button class="qopt" onclick="ans(this,true,2)">Presentar datos de tu propio piloto: horas ahorradas, informes generados, reducción de errores.</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+      <div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última pregunta →</button></div>
+    </div>
+    <div class="qw" id="q3w">
+      <div class="qnum">Pregunta 3 de 3</div>
+      <div class="qtxt">Vas a presentar IA a tu equipo de 12 personas. Hay escépticos. ¿Por dónde empiezas?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,3)">Por el profesional más escéptico, para resolver objeciones desde el inicio.</button>
+        <button class="qopt" onclick="ans(this,true,3)">Por el más receptivo, mostrando un resultado real en su contexto antes de extender al grupo.</button>
+        <button class="qopt" onclick="ans(this,false,3)">Por una formación obligatoria grupal para garantizar exposición uniforme.</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+      <div class="qnx" id="nx3">
+        <div style="background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.25);border-radius:10px;padding:16px;margin-top:8px">
+          <div style="font-size:13px;font-weight:500;color:#A5D6A7;margin-bottom:6px">Lección 1.5 completada</div>
+          <div style="font-size:12px;color:#B0BEC5;line-height:1.6">Ya tienes el mapa de resistencias y el modelo de adopción. La lección 1.6 entra en el marco legal: <strong style="color:#fff">RGPD e IA — qué puedes usar, cómo y con qué límites en el SSPA.</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lf">
+    <span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span>
+    <span> · Desarrollado por DoncelProject · doncel.project@gmail.com</span>
+  </div>
+</div>
+
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/4)*100);document.getElementById('pf5').style.width=p+'%';document.getElementById('pl5').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+const fbs={
+  1:{ok:'✅ Correcto. La pregunta sobre responsabilidad es una resistencia ética, no técnica. La intervención clave es clarificar el modelo: la IA es una herramienta de apoyo, el profesional siempre revisa, decide y firma. La responsabilidad clínica nunca se delega a la máquina.',ko:'❌ La preocupación por "quién responde" es resistencia ética (responsabilidad legal). La formación técnica no resuelve esta duda — necesita una respuesta sobre el modelo de responsabilidad, no sobre el uso de la herramienta.'},
+  2:{ok:'✅ Correcto. Los directivos sanitarios responden a impacto cuantificado en su propio contexto. Un dato concreto de tu servicio supera cualquier argumento comparativo o promesa a largo plazo. La evidencia local es la más persuasiva.',ko:'❌ Los directivos necesitan datos concretos de impacto, no argumentos genéricos. Un caso piloto propio documentado — horas ahorradas, errores reducidos, informes generados — es el argumento más sólido para obtener apoyo institucional.'},
+  3:{ok:'✅ Correcto. Empezar por los receptivos y generar evidencia visible crea prueba social. Los escépticos cambian cuando ven que sus compañeros cercanos obtienen beneficios tangibles, no cuando se les rebaten objeciones directamente.',ko:'❌ Empezar por los escépticos o por formación obligatoria consume energía sin generar adopción real. La estrategia correcta es construir evidencia visible con los receptivos y dejar que la prueba social haga el trabajo de convicción.'}
+};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+upd();
+</script>

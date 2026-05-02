@@ -1,0 +1,314 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:sans-serif;border-radius:16px;overflow:hidden;padding-bottom:32px}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(33,150,243,.15);border:1px solid rgba(33,150,243,.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#90CAF9;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px}.lt span{color:#2196F3}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px;flex-wrap:wrap}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#2196F3;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:80px}
+.nb.active{color:#2196F3;border-bottom-color:#2196F3;background:#0C0D12}
+.sec{display:none;padding:20px 24px}.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(33,150,243,.08);border:1px solid rgba(33,150,243,.22);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#2196F3;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer}
+.tec-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.tec-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 14px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s}
+.tec-tab.active{background:rgba(33,150,243,.15);border-color:#2196F3;color:#90CAF9}
+.tec-panel{display:none}.tec-panel.show{display:block}
+.prompt-box{background:#0e1018;border:1px solid #1e2335;border-radius:10px;padding:14px;margin:10px 0}
+.prompt-label{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}
+.prompt-text{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.prompt-why{font-size:11px;color:#B0BEC5;line-height:1.6;margin-top:10px;padding-top:10px;border-top:1px solid #1e2335}
+.limit-item{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #1a2a3a}
+.limit-item:last-child{border-bottom:none}
+.li-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.li-title{font-size:12px;font-weight:600;color:#fff;margin-bottom:3px}
+.li-desc{font-size:11px;color:#B0BEC5;line-height:1.6}
+.flow-box{background:#0C0D12;border-radius:8px;padding:12px 14px;margin:10px 0;font-family:monospace;font-size:11px;color:#90CAF9;line-height:1.9;white-space:pre-wrap;word-break:break-word;border-left:2px solid #2196F3}
+.matriz{width:100%;border-collapse:collapse;font-size:11px;margin:12px 0}
+.matriz th{background:#13151e;color:#90CAF9;font-weight:500;padding:10px 12px;text-align:left;border:1px solid #1e2335}
+.matriz td{padding:9px 12px;border:1px solid #1e2335;color:#E0E0E0;line-height:1.5;vertical-align:top}
+.matriz tr:nth-child(odd) td{background:#0e1018}
+.matriz tr:nth-child(even) td{background:#13151e}
+.valor-box{background:rgba(33,150,243,.08);border:1px solid rgba(33,150,243,.2);border-radius:10px;padding:14px;margin:10px 0}
+.vb-titulo{font-size:13px;font-weight:700;color:#2196F3;margin-bottom:4px}
+.vb-formula{font-family:monospace;font-size:12px;color:#90CAF9;margin-bottom:6px}
+.vb-desc{font-size:11px;color:#B0BEC5;line-height:1.6}
+.vb-ejemplo{font-size:11px;color:#E0E0E0;margin-top:8px;padding-top:8px;border-top:1px solid #1e2335}
+.qw{display:none}.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s}
+.qopt:hover{border-color:#2196F3;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}.qnx.show{display:block}
+.complete-btn{width:100%;background:linear-gradient(135deg,#2196F3,#1565C0);color:#fff;border:none;border-radius:10px;padding:14px 20px;font-size:13px;font-weight:600;cursor:pointer;margin-top:16px;letter-spacing:.3px;transition:opacity .2s}
+.complete-btn:hover{opacity:.9}.complete-btn:disabled{opacity:.5;cursor:not-allowed}
+.lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a}
+.fl{color:#2196F3;cursor:pointer;text-decoration:underline}
+</style>
+<div class="lw">
+<div class="lh"><div class="lb">MÓDULO 4 · LECCIÓN 4.5</div><div class="lt">Validación clínica cruzada:<br><span>sensibilidad, especificidad, VPP, VPN y comparación con gold standards</span></div><div class="lm"><div class="lmi"><div class="md" style="background:#2196F3"></div>41 minutos</div><div class="lmi"><div class="md" style="background:#FFB300"></div>Nivel intermedio</div><div class="lmi"><div class="md" style="background:#A5D6A7"></div>Métricas de evaluación</div></div></div>
+<div class="pbw"><div class="pbb"><div class="pbf" id="pbf45"></div></div><div class="pbl" id="pbl45">0%</div></div>
+<div class="snav"><button class="nb active" id="t1" onclick="go(1)">Por qué validar la IA</button><button class="nb" id="t2" onclick="go(2)">Métricas de rendimiento</button><button class="nb" id="t3" onclick="go(3)">Protocolo de validación</button><button class="nb" id="t4" onclick="go(4)">Limitaciones y sesgos</button><button class="nb" id="t5" onclick="go(5)">Test</button></div>
+
+<div class="sec active" id="s1">
+<div class="card"><div class="ct">Objetivo de la lección</div><div class="cb">Dominar las métricas de evaluación del rendimiento de sistemas de IA en clínica (sensibilidad, especificidad, VPP, VPN, AUC-ROC) y diseñar un protocolo de validación cruzada que permita comparar el modelo de IA con el gold standard clínico antes de desplegarlo en la práctica asistencial.</div></div>
+<div class="simil"><div class="sl">🔬 Analogía clínica</div>Validar un modelo de IA es exactamente como validar una prueba diagnóstica nueva: mides la sensibilidad (¿cuántos verdaderos positivos detecta?), la especificidad (¿cuántos falsos positivos genera?), el VPP y el VPN. Nadie implantaría una nueva prueba de laboratorio sin estos datos — exactamente la misma exigencia debe aplicarse a cualquier sistema de IA que influence decisiones clínicas. Un modelo que nadie ha validado formalmente es una prueba diagnóstica sin validar: potencialmente útil, potencialmente peligrosa.</div>
+<div class="card"><div class="ct">¿Por qué la validación es obligatoria en clínica?</div><div class="cb" style="margin-bottom:10px">Tres razones que van más allá de la ética profesional:</div>
+<div class="limit-item"><div class="li-icon">⚖️</div><div class="li-body"><div class="li-title">Obligación regulatoria (AI Act europeo)</div><div class="li-desc">El Reglamento Europeo de IA clasifica los sistemas de IA en salud como de alto riesgo. Para estos sistemas, la validación clínica documentada es un requisito legal antes de su uso en la práctica. Sin documentación de validación, el sistema no puede desplegarse legalmente en el SNS.</div></div></div>
+<div class="limit-item"><div class="li-icon">🛡️</div><div class="li-body"><div class="li-title">Responsabilidad médica</div><div class="li-desc">Si un sistema de IA influye en una decisión clínica que causa daño a un paciente, el médico responsable debe poder demostrar que el sistema fue validado antes de su uso. «El modelo me lo dijo» no es una defensa válida si el modelo no tenía validación documentada.</div></div></div>
+<div class="limit-item"><div class="li-icon">📊</div><div class="li-body"><div class="li-title">Desempeño real ≠ desempeño esperado</div><div class="li-desc">Un modelo entrenado en datos de hospitales americanos puede funcionar muy bien en ese contexto y fallar sistemáticamente en el SNS español por diferencias en la prevalencia de enfermedades, la codificación clínica, o los protocolos de tratamiento. La validación en tu contexto específico es la única forma de saberlo.</div></div></div>
+<div class="nav-actions"><div></div><button class="btn-p" onclick="go(2)">Métricas →</button></div>
+</div>
+
+</div>
+<div class="sec" id="s2">
+<div class="card"><div class="ct">Las métricas esenciales de rendimiento diagnóstico</div><div class="cb">Las mismas métricas que se usan para validar una prueba diagnóstica se aplican directamente a la validación de modelos de IA clínica. Si sabes interpretar la sensibilidad de un ECG para detectar FA, ya sabes interpretar la sensibilidad de un modelo de IA.</div></div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'m-basico')">📊 Métricas básicas</button><button class="tec-tab" onclick="showTab(this,'m-avanzado')">📈 AUC-ROC y curvas</button><button class="tec-tab" onclick="showTab(this,'m-contexto')">🎯 Según el contexto</button></div>
+<div class="tec-panel show" id="m-basico">
+<div class="flow-box">MATRIZ DE CONFUSIÓN — La base de todas las métricas:
+
+                    REALIDAD (gold standard)
+                    Positivo    Negativo
+IA predice: Positivo  VP           FP
+            Negativo  FN           VN
+
+VP = Verdadero Positivo: modelo dice SÍ, gold standard dice SÍ
+FP = Falso Positivo: modelo dice SÍ, gold standard dice NO (falsa alarma)
+FN = Falso Negativo: modelo dice NO, gold standard dice SÍ (miss)
+VN = Verdadero Negativo: modelo dice NO, gold standard dice NO</div>
+<div class="valor-box">
+<div class="vb-titulo">Sensibilidad (Recall / TPR)</div>
+<div class="vb-formula">Sensibilidad = VP / (VP + FN)</div>
+<div class="vb-desc">Proporción de casos positivos reales que el modelo detecta correctamente. Alta sensibilidad = pocos falsos negativos = el modelo no se pierde los casos positivos. Crítico cuando el coste de un falso negativo es alto (no detectar un cáncer, perder un valor crítico).</div>
+<div class="vb-ejemplo">Ejemplo: Modelo para detectar sepsis en urgencias. Sensibilidad=0.92 → detecta el 92% de los casos reales de sepsis. El 8% restante son falsos negativos — sepsis que el modelo no detecta.</div>
+</div>
+<div class="valor-box">
+<div class="vb-titulo">Especificidad (TNR)</div>
+<div class="vb-formula">Especificidad = VN / (VN + FP)</div>
+<div class="vb-desc">Proporción de casos negativos reales que el modelo identifica correctamente. Alta especificidad = pocos falsos positivos = el modelo no genera muchas alarmas innecesarias. Crítico cuando el coste de un falso positivo es alto (tratamiento innecesario costoso o peligroso).</div>
+<div class="vb-ejemplo">Ejemplo: Mismo modelo. Especificidad=0.78 → identifica correctamente el 78% de los no-sepsis. El 22% restante son falsos positivos — pacientes sin sepsis que el modelo clasifica como sepsis.</div>
+</div>
+<div class="valor-box">
+<div class="vb-titulo">VPP y VPN — Los más útiles en la práctica clínica</div>
+<div class="vb-formula">VPP = VP / (VP + FP) · VPN = VN / (VN + FN)</div>
+<div class="vb-desc">VPP: si el modelo dice POSITIVO, ¿cuántas veces tiene razón? VPN: si el modelo dice NEGATIVO, ¿cuántas veces tiene razón? Dependen de la prevalencia — el mismo modelo tiene VPP distinto en urgencias (alta prevalencia) que en cribado poblacional (baja prevalencia).</div>
+<div class="vb-ejemplo">El mismo modelo de sepsis con sensibilidad/especificidad fija tendrá VPP muy distinto en una UCI (prevalencia ~30%) que en consultas externas (prevalencia ~2%). Siempre comunica VPP y VPN junto con la prevalencia en la que se calcularon.</div>
+</div>
+</div>
+<div class="tec-panel" id="m-avanzado">
+<div class="card"><div class="ct">AUC-ROC: la métrica que no depende del umbral</div><div class="cb">La curva ROC (Receiver Operating Characteristic) representa todos los pares sensibilidad/especificidad posibles según el umbral de decisión. El AUC (Area Under the Curve) resume el rendimiento del modelo en una sola cifra independientemente del umbral elegido.</div></div>
+<div class="flow-box">INTERPRETACIÓN DEL AUC:
+AUC = 0.5  → El modelo no discrimina mejor que el azar (inútil)
+AUC = 0.7  → Discriminación moderada (aceptable para screening)
+AUC = 0.8  → Buena discriminación (útil clínicamente con supervisión)
+AUC = 0.9  → Excelente discriminación (comparable a experto humano)
+AUC = 1.0  → Discriminación perfecta (imposible en práctica real)
+
+EJEMPLOS PUBLICADOS (referencia):
+→ IA para detección de FA en ECG (DeepMind/Mayo): AUC 0.93
+→ IA para diagnóstico de retinopatía diabética (Google): AUC 0.99
+→ IA para predicción de reingreso a 30 días: AUC 0.75-0.82
+→ IA para detección sepsis en urgencias: AUC 0.78-0.85
+
+RELACIÓN AUC / SENSIBILIDAD / ESPECIFICIDAD:
+El AUC te dice si el modelo PUEDE discriminar.
+La sensibilidad/especificidad te dice cómo DECIDE con un umbral concreto.
+Necesitas los dos: un AUC alto pero umbral mal calibrado da un modelo
+con buenas capacidades pero mal ajustado para uso clínico real.</div>
+</div>
+<div class="tec-panel" id="m-contexto">
+<div class="card"><div class="ct">Qué métrica priorizar según el contexto clínico</div></div>
+<div style="overflow-x:auto"><table class="matriz">
+<tr><th>Contexto</th><th>Métrica prioritaria</th><th>Razón</th></tr>
+<tr><td>Cribado de patología grave (cáncer, sepsis)</td><td>Sensibilidad alta (>0.95)</td><td>Un falso negativo (miss) tiene consecuencias graves — el coste de perder un caso positivo supera el coste de investigar falsos positivos</td></tr>
+<tr><td>Decisión de tratamiento costoso o tóxico</td><td>VPP alto (>0.80)</td><td>Tratar a un paciente que no lo necesita tiene consecuencias — el modelo debe tener alta certeza cuando dice positivo</td></tr>
+<tr><td>Descarte de diagnóstico diferencial</td><td>VPN alto (>0.95)</td><td>Si el modelo dice negativo, debe poder usarse para descartar con seguridad — pocos falsos negativos</td></tr>
+<tr><td>Alertas de monitorización continua</td><td>Balance sensibilidad/especificidad</td><td>Demasiados falsos positivos generan fatiga de alarma — demasiados falsos negativos crean riesgo clínico</td></tr>
+<tr><td>Apoyo al diagnóstico diferencial</td><td>AUC + calibración</td><td>No hay una decisión binaria — el modelo proporciona probabilidades que el médico integra</td></tr>
+</table></div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(1)">← Por qué validar</button><button class="btn-p" onclick="go(3)">Protocolo →</button></div>
+</div>
+
+<div class="sec" id="s3">
+<div class="card"><div class="ct">Protocolo de validación clínica cruzada</div><div class="cb">Un protocolo estructurado que cualquier equipo clínico puede aplicar para validar un modelo de IA antes de su despliegue. No requiere estadísticos ni programadores — requiere rigor metodológico y datos de calidad.</div></div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'pv-diseno')">🔬 Diseño</button><button class="tec-tab" onclick="showTab(this,'pv-gold')">🥇 Gold standard</button><button class="tec-tab" onclick="showTab(this,'pv-calculo')">🧮 Cálculo con IA</button></div>
+<div class="tec-panel show" id="pv-diseno">
+<div class="flow-box">PROTOCOLO DE VALIDACIÓN — 6 PASOS:
+
+PASO 1 — DEFINIR LA TAREA CLÍNICA CON PRECISIÓN:
+  No: "el modelo predice sepsis"
+  Sí: "el modelo predice sepsis según criterios Sepsis-3 (SOFA ≥2 + infección
+  sospechada) en pacientes adultos que llegan a urgencias del Hospital X"
+  La especificidad de la tarea determina los criterios del gold standard.
+
+PASO 2 — DEFINIR EL GOLD STANDARD:
+  ¿Quién decide el "positivo real"? Dos opciones:
+  → Revisión retrospectiva de historia clínica por experto ciego al output del modelo
+  → Diagnóstico clínico documentado en la HC (con sus limitaciones)
+  NUNCA usar el mismo conjunto de datos con el que se entrenó el modelo.
+
+PASO 3 — SELECCIONAR LA MUESTRA DE VALIDACIÓN:
+  Mínimo: 100 casos positivos + 100 negativos para métricas básicas
+  Mejor: 300+ casos con distribución representativa del servicio real
+  Estratificar: incluir casos difíciles, casos atípicos, distintos turnos,
+  distintas épocas del año si la patología es estacional.
+
+PASO 4 — EVALUACIÓN CIEGA:
+  El evaluador del gold standard NO conoce el output del modelo.
+  El modelo NO tiene acceso a la evaluación del experto durante el proceso.
+  Documentar los casos de discrepancia entre evaluadores.
+
+PASO 5 — CALCULAR MÉTRICAS:
+  Para cada caso: output del modelo (positivo/negativo o probabilidad)
+  vs. gold standard (positivo/negativo).
+  Calcular: VP, FP, FN, VN → sensibilidad, especificidad, VPP, VPN, AUC.
+
+PASO 6 — DOCUMENTAR LIMITACIONES:
+  ¿En qué subgrupos falla más el modelo? (edad, sexo, comorbilidades)
+  ¿Hay sesgos detectados?
+  ¿Cuál es el contexto de uso donde es válido y dónde no?</div>
+</div>
+<div class="tec-panel" id="pv-gold">
+<div class="limit-item"><div class="li-icon">🥇</div><div class="li-body"><div class="li-title">Gold standards en sanidad: los más usados</div><div class="li-desc"><strong>Diagnóstico histopatológico:</strong> para modelos de detección de lesiones oncológicas en imagen. Biopsia como gold standard inapelable. <strong>Diagnóstico de experto ciego:</strong> panel de 2-3 especialistas que revisan los casos sin conocer el output del modelo. Se usa cuando no hay gold standard objetivo. <strong>Criterios diagnósticos establecidos:</strong> guías clínicas con criterios explícitos (Sepsis-3, criterios de diagnóstico de FA, escalas validadas). <strong>Seguimiento clínico:</strong> el diagnóstico definitivo se confirma a los X meses de seguimiento. Útil para modelos predictivos.</div></div></div>
+<div class="limit-item"><div class="li-icon">⚠️</div><div class="li-body"><div class="li-title">El problema de los gold standards imperfectos</div><div class="li-desc">En muchas patologías, el propio gold standard tiene limitaciones — el diagnóstico clínico puede estar equivocado, los criterios diagnósticos pueden ser discutibles, o el seguimiento puede ser incompleto. Un modelo validado contra un gold standard imperfecto hereda sus errores. Documentar estas limitaciones es parte de la honestidad científica del proceso de validación.</div></div></div>
+</div>
+<div class="tec-panel" id="pv-calculo">
+<div class="prompt-box">
+<div class="prompt-label">Prompt: calcular e interpretar métricas de validación de un modelo clínico</div>
+<div class="prompt-text">He validado un modelo de IA para [TAREA CLÍNICA ESPECÍFICA] en [CONTEXTO].
+
+RESULTADOS DE LA VALIDACIÓN:
+Total de casos evaluados: [N]
+Gold standard: [descripción del gold standard usado]
+
+Resultados de la comparación:
+- Verdaderos Positivos (VP): [número]
+- Falsos Positivos (FP): [número]
+- Falsos Negativos (FN): [número]
+- Verdaderos Negativos (VN): [número]
+- Prevalencia de la condición en mi muestra: [%]
+
+Por favor:
+1. Calcula: sensibilidad, especificidad, VPP, VPN, exactitud (accuracy), F1-score
+2. Interpreta cada métrica en el contexto clínico específico de este modelo
+3. Evalúa si el rendimiento es clínicamente aceptable para el uso previsto
+4. Identifica cuál es el error más peligroso en este contexto (FP o FN) y cómo el modelo se comporta en ese error específico
+5. Compara con los benchmarks publicados para tareas similares (si los conoces)
+6. Redacta el párrafo de "Rendimiento del modelo" que iría en el informe de validación para el CEI y la dirección del hospital</div>
+<div class="prompt-why">Este prompt convierte una tabla de VP/FP/FN/VN en un análisis completo con interpretación clínica y comparación con benchmarks. El párrafo de rendimiento generado es el punto de partida para el informe formal de validación.</div>
+</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(2)">← Métricas</button><button class="btn-p" onclick="go(4)">Limitaciones →</button></div>
+</div>
+
+<div class="sec" id="s4">
+<div class="card"><div class="ct">Limitaciones, sesgos y documentación de restricciones de uso</div><div class="cb">Ningún modelo es válido para todos los contextos. Documentar explícitamente dónde funciona y dónde no es tan importante como documentar su rendimiento general. Los usuarios del sistema necesitan saber cuándo NO confiar en él.</div></div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'lim-sesgos')">⚠️ Sesgos frecuentes</button><button class="tec-tab" onclick="showTab(this,'lim-doc')">📋 Documentación</button><button class="tec-tab" onclick="showTab(this,'lim-prompt')">🤖 Análisis con IA</button></div>
+<div class="tec-panel show" id="lim-sesgos">
+<div class="limit-item"><div class="li-icon">👥</div><div class="li-body"><div class="li-title">Sesgo de población (dataset shift)</div><div class="li-desc">El modelo funciona bien en la población con la que fue entrenado pero falla en subgrupos no representados. Ejemplos documentados: modelos de imagen dermatológica con menor precisión en pieles oscuras (datos de entrenamiento predominantemente en pieles claras); modelos de predicción de riesgo cardiovascular con menor rendimiento en mujeres (desarrollados principalmente con datos de hombres).</div></div></div>
+<div class="limit-item"><div class="li-icon">🕐</div><div class="li-body"><div class="li-title">Sesgo temporal (concept drift)</div><div class="li-desc">Un modelo entrenado en datos pre-COVID puede funcionar mal en datos post-COVID para algunas patologías. Las prácticas clínicas, los protocolos de tratamiento y los patrones de codificación cambian — el modelo queda desactualizado. La validación debe repetirse periódicamente (anual como mínimo) y cuando haya cambios significativos en protocolos o codificación.</div></div></div>
+<div class="limit-item"><div class="li-icon">🏥</div><div class="li-body"><div class="li-title">Sesgo de centro (site bias)</div><div class="li-desc">Un modelo validado en el Hospital A puede tener rendimiento muy distinto en el Hospital B, aunque traten la misma patología. Diferencias en protocolos de diagnóstico, en los sistemas de codificación CIE, en la prevalencia local de comorbilidades, o en los sistemas informáticos pueden afectar al rendimiento. La validación debe hacerse en el centro específico donde se va a usar.</div></div></div>
+<div class="limit-item"><div class="li-icon">📊</div><div class="li-body"><div class="li-title">Sesgo de selección en la validación</div><div class="li-desc">Si los casos de validación se seleccionan de forma conveniente (solo los casos fáciles, solo los casos con datos completos, solo los que llegaron a diagnóstico definitivo), las métricas calculadas serán mejores que el rendimiento real en práctica clínica. El conjunto de validación debe ser representativo del flujo real de pacientes, incluyendo los casos atípicos y los que quedan sin diagnóstico definitivo.</div></div></div>
+</div>
+<div class="tec-panel" id="lim-doc">
+<div class="flow-box">SECCIÓN DE LIMITACIONES — Plantilla para informe de validación:
+
+CONTEXTO DE VALIDACIÓN:
+→ Población: [descripción demográfica de los casos de validación]
+→ Centro: [hospital/servicio donde se validó]
+→ Período: [fechas de los datos usados para validación]
+→ N de casos: [total, positivos, negativos]
+
+SUBGRUPOS CON RENDIMIENTO DIFERENCIAL:
+Analizar y documentar el rendimiento por:
+→ Edad (<65 / 65-80 / >80 años)
+→ Sexo
+→ Comorbilidades clave para la patología
+→ Turno/horario (si aplica — guardia vs. día laborable)
+→ Procedencia (urgencias vs. ingreso programado vs. consultas)
+
+LIMITACIONES CONOCIDAS:
+→ "Este modelo NO ha sido validado en: [exclusiones]"
+→ "El rendimiento puede diferir en: [contextos de variación esperada]"
+→ "El modelo fue entrenado con datos hasta [fecha] — puede haber
+   concept drift para eventos o cambios de práctica posteriores"
+
+CONDICIONES DE USO ACEPTABLE:
+→ "Este modelo está validado para: [contexto específico]"
+→ "La supervisión humana es obligatoria antes de cualquier acción
+   basada en el output del modelo"
+→ "El modelo no puede usarse como única base para [decisiones
+   que requieren validación adicional]"</div>
+</div>
+<div class="tec-panel" id="lim-prompt">
+<div class="prompt-box">
+<div class="prompt-label">Prompt: identificar sesgos potenciales en un modelo clínico</div>
+<div class="prompt-text">Estoy evaluando un modelo de IA para [TAREA CLÍNICA] que fue entrenado con datos de [FUENTE DE DATOS].
+
+Características del dataset de entrenamiento conocidas:
+- Período de datos: [fechas]
+- Centro(s) de origen: [descripción]
+- Distribución demográfica: [edad, sexo, comorbilidades si conocidas]
+- Codificación usada: [CIE-10, SNOMED, etc.]
+
+Mi contexto de uso previsto:
+- Centro: [mi hospital]
+- Población objetivo: [perfil de mis pacientes]
+- Período de uso: [actual - futuro]
+
+Analiza los sesgos potenciales:
+1. Sesgo de población: ¿qué subgrupos pueden estar infrarepresentados en el entrenamiento que son frecuentes en mi contexto?
+2. Sesgo temporal: ¿qué cambios en práctica clínica, codificación o epidemiología desde el período de entrenamiento pueden afectar al rendimiento?
+3. Sesgo de centro: ¿qué diferencias entre los centros de entrenamiento y mi hospital pueden afectar al rendimiento?
+4. Sesgo de selección: ¿cómo se seleccionaron los casos de entrenamiento? ¿Hay criterios de inclusión que excluyen casos que yo tendré en mi práctica?
+
+Para cada sesgo identificado: nivel de riesgo (alto/medio/bajo) + cómo verificarlo en mi validación local.</div>
+<div class="prompt-why">Identificar sesgos antes de desplegar el modelo — no después de un error clínico — es la diferencia entre una implementación responsable y una imprudente. Este análisis previo debe formar parte del proceso de due diligence de cualquier sistema de IA clínica.</div>
+</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(3)">← Protocolo</button><button class="btn-p" onclick="go(5)">Test →</button></div>
+</div>
+
+<div class="sec" id="s5">
+<div class="qw active" id="q1w"><div class="qnum">Pregunta 1 de 3</div><div class="qtxt">Un modelo de IA para detección temprana de sepsis en urgencias tiene sensibilidad 0.97 y especificidad 0.62. ¿Cómo interpretas este perfil y para qué uso es adecuado?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,1)">El modelo es malo — especificidad del 0.62 es inaceptable en cualquier contexto clínico</button><button class="qopt" onclick="ans(this,true,1)">Este perfil es coherente con un modelo de screening: detecta el 97% de los casos reales de sepsis (pocos miss), pero genera muchas falsas alarmas (38% de los no-sepsis clasificados como sospecha). Es útil como primera criba que activa evaluación clínica adicional — no como diagnóstico definitivo. El médico filtra los falsos positivos con la exploración y las pruebas complementarias</button><button class="qopt" onclick="ans(this,false,1)">El modelo es excelente — sensibilidad del 0.97 es suficiente para usarlo como diagnóstico definitivo sin supervisión médica adicional</button><button class="qopt" onclick="ans(this,false,1)">No se puede evaluar sin conocer el AUC — sensibilidad y especificidad solos no son útiles</button></div><div class="qfb" id="fb1"></div><div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div></div>
+<div class="qw" id="q2w"><div class="qnum">Pregunta 2 de 3</div><div class="qtxt">El mismo modelo de sepsis tiene un VPP del 0.85 cuando se evalúa en una UCI (prevalencia ~30%) pero un VPP del 0.28 cuando se evalúa en consultas externas de medicina interna (prevalencia ~2%). ¿Qué explica esta diferencia y qué implica?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,2)">El modelo tiene bugs — el VPP no debería variar entre contextos si el modelo es el mismo</button><button class="qopt" onclick="ans(this,false,2)">Las consultas externas tienen peor calidad de datos — el modelo no es válido en ese contexto</button><button class="qopt" onclick="ans(this,true,2)">El VPP depende de la prevalencia de la enfermedad en el contexto de uso. El mismo modelo con la misma sensibilidad/especificidad tiene VPP muy distinto según la prevalencia: a mayor prevalencia, mayor VPP. En UCI con prevalencia alta, el 85% de las alertas positivas son reales. En consultas con prevalencia baja, solo el 28% lo son. El modelo puede ser válido en UCI pero inapropiado en consultas externas para el mismo uso</button><button class="qopt" onclick="ans(this,false,2)">Hay un error en el cálculo — el VPP siempre debe ser el mismo independientemente del contexto</button></div><div class="qfb" id="fb2"></div><div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div></div>
+<div class="qw" id="q3w"><div class="qnum">Pregunta 3 de 3</div><div class="qtxt">Un hospital quiere desplegar un modelo de IA para predicción de reingreso a 30 días, entrenado con datos de 2018-2020 de hospitales americanos. Sin validación local, ¿cuáles son los dos sesgos más relevantes que deben evaluarse?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,3)">Sesgo de algoritmo y sesgo de interfaz de usuario — los más frecuentes en implementaciones hospitalarias</button><button class="qopt" onclick="ans(this,true,3)">Sesgo de centro (el modelo fue entrenado en hospitales americanos con sistemas de codificación, protocolos y perfil de pacientes muy distintos al SNS español) y sesgo temporal (datos de 2018-2020 no capturan los cambios en práctica clínica post-COVID ni los cambios en protocolos de alta y seguimiento de los últimos años). Ambos pueden degradar significativamente el rendimiento respecto a las métricas publicadas</button><button class="qopt" onclick="ans(this,false,3)">Sesgo de lenguaje (el modelo fue entrenado en inglés) y sesgo de codificación ICD-10 vs CIE-10</button><button class="qopt" onclick="ans(this,false,3)">No hay sesgos relevantes — los modelos de predicción de reingreso son robustos a las diferencias de contexto</button></div><div class="qfb" id="fb3"></div><div class="qnx" id="nx3"><div style="background:rgba(33,150,243,.1);border:1px solid rgba(33,150,243,.28);border-radius:10px;padding:16px;margin-top:8px"><div style="font-size:13px;font-weight:500;color:#90CAF9;margin-bottom:6px">✓ Lección 4.5 completada</div><div style="font-size:12px;color:#B0BEC5;line-height:1.6">Dominas las métricas de validación clínica (sensibilidad, especificidad, VPP, VPN, AUC), el protocolo de validación cruzada de 6 pasos, y la identificación de sesgos. La lección 4.6 entra en <strong style="color:#fff">el marco normativo completo: Reglamento Europeo de IA, MDR para IA como dispositivo médico y responsabilidad profesional</strong>.</div></div><button class="complete-btn" id="completeBtn" onclick="markComplete()">✓ MARCAR LECCIÓN COMO COMPLETADA</button></div></div>
+</div>
+<div class="lf"><span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span> · Desarrollado por DoncelProject · doncel.project@gmail.com</div>
+</div>
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/5)*100);document.getElementById('pbf45').style.width=p+'%';document.getElementById('pbl45').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function showTab(el,id){const sec=el.closest('.sec');sec.querySelectorAll('.tec-tab').forEach(t=>t.classList.remove('active'));sec.querySelectorAll('.tec-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById(id).classList.add('show');}
+const fbs={
+1:{ok:'✅ Correcto. Alta sensibilidad + especificidad moderada es el perfil típico de un modelo de screening. El objetivo es no perder ningún caso real (sensibilidad muy alta), aceptando que habrá falsas alarmas que el clínico filtra con evaluación adicional. Para sepsis, este perfil es razonable: el coste de una alerta falsa (evaluación clínica adicional) es mucho menor que el coste de un miss (sepsis no detectada). El médico no trata la alerta del modelo como diagnóstico definitivo — es una señal de alerta que activa el proceso diagnóstico.',ko:'❌ Un modelo con especificidad del 0.62 no es necesariamente malo — depende del contexto y el uso. En screening de condiciones graves como sepsis, la sensibilidad alta es prioritaria aunque implique más falsos positivos. Sensibilidad y especificidad juntas deben interpretarse en el contexto de uso, no de forma aislada. Y el AUC, aunque valioso, no es el único dato necesario para evaluar si un modelo es útil en un contexto específico.'},
+2:{ok:'✅ Correcto. El VPP depende de la prevalencia — es uno de los conceptos más importantes para la aplicación clínica de los modelos de IA. La misma sensibilidad y especificidad produce VPP muy distintos según la prevalencia de la condición en el contexto de uso. Un médico en UCI puede confiar en el 85% de las alertas positivas. El mismo médico en consultas externas solo puede confiar en el 28% — lo que cambia radicalmente la utilidad del modelo en ese contexto.',ko:'❌ El VPP no es un error técnico del modelo ni de los datos — es matemáticamente dependiente de la prevalencia. La fórmula del VPP incluye la prevalencia como factor determinante. Sensibilidad y especificidad son propiedades del modelo; VPP y VPN son propiedades del modelo en un contexto de uso específico con su prevalencia particular.'},
+3:{ok:'✅ Correcto. Los dos sesgos más relevantes para este caso son: (1) sesgo de centro — sistemas de codificación distintos (ICD-10 americana vs CIE-10-ES con diferencias de granularidad), protocolos de alta y seguimiento distintos, y perfil de comorbilidades distinto entre la población americana y la española; (2) sesgo temporal — 2018-2020 no captura los cambios post-COVID en los patrones de hospitalización, la mayor intensidad de seguimiento ambulatorio, y los cambios en protocolos de reingreso. Ambos pueden hacer que las métricas publicadas del modelo no se repliquen en el SNS.',ko:'❌ Los sesgos más impactantes en este caso son el sesgo de centro (diferencias sistemáticas entre el contexto americano de entrenamiento y el SNS español) y el sesgo temporal (datos pre-COVID aplicados a una práctica post-COVID). El sesgo de lenguaje no es relevante porque los datos clínicos no son texto en inglés sino variables codificadas. El ICD-10 americano y el CIE-10-ES son versiones del mismo sistema con diferencias de detalle pero eso es parte del sesgo de centro, no un sesgo independiente.'}
+};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+function markComplete(){document.getElementById('completeBtn').disabled=true;document.getElementById('completeBtn').textContent='✓ Completada';window.parent.postMessage({type:'LESSON_COMPLETE'},'*');}
+upd();
+</script>

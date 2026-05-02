@@ -1,0 +1,397 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:32px}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(33,150,243,0.15);border:1px solid rgba(33,150,243,0.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#90CAF9;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px}
+.lt span{color:#2196F3}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#2196F3;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:70px}
+.nb.active{color:#2196F3;border-bottom-color:#2196F3;background:#0C0D12}
+.sec{display:none;padding:20px 24px}
+.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(33,150,243,0.08);border:1px solid rgba(33,150,243,0.22);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#2196F3;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer}
+.lab-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.lab-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 12px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s}
+.lab-tab.active{background:rgba(33,150,243,.15);border-color:#2196F3;color:#90CAF9}
+.lab-panel{display:none}
+.lab-panel.show{display:block}
+.prompt-box{background:#0e1018;border:1px solid #1e2335;border-radius:10px;padding:14px;margin:10px 0}
+.prompt-label{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}
+.prompt-text{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.prompt-why{font-size:11px;color:#B0BEC5;line-height:1.6;margin-top:10px;padding-top:10px;border-top:1px solid #1e2335}
+.flujo-steps{display:flex;flex-direction:column;gap:0}
+.fl-step{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid #1e2335}
+.fl-step:last-child{border-bottom:none}
+.fl-num{width:26px;height:26px;border-radius:50%;background:rgba(33,150,243,.2);color:#90CAF9;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.fl-body{flex:1}
+.fl-title{font-size:13px;font-weight:500;color:#fff;margin-bottom:3px}
+.fl-desc{font-size:12px;color:#B0BEC5;line-height:1.5}
+.ejemplo-doc{background:#0e1018;border:1px solid #1e2335;border-radius:10px;padding:16px;margin:12px 0}
+.doc-header{font-size:11px;color:#90CAF9;text-transform:uppercase;letter-spacing:.7px;margin-bottom:10px;font-weight:500;padding-bottom:8px;border-bottom:1px solid #1e2335}
+.doc-section{margin-bottom:10px}
+.doc-section-title{font-size:11px;font-weight:500;color:#B0BEC5;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.doc-content{font-size:12px;color:#E0E0E0;line-height:1.6;font-family:monospace}
+.alerta-warn{background:rgba(255,152,0,.07);border:1px solid rgba(255,152,0,.22);color:#FFD54F;border-radius:10px;padding:12px 14px;margin:12px 0;font-size:12px;line-height:1.6}
+.alerta-warn .al-t{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px}
+.qw{display:none}.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s}
+.qopt:hover{border-color:#2196F3;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}.qnx.show{display:block}
+.lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a}
+.fl-lnk{color:#2196F3;cursor:pointer;text-decoration:underline}
+</style>
+
+<div class="lw">
+  <div class="lh">
+    <div class="lb">MÓDULO 2 · LECCIÓN 2.6</div>
+    <div class="lt">Generación automatizada de informes clínicos: <span>plantillas, datos e integración</span></div>
+    <div class="lm">
+      <div class="lmi"><div class="md" style="background:#2196F3"></div>70 minutos</div>
+      <div class="lmi"><div class="md" style="background:#00B8D4"></div>4 secciones</div>
+      <div class="lmi"><div class="md" style="background:#FFB300"></div>Biblioteca de plantillas</div>
+    </div>
+  </div>
+
+  <div class="pbw">
+    <div class="pbb"><div class="pbf" id="pf26"></div></div>
+    <div class="pbl" id="pl26">0%</div>
+  </div>
+
+  <div class="snav">
+    <button class="nb active" id="t1" onclick="go(1)">Flujo de trabajo</button>
+    <button class="nb" id="t2" onclick="go(2)">Plantillas</button>
+    <button class="nb" id="t3" onclick="go(3)">Validación</button>
+    <button class="nb" id="t4" onclick="go(4)">Test</button>
+  </div>
+
+  <!-- S1: FLUJO DE TRABAJO -->
+  <div class="sec active" id="s1">
+    <div class="card">
+      <div class="ct">Objetivo de la lección</div>
+      <div class="cb">Automatizar la creación de documentación clínica manteniendo calidad y personalización. Aprenderás el flujo de trabajo completo: desde los datos brutos hasta el informe listo para revisar y firmar, incluyendo el uso de plantillas dinámicas, integración de datos estructurados y el proceso de validación.</div>
+    </div>
+
+    <div class="simil">
+      <div class="sl">Impacto real</div>
+      Un informe de alta hospitalaria tarda de media 15-45 minutos en redactarse. Con IA bien configurada, el borrador está listo en 2-3 minutos. El profesional dedica los 10-15 minutos restantes a revisar, personalizar y firmar en lugar de escribir desde cero. El tiempo ahorrado se convierte en atención directa al paciente.
+    </div>
+
+    <div class="ct" style="margin-top:4px">Flujo de trabajo en 5 pasos</div>
+    <div class="flujo-steps" style="background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:14px 16px;margin-bottom:14px">
+      <div class="fl-step">
+        <div class="fl-num">1</div>
+        <div class="fl-body">
+          <div class="fl-title">Recopilar los datos fuente</div>
+          <div class="fl-desc">Anamnesis en bruto, datos de exploración, pruebas complementarias y evolución clínica. Anonimiza o trabaja con datos de prueba. Cuanto más estructurada sea la entrada, más precisa será la salida.</div>
+        </div>
+      </div>
+      <div class="fl-step">
+        <div class="fl-num">2</div>
+        <div class="fl-body">
+          <div class="fl-title">Seleccionar la plantilla de informe</div>
+          <div class="fl-desc">Elige el tipo de informe (alta, interconsulta, seguimiento, urgencias, quirúrgico...) y la especialidad. La plantilla define la estructura y los apartados obligatorios según el contexto clínico.</div>
+        </div>
+      </div>
+      <div class="fl-step">
+        <div class="fl-num">3</div>
+        <div class="fl-body">
+          <div class="fl-title">Construir el prompt con los datos</div>
+          <div class="fl-desc">Integra los datos fuente en el prompt de la plantilla. La clave es proporcionar datos estructurados y suficientes para que la IA genere narrativa clínica coherente, sin inventar información no proporcionada.</div>
+        </div>
+      </div>
+      <div class="fl-step">
+        <div class="fl-num">4</div>
+        <div class="fl-body">
+          <div class="fl-title">Revisión y personalización por el profesional</div>
+          <div class="fl-desc">El borrador generado nunca es el informe final. El profesional revisa la exactitud clínica, adapta el lenguaje al contexto específico, corrige cualquier error y añade el juicio clínico que la IA no puede proporcionar.</div>
+        </div>
+      </div>
+      <div class="fl-step">
+        <div class="fl-num">5</div>
+        <div class="fl-body">
+          <div class="fl-title">Incorporación a la HCE y firma</div>
+          <div class="fl-desc">El texto revisado se copia o importa al sistema de HCE. La firma digital del profesional es el acto que da validez legal al documento — no el borrador generado por IA.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alerta-warn">
+      <div class="al-t">Principio fundamental</div>
+      La IA genera el borrador. El profesional genera el informe. La responsabilidad legal del documento recae siempre en quien lo firma, independientemente de cómo fue generado el texto.
+    </div>
+
+    <div class="nav-actions"><div></div><button class="btn-p" onclick="go(2)">Plantillas →</button></div>
+  </div>
+
+  <!-- S2: PLANTILLAS -->
+  <div class="sec" id="s2">
+    <div class="card">
+      <div class="ct">Biblioteca de plantillas por tipo de informe</div>
+      <div class="cb">Prompts estructurados para los tipos de informe más frecuentes. Rellena los corchetes con los datos reales (anonimizados) y obtendrás un borrador de alta calidad en segundos.</div>
+    </div>
+
+    <div class="lab-tabs">
+      <button class="lab-tab active" onclick="showLab(this,1)">Alta hospitalaria</button>
+      <button class="lab-tab" onclick="showLab(this,2)">Interconsulta</button>
+      <button class="lab-tab" onclick="showLab(this,3)">Urgencias</button>
+      <button class="lab-tab" onclick="showLab(this,4)">Seguimiento</button>
+    </div>
+
+    <div class="lab-panel show" id="lab1">
+      <div class="prompt-box">
+        <div class="prompt-label">Informe de alta hospitalaria — Plantilla completa</div>
+        <div class="prompt-text">Actúa como médico especialista en [especialidad] redactando un informe de alta hospitalaria formal.
+
+DATOS DEL INGRESO (anonimizados):
+- Motivo de ingreso: [descripción]
+- Diagnóstico principal al alta: [diagnóstico]
+- Diagnósticos secundarios: [lista]
+- Fecha y duración del ingreso: [rango sin identificar, ej: "7 días"]
+- Antecedentes relevantes: [lista]
+- Exploración física al ingreso: [datos relevantes]
+- Pruebas complementarias realizadas: [lista con resultados clave]
+- Evolución clínica: [descripción de la evolución]
+- Tratamiento administrado: [fármacos y procedimientos]
+- Situación al alta: [estado clínico]
+- Tratamiento al alta: [medicación con dosis y pauta]
+- Recomendaciones y restricciones: [lista]
+- Seguimiento: [con quién y en qué plazo]
+
+TAREA: Redacta el informe de alta con estos apartados en el siguiente orden: Motivo de ingreso, Antecedentes personales, Evolución clínica, Pruebas complementarias, Diagnósticos al alta, Tratamiento al alta, Recomendaciones.
+
+RESTRICCIONES: Usa terminología médica formal. No inventes datos que no te proporciono — indica [COMPLETAR] donde falte información. Extensión: 400-600 palabras. Sin datos identificativos. El informe será revisado y firmado por el médico responsable antes de su uso.</div>
+        <div class="prompt-why">Reduce el tiempo de redacción de 30-45 min a 5-10 min de revisión. El profesional valida y firma el resultado.</div>
+      </div>
+
+      <div class="ejemplo-doc">
+        <div class="doc-header">Ejemplo de salida — Estructura esperada</div>
+        <div class="doc-section">
+          <div class="doc-section-title">Motivo de ingreso</div>
+          <div class="doc-content">Paciente varón de aproximadamente 68 años que ingresa por disnea progresiva de 4 días de evolución asociada a ortopnea y edemas en miembros inferiores...</div>
+        </div>
+        <div class="doc-section">
+          <div class="doc-section-title">Antecedentes personales</div>
+          <div class="doc-content">IC con FEVI reducida (35%), HTA, DM2, FA crónica en tratamiento anticoagulante. Sin alergias medicamentosas conocidas...</div>
+        </div>
+        <div class="doc-section">
+          <div class="doc-section-title">Tratamiento al alta</div>
+          <div class="doc-content">1. Furosemida 40mg/24h vía oral · 2. Sacubitril/valsartán 24/26mg/12h · 3. [COMPLETAR: ajuste de anticoagulación según último INR]...</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lab-panel" id="lab2">
+      <div class="prompt-box">
+        <div class="prompt-label">Informe de interconsulta especializada</div>
+        <div class="prompt-text">Actúa como médico de [especialidad origen] redactando una interconsulta formal para [especialidad destino].
+
+DATOS CLÍNICOS (anonimizados):
+- Motivo de interconsulta (en 1 frase): [motivo concreto]
+- Resumen clínico relevante para [especialidad destino]: [solo datos pertinentes para esa especialidad]
+- Pregunta clínica concreta: [qué necesitas que responda el especialista]
+- Tratamiento actual relacionado: [fármacos o procedimientos relevantes]
+- Pruebas complementarias relevantes ya realizadas: [resultados clave]
+- Urgencia: [electiva / preferente / urgente]
+
+TAREA: Redacta una interconsulta profesional, concisa y precisa.
+
+RESTRICCIONES: Terminología técnica médica. Solo incluye datos relevantes para la especialidad consultada, omite el resto del historial. Extensión máxima: 150 palabras. Tono profesional entre pares. Sin datos identificativos.</div>
+        <div class="prompt-why">Interconsultas precisas = respuestas más útiles. La brevedad y el foco en la pregunta concreta son lo más valorado por los especialistas consultados.</div>
+      </div>
+    </div>
+
+    <div class="lab-panel" id="lab3">
+      <div class="prompt-box">
+        <div class="prompt-label">Informe de atención en urgencias</div>
+        <div class="prompt-text">Actúa como médico de urgencias redactando el informe de atención de urgencias para un paciente que se va de alta o es ingresado.
+
+DATOS (anonimizados):
+- Motivo de consulta: [síntoma/motivo principal]
+- Anamnesis: [historia clínica relevante]
+- Antecedentes: [lista breve]
+- Exploración física: [hallazgos relevantes — omite los normales si no son relevantes]
+- Constantes vitales: [TA, FC, FR, Temp, SatO2]
+- Pruebas realizadas: [analítica, ECG, radiología, etc. con resultados clave]
+- Diagnóstico de urgencias: [diagnóstico principal y secundarios]
+- Tratamiento administrado en urgencias: [fármacos y procedimientos]
+- Destino: [alta a domicilio / ingreso en planta / UVI]
+- Si alta: tratamiento domiciliario y señales de alarma para volver
+
+TAREA: Redacta el informe de urgencias en formato estándar.
+
+RESTRICCIONES: Conciso, máximo 300 palabras. Usa terminología urgenciológica. Indica [COMPLETAR] donde falten datos. No inventes resultados de pruebas. Sin datos identificativos.</div>
+        <div class="prompt-why">En urgencias el tiempo de documentación es crítico. Este prompt genera el borrador mientras el profesional atiende al siguiente paciente.</div>
+      </div>
+    </div>
+
+    <div class="lab-panel" id="lab4">
+      <div class="prompt-box">
+        <div class="prompt-label">Nota de seguimiento en consulta externa</div>
+        <div class="prompt-text">Actúa como especialista en [área] documentando una visita de seguimiento en consulta externa.
+
+DATOS DE LA VISITA (anonimizados):
+- Diagnóstico(s) en seguimiento: [lista]
+- Tiempo desde última visita: [meses]
+- Motivo de la visita: [seguimiento rutinario / reagudización / nuevo síntoma]
+- Referido por el paciente en esta visita: [síntomas, cambios, preocupaciones]
+- Exploración en esta visita: [hallazgos relevantes]
+- Pruebas desde última visita: [resultados de analítica, pruebas de imagen u otras]
+- Evolución respecto a visita anterior: [mejoría / estabilidad / empeoramiento]
+- Cambios en tratamiento: [ajustes realizados o nuevas prescripciones]
+- Plan: [objetivos hasta próxima visita]
+- Próxima cita: [plazo]
+
+TAREA: Redacta la nota de seguimiento en formato de consulta.
+
+RESTRICCIONES: Extensión 150-250 palabras. Terminología médica formal. Estructura: Evolución subjetiva, Exploración, Pruebas, Valoración, Plan. Sin datos identificativos.</div>
+        <div class="prompt-why">Agiliza la documentación en consultas con alta presión asistencial. El especialista revisa y adapta en 2-3 minutos.</div>
+      </div>
+    </div>
+
+    <div class="nav-actions"><button class="btn-s" onclick="go(1)">← Flujo</button><button class="btn-p" onclick="go(3)">Validación →</button></div>
+  </div>
+
+  <!-- S3: VALIDACIÓN -->
+  <div class="sec" id="s3">
+    <div class="card">
+      <div class="ct">Validación del informe generado — checklist del profesional</div>
+      <div class="cb">Antes de incorporar cualquier borrador generado por IA a la HCE o de firmarlo, el profesional debe verificar estos puntos. La firma es el acto de validación médica y la asunción de responsabilidad legal sobre el contenido.</div>
+    </div>
+
+    <div class="flujo-steps" style="background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:14px 16px;margin-bottom:14px">
+      <div class="fl-step">
+        <div class="fl-num" style="background:rgba(76,175,80,.2);color:#A5D6A7">✓</div>
+        <div class="fl-body">
+          <div class="fl-title">Exactitud de datos clínicos</div>
+          <div class="fl-desc">Todos los datos (diagnósticos, medicación, dosis, resultados de pruebas) son correctos y coinciden con el expediente real. La IA no ha añadido información no proporcionada ni ha distorsionado valores numéricos.</div>
+        </div>
+      </div>
+      <div class="fl-step">
+        <div class="fl-num" style="background:rgba(76,175,80,.2);color:#A5D6A7">✓</div>
+        <div class="fl-body">
+          <div class="fl-title">Coherencia clínica narrativa</div>
+          <div class="fl-desc">La evolución clínica descrita es coherente con la realidad del caso. No hay afirmaciones contradictorias, saltos lógicos ni simplificaciones que distorsionen el cuadro clínico real.</div>
+        </div>
+      </div>
+      <div class="fl-step">
+        <div class="fl-num" style="background:rgba(76,175,80,.2);color:#A5D6A7">✓</div>
+        <div class="fl-body">
+          <div class="fl-title">Ausencia de datos identificativos</div>
+          <div class="fl-desc">El borrador no contiene datos identificativos del paciente que puedan haberse filtrado desde el prompt. El proceso de anonimización fue correcto y no aparece información personal en la salida.</div>
+        </div>
+      </div>
+      <div class="fl-step">
+        <div class="fl-num" style="background:rgba(76,175,80,.2);color:#A5D6A7">✓</div>
+        <div class="fl-body">
+          <div class="fl-title">Adecuación al contexto específico</div>
+          <div class="fl-desc">El tono, el nivel de detalle y la estructura son apropiados para el destinatario (médico de AP, especialista, paciente, aseguradora...). La IA genera texto estándar — el profesional adapta al contexto específico.</div>
+        </div>
+      </div>
+      <div class="fl-step">
+        <div class="fl-num" style="background:rgba(76,175,80,.2);color:#A5D6A7">✓</div>
+        <div class="fl-body">
+          <div class="fl-title">Marcadores [COMPLETAR] resueltos</div>
+          <div class="fl-desc">Todos los apartados marcados como [COMPLETAR] por la IA (por datos insuficientes en el prompt) han sido completados por el profesional antes de incorporar el documento a la HCE.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alerta-warn">
+      <div class="al-t">Firma digital y responsabilidad</div>
+      La firma digital del profesional en un informe generado con IA tiene el mismo valor legal que cualquier otro informe. El firmante asume la responsabilidad total del contenido, independientemente de su origen. "Lo generó la IA" no es una exculpación válida ante un error clínico documentado.
+    </div>
+
+    <div class="nav-actions"><button class="btn-s" onclick="go(2)">← Plantillas</button><button class="btn-p" onclick="go(4)">Test →</button></div>
+  </div>
+
+  <!-- S4: TEST -->
+  <div class="sec" id="s4">
+    <div class="qw active" id="q1w">
+      <div class="qnum">Pregunta 1 de 3</div>
+      <div class="qtxt">Un médico usa IA para generar un informe de alta y lo incorpora directamente a la HCE sin revisarlo porque "el prompt estaba muy bien construido". ¿Qué problema tiene esta práctica?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,1)">El sistema HCE puede no aceptar texto generado por IA</button>
+        <button class="qopt" onclick="ans(this,true,1)">Aunque el prompt sea bueno, la IA puede cometer errores clínicos o inventar datos — el médico que firma asume responsabilidad legal sobre el contenido sin haberlo verificado</button>
+        <button class="qopt" onclick="ans(this,false,1)">La práctica es aceptable si el médico usa una versión de pago de la IA</button>
+        <button class="qopt" onclick="ans(this,false,1)">El problema es exclusivamente ético, no tiene consecuencias legales</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+      <div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div>
+    </div>
+
+    <div class="qw" id="q2w">
+      <div class="qnum">Pregunta 2 de 3</div>
+      <div class="qtxt">¿Para qué sirve la instrucción "indica [COMPLETAR] donde falte información" en los prompts de generación de informes?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,2)">Para que la IA busque automáticamente esa información en bases de datos médicas</button>
+        <button class="qopt" onclick="ans(this,true,2)">Para que la IA señale explícitamente los apartados con datos insuficientes en lugar de inventar información que parezca plausible pero sea incorrecta</button>
+        <button class="qopt" onclick="ans(this,false,2)">Para acortar la longitud del informe generado eliminando apartados opcionales</button>
+        <button class="qopt" onclick="ans(this,false,2)">Para permitir que el paciente complete esos apartados por su cuenta</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+      <div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div>
+    </div>
+
+    <div class="qw" id="q3w">
+      <div class="qnum">Pregunta 3 de 3</div>
+      <div class="qtxt">¿Cuál es el elemento que convierte un borrador de IA en un documento médico con validez legal?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,3)">Haber usado un prompt de alta calidad estructurado según las mejores prácticas</button>
+        <button class="qopt" onclick="ans(this,false,3)">Que el informe haya sido generado por una IA con certificación sanitaria</button>
+        <button class="qopt" onclick="ans(this,true,3)">La revisión, adaptación y firma digital del profesional sanitario responsable del caso</button>
+        <button class="qopt" onclick="ans(this,false,3)">Haber utilizado una versión Enterprise de la herramienta de IA con DPA firmado</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+      <div class="qnx" id="nx3">
+        <div style="background:rgba(33,150,243,.1);border:1px solid rgba(33,150,243,.28);border-radius:10px;padding:16px;margin-top:8px">
+          <div style="font-size:13px;font-weight:500;color:#90CAF9;margin-bottom:6px">✓ Lección 2.6 completada</div>
+          <div style="font-size:12px;color:#B0BEC5;line-height:1.6">Dominas el flujo de generación de informes clínicos con IA y el protocolo de validación. La lección 2.7 aborda las <strong style="color:#fff">diferencias prácticas entre modelos abiertos y cerrados para entornos sanitarios</strong>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lf">
+    <span class="fl-lnk" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span>
+    <span> · Desarrollado por DoncelProject · doncel.project@gmail.com</span>
+  </div>
+</div>
+
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/4)*100);document.getElementById('pf26').style.width=p+'%';document.getElementById('pl26').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function showLab(el,i){document.querySelectorAll('.lab-tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.lab-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById('lab'+i).classList.add('show');}
+const fbs={
+  1:{ok:'✅ Correcto. La calidad del prompt reduce pero no elimina el riesgo de error en el borrador. La IA puede confundir dosis, añadir información no proporcionada, generar coherencia narrativa falsa o simplemente cometer errores. El médico que firma asume responsabilidad legal completa sobre el contenido del informe, independientemente de cómo fue generado.',ko:'❌ El problema no es técnico ni de versión. Es de responsabilidad profesional: el médico que firma un informe asume la responsabilidad legal sobre su contenido. Si ese contenido tiene un error clínico (dosis incorrecta, diagnóstico equivocado, datos inventados) y no fue detectado por falta de revisión, la responsabilidad recae sobre quien firmó.'},
+  2:{ok:'✅ Correcto. Sin esta instrucción, la IA completa los apartados con información plausible pero inventada — el fenómeno de "alucinación". Un valor de laboratorio ficticio, una dosis estimada o un antecedente asumido pueden parecer correctos en el texto pero ser clínicamente erróneos. El marcador [COMPLETAR] hace explícita la laguna en lugar de ocultarla bajo texto generado.',ko:'❌ La IA no busca información en bases de datos externas durante la generación del texto — trabaja solo con lo que le proporcionas en el prompt. Sin la restricción, la IA rellena los apartados con información plausible inventada (alucinación), que puede parecer correcta pero ser clínicamente errónea. El marcador [COMPLETAR] es un mecanismo de seguridad, no de búsqueda.'},
+  3:{ok:'✅ Correcto. La firma digital del profesional es el único acto que otorga validez legal a un documento médico. La calidad del prompt, la certificación de la IA o el tipo de licencia son relevantes para la seguridad del proceso, pero ninguno sustituye la revisión y firma del profesional responsable. El informe existe legalmente desde que el profesional lo valida y firma.',ko:'❌ Ningún aspecto técnico del proceso de generación (calidad del prompt, certificación de la IA, tipo de licencia) otorga validez legal al documento. La validez legal proviene exclusivamente de la revisión, adaptación y firma digital del profesional sanitario responsable del caso. El borrador de IA es un punto de partida, no un documento.'}
+};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+upd();
+</script>

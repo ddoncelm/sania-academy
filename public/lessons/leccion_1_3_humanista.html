@@ -1,0 +1,314 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.lw { background: #0C0D12; color: #fff; font-family: var(--font-sans, sans-serif); border-radius: 16px; overflow: hidden; padding-bottom: 32px; }
+.lh { background: #0C0D12; border-bottom: 1px solid #1a2a3a; padding: 24px 28px 20px; }
+.lb { display: inline-flex; align-items: center; gap: 6px; background: rgba(156,39,176,0.12); border: 1px solid rgba(156,39,176,0.3); border-radius: 20px; padding: 4px 12px; font-size: 11px; color: #CE93D8; font-weight: 500; margin-bottom: 12px; letter-spacing: 0.5px; }
+.lt { font-size: 20px; font-weight: 500; line-height: 1.3; margin-bottom: 8px; }
+.lt span { color: #CE93D8; }
+.lm { display: flex; align-items: center; gap: 16px; font-size: 12px; color: #B0BEC5; margin-top: 10px; }
+.lmi { display: flex; align-items: center; gap: 5px; }
+.md { width: 6px; height: 6px; border-radius: 50%; }
+.pbw { background: #1a1c24; border-bottom: 1px solid #1a2a3a; padding: 10px 28px; display: flex; align-items: center; gap: 10px; }
+.pbb { flex: 1; height: 4px; background: #2a2d3a; border-radius: 4px; }
+.pbf { height: 4px; background: #CE93D8; border-radius: 4px; width: 0%; transition: width 0.5s; }
+.pbl { font-size: 11px; color: #B0BEC5; min-width: 40px; text-align: right; }
+.snav { display: flex; background: #13151e; border-bottom: 1px solid #1a2a3a; overflow-x: auto; }
+.nb { flex: 1; padding: 10px 6px; background: transparent; border: none; cursor: pointer; font-size: 11px; color: #B0BEC5; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; min-width: 70px; }
+.nb.active { color: #CE93D8; border-bottom-color: #CE93D8; background: rgba(156,39,176,0.05); }
+.nb:hover:not(.active) { color: #fff; background: rgba(255,255,255,0.03); }
+.sec { display: none; padding: 24px 28px; }
+.sec.active { display: block; }
+.card { background: #13151e; border: 1px solid #1e2335; border-radius: 12px; padding: 18px 20px; margin-bottom: 16px; }
+.ct { font-size: 13px; font-weight: 500; color: #CE93D8; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.cb { font-size: 13px; color: #B0BEC5; line-height: 1.7; }
+.cb strong { color: #fff; font-weight: 500; }
+.simil { background: rgba(33,150,243,0.08); border-left: 3px solid #2196F3; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-size: 12px; color: #90CAF9; line-height: 1.6; }
+.sl { font-size: 10px; font-weight: 500; color: #2196F3; letter-spacing: 1px; margin-bottom: 4px; }
+.hl { background: rgba(156,39,176,0.08); border: 1px solid rgba(156,39,176,0.2); border-radius: 8px; padding: 12px 16px; margin: 12px 0; font-size: 12px; color: #CE93D8; line-height: 1.6; }
+.hll { font-size: 10px; font-weight: 500; color: #9C27B0; letter-spacing: 1px; margin-bottom: 4px; }
+.warn { background: rgba(239,83,80,0.08); border: 1px solid rgba(239,83,80,0.25); border-radius: 8px; padding: 12px 16px; margin: 12px 0; font-size: 12px; color: #EF9A9A; line-height: 1.6; }
+.wl { font-size: 10px; font-weight: 500; color: #EF5350; letter-spacing: 1px; margin-bottom: 4px; }
+.nav-actions { display: flex; justify-content: space-between; margin-top: 24px; gap: 10px; }
+.btn-sec { background: transparent; border: 1px solid #2a2d3a; color: #B0BEC5; border-radius: 8px; padding: 9px 18px; font-size: 12px; cursor: pointer; transition: all 0.2s; }
+.btn-sec:hover { border-color: #9C27B0; color: #fff; }
+.btn-prim { background: #9C27B0; color: white; border: none; border-radius: 8px; padding: 9px 18px; font-size: 12px; cursor: pointer; transition: opacity 0.2s; }
+.btn-prim:hover { opacity: 0.85; }
+.btn-next { background: #9C27B0; color: white; border: none; border-radius: 8px; padding: 10px 20px; font-size: 13px; cursor: pointer; }
+.qw { font-size: 14px; font-weight: 500; color: #fff; margin-bottom: 16px; line-height: 1.5; }
+.qopts { display: flex; flex-direction: column; gap: 8px; }
+.qopt { background: #0e1018; border: 1px solid #1e2335; border-radius: 8px; padding: 12px 16px; cursor: pointer; font-size: 13px; color: #B0BEC5; transition: all 0.2s; text-align: left; width: 100%; }
+.qopt:hover:not(:disabled) { border-color: #9C27B0; color: #fff; }
+.qopt.correct { border-color: #4CAF50; background: rgba(76,175,80,0.1); color: #A5D6A7; }
+.qopt.wrong { border-color: #EF5350; background: rgba(239,83,80,0.1); color: #EF9A9A; }
+.qfb { display: none; margin-top: 14px; padding: 12px 16px; border-radius: 8px; font-size: 13px; line-height: 1.6; }
+.qfb.show { display: block; }
+.qfb.ok { background: rgba(76,175,80,0.1); border: 1px solid rgba(76,175,80,0.3); color: #A5D6A7; }
+.qfb.ko { background: rgba(239,83,80,0.1); border: 1px solid rgba(239,83,80,0.3); color: #EF9A9A; }
+.qnext { display: none; margin-top: 12px; }
+.qnext.show { display: block; }
+.lf { margin: 24px 28px 0; padding-top: 16px; border-top: 1px solid #1e2335; display: flex; justify-content: space-between; font-size: 11px; color: #546E7A; }
+.fl { color: #9C27B0; cursor: pointer; font-weight: 500; }
+
+/* ESCENARIOS */
+.scenario-tabs { display: flex; gap: 0; border-radius: 8px; overflow: hidden; border: 1px solid #1e2335; margin-bottom: 14px; }
+.stab { flex: 1; padding: 9px 6px; background: transparent; border: none; cursor: pointer; font-size: 11px; color: #B0BEC5; transition: all 0.2s; }
+.stab.active { background: rgba(156,39,176,0.2); color: #CE93D8; font-weight: 500; }
+.scenario-box { background: #0e1018; border-radius: 10px; padding: 16px; font-size: 12px; line-height: 1.7; min-height: 160px; }
+.s-label { font-size: 10px; font-weight: 500; letter-spacing: 1px; margin-bottom: 10px; }
+
+/* FRAMEWORK ÉTICO */
+.fw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.fw-card { border-radius: 10px; padding: 14px 16px; border: 1px solid; }
+.fw-title { font-size: 13px; font-weight: 500; margin-bottom: 6px; }
+.fw-desc { font-size: 11px; line-height: 1.6; }
+.fw-example { font-size: 11px; margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.06); font-style: italic; }
+
+/* CASOS REALES */
+.caso { background: #0e1018; border-radius: 10px; padding: 16px; margin-bottom: 12px; }
+.caso-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+.caso-title { font-size: 13px; font-weight: 500; color: #fff; }
+.caso-badge { font-size: 10px; padding: 3px 8px; border-radius: 10px; font-weight: 500; }
+.caso-body { font-size: 12px; color: #B0BEC5; line-height: 1.6; }
+.caso-resultado { font-size: 11px; color: #A5D6A7; margin-top: 8px; padding-top: 8px; border-top: 1px solid #1e2335; }
+</style>
+
+<div class="lw">
+  <div class="lh">
+    <div class="lb">MÓDULO 1 · LECCIÓN 1.3</div>
+    <div class="lt">IA con propósito: <span>una mirada humanista desde el dato hasta el cuidado</span></div>
+    <div class="lm">
+      <div class="lmi"><div class="md" style="background:#CE93D8"></div>71 minutos</div>
+      <div class="lmi"><div class="md" style="background:#9C27B0"></div>4 secciones</div>
+      <div class="lmi"><div class="md" style="background:#2196F3"></div>Casos reales</div>
+    </div>
+  </div>
+  <div class="pbw"><div class="pbb"><div class="pbf" id="pf3"></div></div><div class="pbl" id="pl3">0%</div></div>
+  <div class="snav">
+    <button class="nb active" id="t0" onclick="go(0)">📖 Intro</button>
+    <button class="nb" id="t1" onclick="go(1)">❤️ IA humanista</button>
+    <button class="nb" id="t2" onclick="go(2)">⚖️ Framework ético</button>
+    <button class="nb" id="t3" onclick="go(3)">✅ Test</button>
+  </div>
+
+  <!-- SEC 0 -->
+  <div class="sec active" id="s0">
+    <div class="card">
+      <div class="ct">📋 Objetivo</div>
+      <div class="cb">Integrar la dimensión ética y humanista de la IA en salud, garantizando que la tecnología potencie, no sustituya, la relación terapéutica. Entender que el dato al servicio del cuidado es la esencia de la IA bien aplicada.</div>
+    </div>
+    <div class="simil">
+      <div class="sl">💡 PREGUNTA DE PARTIDA</div>
+      ¿Un médico que usa IA es más frío con sus pacientes? La evidencia dice lo contrario: los profesionales que automatizan tareas administrativas con IA <strong>recuperan tiempo de escucha activa</strong>. La IA no despersonaliza; la mala gestión del tiempo sí lo hace.
+    </div>
+    <div class="card">
+      <div class="ct">🗺️ Lo que aprenderás</div>
+      <div class="cb" style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <div style="width:22px;height:22px;border-radius:50%;background:rgba(156,39,176,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:#CE93D8;">1</div>
+          <div>Por qué la IA es una <strong>herramienta de humanización</strong>, no de despersonalización, con casos reales del SNS</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <div style="width:22px;height:22px;border-radius:50%;background:rgba(33,150,243,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:#90CAF9;">2</div>
+          <div>Cómo la IA mejora la <strong>experiencia del paciente</strong> sin sacrificar el vínculo humano</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <div style="width:22px;height:22px;border-radius:50%;background:rgba(76,175,80,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:#A5D6A7;">3</div>
+          <div><strong>Framework ético práctico</strong> para decisiones clínicas asistidas por IA en tu entorno SSPA</div>
+        </div>
+      </div>
+    </div>
+    <div class="nav-actions"><span></span><button class="btn-prim" onclick="go(1)">Empezar →</button></div>
+  </div>
+
+  <!-- SEC 1 -->
+  <div class="sec" id="s1">
+    <div class="card">
+      <div class="ct">❤️ La IA como herramienta de humanización</div>
+      <div class="cb">El miedo más común entre sanitarios es que la IA los convierta en operadores de pantallas. Pero la evidencia y la lógica apuntan en sentido contrario: <strong>la IA libera tiempo de burocracia para devolverlo al paciente.</strong></div>
+    </div>
+
+    <!-- ESCENARIOS COMPARATIVOS -->
+    <div class="card">
+      <div class="ct">📋 Mismo turno, distinta realidad — elige el escenario:</div>
+      <div class="scenario-tabs">
+        <button class="stab active" onclick="showS('sin')">Sin IA</button>
+        <button class="stab" onclick="showS('con')">Con IA</button>
+      </div>
+      <div class="scenario-box" id="sc-sin">
+        <div class="s-label" style="color:#EF9A9A;">🔴 TURNO SIN IA — MÉDICO DE ATENCIÓN PRIMARIA</div>
+        <div style="color:#B0BEC5;">
+          <strong style="color:#fff;">8:00h</strong> — Consulta. 20 pacientes. Abre HIS, busca historial, lee resultados previos (8 min/paciente).<br>
+          <strong style="color:#fff;">10:30h</strong> — Informe de derivación al cardiólogo. Redacta desde cero: 12 min.<br>
+          <strong style="color:#fff;">12:00h</strong> — Paciente ansioso. Solo 4 minutos disponibles. No hay tiempo para escuchar sus miedos.<br>
+          <strong style="color:#fff;">14:00h</strong> — Fin de turno. Quedan 6 informes pendientes. Se lleva trabajo a casa.<br><br>
+          <span style="color:#EF9A9A;">Tiempo real con el paciente: ~3 min de 15 posibles.</span>
+        </div>
+      </div>
+      <div class="scenario-box" id="sc-con" style="display:none">
+        <div class="s-label" style="color:#A5D6A7;">🟢 TURNO CON IA — MISMO MÉDICO</div>
+        <div style="color:#B0BEC5;">
+          <strong style="color:#fff;">8:00h</strong> — IA pre-carga resumen del historial con alertas relevantes antes de entrar el paciente (30 seg).<br>
+          <strong style="color:#fff;">10:30h</strong> — Dictado por voz + IA genera borrador de derivación en 90 seg. Médico revisa y firma.<br>
+          <strong style="color:#fff;">12:00h</strong> — Paciente ansioso. <strong style="color:#fff;">10 minutos para escuchar, contener, orientar.</strong> La burocracia ya está hecha.<br>
+          <strong style="color:#fff;">14:00h</strong> — Turno cerrado. Todos los informes completados.<br><br>
+          <span style="color:#A5D6A7;">Tiempo real con el paciente: ~10 min de 15 posibles. +233% de contacto humano.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASOS REALES -->
+    <div class="card">
+      <div class="ct">🏥 Casos reales de mejora en experiencia del paciente</div>
+      <div class="caso">
+        <div class="caso-header">
+          <div class="caso-title">Hospital La Fe (Valencia) — Oncología</div>
+          <div class="caso-badge" style="background:rgba(76,175,80,0.15);color:#A5D6A7;">Humanización</div>
+        </div>
+        <div class="caso-body">IA genera resúmenes de evolución para familiares en lenguaje comprensible antes de las reuniones de actualización. El oncólogo dedica la reunión a escuchar y acompañar emocionalmente, no a explicar resultados de laboratorio.</div>
+        <div class="caso-resultado">✓ Satisfacción familiar +41% · Tiempo de reunión más productivo</div>
+      </div>
+      <div class="caso">
+        <div class="caso-header">
+          <div class="caso-title">Atención Primaria — SSPA (piloto Sevilla)</div>
+          <div class="caso-badge" style="background:rgba(33,150,243,0.15);color:#90CAF9;">Continuidad</div>
+        </div>
+        <div class="caso-body">Enfermería usa IA para generar planes de cuidados personalizados en diabetes tipo 2, adaptados al nivel educativo del paciente. El profesional centra la consulta en reforzar la alianza terapéutica y resolver dudas emocionales.</div>
+        <div class="caso-resultado">✓ Adherencia al tratamiento +28% · Reducción de consultas urgentes</div>
+      </div>
+      <div class="caso">
+        <div class="caso-header">
+          <div class="caso-title">UCI Pediátrica — Hospital Vall d'Hebron</div>
+          <div class="caso-badge" style="background:rgba(156,39,176,0.15);color:#CE93D8;">Comunicación</div>
+        </div>
+        <div class="caso-body">Sistema de IA resume diariamente el estado del niño en un "diario clínico" para los padres, en un lenguaje comprensible y empático. Los médicos revisan y firman. Los padres reciben información continua sin saturar al equipo.</div>
+        <div class="caso-resultado">✓ Ansiedad parental reducida · Equipo con menos interrupciones de consulta</div>
+      </div>
+    </div>
+
+    <div class="simil">
+      <div class="sl">💡 REFLEXIÓN</div>
+      La IA no sustituye la mirada, el tacto o la escucha. Sustituye el tecleo, la búsqueda y el copy-paste. <strong>Lo irreemplazable es irreemplazable.</strong> Lo que sí puede automatizarse, automatízalo para proteger lo que no puede serlo.
+    </div>
+    <div class="nav-actions"><button class="btn-sec" onclick="go(0)">← Volver</button><button class="btn-prim" onclick="go(2)">Siguiente: Framework ético →</button></div>
+  </div>
+
+  <!-- SEC 2 -->
+  <div class="sec" id="s2">
+    <div class="card">
+      <div class="ct">⚖️ Framework ético para decisiones asistidas por IA</div>
+      <div class="cb" style="margin-bottom:14px;">Antes de aplicar una recomendación de IA en una decisión clínica, pasa por estos 4 principios bioéticos clásicos — ahora adaptados al contexto de la IA sanitaria:</div>
+      <div class="fw-grid">
+        <div class="fw-card" style="background:rgba(33,150,243,0.08);border-color:rgba(33,150,243,0.25);">
+          <div class="fw-title" style="color:#90CAF9;">🩺 Beneficencia</div>
+          <div class="fw-desc" style="color:#B0BEC5;">¿El uso de IA en esta situación mejora el resultado clínico o la experiencia del paciente?</div>
+          <div class="fw-example" style="color:#90CAF9;">Ej: Usar IA para síntesis de historial → beneficio claro. Usar IA para sustituir la visita → no beneficia.</div>
+        </div>
+        <div class="fw-card" style="background:rgba(239,83,80,0.08);border-color:rgba(239,83,80,0.2);">
+          <div class="fw-title" style="color:#EF9A9A;">🛑 No maleficencia</div>
+          <div class="fw-desc" style="color:#B0BEC5;">¿Puede la respuesta de la IA causar daño si se aplica sin verificación? ¿El paciente es vulnerable a errores?</div>
+          <div class="fw-example" style="color:#EF9A9A;">Ej: Dosis sugerida por IA en paciente con polifarmacia → verificación obligatoria antes de prescribir.</div>
+        </div>
+        <div class="fw-card" style="background:rgba(156,39,176,0.08);border-color:rgba(156,39,176,0.2);">
+          <div class="fw-title" style="color:#CE93D8;">🙋 Autonomía</div>
+          <div class="fw-desc" style="color:#B0BEC5;">¿Sabe el paciente que una IA ha participado en su proceso asistencial? ¿Se respeta su decisión informada?</div>
+          <div class="fw-example" style="color:#CE93D8;">Ej: Informe de alta generado con IA → el paciente puede preguntar cómo se elaboró su plan de cuidados.</div>
+        </div>
+        <div class="fw-card" style="background:rgba(76,175,80,0.08);border-color:rgba(76,175,80,0.2);">
+          <div class="fw-title" style="color:#A5D6A7;">⚖️ Justicia</div>
+          <div class="fw-desc" style="color:#B0BEC5;">¿El sistema de IA funciona igual de bien para todos los pacientes? ¿Introduce sesgos por edad, origen o nivel educativo?</div>
+          <div class="fw-example" style="color:#A5D6A7;">Ej: Algoritmo de triaje entrenado solo con datos de pacientes urbanos puede infradiagnosticar en población rural.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ct">🔄 La regla del "doble control humano"</div>
+      <div class="cb" style="margin-bottom:10px;">Para cualquier decisión clínica donde la IA haya generado una recomendación, aplica esta regla antes de actuar:</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="background:#0e1018;border-radius:8px;padding:14px;display:flex;gap:12px;align-items:center;">
+          <div style="font-size:22px;flex-shrink:0;">🤖</div>
+          <div style="font-size:12px;color:#B0BEC5;"><strong style="color:#fff;">La IA propone</strong> — genera la recomendación basada en los datos disponibles y su entrenamiento</div>
+        </div>
+        <div style="display:flex;justify-content:center;"><div style="width:2px;height:16px;background:#2a2d3a;"></div></div>
+        <div style="background:#0e1018;border-radius:8px;padding:14px;display:flex;gap:12px;align-items:center;">
+          <div style="font-size:22px;flex-shrink:0;">🧠</div>
+          <div style="font-size:12px;color:#B0BEC5;"><strong style="color:#fff;">Tú validas</strong> — verificas con tu criterio clínico, el contexto del paciente y las guías vigentes</div>
+        </div>
+        <div style="display:flex;justify-content:center;"><div style="width:2px;height:16px;background:#2a2d3a;"></div></div>
+        <div style="background:rgba(76,175,80,0.08);border:1px solid rgba(76,175,80,0.2);border-radius:8px;padding:14px;display:flex;gap:12px;align-items:center;">
+          <div style="font-size:22px;flex-shrink:0;">✅</div>
+          <div style="font-size:12px;color:#A5D6A7;"><strong>Tú decides y firmas</strong> — la responsabilidad clínica siempre recae en el profesional. La IA no firma, no decide, no asume responsabilidad legal.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="warn">
+      <div class="wl">⚠️ PUNTO CRÍTICO: RESPONSABILIDAD</div>
+      En el marco legal actual (RGPD, AI Act europeo, Ley de Autonomía del Paciente), <strong>la responsabilidad clínica es del profesional que firma</strong>, no de la herramienta IA. Si prescribes una dosis sugerida por IA sin verificar y causa daño, la responsabilidad es tuya. La IA es una herramienta, como el ecógrafo: quien lo usa, responde.
+    </div>
+    <div class="nav-actions"><button class="btn-sec" onclick="go(1)">← Anterior</button><button class="btn-prim" onclick="go(3)">Siguiente: Test →</button></div>
+  </div>
+
+  <!-- SEC 3: TEST -->
+  <div class="sec" id="s3">
+    <div class="card">
+      <div class="ct">✅ Autoevaluación 1.3</div>
+      <div class="cb" style="margin-bottom:8px;">3 preguntas sobre el enfoque humanista y ético de la IA en salud.</div>
+    </div>
+    <div class="card" id="q1w">
+      <div class="qw">1 de 3 — Un colega dice: "La IA me hace perder el trato humano con mis pacientes porque me paso la consulta mirando la pantalla." ¿Cuál es la respuesta más adecuada?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,1)">Tiene razón; la IA inevitablemente despersonaliza la atención clínica</button>
+        <button class="qopt" onclick="ans(this,true,1)">El problema no es la IA sino cómo se integra; bien usada, libera tiempo de burocracia para dedicarlo al paciente</button>
+        <button class="qopt" onclick="ans(this,false,1)">Debería evitar la IA y volver solo a los métodos tradicionales</button>
+        <button class="qopt" onclick="ans(this,false,1)">La IA siempre mejora la relación médico-paciente automáticamente</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+      <div class="qnext" id="nx1"><button class="btn-next" onclick="showQ(2)">Siguiente →</button></div>
+    </div>
+    <div class="card" id="q2w" style="display:none">
+      <div class="qw">2 de 3 — La IA sugiere un ajuste de dosis de metformina para tu paciente diabético con IRC. Aplicas la regla del "doble control humano". ¿Cuál es el orden correcto?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,2)">Aplicar directamente la dosis; si la IA lo dice, está basado en evidencia</button>
+        <button class="qopt" onclick="ans(this,false,2)">Rechazar siempre las sugerencias de dosis de la IA por seguridad</button>
+        <button class="qopt" onclick="ans(this,true,2)">IA propone → tú validas con ficha técnica y criterio clínico → tú decides y prescribes firmando</button>
+        <button class="qopt" onclick="ans(this,false,2)">Consultar a otro médico sin verificar la sugerencia de la IA primero</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+      <div class="qnext" id="nx2"><button class="btn-next" onclick="showQ(3)">Última →</button></div>
+    </div>
+    <div class="card" id="q3w" style="display:none">
+      <div class="qw">3 de 3 — Un algoritmo de triaje con IA presenta menor precisión en pacientes mayores de 75 años que en pacientes de 30-60 años. ¿Qué principio bioético se está vulnerando?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,3)">Beneficencia — el sistema no mejora el resultado en ningún paciente</button>
+        <button class="qopt" onclick="ans(this,false,3)">No maleficencia — está causando daño activo a todos los pacientes</button>
+        <button class="qopt" onclick="ans(this,true,3)">Justicia — el sistema no funciona igual para todos, perjudicando a una población vulnerable</button>
+        <button class="qopt" onclick="ans(this,false,3)">Autonomía — los pacientes mayores no han dado su consentimiento</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+      <div class="qnext" id="nx3">
+        <div style="background:rgba(156,39,176,0.1);border:1px solid rgba(156,39,176,0.3);border-radius:10px;padding:16px;margin-top:8px;">
+          <div style="font-size:14px;font-weight:500;color:#CE93D8;margin-bottom:6px;">🎉 ¡Lección 1.3 completada!</div>
+          <div style="font-size:12px;color:#B0BEC5;line-height:1.6;">Ya tienes el marco humanista y ético para guiar tu uso de IA. En la <strong style="color:#fff;">Lección 1.4</strong> contextualizaremos la IA dentro de la Cuarta Revolución Industrial y su impacto en los modelos asistenciales.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lf">
+    <span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span>
+    <span>Desarrollado por DoncelProject · doncel.project@gmail.com</span>
+  </div>
+</div>
+
+<script>
+let done = new Set([0]);
+function upd() { const p=Math.round((done.size/4)*100); document.getElementById('pf3').style.width=p+'%'; document.getElementById('pl3').textContent=p+'%'; }
+function go(n) { document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active')); document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active')); document.getElementById('s'+n).classList.add('active'); document.getElementById('t'+n).classList.add('active'); done.add(n); upd(); }
+function showS(t) { document.getElementById('sc-sin').style.display=t==='sin'?'block':'none'; document.getElementById('sc-con').style.display=t==='con'?'block':'none'; document.querySelectorAll('.stab').forEach((b,i)=>b.classList.toggle('active',['sin','con'][i]===t)); }
+const fbs={1:{ok:'✅ Correcto. El problema es la integración, no la tecnología. La IA bien implementada reduce la carga burocrática y devuelve tiempo de calidad al paciente.',ko:'❌ La IA por sí sola no despersonaliza. Lo que despersonaliza es usarla mal: como distracción en lugar de como liberador de tiempo asistencial.'},2:{ok:'✅ Correcto. El flujo es siempre: IA propone → profesional valida → profesional decide y firma. La responsabilidad es siempre del profesional.',ko:'❌ La regla del doble control es: IA propone, tú validas con fuentes primarias y criterio clínico, y tú decides. Nunca al revés.'},3:{ok:'✅ Correcto. Justicia implica que el sistema funcione equitativamente para todos los pacientes. Un algoritmo con peor rendimiento en mayores de 75 años introduce una desigualdad sistemática.',ko:'❌ El principio vulnerado es la Justicia: el sistema no funciona igual para todos, discriminando a una población vulnerable de forma sistemática.'}};
+function ans(btn,ok,n) { btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true); btn.classList.add(ok?'correct':'wrong'); const fb=document.getElementById('fb'+n); fb.textContent=ok?fbs[n].ok:fbs[n].ko; fb.className='qfb show '+(ok?'ok':'ko'); document.getElementById('nx'+n).classList.add('show'); }
+function showQ(n) { document.getElementById('q'+(n-1)+'w').style.display='none'; document.getElementById('q'+n+'w').style.display='block'; }
+upd();
+</script>

@@ -1,0 +1,569 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .lw { background: #0C0D12; color: #fff; font-family: var(--font-sans, sans-serif); border-radius: 16px; overflow: hidden; padding-bottom: 32px; }
+
+  /* HEADER */
+  .lh { background: #0C0D12; border-bottom: 1px solid #1a2a3a; padding: 24px 28px 20px; }
+  .lb { display: inline-flex; align-items: center; gap: 6px; background: rgba(0,184,212,0.12); border: 1px solid rgba(0,184,212,0.3); border-radius: 20px; padding: 4px 12px; font-size: 11px; color: #00B8D4; font-weight: 500; margin-bottom: 12px; letter-spacing: 0.5px; }
+  .lt { font-size: 20px; font-weight: 500; line-height: 1.3; margin-bottom: 8px; }
+  .lt span { color: #00B8D4; }
+  .lm { display: flex; align-items: center; gap: 16px; font-size: 12px; color: #B0BEC5; margin-top: 10px; }
+  .lmi { display: flex; align-items: center; gap: 5px; }
+  .md { width: 6px; height: 6px; border-radius: 50%; background: #00B8D4; }
+
+  /* PROGRESS */
+  .pbw { background: #1a1c24; border-bottom: 1px solid #1a2a3a; padding: 10px 28px; display: flex; align-items: center; gap: 10px; }
+  .pbb { flex: 1; height: 4px; background: #2a2d3a; border-radius: 4px; }
+  .pbf { height: 4px; background: #00B8D4; border-radius: 4px; width: 0%; transition: width 0.5s; }
+  .pbl { font-size: 11px; color: #B0BEC5; min-width: 40px; text-align: right; }
+
+  /* NAV */
+  .snav { display: flex; background: #13151e; border-bottom: 1px solid #1a2a3a; overflow-x: auto; }
+  .nb { flex: 1; padding: 10px 6px; background: transparent; border: none; cursor: pointer; font-size: 11px; color: #B0BEC5; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; min-width: 70px; }
+  .nb.active { color: #00B8D4; border-bottom-color: #00B8D4; background: rgba(0,184,212,0.05); }
+  .nb:hover:not(.active) { color: #fff; background: rgba(255,255,255,0.03); }
+
+  /* SECTIONS */
+  .sec { display: none; padding: 24px 28px; }
+  .sec.active { display: block; }
+
+  /* CARDS */
+  .card { background: #13151e; border: 1px solid #1e2335; border-radius: 12px; padding: 18px 20px; margin-bottom: 16px; }
+  .ct { font-size: 13px; font-weight: 500; color: #00B8D4; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .cb { font-size: 13px; color: #B0BEC5; line-height: 1.7; }
+  .cb strong { color: #fff; font-weight: 500; }
+
+  /* SIMIL / HIGHLIGHT */
+  .simil { background: rgba(33,150,243,0.08); border-left: 3px solid #2196F3; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-size: 12px; color: #90CAF9; line-height: 1.6; }
+  .sl { font-size: 10px; font-weight: 500; color: #2196F3; letter-spacing: 1px; margin-bottom: 4px; }
+  .hl { background: rgba(0,184,212,0.08); border: 1px solid rgba(0,184,212,0.2); border-radius: 8px; padding: 12px 16px; margin: 12px 0; font-size: 12px; color: #80DEEA; line-height: 1.6; }
+  .hll { font-size: 10px; font-weight: 500; color: #00B8D4; letter-spacing: 1px; margin-bottom: 4px; }
+  .warn { background: rgba(239,83,80,0.08); border: 1px solid rgba(239,83,80,0.25); border-radius: 8px; padding: 12px 16px; margin: 12px 0; font-size: 12px; color: #EF9A9A; line-height: 1.6; }
+  .wl { font-size: 10px; font-weight: 500; color: #EF5350; letter-spacing: 1px; margin-bottom: 4px; }
+
+  /* COMPARE TABLE */
+  .ctable { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 8px; }
+  .ctable th { background: #0e1018; color: #B0BEC5; padding: 10px 12px; text-align: left; font-weight: 500; font-size: 11px; letter-spacing: 0.5px; border-bottom: 1px solid #1e2335; }
+  .ctable th:first-child { border-radius: 8px 0 0 0; }
+  .ctable th:last-child { border-radius: 0 8px 0 0; }
+  .ctable td { padding: 10px 12px; border-bottom: 1px solid #1a1d28; vertical-align: top; line-height: 1.5; }
+  .ctable tr:last-child td { border-bottom: none; }
+  .ctable td:first-child { color: #B0BEC5; font-weight: 500; width: 30%; }
+  .ctable .bad { color: #EF9A9A; }
+  .ctable .good { color: #A5D6A7; }
+  .ctable .neutral { color: #80DEEA; }
+
+  /* DEMO INTERACTIVO */
+  .demo-wrap { background: #0e1018; border: 1px solid #1e2335; border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+  .demo-label { font-size: 11px; color: #B0BEC5; margin-bottom: 10px; letter-spacing: 0.5px; }
+  .demo-tabs { display: flex; gap: 0; margin-bottom: 14px; border-radius: 8px; overflow: hidden; border: 1px solid #1e2335; }
+  .demo-tab { flex: 1; padding: 9px 8px; background: transparent; border: none; cursor: pointer; font-size: 12px; color: #B0BEC5; transition: all 0.2s; }
+  .demo-tab.active { background: #1e2335; color: #fff; font-weight: 500; }
+  .demo-result { background: #13151e; border-radius: 8px; padding: 14px 16px; min-height: 140px; font-size: 12px; line-height: 1.7; transition: all 0.3s; }
+  .demo-result.google { color: #B0BEC5; }
+  .demo-result.ia { color: #80DEEA; }
+  .result-title { font-size: 10px; font-weight: 500; letter-spacing: 1px; margin-bottom: 8px; }
+  .result-title.google { color: #B0BEC5; }
+  .result-title.ia { color: #00B8D4; }
+  .link-sim { color: #2196F3; text-decoration: underline; font-size: 11px; display: block; margin: 3px 0; }
+  .ia-response { color: #80DEEA; }
+  .ia-response strong { color: #fff; }
+
+  /* PROTOCOLO STEPS */
+  .proto-steps { display: flex; flex-direction: column; gap: 12px; }
+  .proto-step { display: flex; gap: 14px; align-items: flex-start; }
+  .step-num { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 12px; font-weight: 500; margin-top: 2px; }
+  .step-body { flex: 1; }
+  .step-title { font-size: 13px; font-weight: 500; color: #fff; margin-bottom: 4px; }
+  .step-desc { font-size: 12px; color: #B0BEC5; line-height: 1.6; }
+  .step-check { font-size: 11px; color: #80DEEA; margin-top: 6px; }
+
+  /* ALUCINACIONES DETECTOR */
+  .aluc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+  .aluc-card { border-radius: 10px; padding: 14px 16px; }
+  .aluc-card.red { background: rgba(239,83,80,0.1); border: 1px solid rgba(239,83,80,0.25); }
+  .aluc-card.green { background: rgba(76,175,80,0.1); border: 1px solid rgba(76,175,80,0.25); }
+  .aluc-title { font-size: 12px; font-weight: 500; margin-bottom: 8px; }
+  .aluc-card.red .aluc-title { color: #EF9A9A; }
+  .aluc-card.green .aluc-title { color: #A5D6A7; }
+  .aluc-item { font-size: 11px; color: #B0BEC5; line-height: 1.6; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .aluc-item:last-child { border-bottom: none; }
+
+  /* QUIZ */
+  .qw { font-size: 14px; font-weight: 500; color: #fff; margin-bottom: 16px; line-height: 1.5; }
+  .qopts { display: flex; flex-direction: column; gap: 8px; }
+  .qopt { background: #0e1018; border: 1px solid #1e2335; border-radius: 8px; padding: 12px 16px; cursor: pointer; font-size: 13px; color: #B0BEC5; transition: all 0.2s; text-align: left; width: 100%; }
+  .qopt:hover:not(:disabled) { border-color: #2196F3; color: #fff; }
+  .qopt.correct { border-color: #4CAF50; background: rgba(76,175,80,0.1); color: #A5D6A7; }
+  .qopt.wrong { border-color: #EF5350; background: rgba(239,83,80,0.1); color: #EF9A9A; }
+  .qfb { display: none; margin-top: 14px; padding: 12px 16px; border-radius: 8px; font-size: 13px; line-height: 1.6; }
+  .qfb.show { display: block; }
+  .qfb.ok { background: rgba(76,175,80,0.1); border: 1px solid rgba(76,175,80,0.3); color: #A5D6A7; }
+  .qfb.ko { background: rgba(239,83,80,0.1); border: 1px solid rgba(239,83,80,0.3); color: #EF9A9A; }
+  .qnext { display: none; margin-top: 12px; }
+  .qnext.show { display: block; }
+
+  /* NAV ACTIONS */
+  .nav-actions { display: flex; justify-content: space-between; margin-top: 24px; gap: 10px; }
+  .btn-sec { background: transparent; border: 1px solid #2a2d3a; color: #B0BEC5; border-radius: 8px; padding: 9px 18px; font-size: 12px; cursor: pointer; transition: all 0.2s; }
+  .btn-sec:hover { border-color: #2196F3; color: #fff; }
+  .btn-prim { background: #2196F3; color: white; border: none; border-radius: 8px; padding: 9px 18px; font-size: 12px; cursor: pointer; transition: opacity 0.2s; }
+  .btn-prim:hover { opacity: 0.85; }
+  .btn-next { background: #00B8D4; color: white; border: none; border-radius: 8px; padding: 10px 20px; font-size: 13px; cursor: pointer; transition: opacity 0.2s; }
+  .btn-next:hover { opacity: 0.85; }
+
+  /* FOOTER */
+  .lf { margin: 24px 28px 0; padding-top: 16px; border-top: 1px solid #1e2335; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: #546E7A; }
+  .fl { color: #2196F3; cursor: pointer; font-weight: 500; }
+</style>
+
+<div class="lw">
+  <!-- HEADER -->
+  <div class="lh">
+    <div class="lb">MÓDULO 1 · LECCIÓN 1.2</div>
+    <div class="lt">La transformación de las búsquedas: <span>IA vs. motores tradicionales</span></div>
+    <div class="lm">
+      <div class="lmi"><div class="md"></div>95 minutos</div>
+      <div class="lmi"><div class="md" style="background:#2196F3"></div>5 secciones</div>
+      <div class="lmi"><div class="md" style="background:#9C27B0"></div>Nivel básico</div>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="pbw">
+    <div class="pbb"><div class="pbf" id="pf2"></div></div>
+    <div class="pbl" id="pl2">0%</div>
+  </div>
+
+  <!-- SECTION NAV -->
+  <div class="snav">
+    <button class="nb active" id="t0" onclick="go(0)">📖 Intro</button>
+    <button class="nb" id="t1" onclick="go(1)">🔍 Google vs IA</button>
+    <button class="nb" id="t2" onclick="go(2)">⚡ Ventajas</button>
+    <button class="nb" id="t3" onclick="go(3)">🛡️ Validar fuentes</button>
+    <button class="nb" id="t4" onclick="go(4)">✅ Test</button>
+  </div>
+
+  <!-- SEC 0: INTRO -->
+  <div class="sec active" id="s0">
+    <div class="card">
+      <div class="ct">📋 Objetivo de la lección</div>
+      <div class="cb">Comprender cómo la IA transforma la manera en que buscamos información clínica, sus ventajas sobre los motores tradicionales y cómo validar correctamente las fuentes para evitar errores en la práctica asistencial.</div>
+    </div>
+    <div class="card">
+      <div class="ct">🗺️ Lo que aprenderás</div>
+      <div class="cb" style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <div style="width:22px;height:22px;border-radius:50%;background:rgba(0,184,212,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:#80DEEA;">1</div>
+          <div><strong>Diferencias reales</strong> entre buscar en Google/PubMed y usar IA conversacional en tu día a día clínico</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <div style="width:22px;height:22px;border-radius:50%;background:rgba(33,150,243,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:#90CAF9;">2</div>
+          <div><strong>Ventajas clínicas prácticas</strong>: síntesis automática, formatos personalizables y actualización continua</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <div style="width:22px;height:22px;border-radius:50%;background:rgba(156,39,176,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:#CE93D8;">3</div>
+          <div><strong>Protocolo de validación</strong> de fuentes y detección de alucinaciones antes de aplicar lo que te dice la IA</div>
+        </div>
+      </div>
+    </div>
+    <div class="simil">
+      <div class="sl">💡 ANALOGÍA DE PARTIDA</div>
+      Buscar en Google es como ir a una <strong>biblioteca enorme sin bibliotecario</strong>: encuentras millones de libros, pero tú tienes que leerlos todos, ordenarlos y sacar conclusiones. La IA conversacional es el <strong>bibliotecario experto</strong> que ya ha leído todo, sintetiza lo relevante y te da la respuesta en el formato que necesitas. El reto: asegurarte de que el bibliotecario no invente datos.
+    </div>
+    <div class="nav-actions">
+      <span></span>
+      <button class="btn-prim" onclick="go(1)">Empezar → Google vs IA</button>
+    </div>
+  </div>
+
+  <!-- SEC 1: COMPARATIVA -->
+  <div class="sec" id="s1">
+    <div class="card">
+      <div class="ct">🔍 Mismo problema, dos herramientas muy distintas</div>
+      <div class="cb" style="margin-bottom:12px;">Prueba a buscar: <strong>"tratamiento de primera línea en fibrilación auricular con insuficiencia renal"</strong>. Así responde cada herramienta:</div>
+
+      <!-- DEMO INTERACTIVO -->
+      <div class="demo-wrap">
+        <div class="demo-label">SELECCIONA LA HERRAMIENTA:</div>
+        <div class="demo-tabs">
+          <button class="demo-tab active" onclick="showDemo('google')">🔍 Google</button>
+          <button class="demo-tab" onclick="showDemo('pubmed')">📚 PubMed</button>
+          <button class="demo-tab" onclick="showDemo('ia')">🤖 IA (Claude/ChatGPT)</button>
+        </div>
+        <div class="demo-result google" id="demo-google">
+          <div class="result-title google">RESULTADOS DE GOOGLE</div>
+          <span class="link-sim">➜ Fibrilación auricular - Wikipedia</span>
+          <span class="link-sim">➜ Guía ESC 2020 (PDF, 89 páginas) - escardio.org</span>
+          <span class="link-sim">➜ FA y riñón: artículo 2019 - NEJM (paywall)</span>
+          <span class="link-sim">➜ "10 cosas que debes saber sobre la FA" - blog médico</span>
+          <span class="link-sim">➜ Anuncio: formación en cardiología online</span>
+          <div style="margin-top:10px;font-size:11px;color:#607D8B;font-style:italic;">→ Resultado: 5 pestañas abiertas, 45 min de lectura, tú sintetizas</div>
+        </div>
+        <div class="demo-result ia" id="demo-pubmed" style="display:none">
+          <div class="result-title" style="color:#90CAF9;">RESULTADOS DE PUBMED</div>
+          <div style="color:#B0BEC5;font-size:12px;line-height:1.7;">
+            <em>Search: "atrial fibrillation AND renal failure AND treatment" → 2.847 resultados</em><br><br>
+            • Oral anticoagulation in AF patients with CKD (2022) - IF 12.4<br>
+            • DOAC vs warfarin in renal impairment: meta-analysis (2021)<br>
+            • Rate vs rhythm control in CKD stage 3-4 (2023)<br>
+            • ESC Guidelines update: special populations (2020)<br>
+            <div style="margin-top:8px;font-size:11px;color:#607D8B;font-style:italic;">→ Resultado: artículos precisos, pero en inglés, sin síntesis, 30-60 min por artículo</div>
+          </div>
+        </div>
+        <div class="demo-result ia" id="demo-ia" style="display:none">
+          <div class="result-title ia">RESPUESTA DE IA (Claude)</div>
+          <div class="ia-response">
+            <strong>En FA con IRC, el manejo depende del estadio renal:</strong><br><br>
+            <strong>Anticoagulación:</strong> En FG ≥15 ml/min, los DOACs son de elección (apixabán con mejor perfil en IRC). Warfarina solo si FG &lt;15 o diálisis, con control estricto de INR.<br><br>
+            <strong>Control de FC:</strong> Beta-bloqueantes (ajustar dosis si FG &lt;30), digoxina con precaución (acumulación).<br><br>
+            <strong>⚠️ Verifica en:</strong> Guía ESC 2023 FA y ficha técnica del anticoagulante. Esta respuesta es orientativa; individualiza según comorbilidades.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABLA COMPARATIVA -->
+    <div class="card">
+      <div class="ct">📊 Comparativa completa</div>
+      <table class="ctable">
+        <tr>
+          <th>Criterio</th>
+          <th>Google / PubMed</th>
+          <th>IA conversacional</th>
+        </tr>
+        <tr>
+          <td>Tiempo de respuesta</td>
+          <td class="bad">30-90 min de lectura</td>
+          <td class="good">30-90 segundos</td>
+        </tr>
+        <tr>
+          <td>Idioma</td>
+          <td class="bad">Mayoría en inglés</td>
+          <td class="good">Cualquier idioma</td>
+        </tr>
+        <tr>
+          <td>Síntesis</td>
+          <td class="bad">La haces tú</td>
+          <td class="good">Ya sintetizada</td>
+        </tr>
+        <tr>
+          <td>Formato</td>
+          <td class="neutral">Fijo (artículo, PDF)</td>
+          <td class="good">Personalizable (tabla, lista, informe)</td>
+        </tr>
+        <tr>
+          <td>Actualización</td>
+          <td class="good">Tiempo real</td>
+          <td class="bad">Hasta fecha de corte del modelo</td>
+        </tr>
+        <tr>
+          <td>Fiabilidad de fuentes</td>
+          <td class="good">Trazable (DOI, revista)</td>
+          <td class="bad">Requiere verificación activa</td>
+        </tr>
+        <tr>
+          <td>Riesgo de alucinación</td>
+          <td class="good">Ninguno (muestra URL)</td>
+          <td class="bad">Moderado (puede inventar datos)</td>
+        </tr>
+        <tr>
+          <td>Personalización al paciente</td>
+          <td class="bad">No</td>
+          <td class="good">Sí (con datos anonimizados)</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="simil">
+      <div class="sl">🔬 SÍMIL CLÍNICO</div>
+      PubMed es la <strong>hemeroteca completa del hospital</strong>: todo está ahí, actualizado, con pruebas. La IA es el <strong>colega experto de guardia</strong> que te da su opinión en 30 segundos. Los dos son útiles. El colega no reemplaza la hemeroteca, pero a las 3h de la mañana, el colega es oro.
+    </div>
+
+    <div class="nav-actions">
+      <button class="btn-sec" onclick="go(0)">← Volver</button>
+      <button class="btn-prim" onclick="go(2)">Siguiente: Ventajas →</button>
+    </div>
+  </div>
+
+  <!-- SEC 2: VENTAJAS -->
+  <div class="sec" id="s2">
+    <!-- VENTAJA 1: SÍNTESIS -->
+    <div class="card">
+      <div class="ct">⚡ Ventaja 1: Síntesis automática de múltiples fuentes</div>
+      <div class="cb">
+        La IA puede leer, comparar y resumir el equivalente a 50 artículos en segundos. Esto es especialmente valioso cuando tienes un caso atípico y necesitas una visión rápida de la evidencia disponible.
+      </div>
+      <div class="hl">
+        <div class="hll">💊 EJEMPLO PRÁCTICO</div>
+        <strong>Prompt eficaz:</strong> "Resume en 5 puntos clave el manejo de la hiponatremia grave en paciente oncológico según las guías más recientes, con nivel de evidencia de cada punto."<br><br>
+        La IA te devuelve en 20 segundos lo que te costaría 2 horas de revisión bibliográfica, con los matices según el contexto del paciente.
+      </div>
+    </div>
+
+    <!-- VENTAJA 2: FORMATO -->
+    <div class="card">
+      <div class="ct">🎨 Ventaja 2: Formato personalizable según audiencia</div>
+      <div class="cb" style="margin-bottom:12px;">
+        El mismo contenido clínico puede presentarse de forma diferente según quién lo va a leer. La IA adapta el nivel técnico, la extensión y la estructura.
+      </div>
+      <!-- TOGGLE FORMATO -->
+      <div style="background:#0e1018;border-radius:10px;padding:14px;">
+        <div style="font-size:11px;color:#B0BEC5;margin-bottom:10px;">MISMA INFORMACIÓN, DIFERENTE FORMATO — haz clic para cambiar:</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;">
+          <button onclick="showFmt('med')" id="fmt-med" style="background:rgba(33,150,243,0.2);border:1px solid #2196F3;color:#90CAF9;border-radius:6px;padding:6px 12px;font-size:11px;cursor:pointer;">Para médico</button>
+          <button onclick="showFmt('pac')" id="fmt-pac" style="background:transparent;border:1px solid #1e2335;color:#B0BEC5;border-radius:6px;padding:6px 12px;font-size:11px;cursor:pointer;">Para paciente</button>
+          <button onclick="showFmt('enf')" id="fmt-enf" style="background:transparent;border:1px solid #1e2335;color:#B0BEC5;border-radius:6px;padding:6px 12px;font-size:11px;cursor:pointer;">Para enfermería</button>
+        </div>
+        <div id="fmt-content" style="background:#13151e;border-radius:8px;padding:14px;font-size:12px;color:#80DEEA;line-height:1.7;min-height:100px;"></div>
+      </div>
+    </div>
+
+    <!-- VENTAJA 3: ACTUALIZACIÓN -->
+    <div class="card">
+      <div class="ct">🔄 Ventaja 3: Actualización continua del modelo</div>
+      <div class="cb">
+        Los modelos de IA se actualizan periódicamente con nueva bibliografía. Sin embargo, tienen una <strong>fecha de corte de conocimiento</strong>: no conocen publicaciones posteriores a su entrenamiento.
+      </div>
+      <div class="warn">
+        <div class="wl">⚠️ LIMITACIÓN IMPORTANTE</div>
+        Claude (Sonnet 4) tiene corte de conocimiento en <strong>inicio de 2025</strong>. Para guías publicadas después o actualizaciones de consenso muy recientes, siempre complementa con PubMed o la web oficial de la sociedad científica. La IA te dirá cuándo no está segura si se lo preguntas.
+      </div>
+      <div class="simil">
+        <div class="sl">💡 TRUCO PRÁCTICO</div>
+        Pregunta siempre: <strong>"¿Cuál es tu fecha de corte de conocimiento y puede haber actualizaciones de esta guía después de esa fecha?"</strong> Una IA bien configurada te lo indicará y te sugerirá verificar en fuentes actualizadas.
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <button class="btn-sec" onclick="go(1)">← Anterior</button>
+      <button class="btn-prim" onclick="go(3)">Siguiente: Validar fuentes →</button>
+    </div>
+  </div>
+
+  <!-- SEC 3: PROTOCOLO VALIDACIÓN -->
+  <div class="sec" id="s3">
+    <div class="card">
+      <div class="ct">🛡️ Protocolo de validación en 5 pasos</div>
+      <div class="cb" style="margin-bottom:14px;">Antes de aplicar cualquier información crítica que te dé una IA, sigue este protocolo. Aplícalo especialmente en decisiones farmacológicas, diagnósticas o de alta trascendencia clínica.</div>
+      <div class="proto-steps">
+        <div class="proto-step">
+          <div class="step-num" style="background:rgba(0,184,212,0.2);color:#80DEEA;border:1px solid rgba(0,184,212,0.3);">1</div>
+          <div class="step-body">
+            <div class="step-title">Pregunta por las fuentes explícitamente</div>
+            <div class="step-desc">Después de cualquier respuesta clínica relevante, escribe: "¿En qué guía o publicación específica se basa esto?" La IA debe citarte autor, año y revista. Si no puede, es señal de alerta.</div>
+            <div class="step-check">✓ Prompt útil: "Cita la guía concreta (sociedad, año, sección) donde se recomienda esto"</div>
+          </div>
+        </div>
+        <div class="proto-step">
+          <div class="step-num" style="background:rgba(33,150,243,0.2);color:#90CAF9;border:1px solid rgba(33,150,243,0.3);">2</div>
+          <div class="step-body">
+            <div class="step-title">Verifica al menos un dato en la fuente primaria</div>
+            <div class="step-desc">Para información de alto impacto (dosis, contraindicaciones, indicaciones de categoría A), busca el artículo o guía original y comprueba que el dato está donde la IA dice que está.</div>
+            <div class="step-check">✓ Herramientas: PubMed, UpToDate, fichas técnicas CIMA (AEMPS), guías SEC/SEPAR/SEN</div>
+          </div>
+        </div>
+        <div class="proto-step">
+          <div class="step-num" style="background:rgba(156,39,176,0.2);color:#CE93D8;border:1px solid rgba(156,39,176,0.3);">3</div>
+          <div class="step-body">
+            <div class="step-title">Detecta señales de alucinación</div>
+            <div class="step-desc">Hay patrones que delatan cuando la IA está "inventando" con confianza. Aprende a reconocerlos antes de que lleguen a tu práctica clínica.</div>
+            <div class="step-check">✓ Ver tabla de señales de alerta en la siguiente sección</div>
+          </div>
+        </div>
+        <div class="proto-step">
+          <div class="step-num" style="background:rgba(76,175,80,0.2);color:#A5D6A7;border:1px solid rgba(76,175,80,0.3);">4</div>
+          <div class="step-body">
+            <div class="step-title">Contrasta con tu criterio experto</div>
+            <div class="step-desc">Si la respuesta te parece rara, discordante con tu experiencia o demasiado "perfecta", desconfía. Tu juicio clínico es el filtro final e insustituible.</div>
+            <div class="step-check">✓ La IA no conoce a tu paciente. Tú sí.</div>
+          </div>
+        </div>
+        <div class="proto-step">
+          <div class="step-num" style="background:rgba(239,83,80,0.2);color:#EF9A9A;border:1px solid rgba(239,83,80,0.3);">5</div>
+          <div class="step-body">
+            <div class="step-title">Documenta el uso de IA si impacta en la decisión</div>
+            <div class="step-desc">En algunos entornos hospitalarios ya se recomienda dejar constancia cuando una herramienta IA ha influido en una decisión. Consulta el protocolo de tu unidad.</div>
+            <div class="step-check">✓ Marco SSPA: en desarrollo. Consulta a tu responsable de calidad o de protección de datos.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEÑALES DE ALUCINACIÓN -->
+    <div class="card">
+      <div class="ct">🚨 Señales de alerta: ¿cómo detecto una alucinación?</div>
+      <div class="aluc-grid">
+        <div class="aluc-card red">
+          <div class="aluc-title">🔴 Señales de peligro</div>
+          <div class="aluc-item">Cita un artículo con DOI que no existe en PubMed</div>
+          <div class="aluc-item">Da cifras muy precisas sin mencionar el margen de error</div>
+          <div class="aluc-item">Contradice guías que tú conoces bien</div>
+          <div class="aluc-item">Cambia su respuesta si reformulas la pregunta</div>
+          <div class="aluc-item">No expresa ninguna incertidumbre en temas complejos</div>
+          <div class="aluc-item">Inventa el nombre de un fármaco o lo confunde con otro</div>
+        </div>
+        <div class="aluc-card green">
+          <div class="aluc-title">🟢 Señales de fiabilidad</div>
+          <div class="aluc-item">Dice "no estoy seguro" o "verifica esto en…"</div>
+          <div class="aluc-item">Distingue entre evidencia fuerte y débil</div>
+          <div class="aluc-item">Reconoce su fecha de corte de conocimiento</div>
+          <div class="aluc-item">Cita guías que puedes verificar fácilmente</div>
+          <div class="aluc-item">Advierte sobre variabilidad individual o excepciones</div>
+          <div class="aluc-item">Te pide más contexto clínico antes de responder</div>
+        </div>
+      </div>
+      <div class="simil" style="margin-top:14px;">
+        <div class="sl">🔬 SÍMIL CLÍNICO</div>
+        Detectar alucinaciones de la IA es como interpretar un analítica con valores límite: no tomas decisiones solo por un número, lo contextualizas. Cuando la IA da una respuesta que "parece demasiado perfecta o demasiado específica", es el equivalente a un valor de laboratorio que no encaja con el cuadro clínico. <strong>Repite, contrasta, decide.</strong>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <button class="btn-sec" onclick="go(2)">← Anterior</button>
+      <button class="btn-prim" onclick="go(4)">Siguiente: Test →</button>
+    </div>
+  </div>
+
+  <!-- SEC 4: TEST -->
+  <div class="sec" id="s4">
+    <div class="card">
+      <div class="ct">✅ Autoevaluación de la lección 1.2</div>
+      <div class="cb" style="margin-bottom:8px;">3 preguntas clave sobre búsquedas con IA en contexto clínico.</div>
+    </div>
+
+    <div class="card" id="q1w">
+      <div class="qw">1 de 3 — Necesitas saber si existe evidencia reciente (último mes) sobre el uso de un nuevo anticoagulante en pacientes con ACOD y cirrosis. ¿Cuál es la mejor estrategia?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,1)">Preguntar directamente a la IA: "¿Hay evidencia de anticoagulantes en cirrosis?"</button>
+        <button class="qopt" onclick="ans(this,true,1)">Usar PubMed filtrando por último mes y complementar con la IA para síntesis e interpretación</button>
+        <button class="qopt" onclick="ans(this,false,1)">Buscar en Google el nombre del fármaco y leer los primeros resultados</button>
+        <button class="qopt" onclick="ans(this,false,1)">La IA tiene acceso en tiempo real; puede responder directamente sin PubMed</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+      <div class="qnext" id="nx1"><button class="btn-next" onclick="showQ(2)">Siguiente →</button></div>
+    </div>
+
+    <div class="card" id="q2w" style="display:none">
+      <div class="qw">2 de 3 — La IA te da una respuesta con esta cita: "Según Smith et al., 2023, NEJM, vol. 389, p. 1124-1135, la dosis óptima de X en IRC es de 5mg/24h." ¿Qué debes hacer?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,2)">Aceptarla: la cita es muy específica, no puede ser inventada</button>
+        <button class="qopt" onclick="ans(this,false,2)">Buscarla en Google Scholar para verificarla brevemente</button>
+        <button class="qopt" onclick="ans(this,true,2)">Buscar el DOI en PubMed o NEJM.org directamente para confirmar que el artículo y el dato existen</button>
+        <button class="qopt" onclick="ans(this,false,2)">Rechazarla siempre: las citas de la IA son siempre inventadas</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+      <div class="qnext" id="nx2"><button class="btn-next" onclick="showQ(3)">Última pregunta →</button></div>
+    </div>
+
+    <div class="card" id="q3w" style="display:none">
+      <div class="qw">3 de 3 — ¿Cuál de estas respuestas de una IA indica MAYOR fiabilidad?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,3)">"La dosis exacta es 7,5mg/kg/día. No hay excepciones documentadas en adultos."</button>
+        <button class="qopt" onclick="ans(this,true,3)">"Según la guía SEPAR 2022 (sección 4.3), la dosis recomendada es 5-10 mg/kg/día, aunque puede variar según función renal. Te sugiero verificarlo en la ficha técnica."</button>
+        <button class="qopt" onclick="ans(this,false,3)">"Hay múltiples opciones. Todas son igualmente válidas según el contexto clínico."</button>
+        <button class="qopt" onclick="ans(this,false,3)">"Este tema está fuera de mis capacidades. Consulta a un especialista."</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+      <div class="qnext" id="nx3">
+        <div style="background:rgba(0,184,212,0.1);border:1px solid rgba(0,184,212,0.3);border-radius:10px;padding:16px;margin-top:8px;">
+          <div style="font-size:14px;font-weight:500;color:#80DEEA;margin-bottom:6px;">🎉 ¡Lección 1.2 completada!</div>
+          <div style="font-size:12px;color:#B0BEC5;line-height:1.6;">Ya sabes cuándo usar IA vs buscadores tradicionales y cómo validar lo que te dice. En la <strong style="color:#fff;">Lección 1.3</strong> exploraremos la dimensión humanista de la IA: cómo potencia la relación terapéutica sin despersonalizarla.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lf">
+    <span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span>
+    <span>Desarrollado por DoncelProject · doncel.project@gmail.com</span>
+  </div>
+</div>
+
+<script>
+let cur = 0;
+const total = 5;
+const done = new Set([0]);
+
+function upd() {
+  const p = Math.round((done.size / total) * 100);
+  document.getElementById('pf2').style.width = p + '%';
+  document.getElementById('pl2').textContent = p + '%';
+}
+
+function go(n) {
+  document.querySelectorAll('.sec').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nb').forEach(b => b.classList.remove('active'));
+  document.getElementById('s' + n).classList.add('active');
+  document.getElementById('t' + n).classList.add('active');
+  cur = n; done.add(n); upd();
+}
+
+function showDemo(t) {
+  ['google','pubmed','ia'].forEach(x => {
+    document.getElementById('demo-' + x).style.display = 'none';
+  });
+  document.getElementById('demo-' + t).style.display = 'block';
+  document.querySelectorAll('.demo-tab').forEach((b,i) => {
+    b.classList.toggle('active', ['google','pubmed','ia'][i] === t);
+  });
+}
+
+// Formato adaptativo
+const fmts = {
+  med: `<strong>FA en IRC estadio 3b (FG 28 ml/min):</strong><br>Anticoagulación: apixabán 2,5mg/12h (dosis reducida por peso &lt;60kg o edad &gt;80). Evitar rivaroxabán y dabigatrán. Si FG &lt;15 o HD: warfarina con INR 2-3. Control FC: bisoprolol (ajuste posológico si FG&lt;20), evitar digoxina salvo necesidad (riesgo acumulación). Ritmo: cardioversión viable si FA &lt;48h y anticoagulación adecuada. Referencia: Guía ESC 2023, CKD module.`,
+  pac: `<strong>Le explicamos su tratamiento:</strong><br>Su corazón late de forma irregular (se llama fibrilación auricular) y sus riñones funcionan algo menos de lo normal. Para evitar que se formen coágulos que puedan causar un ictus, le recetamos una pastilla anticoagulante. Es importante que no la tome con algunos analgésicos como el ibuprofeno y que nos avise si nota sangrado inusual. Le haremos análisis de control periódicos para ajustar la dosis.`,
+  enf: `<strong>Cuidados de enfermería en FA + IRC:</strong><br>• Vigilar signos de sangrado: equimosis, melenas, hematuria<br>• Control de TA en cada turno (riesgo hemorrágico mayor)<br>• Registro de diuresis (deterioro renal puede aumentar efecto anticoagulante)<br>• Educación al paciente: no automedicarse con AINEs<br>• Coordinar con farmacia: revisar interacciones en polimedicado<br>• Alerta si creatinina sube &gt;0,3 mg/dL respecto al basal`
+};
+
+function showFmt(t) {
+  document.getElementById('fmt-content').innerHTML = fmts[t];
+  ['med','pac','enf'].forEach(x => {
+    const b = document.getElementById('fmt-' + x);
+    if (x === t) {
+      b.style.background = 'rgba(33,150,243,0.2)';
+      b.style.borderColor = '#2196F3';
+      b.style.color = '#90CAF9';
+    } else {
+      b.style.background = 'transparent';
+      b.style.borderColor = '#1e2335';
+      b.style.color = '#B0BEC5';
+    }
+  });
+}
+showFmt('med');
+
+// Quiz
+const fbs = {
+  1: {
+    ok: '✅ Correcto. La IA no tiene acceso en tiempo real a publicaciones nuevas. Para evidencia del último mes, PubMed es imprescindible. La IA es ideal para sintetizar e interpretar esa evidencia una vez encontrada.',
+    ko: '❌ La IA tiene una fecha de corte de conocimiento y no accede a publicaciones en tiempo real. Para evidencia muy reciente, siempre usa PubMed o bases actualizadas como punto de partida.'
+  },
+  2: {
+    ok: '✅ Correcto. Las IAs pueden generar citas aparentemente perfectas que no existen. La especificidad de la cita (volumen, páginas) no garantiza su veracidad. Siempre verifica directamente en la fuente.',
+    ko: '❌ La IA puede "alucinar" citas muy específicas con total confianza. El nivel de detalle no indica fiabilidad. La única forma de verificar es ir a la fuente primaria: PubMed o la web de la revista.'
+  },
+  3: {
+    ok: '✅ Correcto. Una IA fiable cita la fuente exacta, da un rango (no una cifra absoluta), reconoce variabilidad y te indica dónde verificar. La ausencia de incertidumbre en temas complejos es señal de alerta.',
+    ko: '❌ La respuesta correcta es la segunda. Las señales de fiabilidad son: citar fuente específica, reconocer variabilidad, expresar incertidumbre cuando existe y sugerir verificación en fuentes primarias.'
+  }
+};
+
+function ans(btn, ok, n) {
+  btn.closest('.qopts').querySelectorAll('.qopt').forEach(b => b.disabled = true);
+  btn.classList.add(ok ? 'correct' : 'wrong');
+  const fb = document.getElementById('fb' + n);
+  fb.textContent = ok ? fbs[n].ok : fbs[n].ko;
+  fb.className = 'qfb show ' + (ok ? 'ok' : 'ko');
+    if (n === 3) { window.parent.postMessage({ type: 'LESSON_COMPLETE' }, '*'); }
+  document.getElementById('nx' + n).classList.add('show');
+}
+
+function showQ(n) {
+  document.getElementById('q' + (n-1) + 'w').style.display = 'none';
+  document.getElementById('q' + n + 'w').style.display = 'block';
+}
+
+upd();
+</script>

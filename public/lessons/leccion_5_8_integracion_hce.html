@@ -1,0 +1,275 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:32px}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(156,39,176,.15);border:1px solid rgba(156,39,176,.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#CE93D8;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px}.lt span{color:#AB47BC}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px;flex-wrap:wrap}
+.lmi{display:flex;align-items:center;gap:5px}.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#AB47BC;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:70px}
+.nb.active{color:#AB47BC;border-bottom-color:#AB47BC;background:#0C0D12}
+.sec{display:none;padding:20px 24px}.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(156,39,176,.08);border:1px solid rgba(156,39,176,.22);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#CE93D8;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#AB47BC;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer}
+.btn-complete{background:linear-gradient(135deg,#AB47BC,#7B1FA2);color:#fff;border:none;border-radius:10px;padding:14px 28px;font-size:13px;font-weight:600;cursor:pointer;width:100%;margin-top:16px;letter-spacing:.3px;transition:opacity .2s}
+.tec-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.tec-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 12px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s}
+.tec-tab.active{background:rgba(156,39,176,.15);border-color:#AB47BC;color:#CE93D8}
+.tec-panel{display:none}.tec-panel.show{display:block}
+.prompt-box{background:#0e1018;border:1px solid #1e2335;border-radius:10px;padding:14px;margin:10px 0}
+.prompt-label{font-size:10px;color:#CE93D8;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}
+.prompt-text{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.prompt-why{font-size:11px;color:#B0BEC5;line-height:1.6;margin-top:10px;padding-top:10px;border-top:1px solid #1e2335}
+.limit-item{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;background:#13151e;border:1px solid #1e2335;border-radius:8px;margin-bottom:8px;font-size:12px;color:#E0E0E0;line-height:1.6}
+.li-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.fhir-block{background:#13151e;border:1px solid #1e2335;border-radius:10px;padding:14px;margin:8px 0}
+.fhir-tag{font-size:10px;color:#00B8D4;background:rgba(0,184,212,.1);border:1px solid rgba(0,184,212,.2);padding:2px 8px;border-radius:6px;display:inline-block;margin-bottom:6px;font-weight:500}
+.fhir-title{font-size:12px;font-weight:500;color:#fff;margin-bottom:4px}
+.fhir-desc{font-size:11px;color:#B0BEC5;line-height:1.5}
+.qw{display:none}.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s}
+.qopt:hover{border-color:#AB47BC;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}.qnx.show{display:block}
+.lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a}
+.fl{color:#AB47BC;cursor:pointer;text-decoration:underline}
+</style>
+<div class="lw">
+  <div class="lh">
+    <div class="lb">MÓDULO 5 · LECCIÓN 5.8</div>
+    <div class="lt">Integración completa con HCE: <span>estándares FHIR, mapeo entre sistemas heterogéneos y validación de integridad</span></div>
+    <div class="lm">
+      <div class="lmi"><div class="md" style="background:#AB47BC"></div>87 minutos</div>
+      <div class="lmi"><div class="md" style="background:#00B8D4"></div>4 secciones</div>
+      <div class="lmi"><div class="md" style="background:#FFB300"></div>Interoperabilidad sanitaria</div>
+    </div>
+  </div>
+  <div class="pbw"><div class="pbb"><div class="pbf" id="pf58"></div></div><div class="pbl" id="pl58">0%</div></div>
+  <div class="snav">
+    <button class="nb active" id="t1" onclick="go(1)">Estándares HL7 FHIR</button>
+    <button class="nb" id="t2" onclick="go(2)">Mapeo entre sistemas</button>
+    <button class="nb" id="t3" onclick="go(3)">Validación de integridad</button>
+    <button class="nb" id="t4" onclick="go(4)">Test</button>
+  </div>
+
+  <div class="sec active" id="s1">
+    <div class="card">
+      <div class="ct">Objetivo de la lección</div>
+      <div class="cb">Conectar los sistemas de IA con la historia clínica electrónica de forma que los datos fluyan sin fricción en ambas direcciones: la IA lee de la HCE para contextualizar su respuesta, y escribe en la HCE los resultados validados por el clínico. La interoperabilidad no es un detalle técnico — es la diferencia entre un sistema de IA que añade trabajo y uno que lo reduce.</div>
+    </div>
+    <div class="simil">
+      <div class="sl">Marco de referencia clínico</div>
+      Un sistema de IA que no puede leer la HCE es como un especialista que hace una interconsulta sin tener acceso a la historia del paciente: puede razonar en abstracto, pero no puede tomar decisiones clínicas relevantes para ese paciente concreto. La integración con la HCE es el requisito previo a cualquier uso clínico real de la IA.
+    </div>
+    <div class="ct" style="margin-top:4px">HL7 FHIR R4 — el estándar que hace posible la interoperabilidad</div>
+    <div class="fhir-block">
+      <div class="fhir-tag">FHIR</div>
+      <div class="fhir-title">Fast Healthcare Interoperability Resources — ¿qué es?</div>
+      <div class="fhir-desc">FHIR (pronunciado "fire") es el estándar de interoperabilidad sanitaria desarrollado por HL7 International. Define un modelo de datos común para representar información clínica (pacientes, diagnósticos, medicación, resultados de laboratorio, imágenes) en formato JSON o XML, accesible mediante APIs REST. FHIR R4 es la versión estable vigente en España y Europa.</div>
+    </div>
+    <div class="tec-tabs">
+      <button class="tec-tab active" onclick="showTab(this,'tab-recursos')">Recursos FHIR clave</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-api')">API REST FHIR</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-snomed')">SNOMED CT y CIE-10</button>
+    </div>
+    <div class="tec-panel show" id="tab-recursos">
+      <div class="limit-item"><div class="li-icon">👤</div><div><strong>Patient — el recurso base</strong><br>Contiene la información demográfica del paciente: identificadores (NHC, DNI, NASS), nombre, fecha de nacimiento, género, dirección, contactos. En integración con IA, el recurso Patient es el punto de partida para cargar el contexto del paciente antes de la consulta.</div></div>
+      <div class="limit-item"><div class="li-icon">📋</div><div><strong>Condition — diagnósticos activos</strong><br>Lista de condiciones clínicas activas del paciente con su código SNOMED CT, fecha de inicio, estado (activo/resuelto/en remisión) y clínico que lo registró. La IA usa este recurso para cargar los diagnósticos activos en el contexto de la consulta.</div></div>
+      <div class="limit-item"><div class="li-icon">💊</div><div><strong>MedicationRequest — medicación prescrita</strong><br>Cada prescripción activa del paciente: fármaco (código ATC), dosis, frecuencia, prescriptor, fecha de inicio y fin. La IA usa este recurso para la reconciliación de medicación y para detectar posibles interacciones cuando se añade un nuevo fármaco.</div></div>
+      <div class="limit-item"><div class="li-icon">🔬</div><div><strong>Observation — constantes y resultados de laboratorio</strong><br>Todos los resultados de mediciones clínicas: constantes vitales (FC, TA, temperatura), resultados analíticos (glucosa, creatinina, hemoglobina) y otras observaciones (peso, talla, IMC). La IA usa este recurso para analizar tendencias en series temporales.</div></div>
+    </div>
+    <div class="tec-panel" id="tab-api">
+      <div class="limit-item"><div class="li-icon">🔌</div><div><strong>Cómo la IA consulta la HCE via FHIR</strong><br>La IA hace peticiones HTTP a la API FHIR de la HCE. Ejemplo: GET /Patient/[NHC]/Condition?status=active devuelve todos los diagnósticos activos del paciente. GET /Patient/[NHC]/Observation?code=creatinine&_sort=-date&_count=10 devuelve los últimos 10 valores de creatinina.</div></div>
+      <div class="limit-item"><div class="li-icon">🔌</div><div><strong>Cómo la IA escribe en la HCE via FHIR</strong><br>El informe generado y validado por el clínico se escribe en la HCE como un recurso DocumentReference (documento clínico) via POST a la API FHIR. Los diagnósticos y medicación validados se actualizan como recursos Condition y MedicationRequest. Esta escritura requiere autenticación del clínico con su certificado digital.</div></div>
+      <div class="limit-item"><div class="li-icon">🔐</div><div><strong>Autenticación y autorización — SMART on FHIR</strong><br>SMART on FHIR es el estándar de autorización que permite a las aplicaciones de IA acceder a la HCE con los permisos del clínico autenticado. Sin SMART on FHIR, la aplicación necesitaría credenciales de sistema con acceso completo, lo que supone un riesgo de seguridad inaceptable.</div></div>
+    </div>
+    <div class="tec-panel" id="tab-snomed">
+      <div class="limit-item"><div class="li-icon">🏷️</div><div><strong>SNOMED CT — terminología clínica normalizada</strong><br>SNOMED CT es el sistema de codificación de diagnósticos y procedimientos clínicos más completo. Cada concepto tiene un código numérico único que permite la interoperabilidad entre sistemas. En España, el Ministerio de Sanidad mantiene la extensión española de SNOMED CT.</div></div>
+      <div class="limit-item"><div class="li-icon">🏷️</div><div><strong>CIE-10-ES — codificación para facturación y estadística</strong><br>La CIE-10 Edición Española (CIE-10-ES) es el sistema de codificación utilizado para el CMBD (Conjunto Mínimo de Datos al Alta) y la facturación hospitalaria. La IA puede asistir en la codificación CIE-10, pero con mayor riesgo de error que SNOMED por la mayor ambigüedad de los códigos.</div></div>
+      <div class="limit-item"><div class="li-icon">⚠️</div><div><strong>El riesgo de la IA en codificación clínica</strong><br>La IA puede sugerir códigos incorrectos por: ambigüedad en el texto clínico, selección de código de especificidad incorrecta, confusión entre diagnóstico principal y secundario, o selección de la lateralidad errónea. La validación por el codificador o el clínico es obligatoria antes de usar el código para CMBD o facturación.</div></div>
+    </div>
+    <div class="nav-actions"><div></div><button class="btn-p" onclick="go(2)">Mapeo entre sistemas →</button></div>
+  </div>
+
+  <div class="sec" id="s2">
+    <div class="card">
+      <div class="ct">Mapeo entre sistemas heterogéneos — el reto real de la integración</div>
+      <div class="cb">La mayoría de los hospitales españoles tienen múltiples sistemas de información que no hablan el mismo idioma: DIRAYA, Orion Clinic, SAP IS-H, Epic, Cerner... Cada uno tiene su modelo de datos propio. El mapeo es el proceso de traducir entre estos modelos para que la IA pueda trabajar con datos de cualquier sistema.</div>
+    </div>
+    <div class="simil">
+      <div class="sl">Marco de referencia clínico</div>
+      El mapeo entre sistemas heterogéneos es como traducir un informe clínico entre idiomas técnicos distintos: el diagnóstico "insuficiencia cardíaca crónica" se llama "CHF" en Epic, "IC" en DIRAYA y tiene el código SNOMED 48447003. El mapeador convierte entre estos nombres para que la IA entienda que todos se refieren al mismo concepto clínico.
+    </div>
+    <div class="tec-tabs">
+      <button class="tec-tab active" onclick="showTab(this,'tab-retos')">Retos del mapeo</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-estrateg')">Estrategias de mapeo</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-ia-map')">IA como mapeador</button>
+    </div>
+    <div class="tec-panel show" id="tab-retos">
+      <div class="limit-item"><div class="li-icon">⚙️</div><div><strong>Campos con nombres distintos para el mismo concepto</strong><br>El campo "fecha de ingreso" puede llamarse admission_date en Epic, FechaIngreso en DIRAYA, y EintrittsDatum en sistemas de origen alemán. El mapeador debe saber que todos son el mismo dato y traducir correctamente.</div></div>
+      <div class="limit-item"><div class="li-icon">⚙️</div><div><strong>Campos con el mismo nombre pero distinto significado</strong><br>El campo "medicación" puede contener solo la medicación activa, o toda la medicación histórica, o solo la prescrita en ese episodio, dependiendo del sistema. Un mapeador que no entiende el contexto puede combinar datos que no son comparables.</div></div>
+      <div class="limit-item"><div class="li-icon">⚙️</div><div><strong>Unidades de medida heterogéneas</strong><br>Glucosa en mg/dL (sistema americano) vs mmol/L (sistema europeo). Peso en kg vs libras. Temperatura en Celsius vs Fahrenheit. El mapeador debe convertir las unidades para que la IA trabaje siempre con la misma escala.</div></div>
+      <div class="limit-item"><div class="li-icon">⚙️</div><div><strong>Fechas y zonas horarias</strong><br>ISO 8601 vs DD/MM/AAAA vs MM/DD/AAAA. Un error en la conversión de formato de fecha puede hacer que la IA interprete datos del año pasado como datos de hoy, con consecuencias clínicas graves.</div></div>
+    </div>
+    <div class="tec-panel" id="tab-estrateg">
+      <div class="limit-item"><div class="li-icon">🎯</div><div><strong>Mapeo a estándar común FHIR</strong><br>La estrategia más robusta: todos los sistemas fuente se convierten a FHIR R4 antes de llegar a la IA. La IA solo trabaja con FHIR y no necesita conocer los formatos propietarios de cada sistema. Los adaptadores FHIR para los principales HIS (DIRAYA, Orion, SAP IS-H) están disponibles o son desarrollables.</div></div>
+      <div class="limit-item"><div class="li-icon">🎯</div><div><strong>Mapeo con tablas de correspondencia</strong><br>Para sistemas sin adaptador FHIR disponible, se crean tablas de correspondencia entre los campos del sistema fuente y los campos FHIR. Son mantenibles pero requieren actualización cada vez que el sistema fuente cambia su modelo de datos.</div></div>
+      <div class="limit-item"><div class="li-icon">🎯</div><div><strong>Validación después del mapeo</strong><br>Después de mapear, siempre se ejecutan reglas de validación: rangos de valores esperados, coherencia entre campos relacionados (fecha de alta posterior a fecha de ingreso), completitud de campos obligatorios. Los errores de validación generan alertas para revisión manual antes de que los datos lleguen a la IA.</div></div>
+    </div>
+    <div class="tec-panel" id="tab-ia-map">
+      <div class="limit-item"><div class="li-icon">🤖</div><div><strong>La IA como asistente en el diseño del mapeo</strong><br>La IA puede ayudar a diseñar las tablas de correspondencia analizando muestras de datos de los sistemas fuente y proponiéndolas automáticamente. No reemplaza al arquitecto de datos sanitarios, pero reduce significativamente el tiempo de diseño inicial.</div></div>
+      <div class="prompt-box">
+        <div class="prompt-label">Prompt para análisis de mapeo entre sistemas</div>
+        <div class="prompt-text">Actúa como arquitecto de datos sanitarios especializado en interoperabilidad HL7 FHIR.
+
+Tengo dos sistemas que necesito integrar:
+Sistema A (origen): [nombre del sistema, ej. DIRAYA]
+Sistema B (destino): [nombre del sistema, ej. FHIR R4]
+
+Te proporciono una muestra de datos del sistema A: [ejemplo de datos con sus campos y tipos]
+
+Tarea: (1) Identifica qué recurso/s FHIR R4 corresponden a estos datos, (2) propón el mapeo campo a campo entre el sistema A y el recurso FHIR, (3) señala los campos que no tienen equivalente directo en FHIR y cómo manejarlos (extensiones, campos opcionales), (4) identifica los riesgos de pérdida de información en el mapeo, (5) propón las reglas de validación post-mapeo más críticas.
+
+Formato: tabla de mapeo + sección de riesgos y validaciones.
+
+Restricciones: Si algún campo del sistema A requiere transformación (conversión de unidades, cambio de formato de fecha, codificación), especifica la transformación exacta. No propongas mapeos que puedan generar ambigüedad clínica sin señalarlo.</div>
+        <div class="prompt-why">La instrucción de señalar los riesgos de ambigüedad clínica en el mapeo protege contra el error más peligroso de la integración: que un campo se mapee correctamente en términos de formato pero con un significado clínico diferente del esperado.</div>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-s" onclick="go(1)">← Estándares FHIR</button>
+      <button class="btn-p" onclick="go(3)">Validación integridad →</button>
+    </div>
+  </div>
+
+  <div class="sec" id="s3">
+    <div class="card">
+      <div class="ct">Validación de integridad de datos — antes y después de la integración</div>
+      <div class="cb">La IA es tan buena como los datos que recibe. Un sistema de IA que trabaja con datos incorrectos, incompletos o inconsistentes generará respuestas incorrectas con total confianza. La validación de integridad es la garantía de que los datos que llegan a la IA son clínicamente fiables.</div>
+    </div>
+    <div class="simil">
+      <div class="sl">Marco de referencia clínico</div>
+      Validar la integridad de los datos antes de que lleguen a la IA es como calibrar el analizador de laboratorio antes de procesar muestras: si el instrumento da resultados erróneos, los diagnósticos basados en esos resultados serán incorrectos aunque el razonamiento clínico sea perfecto. La calidad del dato es la base de todo.
+    </div>
+    <div class="tec-tabs">
+      <button class="tec-tab active" onclick="showTab(this,'tab-tipos-val')">Tipos de validación</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-errores')">Errores frecuentes</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-prompt-val')">IA para auditoría de datos</button>
+    </div>
+    <div class="tec-panel show" id="tab-tipos-val">
+      <div class="limit-item"><div class="li-icon">✅</div><div><strong>Validación de rango — ¿el valor es fisiológicamente posible?</strong><br>FC entre 20 y 300 lpm. TA sistólica entre 50 y 300 mmHg. Temperatura entre 30 y 43°C. Valores fuera de rango deben generar alerta y no llegar a la IA como datos válidos. Pueden ser errores de introducción o de conversión de unidades.</div></div>
+      <div class="limit-item"><div class="li-icon">✅</div><div><strong>Validación de coherencia temporal</strong><br>Fecha de alta posterior a fecha de ingreso. Fecha de prescripción anterior o igual a fecha de dispensación. Fecha de nacimiento coherente con la edad registrada. Las incoherencias temporales son frecuentes en migraciones de datos y pueden hacer que la IA interprete el contexto clínico incorrectamente.</div></div>
+      <div class="limit-item"><div class="li-icon">✅</div><div><strong>Validación de completitud</strong><br>Campos obligatorios para el uso clínico de la IA: identificador del paciente, fecha de los datos, unidad de medida. Si faltan campos obligatorios, el dato no debe procesarse y se genera una alerta para completar la información.</div></div>
+      <div class="limit-item"><div class="li-icon">✅</div><div><strong>Validación de coherencia entre campos relacionados</strong><br>Si la medicación incluye insulina, debería haber un diagnóstico de diabetes. Si la analítica muestra función renal normal, la dosis de medicación ajustada a insuficiencia renal es sospechosa. Estas incoherencias pueden ser correctas (el clínico tiene sus razones) o errores de datos — requieren revisión.</div></div>
+    </div>
+    <div class="tec-panel" id="tab-errores">
+      <div class="limit-item"><div class="li-icon">⚠️</div><div><strong>Datos de episodios anteriores mezclados con datos del episodio actual</strong><br>El error más frecuente en integración HCE-IA: la consulta a la HCE devuelve datos de episodios anteriores junto con los del episodio actual. Si la IA los mezcla, puede razonar sobre diagnósticos ya resueltos como si fueran activos, o sobre medicación suspendida hace años como si fuera actual.</div></div>
+      <div class="limit-item"><div class="li-icon">⚠️</div><div><strong>Datos de otro paciente por error de identificador</strong><br>El error de mayor riesgo: un fallo en el identificador del paciente hace que la IA trabaje con la historia de otro paciente. Las validaciones de identificador deben ser multicapa (NHC + nombre + fecha de nacimiento) para detectar estos errores antes de que lleguen a la IA.</div></div>
+      <div class="limit-item"><div class="li-icon">⚠️</div><div><strong>Valores analíticos en unidades incorrectas por fallo de conversión</strong><br>Un valor de creatinina de 1.2 en mg/dL es normal. Si por error de conversión llega a la IA como 1.2 en µmol/L, la IA calculará una filtración glomerular de 800 mL/min y puede sugerir dosis de medicación inapropiadas para un paciente con función renal "supranormal".</div></div>
+    </div>
+    <div class="tec-panel" id="tab-prompt-val">
+      <div class="prompt-box">
+        <div class="prompt-label">Prompt para auditoría de calidad de datos clínicos</div>
+        <div class="prompt-text">Actúa como especialista en calidad de datos sanitarios.
+
+Te proporciono un conjunto de datos clínicos de un paciente extraídos de nuestra HCE: [datos en formato JSON o tabla]
+
+Tarea: Audita la calidad de estos datos para uso en sistemas de IA clínica. Para cada campo: (1) verifica si el valor está dentro del rango fisiológicamente posible, (2) comprueba la coherencia temporal entre fechas, (3) identifica campos obligatorios ausentes, (4) detecta posibles incoherencias entre datos relacionados (medicación vs diagnósticos, dosis vs función renal, etc.), (5) señala cualquier valor que parezca resultado de un error de conversión de unidades.
+
+Para cada problema detectado: clasifica como ERROR CRÍTICO (impide el uso seguro del dato), ADVERTENCIA (requiere revisión antes de uso) o NOTA (posible mejora sin impacto en seguridad).
+
+Restricciones: No corrijas los datos por tu cuenta — señala el problema y la corrección posible para que el humano responsable tome la decisión. En datos clínicos, la corrección automática sin validación humana es inaceptable.</div>
+        <div class="prompt-why">La instrucción de no corregir datos automáticamente es crítica en datos clínicos: un sistema que corrige automáticamente "valores anómalos" puede eliminar datos clínicamente relevantes que son correctos pero atípicos (un paciente con función renal realmente excelente, un atleta con bradicardia sinusal real de 38 lpm).</div>
+      </div>
+    </div>
+    <div style="margin-top:20px;padding-top:16px;border-top:1px solid #1e2335">
+      <button class="btn-complete" onclick="completar()">✓ MARCAR LECCIÓN COMO COMPLETADA</button>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-s" onclick="go(2)">← Mapeo entre sistemas</button>
+      <button class="btn-p" onclick="go(4)">Test →</button>
+    </div>
+  </div>
+
+  <div class="sec" id="s4">
+    <div class="qw active" id="q1w">
+      <div class="qnum">Pregunta 1 de 3</div>
+      <div class="qtxt">¿Por qué SMART on FHIR es preferible a dar a la aplicación de IA credenciales de sistema con acceso completo a la HCE?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,1)">Porque SMART on FHIR es más rápido técnicamente que la autenticación de sistema</button>
+        <button class="qopt" onclick="ans(this,true,1)">Porque SMART on FHIR permite que la aplicación de IA acceda con los permisos del clínico autenticado (principio de mínimo privilegio), mientras que las credenciales de sistema tienen acceso a todos los pacientes y todos los datos, lo que supone un riesgo de brecha de datos masiva si la aplicación es comprometida</button>
+        <button class="qopt" onclick="ans(this,false,1)">Porque SMART on FHIR cumple automáticamente con el RGPD sin necesidad de acuerdo de encargado del tratamiento</button>
+        <button class="qopt" onclick="ans(this,false,1)">Porque las credenciales de sistema no funcionan con APIs REST y FHIR requiere autenticación OAuth2</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+      <div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div>
+    </div>
+    <div class="qw" id="q2w">
+      <div class="qnum">Pregunta 2 de 3</div>
+      <div class="qtxt">Un sistema integra datos de creatinina de una HCE americana (en mg/dL) con una HCE europea (en µmol/L) sin aplicar la conversión de unidades. ¿Qué tipo de error de validación representa esto y cuál es el riesgo clínico?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,2)">Error de coherencia temporal — las fechas de los resultados son inconsistentes entre sistemas</button>
+        <button class="qopt" onclick="ans(this,true,2)">Error de conversión de unidades — el mismo valor numérico tiene significado clínico radicalmente diferente en mg/dL vs µmol/L (factor de conversión ~88). Un valor normal de creatinina en mg/dL puede llegar a la IA como valor de insuficiencia renal severa o vice versa, generando recomendaciones de dosis completamente incorrectas</button>
+        <button class="qopt" onclick="ans(this,false,2)">Error de completitud — faltan campos obligatorios en uno de los dos sistemas</button>
+        <button class="qopt" onclick="ans(this,false,2)">Error de identificador — los pacientes de los dos sistemas no están correctamente enlazados</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+      <div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div>
+    </div>
+    <div class="qw" id="q3w">
+      <div class="qnum">Pregunta 3 de 3</div>
+      <div class="qtxt">En la auditoría de datos clínicos para uso en IA, ¿por qué es incorrecto que la IA corrija automáticamente los valores que detecta como "anómalos"?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,3)">Porque la IA no tiene capacidad técnica para modificar datos en la HCE</button>
+        <button class="qopt" onclick="ans(this,false,3)">Porque la corrección automática requeriría una versión más avanzada del modelo de IA</button>
+        <button class="qopt" onclick="ans(this,true,3)">Porque un valor clínicamente "anómalo" puede ser correcto para ese paciente concreto (atleta con bradicardia real de 38 lpm, paciente con función renal excelente). La corrección automática eliminaría información clínica válida. En datos clínicos, solo un profesional sanitario con contexto del paciente puede decidir si un valor anómalo es un error o un dato clínicamente relevante</button>
+        <button class="qopt" onclick="ans(this,false,3)">Porque la corrección automática viola el RGPD al modificar datos sin consentimiento del paciente</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+      <div class="qnx" id="nx3">
+        <div style="background:rgba(156,39,176,.1);border:1px solid rgba(156,39,176,.28);border-radius:10px;padding:16px;margin-top:8px">
+          <div style="font-size:13px;font-weight:500;color:#CE93D8;margin-bottom:6px">✓ Lección 5.8 completada</div>
+          <div style="font-size:12px;color:#B0BEC5;line-height:1.6">Dominas los estándares FHIR R4, el mapeo entre sistemas heterogéneos y la validación de integridad de datos. La lección 5.9 trabaja el <strong style="color:#fff">análisis económico del impacto: metodología de cálculo de ROI en salud, métricas de eficiencia y casos de business case exitosos</strong>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="lf">
+    <span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span>
+    <span> · Desarrollado por DoncelProject · doncel.project@gmail.com</span>
+  </div>
+</div>
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/4)*100);document.getElementById('pf58').style.width=p+'%';document.getElementById('pl58').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function showTab(el,id){el.closest('.sec').querySelectorAll('.tec-tab').forEach(t=>t.classList.remove('active'));el.closest('.sec').querySelectorAll('.tec-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById(id).classList.add('show');}
+function completar(){window.parent.postMessage({type:'LESSON_COMPLETE'},'*');document.querySelector('.btn-complete').textContent='✓ Lección completada';document.querySelector('.btn-complete').style.opacity='.5';document.querySelector('.btn-complete').disabled=true;}
+const fbs={
+  1:{ok:'✅ Correcto. SMART on FHIR implementa el principio de mínimo privilegio: la aplicación de IA accede solo a los datos del paciente que está atendiendo el clínico autenticado, con los permisos de ese clínico. Las credenciales de sistema tienen acceso a toda la HCE — si la aplicación es comprometida, toda la historia clínica de todos los pacientes queda expuesta. SMART on FHIR limita el impacto de un posible fallo de seguridad.',ko:'❌ La ventaja de SMART on FHIR no es velocidad técnica ni cumplimiento RGPD automático — es el principio de mínimo privilegio. Al autenticar con los permisos del clínico en lugar de credenciales de sistema, se limita el acceso de la aplicación solo a los datos necesarios para la consulta actual, reduciendo drásticamente el riesgo en caso de compromiso de seguridad.'},
+  2:{ok:'✅ Correcto. La creatinina en mg/dL y en µmol/L difieren en un factor de aproximadamente 88. Un valor de creatinina de 1.2 mg/dL (normal) equivale a 106 µmol/L (también normal). Pero si el sistema mezcla sin conversión, un valor de 1.2 en mg/dL puede llegar a la IA como 1.2 µmol/L (imposiblemente bajo, lo ignoraría) o al revés. El riesgo clínico real es cuando se calcula la función renal para ajuste de dosis: una creatinina errónea puede generar recomendaciones de dosis tóxicas o subterapéuticas.',ko:'❌ El error no es temporal ni de identificador. Es de conversión de unidades — uno de los errores más frecuentes y peligrosos en integración de sistemas heterogéneos internacionales. El factor de conversión creatinina mg/dL a µmol/L es aproximadamente 88. Sin la conversión correcta, la IA recibe un valor numéricamente incorrecto que puede generar recomendaciones de dosis completamente erróneas.'},
+  3:{ok:'✅ Correcto. Un valor "anómalo" para la población puede ser perfectamente normal para un paciente concreto con características especiales. Si la IA corrige automáticamente una FC de 38 lpm asumiendo que es un error de entrada, elimina la información de que este paciente tiene una bradicardia real (que puede ser un hallazgo clínico importante o simplemente que es un ciclista profesional). En datos clínicos, la corrección requiere siempre el juicio de un profesional con conocimiento del contexto del paciente.',ko:'❌ La capacidad técnica o la regulación RGPD no son el motivo principal. El problema es clínico: un valor "anómalo" puede ser correcto para ese paciente concreto. La corrección automática eliminaría información clínica válida. Solo un profesional con contexto del paciente puede distinguir entre un error de entrada y un hallazgo clínico real que se aparta de los rangos poblacionales normales.'}
+};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+upd();
+</script>

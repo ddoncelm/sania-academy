@@ -1,0 +1,327 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:32px}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(33,150,243,.15);border:1px solid rgba(33,150,243,.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#90CAF9;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px}.lt span{color:#2196F3}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px;flex-wrap:wrap}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#2196F3;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:80px}
+.nb.active{color:#2196F3;border-bottom-color:#2196F3;background:#0C0D12}
+.sec{display:none;padding:20px 24px}.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(33,150,243,.08);border:1px solid rgba(33,150,243,.22);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#2196F3;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer}
+.tec-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.tec-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 14px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s}
+.tec-tab.active{background:rgba(33,150,243,.15);border-color:#2196F3;color:#90CAF9}
+.tec-panel{display:none}.tec-panel.show{display:block}
+.prompt-box{background:#0e1018;border:1px solid #1e2335;border-radius:10px;padding:14px;margin:10px 0}
+.prompt-label{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}
+.prompt-text{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.prompt-why{font-size:11px;color:#B0BEC5;line-height:1.6;margin-top:10px;padding-top:10px;border-top:1px solid #1e2335}
+.limit-item{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #1a2a3a}
+.limit-item:last-child{border-bottom:none}
+.li-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.li-title{font-size:12px;font-weight:600;color:#fff;margin-bottom:3px}
+.li-desc{font-size:11px;color:#B0BEC5;line-height:1.6}
+.flow-box{background:#0C0D12;border-radius:8px;padding:12px 14px;margin:10px 0;font-family:monospace;font-size:11px;color:#90CAF9;line-height:1.9;white-space:pre-wrap;word-break:break-word;border-left:2px solid #2196F3}
+.param-card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px;margin-bottom:12px}
+.param-name{font-size:14px;font-weight:700;color:#2196F3;margin-bottom:4px}
+.param-range{font-size:11px;color:#90CAF9;margin-bottom:8px}
+.param-desc{font-size:12px;color:#E0E0E0;line-height:1.6;margin-bottom:10px}
+.param-ejemplos{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
+.pe{background:#0e1018;border-radius:8px;padding:10px;text-align:center}
+.pe-val{font-size:16px;font-weight:700;color:#2196F3}
+.pe-lbl{font-size:10px;color:#90CAF9;margin-top:2px}
+.pe-desc{font-size:10px;color:#B0BEC5;margin-top:4px;line-height:1.4}
+.slider-demo{margin:12px 0}
+.slider-lbl{font-size:11px;color:#B0BEC5;margin-bottom:6px;display:flex;justify-content:space-between}
+.slider-track{height:6px;background:#2a2d3a;border-radius:3px;position:relative;margin-bottom:4px}
+.slider-fill{height:6px;background:#2196F3;border-radius:3px}
+.slider-ticks{display:flex;justify-content:space-between;font-size:9px;color:#546E7A}
+.alerta{border-radius:10px;padding:12px 14px;margin:12px 0;font-size:12px;line-height:1.6}
+.ao{background:rgba(76,175,80,.07);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.aw{background:rgba(255,152,0,.07);border:1px solid rgba(255,152,0,.22);color:#FFD54F}
+.alt{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px}
+.qw{display:none}.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s}
+.qopt:hover{border-color:#2196F3;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}.qnx.show{display:block}
+.complete-btn{width:100%;background:linear-gradient(135deg,#2196F3,#1565C0);color:#fff;border:none;border-radius:10px;padding:14px 20px;font-size:13px;font-weight:600;cursor:pointer;margin-top:16px;letter-spacing:.3px;transition:opacity .2s}
+.complete-btn:hover{opacity:.9}.complete-btn:disabled{opacity:.5;cursor:not-allowed}
+.lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a}
+.fl{color:#2196F3;cursor:pointer;text-decoration:underline}
+</style>
+<div class="lw">
+<div class="lh"><div class="lb">MÓDULO 4 · LECCIÓN 4.3</div><div class="lt">Playground de OpenAI: configuración avanzada<br><span>temperatura, top-p, system prompts y gestión de tokens en contexto médico</span></div><div class="lm"><div class="lmi"><div class="md" style="background:#2196F3"></div>49 minutos</div><div class="lmi"><div class="md" style="background:#FFB300"></div>Nivel técnico</div><div class="lmi"><div class="md" style="background:#A5D6A7"></div>Configuración avanzada</div></div></div>
+<div class="pbw"><div class="pbb"><div class="pbf" id="pbf43"></div></div><div class="pbl" id="pbl43">0%</div></div>
+<div class="snav"><button class="nb active" id="t1" onclick="go(1)">Parámetros del modelo</button><button class="nb" id="t2" onclick="go(2)">Temperatura y top-p</button><button class="nb" id="t3" onclick="go(3)">System prompts médicos</button><button class="nb" id="t4" onclick="go(4)">Tokens y coste</button><button class="nb" id="t5" onclick="go(5)">Test</button></div>
+
+<div class="sec active" id="s1">
+<div class="card"><div class="ct">Objetivo de la lección</div><div class="cb">Dominar los parámetros técnicos que controlan el comportamiento de los modelos de IA en el Playground de OpenAI y en la API — temperatura, top-p, frequency penalty, system prompts, y gestión de tokens — para obtener respuestas clínicas precisas, consistentes y dentro del presupuesto.</div></div>
+<div class="simil"><div class="sl">🎚️ Analogía clínica</div>Los parámetros del modelo son como los ajustes de un ventilador mecánico: el médico novato lo deja en modo automático y funciona razonablemente. El intensivista experimentado ajusta la presión soporte, el PEEP, la FiO₂ y la frecuencia respiratoria para el paciente concreto, obteniendo un resultado óptimo que el modo automático no alcanza. La temperatura del modelo es el PEEP de la IA clínica — si no la ajustas, el modelo funciona, pero no al nivel que necesitas para documentación clínica de precisión.</div>
+<div class="card"><div class="ct">Por qué los parámetros importan en clínica</div><div class="cb">Un modelo con temperatura 0.9 que genera respuestas creativas y variadas es perfecto para brainstorming de estrategias de innovación. El mismo modelo con temperatura 0.9 generando diagnósticos diferenciales puede incluir diagnósticos improbables o inconsistentes entre ejecuciones. Para uso clínico, la calibración de parámetros no es opcional — es parte del control de calidad del sistema.</div></div>
+<div class="nav-actions"><div></div><button class="btn-p" onclick="go(2)">Temperatura y top-p →</button></div>
+</div>
+
+<div class="sec" id="s2">
+<div class="card"><div class="ct">Temperatura y top-p: los parámetros de creatividad vs. precisión</div></div>
+<div class="param-card">
+<div class="param-name">🌡️ Temperatura</div>
+<div class="param-range">Rango: 0.0 — 2.0 · Valor por defecto: 1.0 · Recomendado clínica: 0.1 — 0.4</div>
+<div class="param-desc">Controla la aleatoriedad de las respuestas. Temperatura baja = el modelo elige siempre la palabra más probable → respuestas predecibles, consistentes, conservadoras. Temperatura alta = el modelo considera palabras menos probables → respuestas más variadas, creativas, a veces incoherentes.<br><br>En clínica: la consistencia entre ejecuciones es crítica. Si el mismo caso clínico con los mismos datos produce diagnósticos distintos cada vez, el profesional no puede confiar en el sistema. Temperatura baja garantiza consistencia.</div>
+<div class="param-ejemplos">
+<div class="pe"><div class="pe-val">0.0</div><div class="pe-lbl">Determinista</div><div class="pe-desc">Siempre la misma respuesta exacta. Documentación clínica estandarizada.</div></div>
+<div class="pe"><div class="pe-val">0.3</div><div class="pe-lbl">Preciso</div><div class="pe-desc">Ligera variación. Ideal para diagnóstico diferencial y análisis clínico.</div></div>
+<div class="pe"><div class="pe-val">0.7</div><div class="pe-lbl">Equilibrado</div><div class="pe-desc">Balance creatividad/precisión. Educación sanitaria, comunicación al paciente.</div></div>
+</div>
+</div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'temp-tabla')">📊 Tabla por caso de uso</button><button class="tec-tab" onclick="showTab(this,'temp-topp')">🎯 Top-p explicado</button><button class="tec-tab" onclick="showTab(this,'temp-freq')">🔁 Frequency penalty</button></div>
+<div class="tec-panel show" id="temp-tabla">
+<div class="flow-box">TEMPERATURA ÓPTIMA POR CASO DE USO CLÍNICO:
+
+Temperatura 0.0 — 0.2 (máxima consistencia):
+→ Informes de alta con formato estandarizado
+→ Aplicación de escalas clínicas (Braden, Barthel, NIHSS)
+→ Cálculo de dosis y ajustes farmacológicos
+→ Conciliación de medicación
+→ Verificación de criterios diagnósticos (cumple/no cumple)
+
+Temperatura 0.2 — 0.4 (alta precisión con algo de variabilidad):
+→ Diagnóstico diferencial ordenado por probabilidad
+→ Resumen de historia clínica
+→ Análisis de pruebas complementarias
+→ Recomendaciones de tratamiento basadas en guías
+
+Temperatura 0.4 — 0.6 (equilibrio):
+→ Educación al paciente (misma información, distintas formulaciones)
+→ Interpretación de resultados para un paciente concreto
+→ Cartas de derivación personalizadas
+
+Temperatura 0.6 — 0.9 (creatividad moderada):
+→ Brainstorming de posibles mejoras del servicio
+→ Redacción de materiales de comunicación variados
+→ Generación de casos clínicos ficticios para formación
+
+Temperatura >0.9: NO recomendado para ningún uso clínico</div>
+</div>
+<div class="tec-panel" id="temp-topp">
+<div class="param-card">
+<div class="param-name">🎯 Top-p (Nucleus sampling)</div>
+<div class="param-range">Rango: 0.0 — 1.0 · Valor por defecto: 1.0 · Recomendado clínica: 0.85 — 0.95</div>
+<div class="param-desc">Alternativa a la temperatura para controlar la variabilidad. En lugar de escalar todas las probabilidades (temperatura), top-p recorta el vocabulario a las palabras que suman el p% de probabilidad acumulada. Con top-p = 0.9, el modelo solo considera las palabras que suman el 90% de probabilidad total — las más improbables quedan excluidas.<br><br>En la práctica: temperatura y top-p controlan lo mismo desde perspectivas distintas. La recomendación de OpenAI es ajustar uno y dejar el otro en su valor por defecto. Para clínica, preferir temperatura baja (0.2-0.4) + top-p en 1.0.</div>
+<div class="param-ejemplos">
+<div class="pe"><div class="pe-val">0.85</div><div class="pe-lbl">Conservador</div><div class="pe-desc">Solo palabras de alta probabilidad. Muy consistente, puede ser repetitivo.</div></div>
+<div class="pe"><div class="pe-val">0.95</div><div class="pe-lbl">Recomendado</div><div class="pe-desc">Equilibrio para uso clínico. Excluye salidas improbables sin sacrificar fluidez.</div></div>
+<div class="pe"><div class="pe-val">1.0</div><div class="pe-lbl">Sin filtro</div><div class="pe-desc">Default. Todas las palabras posibles. Combinar con temperatura baja.</div></div>
+</div>
+</div>
+</div>
+<div class="tec-panel" id="temp-freq">
+<div class="param-card">
+<div class="param-name">🔁 Frequency Penalty y Presence Penalty</div>
+<div class="param-range">Rango: -2.0 — 2.0 · Valor por defecto: 0.0</div>
+<div class="param-desc"><strong>Frequency Penalty:</strong> penaliza la repetición de palabras que ya han aparecido mucho en la respuesta. Útil para evitar que el modelo repita el mismo diagnóstico o la misma frase de múltiples formas. Para clínica: 0.2-0.5 reduce la verbosidad sin sacrificar exactitud.<br><br><strong>Presence Penalty:</strong> penaliza cualquier palabra que ya haya aparecido (no por frecuencia sino por presencia). Fuerza al modelo a introducir más vocabulario nuevo. Para clínica: 0.0-0.3. Valores altos pueden hacer que el modelo evite repetir términos médicos necesarios.</div>
+</div>
+<div class="alerta aw"><div class="alt">⚠️ Error frecuente: ajustar frequency penalty demasiado alto</div>Con frequency penalty alto (>0.8), el modelo puede evitar repetir el nombre del medicamento o el diagnóstico — precisamente los términos que más necesitan repetirse para claridad clínica. Para documentación médica, mantener frequency penalty entre 0.2 y 0.5 máximo.</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(1)">← Parámetros</button><button class="btn-p" onclick="go(3)">System prompts →</button></div>
+</div>
+
+<div class="sec" id="s3">
+<div class="card"><div class="ct">System prompts médicos: la configuración más importante</div><div class="cb">El system prompt es la instrucción que el modelo recibe antes de cualquier conversación con el usuario. Es el equivalente al briefing que le das a un profesional antes de que empiece a trabajar. En clínica, un system prompt bien diseñado puede ser la diferencia entre un modelo que genera texto médico genérico y uno que produce documentación de calidad para tu servicio específico.</div></div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'sp-anatomia')">🏗️ Anatomía del system prompt</button><button class="tec-tab" onclick="showTab(this,'sp-ejemplos')">📋 Ejemplos clínicos</button><button class="tec-tab" onclick="showTab(this,'sp-test')">🧪 Cómo testear</button></div>
+<div class="tec-panel show" id="sp-anatomia">
+<div class="card"><div class="ct">Los 6 componentes de un system prompt clínico efectivo</div></div>
+<div class="limit-item"><div class="li-icon">1️⃣</div><div class="li-body"><div class="li-title">Identidad y rol</div><div class="li-desc">Define quién es el modelo: «Eres el asistente clínico del Servicio de Cardiología del Hospital X, especializado en insuficiencia cardíaca y cardiopatía isquémica». Cuanto más específico, mejor — el modelo activa el conocimiento relevante para ese rol.</div></div></div>
+<div class="limit-item"><div class="li-icon">2️⃣</div><div class="li-body"><div class="li-title">Contexto de uso</div><div class="li-desc">Describe el entorno: «Este asistente es usado exclusivamente por cardiólogos y residentes de cardiología para apoyo a la documentación clínica». Establece las expectativas de nivel técnico y el contexto de las respuestas.</div></div></div>
+<div class="limit-item"><div class="li-icon">3️⃣</div><div class="li-body"><div class="li-title">Reglas de comportamiento</div><div class="li-desc">Las reglas no negociables: «Nunca inventes datos clínicos no proporcionados. Si un campo está vacío, indícalo explícitamente como "pendiente de completar". Si no estás seguro de algo, di que no tienes esa información». Las reglas de comportamiento son el control de seguridad del sistema.</div></div></div>
+<div class="limit-item"><div class="li-icon">4️⃣</div><div class="li-body"><div class="li-title">Formato de respuesta</div><div class="li-desc">Define exactamente el formato: «Los informes de alta deben tener estas secciones en este orden: [lista]. Los diagnósticos secundarios se listan usando CIE-10. Las dosis se expresan en mg/kg para pacientes pediátricos y en mg absolutos para adultos».</div></div></div>
+<div class="limit-item"><div class="li-icon">5️⃣</div><div class="li-body"><div class="li-title">Restricciones de dominio</div><div class="li-desc">Lo que el modelo NO debe hacer: «No hagas recomendaciones de medicación de alto riesgo sin que el médico las valide explícitamente. No generes información sobre prescripción de opioides sin un aviso visible. No respondas preguntas fuera del ámbito de la cardiología».</div></div></div>
+<div class="limit-item"><div class="li-icon">6️⃣</div><div class="li-body"><div class="li-title">Aviso de responsabilidad integrado</div><div class="li-desc">Inclúyelo en el system prompt y pídele al modelo que lo repita en las respuestas relevantes: «Cuando generes diagnósticos o recomendaciones terapéuticas, añade al final: "Este análisis es un apoyo clínico. La responsabilidad diagnóstica y terapéutica es del médico responsable del paciente"».</div></div></div>
+</div>
+<div class="tec-panel" id="sp-ejemplos">
+<div class="flow-box">SYSTEM PROMPT COMPLETO — Asistente de guardia de Medicina Interna:
+
+Eres el asistente clínico de guardia del Servicio de Medicina Interna del Hospital
+[NOMBRE]. Trabajas exclusivamente con médicos internistas y médicos de guardia
+de este servicio.
+
+ESPECIALIZACIÓN:
+Dominas: Insuficiencia cardíaca, EPOC, diabetes tipo 2, insuficiencia renal
+crónica, síndrome coronario agudo, neumonía adquirida en comunidad, sepsis,
+tromboembolia pulmonar, cirrosis hepática.
+Protocolos disponibles: [lista de protocolos RAG indexados]
+
+COMPORTAMIENTO OBLIGATORIO:
+→ Nunca inventes datos que no te hayan proporcionado
+→ Si falta información, dilo explícitamente: "Datos no proporcionados: [campo]"
+→ Separa siempre CERTEZAS de SUGERENCIAS con marcadores visuales:
+  ✓ CERTEZA BASADA EN DATOS PROPORCIONADOS
+  ? SUGERENCIA PARA CONSIDERAR
+
+FORMATO DE DOCUMENTACIÓN:
+Informes de evolución: SOAP estándar
+Informes de alta: cabecera → antecedentes → ingreso → pruebas → diagnóstico
+CIE-10 → tratamiento al alta → próxima revisión
+Escalas: calcular automáticamente cuando se proporcionen los datos necesarios
+
+RESTRICCIONES:
+→ Para medicamentos de estrecho margen terapéutico (digoxina, warfarina,
+  litio, metotrexato): añadir siempre "REQUIERE VALIDACIÓN FARMACÉUTICA"
+→ Para dosis en IR o IH: calcular con la fórmula indicada y señalar
+  el ajuste realizado
+
+AVISO: Al final de cada análisis diagnóstico, incluir:
+"[Análisis de apoyo clínico — validar con exploración física y criterio médico]"</div>
+</div>
+<div class="tec-panel" id="sp-test">
+<div class="card"><div class="ct">Cómo testear un system prompt antes de desplegarlo</div></div>
+<div class="flow-box">PROTOCOLO DE TESTING DE SYSTEM PROMPT:
+
+PASO 1 — CASOS ESTÁNDAR (happy path):
+→ Testear con 5 casos clínicos representativos del servicio
+→ Verificar: formato correcto, terminología adecuada, información completa
+→ Verificar: el aviso de responsabilidad aparece donde corresponde
+
+PASO 2 — CASOS LÍMITE:
+→ ¿Qué pasa si el usuario pregunta algo fuera del dominio? (política del hospital,
+  temas no clínicos, recetas para casa) → El modelo debe rechazar o redirigir
+→ ¿Qué pasa con información clínica ambigua o incompleta?
+→ ¿Qué pasa si el usuario pide algo que viola las restricciones definidas?
+
+PASO 3 — CASOS DE SEGURIDAD:
+→ ¿El modelo inventa datos cuando no se los proporcionan?
+→ ¿Añade el aviso de validación en los análisis diagnósticos?
+→ ¿Marca correctamente los medicamentos de estrecho margen terapéutico?
+
+PASO 4 — CONSISTENCIA:
+→ Ejecutar el mismo caso clínico 5 veces (con temperatura 0.3)
+→ Las respuestas deben ser clínicamente equivalentes aunque no idénticas
+
+PASO 5 — VALIDACIÓN CON USUARIOS REALES:
+→ 2-3 médicos del servicio prueban con sus propios casos
+→ Recoger feedback: ¿el formato es útil? ¿falta algo? ¿sobra algo?
+→ Iterar el system prompt según el feedback antes de despliegue</div>
+<div class="prompt-box">
+<div class="prompt-label">Prompt: evaluar y mejorar un system prompt médico</div>
+<div class="prompt-text">Necesito evaluar la calidad de este system prompt para un asistente clínico de [ESPECIALIDAD]:
+
+SYSTEM PROMPT ACTUAL:
+[PEGAR EL SYSTEM PROMPT]
+
+PROBLEMAS OBSERVADOS EN LAS PRUEBAS:
+[Describir los comportamientos incorrectos observados: el modelo inventa datos, no usa el formato correcto, no añade el aviso de seguridad, etc.]
+
+Por favor:
+1. Identifica las causas de los problemas en el system prompt actual
+2. Señala qué componentes faltan o están insuficientemente definidos
+3. Propón la versión mejorada del system prompt con los 6 componentes completos
+4. Explica qué cambio específico resuelve cada problema observado
+5. Genera 3 casos de prueba con los que verificar que los problemas están resueltos</div>
+<div class="prompt-why">Un system prompt rara vez es correcto en la primera versión. El proceso de iteración — probar, identificar problemas, mejorar — es parte normal del desarrollo. Este prompt convierte ese proceso de iteración en algo estructurado y eficiente.</div>
+</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(2)">← Temperatura</button><button class="btn-p" onclick="go(4)">Tokens y coste →</button></div>
+</div>
+
+<div class="sec" id="s4">
+<div class="card"><div class="ct">Gestión de tokens y optimización de costes</div><div class="cb">Los modelos de IA de la API se cobran por token — unidades de texto de aproximadamente 0.75 palabras. Para uso clínico intensivo, la gestión de tokens es fundamental tanto para controlar el coste como para no superar los límites de la ventana de contexto.</div></div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'tok-que')">🔢 Qué son los tokens</button><button class="tec-tab" onclick="showTab(this,'tok-coste')">💰 Gestión de coste</button><button class="tec-tab" onclick="showTab(this,'tok-opt')">⚡ Optimización</button></div>
+<div class="tec-panel show" id="tok-que">
+<div class="flow-box">TOKENS EN PRÁCTICA CLÍNICA:
+
+Aproximación útil: 1 token ≈ 0.75 palabras en inglés
+                   1 token ≈ 0.6 palabras en español (más tokens por palabra)
+
+Ejemplo — Informe de alta estándar:
+→ System prompt: ~500 tokens
+→ Input (datos del caso): ~800 tokens
+→ Output (informe generado): ~600 tokens
+→ Total por informe: ~1.900 tokens
+
+Con GPT-4o (precios aproximados 2024):
+→ Input: $2.50 / 1M tokens → 1.300 tokens de input ≈ $0.003
+→ Output: $10.00 / 1M tokens → 600 tokens de output ≈ $0.006
+→ Coste por informe: ~$0.009 (menos de 1 céntimo)
+
+Escala: 100 informes/mes = ~$0.90/mes
+        1.000 informes/mes = ~$9/mes
+
+GPT-4o-mini (10x más barato, calidad suficiente para documentación estructurada):
+→ 1.000 informes/mes ≈ $0.90/mes
+
+Conclusión: el coste de tokens raramente es el factor limitante para
+uso clínico razonable. La ventana de contexto sí puede serlo.</div>
+</div>
+<div class="tec-panel" id="tok-coste">
+<div class="limit-item"><div class="li-icon">📏</div><div class="li-body"><div class="li-title">Ventana de contexto: el límite real</div><div class="li-desc">La ventana de contexto es el máximo de tokens que el modelo puede procesar en una sola llamada (input + output). GPT-4o: 128.000 tokens. Claude 3.5 Sonnet: 200.000 tokens. Un informe de 2.000 tokens + system prompt de 500 tokens + 5 documentos RAG de 3.000 tokens cada uno = 17.500 tokens. Bien dentro del límite. El problema ocurre cuando el sistema RAG incluye demasiados documentos o el historial de conversación es muy largo.</div></div></div>
+<div class="limit-item"><div class="li-icon">💡</div><div class="li-body"><div class="li-title">Estrategias para controlar el tamaño del contexto</div><div class="li-desc">En RAG: limitar a 3-5 fragmentos de documentos por consulta (no todos los documentos de la base). En conversaciones largas: resumir el historial en lugar de incluirlo completo. En system prompts: no incluir ejemplos extensos de casos clínicos — usar instrucciones concisas. Usar modelos más pequeños (GPT-4o-mini, Claude Haiku) para tareas donde la calidad no es crítica.</div></div></div>
+</div>
+<div class="tec-panel" id="tok-opt">
+<div class="prompt-box">
+<div class="prompt-label">Prompt: optimizar el coste de un sistema de IA clínica</div>
+<div class="prompt-text">Tenemos un sistema de IA clínica con el siguiente perfil de uso:
+- Uso mensual estimado: [N] consultas/mes
+- Modelo actual: [nombre del modelo]
+- Coste mensual actual o estimado: [importe]
+- Tipo de consultas: [descripción de las consultas más frecuentes]
+- Calidad mínima aceptable: [alta / media — definir qué significa]
+
+Proporciona:
+1. Estimación del coste real con el modelo actual (tokens de input + output por consulta)
+2. Alternativas de modelo ordenadas por coste/calidad para este caso de uso
+3. Estrategias de optimización de tokens para reducir el coste sin perder calidad:
+   - ¿El system prompt puede acortarse sin perder funcionalidad?
+   - ¿Se puede usar un modelo más barato para algunas consultas y el caro solo para las críticas?
+   - ¿El RAG está incluyendo más documentos de los necesarios?
+4. Estimación del coste mensual con las optimizaciones propuestas
+5. Umbral de uso a partir del cual justifica pagar un tier empresarial con rate limits más altos</div>
+</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(3)">← System prompts</button><button class="btn-p" onclick="go(5)">Test →</button></div>
+</div>
+
+<div class="sec" id="s5">
+<div class="qw active" id="q1w"><div class="qnum">Pregunta 1 de 3</div><div class="qtxt">El responsable de calidad del servicio quiere que el modelo siempre genere informes de alta con exactamente el mismo formato, sección por sección, sin variaciones. ¿Qué temperatura recomiendas y por qué?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,1)">Temperatura 0.9 — alta creatividad para que cada informe sea único y personalizado</button><button class="qopt" onclick="ans(this,false,1)">Temperatura 1.0 — el valor por defecto es siempre el más seguro</button><button class="qopt" onclick="ans(this,true,1)">Temperatura 0.0-0.2 — maximiza la consistencia del formato entre ejecuciones. El objetivo es que el mismo tipo de caso produzca siempre el mismo formato de respuesta, independientemente de cuándo se ejecute o quién lo use. La creatividad no es un valor aquí — la consistencia lo es</button><button class="qopt" onclick="ans(this,false,1)">Temperatura 0.5 — el equilibrio entre creatividad y precisión es siempre la mejor opción</button></div><div class="qfb" id="fb1"></div><div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div></div>
+<div class="qw" id="q2w"><div class="qnum">Pregunta 2 de 3</div><div class="qtxt">El model de IA del servicio de Cardiología empieza a responder preguntas sobre protocolos de otras especialidades (neurología, traumatología) con información que no ha sido validada por el servicio. ¿Cuál es la corrección correcta en el system prompt?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,2)">Bajar la temperatura a 0.0 para que el modelo sea más preciso y menos propenso a responder fuera del dominio</button><button class="qopt" onclick="ans(this,true,2)">Añadir una restricción explícita de dominio en el system prompt: «Responde únicamente preguntas relacionadas con Cardiología y los protocolos indexados del Servicio de Cardiología. Para consultas de otras especialidades, indica que deben dirigirse al servicio correspondiente». La temperatura controla creatividad, no dominio.</button><button class="qopt" onclick="ans(this,false,2)">Aumentar el frequency penalty para que el modelo no repita términos de otras especialidades</button><button class="qopt" onclick="ans(this,false,2)">Reducir el top-p a 0.5 para que el modelo solo use vocabulario de alta probabilidad relacionado con cardiología</button></div><div class="qfb" id="fb2"></div><div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div></div>
+<div class="qw" id="q3w"><div class="qnum">Pregunta 3 de 3</div><div class="qtxt">Un hospital quiere usar GPT-4o para generar 500 informes de alta al mes. Cada informe consume aproximadamente 2.000 tokens (input + output). El precio de GPT-4o es ~$5/1M tokens de input y ~$15/1M tokens de output, con un split aproximado de 60% input / 40% output. ¿Cuál es el coste mensual estimado y qué alternativa recomendarías para reducirlo si la calidad es «aceptable en documentación estructurada»?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,3)">Coste estimado: ~$500/mes. Alternativa: no hay alternativa — GPT-4o es el único modelo válido para clínica</button><button class="qopt" onclick="ans(this,false,3)">Coste estimado: ~$50/mes. Alternativa: reducir el número de informes usando IA solo para los casos complejos</button><button class="qopt" onclick="ans(this,true,3)">Coste estimado: ~$10/mes (500 informes × 2.000 tokens = 1M tokens × mix de precios ≈ $8-12). Alternativa: GPT-4o-mini a ~10x menor coste (~$1/mes) — suficientemente capaz para documentación estructurada con un buen system prompt, reservando GPT-4o para análisis clínico complejo donde la diferencia de calidad es relevante</button><button class="qopt" onclick="ans(this,false,3)">Coste estimado: ~$1.000/mes. Alternativa: instalar un modelo open source en servidores propios para eliminar todo coste de API</button></div><div class="qfb" id="fb3"></div><div class="qnx" id="nx3"><div style="background:rgba(33,150,243,.1);border:1px solid rgba(33,150,243,.28);border-radius:10px;padding:16px;margin-top:8px"><div style="font-size:13px;font-weight:500;color:#90CAF9;margin-bottom:6px">✓ Lección 4.3 completada</div><div style="font-size:12px;color:#B0BEC5;line-height:1.6">Dominas la configuración técnica del modelo: temperatura para uso clínico (0.0-0.4), system prompts con los 6 componentes, y gestión de tokens y coste. La lección 4.4 entra en <strong style="color:#fff">la integración con wearables e IoT clínico: protocolos de conexión, procesamiento de señales biométricas y alertas inteligentes en tiempo real</strong>.</div></div><button class="complete-btn" id="completeBtn" onclick="markComplete()">✓ MARCAR LECCIÓN COMO COMPLETADA</button></div></div>
+</div>
+<div class="lf"><span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span> · Desarrollado por DoncelProject · doncel.project@gmail.com</div>
+</div>
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/5)*100);document.getElementById('pbf43').style.width=p+'%';document.getElementById('pbl43').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function showTab(el,id){const sec=el.closest('.sec');sec.querySelectorAll('.tec-tab').forEach(t=>t.classList.remove('active'));sec.querySelectorAll('.tec-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById(id).classList.add('show');}
+const fbs={
+1:{ok:'✅ Correcto. Temperatura baja (0.0-0.2) maximiza la consistencia del formato entre ejecuciones — el modelo elige siempre las mismas palabras y estructura en respuesta a inputs similares. Para documentación clínica estandarizada, la consistencia es la métrica clave, no la creatividad. Un informe de alta que varía significativamente en formato según quién lo genera o cuándo lo genera dificulta la auditoría y la continuidad asistencial.',ko:'❌ Temperatura alta (0.7-1.0) produce respuestas variadas — exactamente lo contrario de lo que necesita una documentación estandarizada. La temperatura por defecto (1.0) tampoco garantiza consistencia. El equilibrio (0.5) introduce más variabilidad de la necesaria para un informe con formato fijo. Solo temperatura baja garantiza la consistencia requerida.'},
+2:{ok:'✅ Correcto. La temperatura controla la variabilidad de las respuestas, no su dominio temático. Para restringir el dominio, la herramienta correcta es el system prompt — instrucciones explícitas que definan exactamente sobre qué temas puede responder el modelo y cómo debe manejar las consultas fuera del dominio. El frequency penalty, top-p y temperatura no tienen mecanismos para restringir el dominio temático.',ko:'❌ La temperatura, el frequency penalty y el top-p controlan propiedades estilísticas de la respuesta (variabilidad, repetición de palabras) — no el dominio temático. La única forma de restringir el modelo a un dominio específico es mediante instrucciones explícitas en el system prompt. Sin esa instrucción, el modelo responderá sobre cualquier tema independientemente de los parámetros numéricos.'},
+3:{ok:'✅ Correcto. 500 informes × 2.000 tokens = 1.000.000 tokens. Con el mix de precios (60% input × $5 + 40% output × $15 = $3 + $6 = $9/1M tokens), el coste es ~$9-10/mes — un importe muy manejable. GPT-4o-mini reduce ese coste ~10x a ~$1/mes con calidad suficiente para documentación estructurada. La estrategia de usar el modelo costoso solo para las tareas donde realmente importa (análisis clínico complejo, diagnóstico diferencial) y el económico para documentación rutinaria es la optimización correcta.',ko:'❌ 500 informes × 2.000 tokens = 1M tokens totales. Con los precios indicados el coste es ~$9-10/mes, no $500 ni $1.000. Los modelos de IA clínica son notablemente baratos para volúmenes razonables de uso. El coste de tokens raramente justifica instalar infraestructura propia de servidores, que tiene un coste operativo mayor.'}
+};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+function markComplete(){document.getElementById('completeBtn').disabled=true;document.getElementById('completeBtn').textContent='✓ Completada';window.parent.postMessage({type:'LESSON_COMPLETE'},'*');}
+upd();
+</script>

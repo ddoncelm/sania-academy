@@ -1,0 +1,336 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.lw { background: #0C0D12; color: #fff; font-family: var(--font-sans, sans-serif); border-radius: 16px; overflow: hidden; padding-bottom: 32px; }
+.lh { background: #0C0D12; border-bottom: 1px solid #1a2a3a; padding: 24px 28px 20px; }
+.lb { display: inline-flex; align-items: center; gap: 6px; background: rgba(33,150,243,0.12); border: 1px solid rgba(33,150,243,0.3); border-radius: 20px; padding: 4px 12px; font-size: 11px; color: #2196F3; font-weight: 500; margin-bottom: 12px; letter-spacing: 0.5px; }
+.lt { font-size: 20px; font-weight: 500; line-height: 1.3; margin-bottom: 8px; }
+.lt span { color: #2196F3; }
+.lm { display: flex; align-items: center; gap: 16px; font-size: 12px; color: #B0BEC5; margin-top: 10px; }
+.lmi { display: flex; align-items: center; gap: 5px; }
+.md { width: 6px; height: 6px; border-radius: 50%; }
+.pbw { background: #1a1c24; border-bottom: 1px solid #1a2a3a; padding: 10px 28px; display: flex; align-items: center; gap: 10px; }
+.pbb { flex: 1; height: 4px; background: #2a2d3a; border-radius: 4px; }
+.pbf { height: 4px; background: #2196F3; border-radius: 4px; width: 0%; transition: width 0.5s; }
+.pbl { font-size: 11px; color: #B0BEC5; min-width: 40px; text-align: right; }
+.snav { display: flex; background: #13151e; border-bottom: 1px solid #1a2a3a; overflow-x: auto; }
+.nb { flex: 1; padding: 10px 6px; background: transparent; border: none; cursor: pointer; font-size: 11px; color: #B0BEC5; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; min-width: 70px; }
+.nb.active { color: #2196F3; border-bottom-color: #2196F3; background: rgba(33,150,243,0.05); }
+.nb:hover:not(.active) { color: #fff; background: rgba(255,255,255,0.03); }
+.sec { display: none; padding: 24px 28px; }
+.sec.active { display: block; }
+.card { background: #13151e; border: 1px solid #1e2335; border-radius: 12px; padding: 18px 20px; margin-bottom: 16px; }
+.ct { font-size: 13px; font-weight: 500; color: #2196F3; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.cb { font-size: 13px; color: #B0BEC5; line-height: 1.7; }
+.cb strong { color: #fff; font-weight: 500; }
+.simil { background: rgba(33,150,243,0.08); border-left: 3px solid #2196F3; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-size: 12px; color: #90CAF9; line-height: 1.6; }
+.sl { font-size: 10px; font-weight: 500; color: #2196F3; letter-spacing: 1px; margin-bottom: 4px; }
+.hl { background: rgba(0,184,212,0.08); border: 1px solid rgba(0,184,212,0.2); border-radius: 8px; padding: 12px 16px; margin: 12px 0; font-size: 12px; color: #80DEEA; line-height: 1.6; }
+.hll { font-size: 10px; font-weight: 500; color: #00B8D4; letter-spacing: 1px; margin-bottom: 4px; }
+.nav-actions { display: flex; justify-content: space-between; margin-top: 24px; gap: 10px; }
+.btn-sec { background: transparent; border: 1px solid #2a2d3a; color: #B0BEC5; border-radius: 8px; padding: 9px 18px; font-size: 12px; cursor: pointer; transition: all 0.2s; }
+.btn-sec:hover { border-color: #2196F3; color: #fff; }
+.btn-prim { background: #2196F3; color: white; border: none; border-radius: 8px; padding: 9px 18px; font-size: 12px; cursor: pointer; transition: opacity 0.2s; }
+.btn-prim:hover { opacity: 0.85; }
+.btn-next { background: #2196F3; color: white; border: none; border-radius: 8px; padding: 10px 20px; font-size: 13px; cursor: pointer; }
+.qw { font-size: 14px; font-weight: 500; color: #fff; margin-bottom: 16px; line-height: 1.5; }
+.qopts { display: flex; flex-direction: column; gap: 8px; }
+.qopt { background: #0e1018; border: 1px solid #1e2335; border-radius: 8px; padding: 12px 16px; cursor: pointer; font-size: 13px; color: #B0BEC5; transition: all 0.2s; text-align: left; width: 100%; }
+.qopt:hover:not(:disabled) { border-color: #2196F3; color: #fff; }
+.qopt.correct { border-color: #4CAF50; background: rgba(76,175,80,0.1); color: #A5D6A7; }
+.qopt.wrong { border-color: #EF5350; background: rgba(239,83,80,0.1); color: #EF9A9A; }
+.qfb { display: none; margin-top: 14px; padding: 12px 16px; border-radius: 8px; font-size: 13px; line-height: 1.6; }
+.qfb.show { display: block; }
+.qfb.ok { background: rgba(76,175,80,0.1); border: 1px solid rgba(76,175,80,0.3); color: #A5D6A7; }
+.qfb.ko { background: rgba(239,83,80,0.1); border: 1px solid rgba(239,83,80,0.3); color: #EF9A9A; }
+.qnext { display: none; margin-top: 12px; }
+.qnext.show { display: block; }
+.lf { margin: 24px 28px 0; padding-top: 16px; border-top: 1px solid #1e2335; display: flex; justify-content: space-between; font-size: 11px; color: #546E7A; }
+.fl { color: #2196F3; cursor: pointer; font-weight: 500; }
+
+/* REVOLUCIONES TIMELINE */
+.timeline { display: flex; flex-direction: column; gap: 0; }
+.tl-item { display: flex; gap: 16px; padding-bottom: 20px; position: relative; }
+.tl-item:last-child { padding-bottom: 0; }
+.tl-left { display: flex; flex-direction: column; align-items: center; width: 36px; flex-shrink: 0; }
+.tl-dot { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; border: 2px solid; }
+.tl-line { width: 2px; flex: 1; margin-top: 4px; }
+.tl-body { flex: 1; padding-top: 6px; }
+.tl-era { font-size: 10px; font-weight: 500; letter-spacing: 1px; margin-bottom: 4px; }
+.tl-title { font-size: 13px; font-weight: 500; color: #fff; margin-bottom: 4px; }
+.tl-desc { font-size: 12px; color: #B0BEC5; line-height: 1.5; }
+.tl-health { font-size: 11px; margin-top: 6px; font-style: italic; }
+
+/* TIPOS IA GRID */
+.ia-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ia-card { background: #0e1018; border-radius: 10px; padding: 14px 16px; border: 1px solid; cursor: pointer; transition: all 0.2s; }
+.ia-card:hover { opacity: 0.85; }
+.ia-badge { font-size: 10px; font-weight: 500; letter-spacing: 0.5px; padding: 3px 8px; border-radius: 10px; display: inline-block; margin-bottom: 8px; }
+.ia-title { font-size: 13px; font-weight: 500; color: #fff; margin-bottom: 6px; }
+.ia-desc { font-size: 11px; color: #B0BEC5; line-height: 1.5; }
+.ia-example { font-size: 11px; margin-top: 8px; padding-top: 8px; border-top: 1px solid #1e2335; }
+
+/* ROADMAP */
+.roadmap { display: flex; flex-direction: column; gap: 10px; }
+.rm-phase { background: #0e1018; border-radius: 10px; padding: 14px 16px; border-left: 4px solid; }
+.rm-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.rm-title { font-size: 13px; font-weight: 500; color: #fff; }
+.rm-time { font-size: 11px; color: #B0BEC5; }
+.rm-desc { font-size: 12px; color: #B0BEC5; line-height: 1.5; }
+.rm-actions { font-size: 11px; margin-top: 8px; }
+
+/* MADUREZ SLIDER */
+.madslider { margin: 12px 0; }
+.mad-label { font-size: 11px; color: #B0BEC5; margin-bottom: 8px; display: flex; justify-content: space-between; }
+.mad-result { background: #0e1018; border-radius: 8px; padding: 14px 16px; font-size: 12px; line-height: 1.6; margin-top: 10px; min-height: 80px; transition: all 0.3s; }
+</style>
+
+<div class="lw">
+  <div class="lh">
+    <div class="lb">MÓDULO 1 · LECCIÓN 1.4</div>
+    <div class="lt">La IA como palanca de transformación: <span>visión desde la Cuarta Revolución Industrial</span></div>
+    <div class="lm">
+      <div class="lmi"><div class="md" style="background:#2196F3"></div>71 minutos</div>
+      <div class="lmi"><div class="md" style="background:#00B8D4"></div>4 secciones</div>
+      <div class="lmi"><div class="md" style="background:#4CAF50"></div>Roadmap práctico</div>
+    </div>
+  </div>
+  <div class="pbw"><div class="pbb"><div class="pbf" id="pf4"></div></div><div class="pbl" id="pl4">0%</div></div>
+  <div class="snav">
+    <button class="nb active" id="t0" onclick="go(0)">📖 Intro</button>
+    <button class="nb" id="t1" onclick="go(1)">🏭 4 Revoluciones</button>
+    <button class="nb" id="t2" onclick="go(2)">🗺️ Roadmap</button>
+    <button class="nb" id="t3" onclick="go(3)">✅ Test</button>
+  </div>
+
+  <!-- SEC 0 -->
+  <div class="sec active" id="s0">
+    <div class="card">
+      <div class="ct">📋 Objetivo</div>
+      <div class="cb">Contextualizar la IA dentro de la transformación digital sanitaria global y entender su impacto en los modelos asistenciales. Ver dónde estamos en la historia, a dónde vamos y cómo adoptar la IA de forma progresiva en tu entorno hospitalario.</div>
+    </div>
+    <div class="simil">
+      <div class="sl">💡 CONTEXTUALIZACIÓN</div>
+      No estamos ante una moda tecnológica. Estamos ante un cambio de paradigma tan profundo como cuando los hospitales pasaron de registros en papel a la historia clínica electrónica. <strong>Quien no entiende el contexto, no puede liderar el cambio.</strong>
+    </div>
+    <div class="nav-actions"><span></span><button class="btn-prim" onclick="go(1)">Empezar →</button></div>
+  </div>
+
+  <!-- SEC 1: 4 REVOLUCIONES -->
+  <div class="sec" id="s1">
+    <div class="card">
+      <div class="ct">🏭 Las 4 revoluciones industriales y su impacto en salud</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-dot" style="background:rgba(176,190,197,0.15);border-color:#607D8B;">⚙️</div>
+            <div class="tl-line" style="background:#1e2335;"></div>
+          </div>
+          <div class="tl-body">
+            <div class="tl-era" style="color:#607D8B;">1ª REVOLUCIÓN · 1760-1840</div>
+            <div class="tl-title">Vapor y mecanización</div>
+            <div class="tl-desc">La máquina de vapor mecaniza la producción. La industria textil y el ferrocarril transforman la economía.</div>
+            <div class="tl-health" style="color:#607D8B;">En salud: primeros hospitales modernos, inicio de la estadística sanitaria con Florence Nightingale.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-dot" style="background:rgba(255,193,7,0.15);border-color:#FFC107;">⚡</div>
+            <div class="tl-line" style="background:#1e2335;"></div>
+          </div>
+          <div class="tl-body">
+            <div class="tl-era" style="color:#FFC107;">2ª REVOLUCIÓN · 1870-1914</div>
+            <div class="tl-title">Electricidad y producción en masa</div>
+            <div class="tl-desc">La electricidad y el motor de combustión permiten producción a escala industrial. Nace la cadena de montaje.</div>
+            <div class="tl-health" style="color:#FFC107;">En salud: electrocardiograma (1903), rayos X, laboratorio clínico, primeros antibióticos.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-dot" style="background:rgba(33,150,243,0.15);border-color:#2196F3;">💻</div>
+            <div class="tl-line" style="background:#1e2335;"></div>
+          </div>
+          <div class="tl-body">
+            <div class="tl-era" style="color:#2196F3;">3ª REVOLUCIÓN · 1960-2000</div>
+            <div class="tl-title">Digitalización e informática</div>
+            <div class="tl-desc">El ordenador e Internet digitalizan procesos. La información fluye globalmente. Nace la automatización digital.</div>
+            <div class="tl-health" style="color:#90CAF9;">En salud: historia clínica electrónica, PACS radiología, telemedicina, bases de datos clínicas. <strong style="color:#fff;">Aquí está el SNS hoy mayoritariamente.</strong></div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-dot" style="background:rgba(0,184,212,0.2);border-color:#00B8D4;box-shadow:0 0 8px rgba(0,184,212,0.3);">🤖</div>
+          </div>
+          <div class="tl-body">
+            <div class="tl-era" style="color:#00B8D4;">4ª REVOLUCIÓN · 2016-HOY</div>
+            <div class="tl-title" style="color:#00B8D4;">IA, Big Data e integración físico-digital</div>
+            <div class="tl-desc">La IA, el IoT y la computación en nube fusionan el mundo físico y digital. Los sistemas aprenden y se adaptan solos.</div>
+            <div class="tl-health" style="color:#80DEEA;">En salud: diagnóstico asistido por IA, predicción de reingresos, escriba virtual, medicina personalizada de precisión. <strong style="color:#fff;">Aquí es donde entramos tú y este curso.</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIPOS IA EN SALUD -->
+    <div class="card">
+      <div class="ct">🧬 Tipos de IA aplicables en salud hoy</div>
+      <div class="ia-grid">
+        <div class="ia-card" style="border-color:rgba(33,150,243,0.3);">
+          <div class="ia-badge" style="background:rgba(33,150,243,0.15);color:#90CAF9;">PREDICTIVA</div>
+          <div class="ia-title">Anticipa eventos</div>
+          <div class="ia-desc">Modelos que aprenden de datos pasados para predecir futuros: deterioro, sepsis, reingresos.</div>
+          <div class="ia-example" style="color:#90CAF9;">NEWS2 con IA, alerta temprana UCI, predicción de no-shows en consultas</div>
+        </div>
+        <div class="ia-card" style="border-color:rgba(0,184,212,0.3);">
+          <div class="ia-badge" style="background:rgba(0,184,212,0.15);color:#80DEEA;">GENERATIVA</div>
+          <div class="ia-title">Crea contenido</div>
+          <div class="ia-desc">Produce texto, imágenes o estructuras a partir de instrucciones. Es el foco de este curso.</div>
+          <div class="ia-example" style="color:#80DEEA;">Claude, ChatGPT, Gemini: informes, educación paciente, síntesis bibliográfica</div>
+        </div>
+        <div class="ia-card" style="border-color:rgba(156,39,176,0.3);">
+          <div class="ia-badge" style="background:rgba(156,39,176,0.15);color:#CE93D8;">VISIÓN ARTIFICIAL</div>
+          <div class="ia-title">Interpreta imágenes</div>
+          <div class="ia-desc">Analiza imágenes médicas con precisión igual o superior al especialista en tareas concretas.</div>
+          <div class="ia-example" style="color:#CE93D8;">Detección nódulos pulmonares TC, retinopatía diabética, lesiones cutáneas</div>
+        </div>
+        <div class="ia-card" style="border-color:rgba(76,175,80,0.3);">
+          <div class="ia-badge" style="background:rgba(76,175,80,0.15);color:#A5D6A7;">PROCESAMIENTO VOZ</div>
+          <div class="ia-title">Transcribe y analiza</div>
+          <div class="ia-desc">Convierte voz en texto estructurado en tiempo real. Revoluciona la documentación clínica.</div>
+          <div class="ia-example" style="color:#A5D6A7;">Dictado médico, transcripción de consultas, asistentes de voz en quirófano</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="simil">
+      <div class="sl">🔬 SÍMIL HISTÓRICO</div>
+      Cuando llegó el ecógrafo a los hospitales en los años 80, muchos médicos decían "eso lo hago yo con la exploración física". Hoy nadie concibe la obstetricia o la cardiología sin ecografía. La IA seguirá el mismo camino: <strong>de resistencia a estándar de cuidado.</strong> La diferencia es que este ciclo durará 5 años, no 20.
+    </div>
+    <div class="nav-actions"><button class="btn-sec" onclick="go(0)">← Volver</button><button class="btn-prim" onclick="go(2)">Siguiente: Roadmap →</button></div>
+  </div>
+
+  <!-- SEC 2: ROADMAP -->
+  <div class="sec" id="s2">
+    <div class="card">
+      <div class="ct">🗺️ Roadmap de adopción progresiva — ¿dónde está tu organización?</div>
+      <div class="cb" style="margin-bottom:14px;">Mueve el slider para ver en qué fase de madurez digital se encuentra tu unidad y qué pasos dar a continuación:</div>
+      <div class="madslider">
+        <div class="mad-label">
+          <span>Fase inicial</span>
+          <span id="mad-val">Fase 1</span>
+          <span>Avanzada</span>
+        </div>
+        <input type="range" min="1" max="4" value="1" id="mad-slider" style="width:100%;" oninput="showMad(this.value)">
+        <div class="mad-result" id="mad-result"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ct">🏥 Fases de adopción en hospitales del SNS</div>
+      <div class="roadmap">
+        <div class="rm-phase" style="border-color:#607D8B;">
+          <div class="rm-header">
+            <div class="rm-title">Fase 1: Digitalización básica</div>
+            <div class="rm-time" style="background:rgba(96,125,139,0.2);color:#90A4AE;border-radius:10px;padding:2px 10px;">Mayoría SNS</div>
+          </div>
+          <div class="rm-desc">HCE implantada, PACS radiológico, receta electrónica. Datos generados pero no explotados con IA.</div>
+          <div class="rm-actions" style="color:#90A4AE;">→ Próximo paso: identificar casos de uso de alto impacto y baja complejidad (ej: síntesis de informes)</div>
+        </div>
+        <div class="rm-phase" style="border-color:#2196F3;">
+          <div class="rm-header">
+            <div class="rm-title">Fase 2: IA de asistencia individual</div>
+            <div class="rm-time" style="background:rgba(33,150,243,0.15);color:#90CAF9;border-radius:10px;padding:2px 10px;">Pioneros</div>
+          </div>
+          <div class="rm-desc">Profesionales usan herramientas IA conversacional de forma individual (Claude, ChatGPT). Sin integración sistémica. Resultados personales, no institutcionalizados.</div>
+          <div class="rm-actions" style="color:#90CAF9;">→ Próximo paso: crear protocolos de uso seguro y compartir buenas prácticas en la unidad</div>
+        </div>
+        <div class="rm-phase" style="border-color:#00B8D4;">
+          <div class="rm-header">
+            <div class="rm-title">Fase 3: IA integrada en procesos</div>
+            <div class="rm-time" style="background:rgba(0,184,212,0.15);color:#80DEEA;border-radius:10px;padding:2px 10px;">Vanguardia SNS</div>
+          </div>
+          <div class="rm-desc">La IA está integrada en flujos de trabajo clínicos: alertas automáticas, informes asistidos, predicción de riesgo conectada a la HCE.</div>
+          <div class="rm-actions" style="color:#80DEEA;">→ Próximo paso: medir impacto con KPIs, extender a otras unidades, formar al equipo</div>
+        </div>
+        <div class="rm-phase" style="border-color:#CE93D8;">
+          <div class="rm-header">
+            <div class="rm-title">Fase 4: Ecosistema IA institucional</div>
+            <div class="rm-time" style="background:rgba(156,39,176,0.15);color:#CE93D8;border-radius:10px;padding:2px 10px;">2026-2028</div>
+          </div>
+          <div class="rm-desc">El hospital opera con IA en múltiples niveles: asistencial, logístico, investigación y gestión. Existe un Comité de IA y un marco de gobernanza propio.</div>
+          <div class="rm-actions" style="color:#CE93D8;">→ Objetivo a 3-5 años para hospitales de referencia del SNS</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hl">
+      <div class="hll">🏥 CONTEXTO SSPA</div>
+      Andalucía tiene en marcha la <strong>Estrategia de Salud Digital 2030</strong>, que incluye IA como eje transversal. El HUCS participa en proyectos piloto de IA para oncología y gestión de listas de espera. El conocimiento que adquieres en este curso te posiciona para liderar la transición en tu unidad.
+    </div>
+    <div class="nav-actions"><button class="btn-sec" onclick="go(1)">← Anterior</button><button class="btn-prim" onclick="go(3)">Siguiente: Test →</button></div>
+  </div>
+
+  <!-- SEC 3: TEST -->
+  <div class="sec" id="s3">
+    <div class="card">
+      <div class="ct">✅ Autoevaluación 1.4</div>
+      <div class="cb" style="margin-bottom:8px;">3 preguntas sobre transformación digital y adopción de IA en salud.</div>
+    </div>
+    <div class="card" id="q1w">
+      <div class="qw">1 de 3 — ¿En qué revolución industrial se enmarcan las historias clínicas electrónicas (HCE) que usas hoy en el hospital?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,1)">Segunda revolución industrial (electricidad y producción en masa)</button>
+        <button class="qopt" onclick="ans(this,true,1)">Tercera revolución industrial (digitalización e informática)</button>
+        <button class="qopt" onclick="ans(this,false,1)">Cuarta revolución industrial (IA e integración físico-digital)</button>
+        <button class="qopt" onclick="ans(this,false,1)">Primera revolución industrial (vapor y mecanización)</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+      <div class="qnext" id="nx1"><button class="btn-next" onclick="showQ(2)">Siguiente →</button></div>
+    </div>
+    <div class="card" id="q2w" style="display:none">
+      <div class="qw">2 de 3 — Un sistema de IA analiza TC de tórax y detecta nódulos con un 94% de sensibilidad. ¿Qué tipo de IA es?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,2)">IA generativa</button>
+        <button class="qopt" onclick="ans(this,false,2)">IA predictiva</button>
+        <button class="qopt" onclick="ans(this,true,2)">Visión artificial (computer vision)</button>
+        <button class="qopt" onclick="ans(this,false,2)">Procesamiento de voz</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+      <div class="qnext" id="nx2"><button class="btn-next" onclick="showQ(3)">Última →</button></div>
+    </div>
+    <div class="card" id="q3w" style="display:none">
+      <div class="qw">3 de 3 — Tu unidad usa HCE y receta electrónica, pero ningún profesional ha integrado IA en su práctica. ¿En qué fase del roadmap de adopción estás?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,true,3)">Fase 1: digitalización básica</button>
+        <button class="qopt" onclick="ans(this,false,3)">Fase 2: IA de asistencia individual</button>
+        <button class="qopt" onclick="ans(this,false,3)">Fase 3: IA integrada en procesos</button>
+        <button class="qopt" onclick="ans(this,false,3)">Fase 4: ecosistema IA institucional</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+      <div class="qnext" id="nx3">
+        <div style="background:rgba(33,150,243,0.1);border:1px solid rgba(33,150,243,0.3);border-radius:10px;padding:16px;margin-top:8px;">
+          <div style="font-size:14px;font-weight:500;color:#90CAF9;margin-bottom:6px;">🎉 ¡Lección 1.4 completada!</div>
+          <div style="font-size:12px;color:#B0BEC5;line-height:1.6;">Ya entiendes el contexto histórico y el roadmap de adopción. En la <strong style="color:#fff;">Lección 1.5</strong> aprenderás a gestionar el cambio cultural y las resistencias en tu equipo.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lf">
+    <span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span>
+    <span>Desarrollado por DoncelProject · doncel.project@gmail.com</span>
+  </div>
+</div>
+
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/4)*100);document.getElementById('pf4').style.width=p+'%';document.getElementById('pl4').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+const mads={1:{label:'Fase 1 — Digitalización básica',text:'Tu unidad tiene HCE y sistemas digitales, pero sin IA activa. <strong style="color:#fff;">Próximo paso:</strong> empieza por ti mismo: usa Claude o ChatGPT para sintetizar informes o preparar informes de alta. Documenta los beneficios y compártelos con tu jefa/e de unidad. <strong style="color:#fff;">Tiempo estimado para pasar a Fase 2:</strong> 3-6 meses con este curso.',color:'#607D8B'},2:{label:'Fase 2 — IA de asistencia individual',text:'Algunos profesionales ya usan IA de forma individual. <strong style="color:#fff;">Próximo paso:</strong> institucionalizar: propón a dirección un protocolo de uso seguro. Crea una biblioteca de prompts compartida para tu servicio. <strong style="color:#fff;">Tiempo estimado para pasar a Fase 3:</strong> 6-18 meses.',color:'#2196F3'},3:{label:'Fase 3 — IA integrada en procesos',text:'La IA ya está en flujos de trabajo clínicos. <strong style="color:#fff;">Próximo paso:</strong> mide el impacto con KPIs (tiempo ahorrado, satisfacción, errores reducidos). Forma a toda la unidad y expande a otros servicios. <strong style="color:#fff;">Tiempo estimado para pasar a Fase 4:</strong> 2-3 años.',color:'#00B8D4'},4:{label:'Fase 4 — Ecosistema IA institucional',text:'Tu organización lidera la adopción de IA en el SNS. <strong style="color:#fff;">Próximo paso:</strong> compartir aprendizajes con otras instituciones, publicar resultados y desarrollar modelos propios adaptados a vuestra casuística. Objetivo: referente nacional.',color:'#CE93D8'}};
+function showMad(v){const m=mads[v];document.getElementById('mad-val').textContent=m.label;const r=document.getElementById('mad-result');r.style.borderLeft='3px solid '+m.color;r.innerHTML='<div style="font-size:10px;font-weight:500;letter-spacing:1px;color:'+m.color+';margin-bottom:8px;">'+m.label.toUpperCase()+'</div><div style="color:#B0BEC5;font-size:12px;line-height:1.7;">'+m.text+'</div>';}
+showMad(1);
+const fbs={1:{ok:'✅ Correcto. Las HCE corresponden a la 3ª revolución industrial (digitalización). La 4ª revolución, donde entra la IA, va más allá: los sistemas no solo almacenan datos, sino que aprenden de ellos.',ko:'❌ Las HCE son producto de la 3ª revolución industrial: digitalización e informática. La IA pertenece a la 4ª, que fusiona el mundo físico y digital con sistemas que aprenden solos.'},2:{ok:'✅ Correcto. Analizar imágenes médicas (TC, RMN, radiografías, fotos dermatológicas) es el dominio de la visión artificial, un tipo de IA especializado en procesar información visual.',ko:'❌ El análisis de imágenes médicas corresponde a la visión artificial (computer vision). La IA generativa produce texto; la predictiva anticipa eventos; la de voz transcribe audio.'},3:{ok:'✅ Correcto. Tener HCE sin uso de IA es la Fase 1: digitalización básica. El siguiente paso es que los profesionales empiecen a usar IA de forma individual, lo que defines la Fase 2.',ko:'❌ HCE sin IA corresponde a la Fase 1. La Fase 2 comienza cuando los profesionales integran IA conversacional en su práctica individual, aunque sea sin apoyo institucional.'}};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').style.display='none';document.getElementById('q'+n+'w').style.display='block';}
+upd();
+</script>

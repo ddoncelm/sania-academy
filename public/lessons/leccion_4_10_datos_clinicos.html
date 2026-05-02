@@ -1,0 +1,265 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:32px}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(33,150,243,.15);border:1px solid rgba(33,150,243,.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#90CAF9;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px}.lt span{color:#2196F3}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px;flex-wrap:wrap}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#2196F3;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:80px}
+.nb.active{color:#2196F3;border-bottom-color:#2196F3;background:#0C0D12}
+.sec{display:none;padding:20px 24px}.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(33,150,243,.08);border:1px solid rgba(33,150,243,.22);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#2196F3;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer}
+.tec-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.tec-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 14px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s}
+.tec-tab.active{background:rgba(33,150,243,.15);border-color:#2196F3;color:#90CAF9}
+.tec-panel{display:none}.tec-panel.show{display:block}
+.prompt-box{background:#0e1018;border:1px solid #1e2335;border-radius:10px;padding:14px;margin:10px 0}
+.prompt-label{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}
+.prompt-text{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.prompt-why{font-size:11px;color:#B0BEC5;line-height:1.6;margin-top:10px;padding-top:10px;border-top:1px solid #1e2335}
+.limit-item{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #1a2a3a}
+.limit-item:last-child{border-bottom:none}
+.li-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.li-title{font-size:12px;font-weight:600;color:#fff;margin-bottom:3px}
+.li-desc{font-size:11px;color:#B0BEC5;line-height:1.6}
+.flow-box{background:#0C0D12;border-radius:8px;padding:12px 14px;margin:10px 0;font-family:monospace;font-size:11px;color:#90CAF9;line-height:1.9;white-space:pre-wrap;word-break:break-word;border-left:2px solid #2196F3}
+.alerta{border-radius:10px;padding:12px 14px;margin:12px 0;font-size:12px;line-height:1.6}
+.ao{background:rgba(76,175,80,.07);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.aw{background:rgba(255,152,0,.07);border:1px solid rgba(255,152,0,.22);color:#FFD54F}
+.ad{background:rgba(244,67,54,.07);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.alt{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px}
+.base-card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px;margin-bottom:10px}
+.bc-label{font-size:10px;font-weight:600;color:#90CAF9;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px}
+.bc-nombre{font-size:14px;font-weight:700;color:#fff;margin-bottom:4px}
+.bc-articulo{font-size:11px;color:#2196F3;margin-bottom:8px}
+.bc-desc{font-size:11px;color:#B0BEC5;line-height:1.6;margin-bottom:8px}
+.bc-cuando{font-size:11px;color:#E0E0E0;line-height:1.6;padding:8px 10px;background:#0e1018;border-radius:6px}
+.modulo-fin{background:linear-gradient(135deg,rgba(33,150,243,.15),rgba(21,101,192,.1));border:1px solid rgba(33,150,243,.35);border-radius:14px;padding:24px;margin-top:20px;text-align:center}
+.mf-titulo{font-size:18px;font-weight:700;color:#2196F3;margin-bottom:8px}
+.mf-sub{font-size:12px;color:#B0BEC5;line-height:1.7}
+.resumen-m4{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:20px;margin:14px 0}
+.rm-item{display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid #1a2a3a}
+.rm-item:last-child{border-bottom:none}
+.rm-n{background:rgba(33,150,243,.2);color:#90CAF9;font-size:10px;font-weight:700;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.rm-t{font-size:11px;color:#E0E0E0;line-height:1.6}
+.rm-b{font-size:10px;color:#546E7A;margin-top:1px}
+.qw{display:none}.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s}
+.qopt:hover{border-color:#2196F3;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}.qnx.show{display:block}
+.complete-btn{width:100%;background:linear-gradient(135deg,#2196F3,#1565C0);color:#fff;border:none;border-radius:10px;padding:14px 20px;font-size:13px;font-weight:600;cursor:pointer;margin-top:16px;letter-spacing:.3px;transition:opacity .2s}
+.complete-btn:hover{opacity:.9}.complete-btn:disabled{opacity:.5;cursor:not-allowed}
+.lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a}
+.fl{color:#2196F3;cursor:pointer;text-decoration:underline}
+</style>
+<div class="lw">
+<div class="lh"><div class="lb">MÓDULO 4 · LECCIÓN 4.10 · FINAL</div><div class="lt">Uso legal y ético de datos clínicos:<br><span>bases legales RGPD, técnicas de privacidad y auditoría de responsabilidad</span></div><div class="lm"><div class="lmi"><div class="md" style="background:#2196F3"></div>74 minutos</div><div class="lmi"><div class="md" style="background:#FFB300"></div>Síntesis del módulo</div><div class="lmi"><div class="md" style="background:#A5D6A7"></div>Ética y derecho</div></div></div>
+<div class="pbw"><div class="pbb"><div class="pbf" id="pbf410"></div></div><div class="pbl" id="pbl410">0%</div></div>
+<div class="snav"><button class="nb active" id="t1" onclick="go(1)">Marco legal completo</button><button class="nb" id="t2" onclick="go(2)">Bases legales RGPD</button><button class="nb" id="t3" onclick="go(3)">Técnicas de privacidad</button><button class="nb" id="t4" onclick="go(4)">Auditoría y síntesis M4</button><button class="nb" id="t5" onclick="go(5)">Test final</button></div>
+
+<div class="sec active" id="s1">
+<div class="card"><div class="ct">Objetivo de la lección</div><div class="cb">Establecer el marco completo de uso legal y ético de datos clínicos en proyectos de IA: las bases legales disponibles bajo el RGPD, las técnicas de privacidad aplicables a cada contexto, y el sistema de auditoría y rendición de cuentas que garantiza que el uso de datos es trazable, responsable y revisable.</div></div>
+<div class="simil"><div class="sl">⚖️ Analogía clínica</div>Usar datos clínicos para IA sin el marco legal correcto es como operar sin consentimiento informado: puede que el procedimiento sea técnicamente correcto y clínicamente beneficioso, pero viola un derecho fundamental del paciente y genera responsabilidad legal para el profesional y la institución. El marco legal no es un obstáculo burocrático — es la garantía de que la confianza del paciente en el sistema sanitario se mantiene cuando sus datos se usan para mejorarlo.</div>
+<div class="card"><div class="ct">El paisaje normativo en 2025</div><div class="cb" style="margin-bottom:10px">Tres marcos normativos se superponen para los proyectos de IA clínica en España:</div>
+<div class="limit-item"><div class="li-icon">🇪🇺</div><div class="li-body"><div class="li-title">RGPD (Reglamento 2016/679) + LOPDGDD</div><div class="li-desc">Marco de protección de datos personales. Los datos de salud son categoría especial (Art. 9). Base legal específica requerida para cualquier tratamiento. Se aplica a todos los proyectos de IA que tratan datos de pacientes identificables.</div></div></div>
+<div class="limit-item"><div class="li-icon">🤖</div><div class="li-body"><div class="li-title">Reglamento Europeo de IA (AI Act — Reglamento 2024/1689)</div><div class="li-desc">En vigor desde agosto 2024, con aplicación progresiva. Los sistemas de IA en salud son de «alto riesgo» → obligaciones de documentación técnica, supervisión humana, registro de uso, y explicabilidad. Los sistemas de IA que influyen en decisiones sobre pacientes requieren cumplimiento activo.</div></div></div>
+<div class="limit-item"><div class="li-icon">🏥</div><div class="li-body"><div class="li-title">Normativa sectorial sanitaria</div><div class="li-desc">Ley de Cohesión y Calidad del SNS, Ley de Autonomía del Paciente (41/2002), Estrategia de Salud Digital del SNS, normativa autonómica específica. Estas normas añaden requisitos adicionales sobre confidencialidad de la historia clínica, consentimiento informado y derechos de los pacientes.</div></div></div>
+<div class="nav-actions"><div></div><button class="btn-p" onclick="go(2)">Bases legales RGPD →</button></div>
+</div>
+
+</div>
+<div class="sec" id="s2">
+<div class="card"><div class="ct">Bases legales para el tratamiento de datos en proyectos de IA clínica</div><div class="cb">El RGPD exige una base legal para cualquier tratamiento de datos personales. Para datos de salud (Art. 9), además de la base legal del Art. 6, se necesita una de las excepciones del Art. 9.2. Elegir la base legal correcta no es un tecnicismo — determina los derechos del paciente y las obligaciones del hospital.</div></div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'bl-asistencia')">🏥 Asistencia sanitaria</button><button class="tec-tab" onclick="showTab(this,'bl-investigacion')">🔬 Investigación</button><button class="tec-tab" onclick="showTab(this,'bl-interes')">🎯 Interés público</button><button class="tec-tab" onclick="showTab(this,'bl-consentimiento')">✍️ Consentimiento</button></div>
+<div class="tec-panel show" id="bl-asistencia">
+<div class="base-card"><div class="bc-label">Base legal más frecuente en IA clínica</div><div class="bc-nombre">Asistencia sanitaria y tratamiento</div><div class="bc-articulo">Art. 9.2.h RGPD + Art. 6.1.c/e (obligación legal / misión de interés público)</div><div class="bc-desc">Los datos de salud pueden tratarse cuando es necesario para fines de medicina preventiva, diagnóstico médico, prestación de asistencia sanitaria, o gestión de los servicios sanitarios. Esta es la base que cubre la mayoría de proyectos de IA que mejoran la atención directa al paciente.</div><div class="bc-cuando">Cuándo aplica: automatización de documentación clínica, sistemas de apoyo al diagnóstico, gestión de citas, recordatorios de medicación, seguimiento de crónicos. El paciente no necesita dar consentimiento adicional si el tratamiento es parte integral de la asistencia que ya está recibiendo.</div></div>
+<div class="alerta ao"><div class="alt">✅ Importante</div>Para que aplique esta base legal, el tratamiento de datos con IA debe ser necesario para prestar la asistencia — no meramente conveniente. Un sistema de IA que mejora la eficiencia documental del médico cumple este criterio. Un sistema que analiza datos de pacientes para investigación de mercado no lo cumple, independientemente de quién lo opera.</div>
+</div>
+<div class="tec-panel" id="bl-investigacion">
+<div class="base-card"><div class="bc-label">Para proyectos de investigación clínica</div><div class="bc-nombre">Investigación científica en salud pública</div><div class="bc-articulo">Art. 9.2.j RGPD + Considerandos 157-159</div><div class="bc-desc">Permite el tratamiento de datos de salud para fines de investigación científica, incluyendo el desarrollo y mejora de sistemas de IA clínica cuando el objetivo es avanzar el conocimiento médico.</div><div class="bc-cuando">Cuándo aplica: fine-tuning de modelos con datos clínicos históricos para investigación, análisis de cohortes para validar algoritmos de predicción, estudios de impacto de la IA en outcomes clínicos. Requiere: (1) aprobación del CEI, (2) anonimización o pseudonimización siempre que sea posible, (3) medidas de seguridad adicionales, (4) principio de minimización.</div></div>
+</div>
+<div class="tec-panel" id="bl-interes">
+<div class="base-card"><div class="bc-label">Para administraciones sanitarias públicas</div><div class="bc-nombre">Misión de interés público</div><div class="bc-articulo">Art. 6.1.e + Art. 9.2.i/j RGPD</div><div class="bc-desc">Las administraciones sanitarias públicas tienen una misión de interés público que puede justificar el tratamiento de datos sin consentimiento individual cuando es necesario para esa misión — por ejemplo, para mejorar la calidad del sistema sanitario en su conjunto.</div><div class="bc-cuando">Cuándo aplica: sistemas de vigilancia epidemiológica, análisis de calidad asistencial a nivel poblacional, dashboards de indicadores del SNS, programas de salud pública. La clave es que el objetivo sea el interés de la población, no el beneficio comercial del operador.</div></div>
+</div>
+<div class="tec-panel" id="bl-consentimiento">
+<div class="base-card"><div class="bc-label">La base legal más usada pero no siempre la correcta</div><div class="bc-nombre">Consentimiento explícito</div><div class="bc-articulo">Art. 9.2.a + Art. 7 RGPD</div><div class="bc-desc">El paciente da su consentimiento libre, específico, informado e inequívoco para el tratamiento de sus datos de salud con el fin concreto descrito. Parece la más segura, pero tiene importantes limitaciones.</div><div class="bc-cuando">Cuándo SÍ usar consentimiento: programas de telemonitorización donde el paciente participa activamente y puede elegir no participar, integración de datos de wearables personales en el sistema clínico, uso de datos para fines que van más allá de la asistencia directa.
+Cuándo NO usar consentimiento: como base única para tratamientos necesarios para la asistencia (la denegación del consentimiento no puede impedir recibir atención). El consentimiento no es válido si no es libre — en una relación médico-paciente, la libertad de elección puede verse comprometida.</div></div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(1)">← Marco legal</button><button class="btn-p" onclick="go(3)">Técnicas de privacidad →</button></div>
+</div>
+
+<div class="sec" id="s3">
+<div class="card"><div class="ct">Técnicas de privacidad: más allá de la anonimización</div><div class="cb">La anonimización y la pseudonimización (vistas en la lección 3.5) son las técnicas más conocidas, pero el arsenal de privacidad para IA clínica incluye técnicas más avanzadas que permiten extraer valor de los datos sin exponer a los pacientes.</div></div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'priv-dp')">🔐 Privacidad diferencial</button><button class="tec-tab" onclick="showTab(this,'priv-fl')">🌐 Federated Learning</button><button class="tec-tab" onclick="showTab(this,'priv-syn')">🔄 Datos sintéticos</button></div>
+<div class="tec-panel show" id="priv-dp">
+<div class="card"><div class="ct">Privacidad diferencial: añadir ruido matemático para proteger individuos</div><div class="cb">La privacidad diferencial es una técnica matemática que garantiza que los resultados de un análisis estadístico no revelan información sobre ningún individuo concreto, aunque sí revelan patrones poblacionales correctos.</div></div>
+<div class="limit-item"><div class="li-icon">🎲</div><div class="li-body"><div class="li-title">Cómo funciona</div><div class="li-desc">Se añade «ruido» estadístico calibrado matemáticamente a los datos o a los resultados del análisis. El nivel de ruido es suficiente para que no sea posible inferir los datos de un individuo concreto, pero insuficiente para distorsionar los patrones estadísticos de la población. Es el estándar de privacidad usado por Apple y Google en sus estadísticas anónimas.</div></div></div>
+<div class="limit-item"><div class="li-icon">🏥</div><div class="li-body"><div class="li-title">Aplicación en sanidad</div><div class="li-desc">Para entrenar modelos de IA con datos de pacientes manteniendo garantías matemáticas de que ningún individuo puede ser reidentificado por el modelo resultante. TensorFlow Privacy y PyTorch Opacus son las bibliotecas open source más usadas para implementar DP en entrenamiento de modelos. Complejo de implementar, pero es el estándar emergente para modelos de IA de alto riesgo en sanidad.</div></div></div>
+</div>
+<div class="tec-panel" id="priv-fl">
+<div class="card"><div class="ct">Federated Learning: entrenar sin mover los datos</div><div class="cb">En lugar de centralizar los datos de múltiples hospitales para entrenar un modelo, el Federated Learning entrena el modelo localmente en cada hospital y solo comparte las actualizaciones del modelo (gradientes), no los datos. El resultado es un modelo que ha aprendido de todos los hospitales sin que los datos de ninguno de ellos hayan salido de su institución.</div></div>
+<div class="flow-box">ARQUITECTURA FEDERATED LEARNING EN SANIDAD:
+
+Modelo central (servidor coordinador)
+├── Hospital A: entrena localmente → envía gradientes
+├── Hospital B: entrena localmente → envía gradientes
+├── Hospital C: entrena localmente → envía gradientes
+└── Servidor: agrega gradientes → actualiza modelo central → distribuye
+
+LO QUE SE COMPARTE: actualizaciones matemáticas del modelo (gradientes)
+LO QUE NO SE COMPARTE: datos de pacientes — nunca salen del hospital
+
+BENEFICIO: Un modelo entrenado con datos de 10 hospitales diferentes
+es mucho más robusto y generalizable que uno entrenado en un solo centro —
+captura la variabilidad clínica real entre centros.
+
+CASOS DE USO ACTUALES EN SANIDAD:
+→ Modelos de predicción de sepsis multi-hospital
+→ Detección de hallazgos radiológicos con datos de múltiples centros
+→ Modelos de riesgo cardiovascular entrenados en cohortes distribuidas
+
+DESAFÍO: Requiere infraestructura técnica significativa y coordinación
+entre centros — no es una tecnología plug-and-play todavía.</div>
+</div>
+<div class="tec-panel" id="priv-syn">
+<div class="card"><div class="ct">Datos sintéticos: el sustituto más práctico para formación y pruebas</div><div class="cb">Los datos sintéticos son datos generados artificialmente que preservan las propiedades estadísticas de los datos reales pero no corresponden a ningún paciente real. Son la técnica más accesible para el uso cotidiano en desarrollo y testing de IA clínica.</div></div>
+<div class="limit-item"><div class="li-icon">🤖</div><div class="li-body"><div class="li-title">Cómo generarlos para sanidad</div><div class="li-desc">La IA generativa puede crear datasets clínicos sintéticos realistas. Para hacerlo correctamente: primero analizar la distribución estadística de los datos reales (edad, diagnóstico, comorbilidades, estancia), luego generar datos sintéticos que repliquen esa distribución con la misma variabilidad, y finalmente verificar que el dataset sintético no contiene ningún caso idéntico a un caso real (riesgo de memorización).</div></div></div>
+<div class="limit-item"><div class="li-icon">✅</div><div class="li-body"><div class="li-title">Usos legítimos de datos sintéticos</div><div class="li-desc">Testing de flujos de automatización sin datos reales de pacientes. Formación de residentes y estudiantes con casos clínicos realistas. Desarrollo y debugging de sistemas de IA clínica. Validación de prototipos antes de solicitar acceso a datos reales. Compartir «datos» entre instituciones para colaboración sin restricciones RGPD.</div></div></div>
+<div class="prompt-box">
+<div class="prompt-label">Prompt: generar dataset clínico sintético realista para testing</div>
+<div class="prompt-text">Necesito generar un dataset sintético de [N] pacientes para testear el sistema de [DESCRIPCIÓN DEL SISTEMA].
+
+El dataset debe simular fielmente los pacientes del Servicio de [ESPECIALIDAD] de un hospital del SNS español con estas características estadísticas:
+
+DISTRIBUCIÓN DEMOGRÁFICA (basada en nuestro servicio real):
+- Edad: [distribución media, desviación estándar, rango]
+- Sexo: [% hombres / mujeres]
+- Procedencia: [% ingresados desde urgencias / programados / etc.]
+
+DIAGNÓSTICOS MÁS FRECUENTES (con su distribución):
+[lista de diagnósticos y porcentaje]
+
+COMORBILIDADES FRECUENTES:
+[lista de comorbilidades y prevalencia en nuestra población]
+
+DATOS CLÍNICOS QUE NECESITO EN EL DATASET:
+[lista de variables: fecha de ingreso, días de estancia, diagnóstico CIE-10, medicación, valores analíticos de ingreso, etc.]
+
+CASOS ESPECIALES A INCLUIR:
+[casos límite, complicaciones infrecuentes, combinaciones de diagnósticos complejas]
+
+Genera el dataset en formato CSV con headers en castellano. Todos los nombres, números de historia y datos identificativos deben ser completamente ficticios. Incluye 5 casos con datos intencionalmente malformados para testear el manejo de errores del sistema.</div>
+<div class="prompt-why">Los datos sintéticos bien diseñados replican la complejidad clínica real sin los riesgos RGPD de usar datos de pacientes reales. La clave es la fidelidad estadística — un dataset sintético con distribuciones incorrectas produce resultados de testing que no se generalizan al caso real.</div>
+</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(2)">← Bases legales</button><button class="btn-p" onclick="go(4)">Auditoría y síntesis →</button></div>
+</div>
+
+<div class="sec" id="s4">
+<div class="card"><div class="ct">Auditoría, rendición de cuentas y síntesis del Módulo 4</div><div class="cb">El Reglamento Europeo de IA y el RGPD coinciden en un principio: la responsabilidad de los sistemas de IA debe ser trazable y demostrable. No basta con que el sistema sea seguro — debe poder demostrarse que es seguro, ante quien lo solicite y en el momento que lo solicite.</div></div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'audit-doc')">📋 Documentación obligatoria</button><button class="tec-tab" onclick="showTab(this,'audit-m4')">📚 Síntesis Módulo 4</button></div>
+<div class="tec-panel show" id="audit-doc">
+<div class="limit-item"><div class="li-icon">📄</div><div class="li-body"><div class="li-title">Registro de actividades de tratamiento (RAT)</div><div class="li-desc">Obligatorio bajo RGPD Art. 30 para organizaciones con más de 250 empleados (y para hospitales en cualquier caso por tratar datos de categoría especial). Cada tratamiento de datos de pacientes en sistemas de IA debe figurar en el RAT: responsable, finalidad, categorías de datos, destinatarios, medidas de seguridad, plazo de conservación.</div></div></div>
+<div class="limit-item"><div class="li-icon">🔍</div><div class="li-body"><div class="li-title">Evaluación de Impacto en Protección de Datos (EIPD/DPIA)</div><div class="li-desc">Obligatoria bajo RGPD Art. 35 cuando el tratamiento supone «alto riesgo» para los derechos de los interesados. Los sistemas de IA que tratan datos de salud a gran escala, que toman decisiones automatizadas con efectos significativos, o que implican nuevas tecnologías son candidatos obligatorios a EIPD. El DPD del hospital debe ser consultado antes de desplegar.</div></div></div>
+<div class="limit-item"><div class="li-icon">🤖</div><div class="li-body"><div class="li-title">Documentación técnica AI Act (sistemas de alto riesgo)</div><div class="li-desc">Para sistemas de IA de alto riesgo (incluidos los de salud), el AI Act exige: descripción general del sistema y su propósito, datos utilizados en el entrenamiento y su gestión, medidas de supervisión humana implementadas, rendimiento del sistema y sus limitaciones conocidas, medidas de gestión de riesgos. Esta documentación debe mantenerse actualizada durante toda la vida del sistema.</div></div></div>
+<div class="prompt-box">
+<div class="prompt-label">Prompt: redactar la EIPD para un sistema de IA clínica</div>
+<div class="prompt-text">Necesito preparar la Evaluación de Impacto en Protección de Datos (EIPD/DPIA) para el siguiente sistema de IA:
+
+DESCRIPCIÓN DEL SISTEMA:
+- Nombre del sistema: [nombre]
+- Función: [qué hace]
+- Datos que procesa: [categorías de datos, volumen estimado de pacientes]
+- Tecnología subyacente: [RAG / fine-tuning / automatización / etc.]
+- Decisiones que influye o toma: [descripción del nivel de autonomía]
+- Supervisión humana: [quién valida las decisiones del sistema]
+
+CONTEXTO DE DESPLIEGUE:
+- Hospital/Servicio: [descripción]
+- Usuarios del sistema: [perfiles que lo usan]
+- Proveedores externos implicados: [si hay cloud, APIs externas, etc.]
+
+Genera el borrador de EIPD con las secciones estándar:
+1. Descripción sistemática del tratamiento
+2. Evaluación de la necesidad y proporcionalidad
+3. Evaluación de los riesgos para los derechos y libertades de los interesados
+4. Medidas previstas para hacer frente a los riesgos
+5. Conclusión y recomendaciones
+
+Señala explícitamente los puntos donde el DPD del hospital debe completar información específica de la institución que no puede generarse sin ese contexto.</div>
+<div class="prompt-why">Una EIPD bien redactada acelera el proceso de aprobación ante el DPD y el comité de ética. El borrador generado no es el documento final — es el punto de partida que el DPD revisa, completa y firma. Llegar a esa reunión con el borrador ya preparado ahorra semanas del proceso.</div>
+</div>
+</div>
+<div class="tec-panel" id="audit-m4">
+<div class="resumen-m4">
+<div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #1e2335">📚 Módulo 4 completo — Síntesis</div>
+<div class="rm-item"><div class="rm-n">1</div><div><div class="rm-t"><strong>4.1</strong> — Fine-tuning vs. RAG vs. prompt engineering: árbol de decisión, cuándo usar cada estrategia y requisitos de privacidad para datos de entrenamiento</div><div class="rm-b">Estrategias de personalización</div></div></div>
+<div class="rm-item"><div class="rm-n">2</div><div><div class="rm-t"><strong>4.2</strong> — Aplicaciones por rol: casos de uso de máximo impacto para médico, enfermería, farmacia clínica y dirección sanitaria</div><div class="rm-b">Personalización por perfil</div></div></div>
+<div class="rm-item"><div class="rm-n">3</div><div><div class="rm-t"><strong>4.3</strong> — Playground de OpenAI: temperatura (0.0-0.4 para clínica), system prompts con 6 componentes, gestión de tokens y coste</div><div class="rm-b">Configuración técnica</div></div></div>
+<div class="rm-item"><div class="rm-n">4</div><div><div class="rm-t"><strong>4.4</strong> — IoT clínico: APIs REST y MQTT para wearables, FHIR Observation, alertas inteligentes basadas en tendencia y correlación</div><div class="rm-b">Integración de dispositivos</div></div></div>
+<div class="rm-item"><div class="rm-n">5</div><div><div class="rm-t"><strong>4.5</strong> — Validación clínica cruzada: sensibilidad, especificidad, VPP, VPN, curva ROC y comparación con gold standards</div><div class="rm-b">Validación y calidad</div></div></div>
+<div class="rm-item"><div class="rm-n">6</div><div><div class="rm-t"><strong>4.6</strong> — Marco normativo completo: AI Act (alto riesgo), MDR para IA como dispositivo médico, responsabilidad profesional</div><div class="rm-b">Cumplimiento normativo</div></div></div>
+<div class="rm-item"><div class="rm-n">7</div><div><div class="rm-t"><strong>4.7</strong> — Personalización sin código: herramientas no-code para fine-tuning, integración de bases de conocimiento y control de calidad</div><div class="rm-b">No-code avanzado</div></div></div>
+<div class="rm-item"><div class="rm-n">8</div><div><div class="rm-t"><strong>4.8</strong> — Actualización continua: concept drift, pipelines de actualización RAG, versionado seguro y procedimiento de rollback</div><div class="rm-b">MLOps sanitario</div></div></div>
+<div class="rm-item"><div class="rm-n">9</div><div><div class="rm-t"><strong>4.9</strong> — Liderazgo digital: framework de 5 horizontes, gestión de 5 perfiles de resistencia, cálculo y presentación del ROI</div><div class="rm-b">Gestión del cambio</div></div></div>
+<div class="rm-item"><div class="rm-n">10</div><div><div class="rm-t"><strong>4.10</strong> — Marco legal completo: bases legales RGPD, privacidad diferencial, Federated Learning, datos sintéticos, EIPD y AI Act</div><div class="rm-b">Ética y legalidad</div></div></div>
+</div>
+<div class="modulo-fin">
+<div class="mf-titulo">🎓 Módulo 4 completado</div>
+<div class="mf-sub" style="margin-top:10px">Has completado las 10 lecciones del Módulo 4: Creación y Personalización Segura de Modelos de IA. Desde elegir entre fine-tuning, RAG y prompt engineering hasta liderar la transformación digital de tu hospital con métricas de ROI reales y cumplimiento normativo completo.<br><br><strong style="color:#2196F3">El Módulo 5 te espera:</strong> Casos prácticos avanzados y flujos de acción — donde todo lo aprendido en los módulos 1-4 se integra en proyectos clínicos reales de alta complejidad.</div>
+</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(3)">← Técnicas de privacidad</button><button class="btn-p" onclick="go(5)">Test final →</button></div>
+</div>
+
+<div class="sec" id="s5">
+<div class="qw active" id="q1w"><div class="qnum">Pregunta 1 de 3 — Test final Módulo 4</div><div class="qtxt">Un hospital quiere usar datos de historia clínica electrónica de los últimos 5 años para mejorar un modelo de IA de predicción de reingresos. Los datos incluyen diagnósticos, comorbilidades, medicación y resultados analíticos, pero NO nombres ni NHC. ¿Qué base legal del RGPD aplica y qué requisito adicional es imprescindible?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,1)">Interés legítimo del hospital (Art. 6.1.f) — suficiente sin ningún requisito adicional porque los datos no tienen nombre ni NHC</button><button class="qopt" onclick="ans(this,true,1)">Art. 9.2.j (investigación científica en salud) + aprobación del CEI. El hecho de que los datos no tengan nombre ni NHC no los convierte automáticamente en anonimizados — la combinación de diagnóstico + comorbilidades + medicación + fechas puede permitir reidentificación. Requiere: test de Mosaic para verificar anonimización, aprobación del CEI, y EIPD dado el alto volumen y la naturaleza de los datos</button><button class="qopt" onclick="ans(this,false,1)">No necesita base legal específica porque los datos son para mejorar la atención a los mismos pacientes que los generaron</button><button class="qopt" onclick="ans(this,false,1)">Consentimiento explícito de todos los pacientes cuyos datos se usan — es la única base legal válida para IA</button></div><div class="qfb" id="fb1"></div><div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div></div>
+<div class="qw" id="q2w"><div class="qnum">Pregunta 2 de 3</div><div class="qtxt">Tres hospitales quieren colaborar para entrenar un modelo de IA más potente de predicción de sepsis, usando los datos combinados de los tres centros. Ninguno de los hospitales puede compartir datos de pacientes con los otros por restricciones legales. ¿Qué tecnología de privacidad permite esta colaboración?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,2)">Anonimización completa de los tres datasets y después combinarlos en un servidor central</button><button class="qopt" onclick="ans(this,false,2)">Consentimiento explícito de todos los pacientes de los tres hospitales para que sus datos sean compartidos</button><button class="qopt" onclick="ans(this,true,2)">Federated Learning: cada hospital entrena el modelo localmente con sus propios datos y solo comparte las actualizaciones matemáticas del modelo (gradientes), nunca los datos de los pacientes. El resultado es un modelo que ha aprendido de los tres hospitales sin que ningún dato haya salido de su institución de origen</button><button class="qopt" onclick="ans(this,false,2)">No es posible — si no pueden compartir datos, tampoco pueden colaborar en el entrenamiento de modelos de IA</button></div><div class="qfb" id="fb2"></div><div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div></div>
+<div class="qw" id="q3w"><div class="qnum">Pregunta 3 de 3 — Síntesis del Módulo 4</div><div class="qtxt">Un médico quiere implementar un asistente de IA para su consulta de cardiología que: (1) responda preguntas sobre las guías ESC actualizadas, (2) genere borradores de informes en el formato estándar del servicio, y (3) analice las series de datos de la báscula conectada de los pacientes con IC. ¿Qué combinación de estrategias del Módulo 4 es la correcta para cada función?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,3)">Fine-tuning para las tres funciones — es la estrategia más potente y ofrece el mejor resultado en todos los casos</button><button class="qopt" onclick="ans(this,false,3)">Prompt engineering para las tres — es la más sencilla y suficiente si el system prompt está bien diseñado</button><button class="qopt" onclick="ans(this,true,3)">RAG con las guías ESC indexadas para (1) — actualizable sin reentrenamiento cuando se publiquen nuevas guías. Prompt engineering con system prompt especializado (temperatura 0.1-0.2) para (2) — no necesita datos propios, solo instrucciones de formato. n8n self-hosted con API Withings y umbrales personalizados por paciente para (3) — los datos de la báscula son datos de salud que no deben salir del hospital</button><button class="qopt" onclick="ans(this,false,3)">RAG para las tres funciones — cualquier problema de IA clínica se resuelve con una buena base de conocimiento</button></div><div class="qfb" id="fb3"></div><div class="qnx" id="nx3">
+<div class="modulo-fin">
+<div class="mf-titulo">🎓 Módulo 4 — ¡Completado!</div>
+<div class="mf-sub" style="margin-top:10px">10 lecciones, más de 350.000 caracteres de contenido, y todo el conocimiento necesario para personalizar, validar, mantener y gobernar sistemas de IA en tu entorno sanitario. Ahora sabes elegir la estrategia técnica correcta, cumplir el marco legal, liderar el cambio y demostrar el valor con datos reales.<br><br>El <strong style="color:#2196F3">Módulo 5</strong> te espera con los casos más complejos y los flujos de acción integrada.</div>
+</div>
+<button class="complete-btn" id="completeBtn" onclick="markComplete()">✓ MARCAR LECCIÓN 4.10 Y MÓDULO 4 COMO COMPLETADOS</button>
+</div></div>
+</div>
+<div class="lf"><span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span> · Desarrollado por DoncelProject · doncel.project@gmail.com</div>
+</div>
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/5)*100);document.getElementById('pbf410').style.width=p+'%';document.getElementById('pbl410').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function showTab(el,id){const sec=el.closest('.sec');sec.querySelectorAll('.tec-tab').forEach(t=>t.classList.remove('active'));sec.querySelectorAll('.tec-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById(id).classList.add('show');}
+const fbs={
+1:{ok:'✅ Correcto. La ausencia de nombre y NHC no garantiza la anonimización completa — la combinación de diagnóstico principal + comorbilidades + medicación + fechas puede ser suficiente para reidentificar a un paciente en una base de datos relativamente pequeña (el llamado problema del «Mosaic»). Para uso en investigación, la base legal correcta es el Art. 9.2.j (investigación científica), que requiere: verificación del test de Mosaic, aprobación del CEI, y dado el volumen y sensibilidad, una EIPD bajo el Art. 35 RGPD.',ko:'❌ El interés legítimo no puede ser base legal para datos de salud (categoría especial Art. 9) — requiere una de las excepciones del Art. 9.2. La anonimización incompleta (solo nombre + NHC eliminados) no convierte los datos en no-personales. El consentimiento explícito es una base válida pero muy difícil de obtener retroactivamente para 5 años de historia clínica. El Art. 9.2.j (investigación) es la base correcta con los requisitos indicados.'},
+2:{ok:'✅ Correcto. El Federated Learning es exactamente la solución diseñada para este problema: permite que múltiples instituciones colaboren en el entrenamiento de modelos de IA sin que ningún dato de pacientes cruce los límites institucionales. Solo viajan por la red las actualizaciones matemáticas del modelo — los gradientes — que no contienen información directamente identificable de ningún paciente. Es la tecnología que está permitiendo la colaboración multi-hospital en investigación de IA médica donde la privacidad es una restricción absoluta.',ko:'❌ La anonimización combinada de datos de múltiples hospitales en un servidor central sigue requiriendo que los datos salgan de cada hospital, lo que viola las restricciones. El consentimiento retroactivo de todos los pacientes de tres hospitales es imprácticamente difícil. El Federated Learning existe específicamente para resolver este problema: colaboración sin compartir datos.'},
+3:{ok:'✅ Correcto y completo. Esta es la arquitectura híbrida óptima para este caso: RAG para el conocimiento documental actualizable (guías ESC) sin necesidad de reentrenamiento cuando se publican nuevas versiones; prompt engineering bien configurado para la documentación estructurada (bajo coste, alta consistencia con temperatura baja); y n8n self-hosted para los datos de wearables que son datos de salud y no pueden pasar por plataformas cloud sin las garantías adecuadas. Cada función tiene la herramienta correcta según sus requisitos técnicos, de privacidad y de mantenimiento.',ko:'❌ Fine-tuning para las tres funciones sería excesivo (muy costoso, difícil de actualizar, requiere datasets de entrenamiento), prompt engineering para las tres sería insuficiente para la función (1) donde los datos de guías son demasiado extensos para el contexto del prompt, y RAG para las tres ignora que los datos de IoT son datos en tiempo real que requieren integración directa con las APIs de los dispositivos, no una base de conocimiento estática.'}
+};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+function markComplete(){document.getElementById('completeBtn').disabled=true;document.getElementById('completeBtn').textContent='✓ Módulo 4 Completado';window.parent.postMessage({type:'LESSON_COMPLETE'},'*');}
+upd();
+</script>

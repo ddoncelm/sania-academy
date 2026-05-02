@@ -1,0 +1,428 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:32px}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(156,39,176,.15);border:1px solid rgba(156,39,176,.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#CE93D8;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px}
+.lt span{color:#AB47BC}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px;flex-wrap:wrap}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#AB47BC;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:70px}
+.nb.active{color:#AB47BC;border-bottom-color:#AB47BC;background:#0C0D12}
+.sec{display:none;padding:20px 24px}
+.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(156,39,176,.08);border:1px solid rgba(156,39,176,.22);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#CE93D8;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#AB47BC;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer}
+.btn-complete{background:linear-gradient(135deg,#AB47BC,#7B1FA2);color:#fff;border:none;border-radius:10px;padding:14px 28px;font-size:13px;font-weight:600;cursor:pointer;width:100%;margin-top:16px;letter-spacing:.3px;transition:opacity .2s}
+.btn-complete:hover{opacity:.88}
+.tec-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.tec-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 12px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s}
+.tec-tab.active{background:rgba(156,39,176,.15);border-color:#AB47BC;color:#CE93D8}
+.tec-panel{display:none}
+.tec-panel.show{display:block}
+.prompt-box{background:#0e1018;border:1px solid #1e2335;border-radius:10px;padding:14px;margin:10px 0}
+.prompt-label{font-size:10px;color:#CE93D8;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}
+.prompt-text{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.prompt-why{font-size:11px;color:#B0BEC5;line-height:1.6;margin-top:10px;padding-top:10px;border-top:1px solid #1e2335}
+.limit-item{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;background:#13151e;border:1px solid #1e2335;border-radius:8px;margin-bottom:8px;font-size:12px;color:#E0E0E0;line-height:1.6}
+.li-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.concept-card{background:#13151e;border:1px solid #1e2335;border-radius:10px;padding:14px}
+.cc-label{font-size:10px;color:#CE93D8;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}
+.cc-title{font-size:13px;font-weight:500;color:#fff;margin-bottom:6px}
+.cc-body{font-size:12px;color:#B0BEC5;line-height:1.6}
+.cv-wrap{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.cv{border-radius:10px;padding:14px}
+.cv-bad{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2)}
+.cv-good{background:rgba(76,175,80,.08);border:1px solid rgba(76,175,80,.2)}
+.cv-label{font-size:10px;font-weight:500;margin-bottom:8px;letter-spacing:.6px}
+.cv-bad .cv-label{color:#EF9A9A}
+.cv-good .cv-label{color:#A5D6A7}
+.cv-prompt{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.6;background:#0C0D12;border-radius:6px;padding:10px;white-space:pre-wrap;word-break:break-word}
+.cv-why{font-size:11px;margin-top:8px;padding-top:8px;border-top:1px solid #1e2335;line-height:1.5}
+.cv-bad .cv-why{color:#EF9A9A}
+.cv-good .cv-why{color:#A5D6A7}
+.qw{display:none}.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s}
+.qopt:hover{border-color:#AB47BC;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}.qnx.show{display:block}
+.lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a}
+.fl{color:#AB47BC;cursor:pointer;text-decoration:underline}
+</style>
+
+<div class="lw">
+  <div class="lh">
+    <div class="lb">MÓDULO 5 · LECCIÓN 5.3</div>
+    <div class="lt">Optimización avanzada para diagnóstico diferencial: <span>razonamiento clínico estructurado, incertidumbre y árboles de decisión</span></div>
+    <div class="lm">
+      <div class="lmi"><div class="md" style="background:#AB47BC"></div>96 minutos</div>
+      <div class="lmi"><div class="md" style="background:#00B8D4"></div>4 secciones</div>
+      <div class="lmi"><div class="md" style="background:#FFB300"></div>Técnicas avanzadas de prompting clínico</div>
+    </div>
+  </div>
+
+  <div class="pbw"><div class="pbb"><div class="pbf" id="pf53"></div></div><div class="pbl" id="pl53">0%</div></div>
+
+  <div class="snav">
+    <button class="nb active" id="t1" onclick="go(1)">Razonamiento clínico IA</button>
+    <button class="nb" id="t2" onclick="go(2)">Gestión incertidumbre</button>
+    <button class="nb" id="t3" onclick="go(3)">Árboles de decisión</button>
+    <button class="nb" id="t4" onclick="go(4)">Test</button>
+  </div>
+
+  <!-- S1 -->
+  <div class="sec active" id="s1">
+    <div class="card">
+      <div class="ct">Objetivo de la lección</div>
+      <div class="cb">Maximizar la precisión diagnóstica mediante técnicas avanzadas de prompting clínico. La IA no mejora tu diagnóstico por sí sola — mejora cuando sabes cómo estructurar el razonamiento clínico en el prompt para que el modelo lo procese de la forma más útil.</div>
+    </div>
+
+    <div class="simil">
+      <div class="sl">Marco de referencia clínico</div>
+      Pedir a una IA un diagnóstico diferencial sin estructura es como presentar un caso clínico en una sesión médica solo diciendo el nombre del paciente y esperando que alguien dé el diagnóstico. El diagnóstico diferencial eficiente — tanto humano como asistido por IA — requiere una presentación estructurada: anamnesis relevante, exploración, pruebas disponibles, contexto epidemiológico y pregunta clínica concreta.
+    </div>
+
+    <div class="ct" style="margin-top:4px">El problema del diagnóstico diferencial con IA — ¿qué va mal habitualmente?</div>
+
+    <div class="cv-wrap">
+      <div class="cv cv-bad">
+        <div class="cv-label">❌ PROMPT DÉBIL</div>
+        <div class="cv-prompt">Paciente con fiebre y tos. ¿Cuál es el diagnóstico?</div>
+        <div class="cv-why">Genera lista de 15–20 diagnósticos sin priorización ni relevancia clínica. Sin contexto epidemiológico, sin exploración, sin pruebas: la IA solo puede dar lo que aparece en libros de texto, no lo que es útil para este paciente.</div>
+      </div>
+      <div class="cv cv-good">
+        <div class="cv-label">✅ PROMPT OPTIMIZADO</div>
+        <div class="cv-prompt">Actúa como internista experto con 15 años de experiencia. Presenta el razonamiento paso a paso.
+
+Paciente: varón 67 años, fumador 40 paquetes/año, EPOC GOLD II. Fiebre 38.8°C de 4 días, tos productiva purulenta, disnea en reposo (nueva), SatO2 88% en AA. Sin contacto conocido con TBC. Vive en residencia.
+
+Objetivo: lista los 4 diagnósticos más probables por orden de probabilidad. Para cada uno: probabilidad estimada (%), síntoma o hallazgo que más lo apoya, síntoma o hallazgo que más lo descarta, y prueba diagnóstica inmediata más coste-efectiva.
+
+Restricciones: si algún diagnóstico requiere descarte urgente por riesgo vital, márcalo con ⚠️ aunque su probabilidad sea baja.</div>
+        <div class="cv-why">Genera un razonamiento clínico estructurado, accionable y auditado. La IA muestra el proceso, no solo el resultado.</div>
+      </div>
+    </div>
+
+    <div class="ct" style="margin:16px 0 8px">Técnicas avanzadas para diagnóstico diferencial — comparativa</div>
+
+    <div class="tec-tabs">
+      <button class="tec-tab active" onclick="showTab(this,'tab-cot')">Chain-of-Thought clínico</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-bayesian')">Razonamiento bayesiano</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-devils')">Abogado del diablo</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-pico')">Marco PICO diagnóstico</button>
+    </div>
+
+    <div class="tec-panel show" id="tab-cot">
+      <div class="card">
+        <div class="ct">Chain-of-Thought clínico — haz visible el razonamiento</div>
+        <div class="cb">La técnica Chain-of-Thought obliga a la IA a externalizar el proceso de razonamiento antes de dar la conclusión. En diagnóstico diferencial, esto transforma la salida de "lista de diagnósticos" en "proceso de descarte auditable". Permite al clínico identificar errores de razonamiento antes de actuar.</div>
+      </div>
+      <div class="prompt-box">
+        <div class="prompt-label">Prompt Chain-of-Thought para diagnóstico diferencial complejo</div>
+        <div class="prompt-text">Actúa como internista senior con subespecialidad en [especialidad]. Antes de dar tu diagnóstico diferencial, razona explícitamente siguiendo estos pasos:
+
+PASO 1 — Patrón sindromico: ¿Qué síndrome describe este cuadro? ¿Agudo o subagudo?
+PASO 2 — Contexto del paciente: ¿Qué factores de riesgo, antecedentes o comorbilidades cambian la probabilidad pre-test?
+PASO 3 — Hallazgos discriminantes: ¿Qué dato clínico aumenta más la probabilidad de cada diagnóstico? ¿Qué dato la reduce?
+PASO 4 — Diagnóstico diferencial ordenado: Lista los 4 más probables con probabilidad estimada y argumento principal.
+PASO 5 — Bandera roja: ¿Hay algún diagnóstico menos probable pero con consecuencias graves si se omite? Si es así, ¿qué prueba lo descarta eficientemente?
+
+Datos del paciente: [anamnesis + exploración + pruebas disponibles]
+
+Restricciones: Señala explícitamente si faltan datos que cambiarían significativamente el razonamiento.</div>
+        <div class="prompt-why">El paso 5 (bandera roja) es crítico en clínica: la IA debe considerar siempre el diagnóstico de alta mortalidad aunque sea improbable, no solo el más probable. Este prompt evita el sesgo de la IA hacia lo más frecuente.</div>
+      </div>
+    </div>
+
+    <div class="tec-panel" id="tab-bayesian">
+      <div class="card">
+        <div class="ct">Razonamiento bayesiano — probabilidad pre-test y post-test</div>
+        <div class="cb">El razonamiento bayesiano en diagnóstico consiste en actualizar la probabilidad de un diagnóstico a medida que se añaden datos. La IA puede simular este proceso si se le provee del contexto epidemiológico y se le piden probabilidades explícitas en cada paso.</div>
+      </div>
+      <div class="prompt-box">
+        <div class="prompt-label">Prompt para razonamiento bayesiano diagnóstico</div>
+        <div class="prompt-text">Actúa como clínico experto usando razonamiento bayesiano.
+
+Contexto epidemiológico: [prevalencia local del diagnóstico sospechado, si la conoces].
+
+Escenario: [descripción del paciente y síntomas].
+
+Tarea: Para los 3 diagnósticos más probables en este contexto:
+1. Estima la probabilidad pre-test basándote en el contexto epidemiológico y los factores de riesgo del paciente.
+2. Lista los 2 hallazgos clínicos disponibles más informativos (mayor razón de verosimilitud positiva) para cada diagnóstico.
+3. Estima cómo cambia la probabilidad post-test si ese hallazgo está presente y si está ausente.
+4. Recomienda la prueba diagnóstica que más eficientemente actualiza la probabilidad para el diagnóstico de mayor riesgo.
+
+Formato: tabla por diagnóstico. Indica el nivel de incertidumbre de tus estimaciones (alta/media/baja).</div>
+        <div class="prompt-why">Pedir explícitamente "nivel de incertidumbre" a la IA reduce el riesgo de alucinación de precisión: el modelo tiende a presentar probabilidades como si fueran exactas cuando en realidad son estimaciones basadas en literatura general, no en el paciente concreto.</div>
+      </div>
+    </div>
+
+    <div class="tec-panel" id="tab-devils">
+      <div class="card">
+        <div class="ct">Abogado del diablo — cuestionar el diagnóstico principal</div>
+        <div class="cb">Una técnica avanzada y contraintuitiva: pedir a la IA que argumente en contra del diagnóstico que ya has planteado. Simula el role de "segundo opinante" que busca activamente evidencia en contra del diagnóstico más probable. Muy útil en casos atípicos o cuando el diagnóstico parece demasiado evidente.</div>
+      </div>
+      <div class="prompt-box">
+        <div class="prompt-label">Prompt de abogado del diablo diagnóstico</div>
+        <div class="prompt-text">Actúa como clínico escéptico. Mi diagnóstico principal para este paciente es [diagnóstico].
+
+Datos del paciente: [anamnesis + exploración + pruebas].
+
+Tarea: Argumenta en contra de mi diagnóstico principal. Específicamente:
+1. ¿Qué datos del caso NO encajan bien con este diagnóstico?
+2. ¿Qué diagnóstico alternativo explicaría mejor los datos que no encajan?
+3. ¿Qué pregunta clínica o prueba diagnóstica debería hacerme si mi diagnóstico principal fuera incorrecto?
+
+Formato: argumentación estructurada, no lista. Tono: colega clínico crítico pero constructivo.
+
+Restricciones: No descarte mi diagnóstico sin argumentación sólida. El objetivo es reforzar el razonamiento, no contradecir por contradecir.</div>
+        <div class="prompt-why">Esta técnica es especialmente útil para contrarrestar el anchoring bias — la tendencia a anclarse al primer diagnóstico planteado y buscar confirmar en lugar de falsificar. La IA como abogado del diablo obliga a reconsiderar activamente.</div>
+      </div>
+    </div>
+
+    <div class="tec-panel" id="tab-pico">
+      <div class="card">
+        <div class="ct">Marco PICO adaptado al diagnóstico diferencial</div>
+        <div class="cb">El formato PICO (Paciente, Intervención/Índice, Comparación, Outcome) es familiar para búsqueda bibliográfica, pero puede adaptarse para estructurar preguntas diagnósticas complejas con IA.</div>
+      </div>
+      <div class="prompt-box">
+        <div class="prompt-label">Prompt PICO diagnóstico adaptado</div>
+        <div class="prompt-text">Actúa como clínico especialista en medicina basada en evidencia.
+
+P (Paciente): [descripción del paciente con factores de riesgo relevantes]
+I (Índice diagnóstico): Sospecho [diagnóstico A]
+C (Comparación): Frente a [diagnóstico B] y [diagnóstico C]
+O (Outcome diagnóstico): Quiero determinar cuál explica mejor este cuadro y qué prueba lo confirma con mayor eficiencia
+
+Tarea: Estructura el razonamiento diagnóstico usando PICO. Para cada diagnóstico: características del paciente que aumentan su probabilidad, características que la reducen, prueba diagnóstica con mejor sensibilidad/especificidad para diferenciarlo de los otros dos.
+
+Restricciones: Si la evidencia es débil para alguna comparación, indícalo. No presentes datos de literatura como si fueran evidencia de calidad alta cuando no lo son.</div>
+        <div class="prompt-why">El marco PICO obliga a comparar diagnósticos explícitamente, no a evaluarlos en aislamiento. La comparación directa produce razonamientos diagnósticos más útiles que la evaluación individual de cada hipótesis.</div>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <div></div>
+      <button class="btn-p" onclick="go(2)">Gestión incertidumbre →</button>
+    </div>
+  </div>
+
+  <!-- S2: INCERTIDUMBRE -->
+  <div class="sec" id="s2">
+    <div class="card">
+      <div class="ct">Gestión de incertidumbre en diagnóstico asistido por IA</div>
+      <div class="cb">La IA generativa tiende a presentar respuestas con un tono de certeza independientemente del nivel de evidencia subyacente. En diagnóstico clínico, esto es peligroso: necesitas que la IA comunique su nivel de confianza, no que simule certeza que no tiene.</div>
+    </div>
+
+    <div class="simil">
+      <div class="sl">Marco de referencia clínico</div>
+      Un residente que presenta un caso clínico con total seguridad cuando los datos son ambiguos genera más alarma que confianza. La misma lógica aplica a la IA: necesitas que el sistema reconozca cuándo está en terreno de alta incertidumbre y lo comunique explícitamente, en lugar de dar una respuesta aparentemente sólida basada en datos insuficientes.
+    </div>
+
+    <div class="ct" style="margin-top:4px">Estrategias para extraer incertidumbre explícita de la IA</div>
+
+    <div class="limit-item"><div class="li-icon">🎯</div><div><strong>Pide rangos de probabilidad, no puntos</strong><br>En lugar de "¿cuál es la probabilidad de TEP?", pregunta "¿En qué rango estimas la probabilidad de TEP? ¿Qué dato clínico adicional reduciría más ese rango?". Los rangos fuerzan a la IA a ser honesta sobre la imprecisión de su estimación.</div></div>
+    <div class="limit-item"><div class="li-icon">🎯</div><div><strong>Solicita explícitamente los supuestos del razonamiento</strong><br>Añade al prompt: "Lista los supuestos que estás haciendo sobre este paciente que no he especificado y que, si fueran incorrectos, cambiarían significativamente tu razonamiento." Expone las asunciones ocultas del modelo.</div></div>
+    <div class="limit-item"><div class="li-icon">🎯</div><div><strong>Distingue entre incertidumbre diagnóstica e incertidumbre de la IA</strong><br>Hay dos tipos de incertidumbre: (1) el caso clínico es ambiguo por naturaleza (incertidumbre diagnóstica real) y (2) la IA no tiene suficiente información o entrenamiento para dar una respuesta fiable (incertidumbre del modelo). Pide que la IA los distinga explícitamente.</div></div>
+    <div class="limit-item"><div class="li-icon">🎯</div><div><strong>Usa la restricción de auto-auditoría</strong><br>Añade al final del prompt: "Antes de terminar, revisa tu propio razonamiento. ¿Hay algún paso donde la evidencia es débil o donde estás extrapolando más allá de lo que los datos justifican? Señálalo." Mejora la calibración del modelo.</div></div>
+
+    <div class="prompt-box">
+      <div class="prompt-label">Prompt para diagnóstico con gestión activa de incertidumbre</div>
+      <div class="prompt-text">Actúa como clínico experto en [especialidad] con formación en medicina basada en evidencia.
+
+Contexto del paciente: [datos clínicos disponibles].
+
+Tarea principal: Diagnóstico diferencial de los 4 cuadros más probables, ordenados por probabilidad estimada.
+
+Para cada diagnóstico incluye:
+- Probabilidad estimada como rango, no como punto (ej: 30–50%, no "40%")
+- Dato del caso que más apoya este diagnóstico (con nivel de evidencia: alto/medio/bajo)
+- Dato del caso que más lo cuestiona
+- Una prueba que lo confirmaría o descartaría con mayor eficiencia
+
+Sección obligatoria al final — Calibración del razonamiento:
+- ¿Qué dato clínico adicional cambiaría más significativamente este diagnóstico diferencial?
+- ¿En qué parte de este razonamiento la evidencia es más débil o la extrapolación más arriesgada?
+- ¿Hay algo que no sabes de este paciente que deberías saber antes de actuar?
+
+Restricciones: Si no tienes información suficiente para estimar la probabilidad de algún diagnóstico con mínima fiabilidad, dilo explícitamente en lugar de dar un número arbitrario.</div>
+      <div class="prompt-why">La "sección de calibración" al final transforma el prompt en un proceso de auto-auditoría del razonamiento de la IA. En la práctica, esta sección suele ser la parte más útil de la respuesta porque expone exactamente los puntos débiles del análisis.</div>
+    </div>
+
+    <div class="nav-actions">
+      <button class="btn-s" onclick="go(1)">← Razonamiento clínico IA</button>
+      <button class="btn-p" onclick="go(3)">Árboles de decisión →</button>
+    </div>
+  </div>
+
+  <!-- S3: ÁRBOLES DE DECISIÓN -->
+  <div class="sec" id="s3">
+    <div class="card">
+      <div class="ct">Integración con árboles de decisión clínica</div>
+      <div class="cb">Los árboles de decisión clínica son herramientas estructuradas (wells, Geneva, HEART, CURB-65...) que la IA puede integrar en su razonamiento si se le indica explícitamente. La combinación de árbol de decisión validado + contexto clínico personalizado genera las respuestas más útiles.</div>
+    </div>
+
+    <div class="simil">
+      <div class="sl">Marco de referencia clínico</div>
+      Usar la IA sin scores clínicos validados para diagnóstico es como operar sin protocolo de seguridad: el resultado puede ser bueno o puede ser catastrófico, dependiendo de factores que no controlas. Los scores validados son la red de seguridad que hace que la IA sea clínicamente fiable.
+    </div>
+
+    <div class="tec-tabs">
+      <button class="tec-tab active" onclick="showTab(this,'tab-scores')">Scores integrados</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-arbol')">Construcción de árboles</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-limitacion')">Límites de los árboles</button>
+    </div>
+
+    <div class="tec-panel show" id="tab-scores">
+      <div class="limit-item"><div class="li-icon">🩺</div><div><strong>Wells TEP — integración con la IA</strong><br>La IA puede calcular el score de Wells si le proporcionas los criterios explícitamente, y puede razonar sobre cómo la probabilidad pre-test impacta en la utilidad de la angio-TAC. No la uses para sustituir el cálculo manual — úsala para razonar sobre las implicaciones clínicas del resultado.</div></div>
+      <div class="limit-item"><div class="li-icon">❤️</div><div><strong>HEART score — ¿alta o baja probabilidad de SCA?</strong><br>El HEART score combina historia, ECG, edad, factores de riesgo y troponina. La IA puede ayudarte a razonar sobre qué pacientes con HEART bajo pueden darse de alta de urgencias de forma segura, integrando el contexto clínico que el score no captura.</div></div>
+      <div class="limit-item"><div class="li-icon">🫁</div><div><strong>CURB-65 — gravedad de neumonía y decisión de ingreso</strong><br>La IA puede integrar el CURB-65 con factores no incluidos en el score (situación funcional basal, soporte social, deseo del paciente) para generar una recomendación de manejo más individualizada que el score solo.</div></div>
+      <div class="limit-item"><div class="li-icon">🧠</div><div><strong>NIHSS — cuantificación del ictus y selección de tratamiento</strong><br>En el ictus agudo, la IA puede ayudar a razonar sobre la elegibilidad para trombolisis o trombectomía integrando NIHSS, tiempo de evolución, neuroimagen y contraindicaciones, siguiendo el árbol de decisión de la guía ESO.</div></div>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Prompt para integrar score validado con razonamiento clínico personalizado</div>
+        <div class="prompt-text">Actúa como [especialidad] experto en [condición clínica].
+
+Paciente: [datos clínicos completos]
+Score aplicado: He calculado un [nombre del score] de [resultado]: [detalles de los criterios incluidos].
+
+Tarea 1 — Interpretación del score: ¿Qué implica este resultado para la probabilidad del diagnóstico y para la decisión de manejo?
+
+Tarea 2 — Factores no capturados por el score: ¿Qué aspectos del caso clínico que el score no recoge pueden modificar la decisión de manejo? (Ejemplos: situación funcional basal, contexto social, preferencias del paciente, comorbilidades que modifican el riesgo del tratamiento.)
+
+Tarea 3 — Decisión integrada: Dado el score y los factores adicionales, ¿cuál es la recomendación de manejo más justificable para este paciente concreto?
+
+Restricciones: El score es una herramienta, no una guía. Si el razonamiento clínico justifica apartarse del resultado del score, explica por qué y con qué respaldo de evidencia.</div>
+        <div class="prompt-why">Los scores clínicos están validados en poblaciones, no en pacientes individuales. Esta estructura prompt fuerza a la IA a usar el score como punto de partida, no como conclusión, incorporando el juicio clínico que el score no puede capturar.</div>
+      </div>
+    </div>
+
+    <div class="tec-panel" id="tab-arbol">
+      <div class="limit-item"><div class="li-icon">🌳</div><div><strong>Pide a la IA que construya el árbol de decisión del caso</strong><br>Para casos complejos sin score validado disponible, puedes pedir a la IA que construya un árbol de decisión específico para el caso. Es especialmente útil en pacientes polimedicados o con comorbilidades múltiples donde los scores estándar no aplican.</div></div>
+      <div class="prompt-box">
+        <div class="prompt-label">Prompt para construir árbol de decisión ad hoc</div>
+        <div class="prompt-text">Actúa como clínico senior especialista en [especialidad].
+
+Paciente: [descripción completa]
+Decisión clínica a tomar: [descripción de la decisión: tratar/no tratar, ingresar/dar alta, elegir entre dos opciones terapéuticas...]
+
+Tarea: Construye el árbol de decisión clínica para este caso. El árbol debe incluir:
+- Nodo raíz: la pregunta clínica central
+- Para cada bifurcación: el dato clínico o prueba que determina qué rama seguir
+- Para cada rama: la acción recomendada y el nivel de evidencia que la respalda
+- Nodos de incertidumbre: señala dónde el árbol requiere datos que no tenemos
+
+Formato: árbol en texto con sangría para indicar jerarquía. Usa → para bifurcaciones y ⚠️ para nodos de alta incertidumbre.
+
+Restricciones: Basa las bifurcaciones en criterios objetivos siempre que sea posible. Si una bifurcación depende de juicio clínico no cuantificable, indícalo.</div>
+        <div class="prompt-why">Un árbol de decisión construido por la IA para un caso específico no tiene validación empírica — es una guía de razonamiento, no un protocolo. Úsalo para estructurar la discusión clínica, no como sustituto del juicio del equipo.</div>
+      </div>
+    </div>
+
+    <div class="tec-panel" id="tab-limitacion">
+      <div class="limit-item"><div class="li-icon">⚠️</div><div><strong>Los árboles de decisión no capturan la complejidad del paciente real</strong><br>Ningún árbol de decisión — ni score ni guía — fue diseñado para el paciente que tienes delante. Son herramientas de apoyo al razonamiento, no sustitutos del juicio clínico. Usarlos con IA amplifica su utilidad pero no elimina este límite fundamental.</div></div>
+      <div class="limit-item"><div class="li-icon">⚠️</div><div><strong>La IA puede "inventar" scores que no existen</strong><br>Si pides a la IA que aplique "el score más adecuado" para una condición sin especificarlo, puede inventar un score con nombre plausible pero inexistente. Especifica siempre el score por nombre y verifica que la IA lo aplica correctamente antes de actuar.</div></div>
+      <div class="limit-item"><div class="li-icon">⚠️</div><div><strong>Los scores tienen poblaciones de validación distintas a tu población</strong><br>El Wells fue validado principalmente en población occidental caucásica adulta. Aplicarlo en poblaciones muy distintas (pediátrica, geriátrica extrema, poblaciones de origen étnico diferente) requiere cautela y puede necesitar ajuste del umbral.</div></div>
+    </div>
+
+    <div style="margin-top:20px;padding-top:16px;border-top:1px solid #1e2335">
+      <button class="btn-complete" onclick="completar()">✓ MARCAR LECCIÓN COMO COMPLETADA</button>
+    </div>
+
+    <div class="nav-actions">
+      <button class="btn-s" onclick="go(2)">← Gestión incertidumbre</button>
+      <button class="btn-p" onclick="go(4)">Test →</button>
+    </div>
+  </div>
+
+  <!-- S4: TEST -->
+  <div class="sec" id="s4">
+    <div class="qw active" id="q1w">
+      <div class="qnum">Pregunta 1 de 3</div>
+      <div class="qtxt">Un urgenciólogo escribe el siguiente prompt: "Paciente con dolor torácico, ¿es un SCA?". ¿Cuál es el problema fundamental de este prompt para diagnóstico diferencial con IA?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,1)">La IA no puede razonar sobre diagnóstico diferencial de dolor torácico porque es una condición de urgencias</button>
+        <button class="qopt" onclick="ans(this,true,1)">No hay contexto clínico (características del dolor, factores de riesgo, ECG, troponina), no hay instrucción de razonamiento estructurado, no hay restricciones de seguridad para diagnósticos de alta mortalidad — la IA solo puede dar respuestas genéricas de manual que no sirven para este paciente</button>
+        <button class="qopt" onclick="ans(this,false,1)">El prompt es demasiado corto — la IA necesita al menos 100 palabras para razonar sobre diagnóstico diferencial</button>
+        <button class="qopt" onclick="ans(this,false,1)">Debería preguntar directamente "¿cuál es el tratamiento?" para evitar el diagnóstico diferencial innecesario</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+      <div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div>
+    </div>
+
+    <div class="qw" id="q2w">
+      <div class="qnum">Pregunta 2 de 3</div>
+      <div class="qtxt">Un clínico quiere usar la técnica del "abogado del diablo" con IA para un caso clínico complejo. ¿Cuál es el objetivo correcto de esta técnica en diagnóstico diferencial?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,2)">Hacer que la IA descarte el diagnóstico principal para obligar al clínico a buscar uno alternativo</button>
+        <button class="qopt" onclick="ans(this,false,2)">Confirmar que el diagnóstico principal es correcto pidiendo a la IA que busque evidencia a su favor</button>
+        <button class="qopt" onclick="ans(this,true,2)">Contrarrestar el anchoring bias pidiendo a la IA que argumente activamente en contra del diagnóstico principal — no para descartarlo, sino para identificar los datos que no encajan y los diagnósticos alternativos que los explicarían mejor</button>
+        <button class="qopt" onclick="ans(this,false,2)">Usar la IA como árbitro entre dos opiniones clínicas divergentes del equipo médico</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+      <div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div>
+    </div>
+
+    <div class="qw" id="q3w">
+      <div class="qnum">Pregunta 3 de 3</div>
+      <div class="qtxt">Un internista pide a la IA que aplique "el score más adecuado para valorar la probabilidad de TEP" sin especificar cuál. La IA responde aplicando un score llamado "Geneva-Pulmonary 2.0" con criterios detallados. ¿Cuál es el riesgo principal de esta situación?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,3)">La IA siempre aplica la versión más antigua de los scores, que puede estar desactualizada</button>
+        <button class="qopt" onclick="ans(this,true,3)">La IA puede haber inventado un score con nombre plausible pero inexistente, combinando criterios de distintos scores reales. El clínico debe verificar siempre que el score aplicado existe y corresponde a sus criterios validados antes de actuar en función del resultado</button>
+        <button class="qopt" onclick="ans(this,false,3)">El Geneva revisado solo está validado en Europa continental, por lo que su aplicación en España puede no ser apropiada</button>
+        <button class="qopt" onclick="ans(this,false,3)">La IA no tiene acceso a los datos del paciente necesarios para calcular ningún score de TEP</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+      <div class="qnx" id="nx3">
+        <div style="background:rgba(156,39,176,.1);border:1px solid rgba(156,39,176,.28);border-radius:10px;padding:16px;margin-top:8px">
+          <div style="font-size:13px;font-weight:500;color:#CE93D8;margin-bottom:6px">✓ Lección 5.3 completada</div>
+          <div style="font-size:12px;color:#B0BEC5;line-height:1.6">Dominas las técnicas avanzadas de prompting para diagnóstico diferencial: Chain-of-Thought clínico, razonamiento bayesiano, abogado del diablo y uso correcto de scores validados. La lección 5.4 trabaja la <strong style="color:#fff">personalización por especialidad: configuraciones específicas, integración de guías locales y métricas de calidad adaptadas</strong>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lf">
+    <span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span>
+    <span> · Desarrollado por DoncelProject · doncel.project@gmail.com</span>
+  </div>
+</div>
+
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/4)*100);document.getElementById('pf53').style.width=p+'%';document.getElementById('pl53').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function showTab(el,id){el.closest('.sec').querySelectorAll('.tec-tab').forEach(t=>t.classList.remove('active'));el.closest('.sec').querySelectorAll('.tec-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById(id).classList.add('show');}
+function completar(){window.parent.postMessage({type:'LESSON_COMPLETE'},'*');document.querySelector('.btn-complete').textContent='✓ Lección completada';document.querySelector('.btn-complete').style.opacity='.5';document.querySelector('.btn-complete').disabled=true;}
+const fbs={
+  1:{ok:'✅ Correcto. El prompt carece de los tres elementos críticos para un diagnóstico diferencial útil: contexto clínico del paciente (sin datos, la IA solo puede dar lo que aparece en los libros), instrucción de razonamiento estructurado (sin Chain-of-Thought, la IA da una lista, no un razonamiento) y restricciones de seguridad para diagnósticos de alta mortalidad (la IA puede no mencionar la disección aórtica si no se lo pides explícitamente, aunque sea una emergencia potencialmente letal).',ko:'❌ La limitación no es la longitud ni la condición clínica — la IA puede razonar sobre dolor torácico. El problema es la ausencia de estructura: sin contexto clínico (edad, características del dolor, ECG, troponina, factores de riesgo), sin instrucción de razonamiento paso a paso y sin restricciones de seguridad, la IA genera respuestas genéricas de manual que no son útiles para el paciente concreto que tienes delante.'},
+  2:{ok:'✅ Correcto. El abogado del diablo en diagnóstico diferencial tiene un objetivo específico: combatir el anchoring bias, la tendencia cognitiva a anclarse en el primer diagnóstico planteado y buscar confirmación en lugar de falsificación. La técnica no busca descartar el diagnóstico principal — busca identificar los datos que no encajan para asegurarse de que no se está pasando por alto un diagnóstico alternativo importante.',ko:'❌ El abogado del diablo no es para que la IA arbitre entre dos opiniones, ni para descartar el diagnóstico principal, ni para buscar más evidencia a su favor. Su función específica es contrarrestar el anchoring bias: el sesgo cognitivo de buscar confirmar lo que ya pensamos en lugar de buscar activamente evidencia en contra. Pedir a la IA que argumente en contra del diagnóstico principal obliga al clínico a reconsiderar activamente.'},
+  3:{ok:'✅ Correcto. Este es uno de los riesgos más importantes del uso de IA en diagnóstico clínico con scores: la alucinación de scores. La IA puede generar un score con nombre plausible, criterios detallados y valores de corte concretos que no existe como herramienta validada — es una combinación inventada de criterios de distintos scores reales. La regla práctica: especifica siempre el score por nombre exacto y verifica que los criterios que aplica la IA corresponden a la versión validada del score.',ko:'❌ El riesgo no es de desactualización ni de aplicabilidad geográfica. El riesgo específico es la alucinación: la IA puede inventar un score con nombre plausible ("Geneva-Pulmonary 2.0") que no existe como herramienta validada. Para evitarlo: especifica siempre el score por nombre exacto (ej: "Score de Wells para TEP versión simplificada") y verifica que los criterios aplicados por la IA corresponden exactamente a los de la publicación original.'}
+};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+upd();
+</script>

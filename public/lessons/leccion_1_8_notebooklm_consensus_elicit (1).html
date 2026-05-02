@@ -1,0 +1,338 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:0}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(103,58,183,0.13);border:1px solid rgba(103,58,183,0.32);border-radius:20px;padding:4px 12px;font-size:11px;color:#CE93D8;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px;color:#fff}
+.lt span{color:#AB47BC}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px;flex-wrap:wrap}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#AB47BC;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:70px;font-family:var(--font-sans,sans-serif)}
+.nb.active{color:#AB47BC;border-bottom-color:#AB47BC;background:#0C0D12}
+.sec{display:none;padding:20px 24px}
+.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(103,58,183,0.07);border:1px solid rgba(103,58,183,0.2);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#CE93D8;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#AB47BC;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500;font-family:var(--font-sans,sans-serif)}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer;font-family:var(--font-sans,sans-serif)}
+.badge{display:inline-block;font-size:10px;font-weight:500;padding:2px 8px;border-radius:8px;margin-right:4px}
+.b-purple{background:rgba(103,58,183,.15);color:#CE93D8}
+.b-green{background:rgba(76,175,80,.15);color:#A5D6A7}
+.b-amber{background:rgba(255,152,0,.15);color:#FFD54F}
+.b-blue{background:rgba(33,150,243,.15);color:#90CAF9}
+.b-red{background:rgba(244,67,54,.15);color:#EF9A9A}
+.b-cyan{background:rgba(0,188,212,.15);color:#80DEEA}
+.herr-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.herr-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 14px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s;font-family:var(--font-sans,sans-serif)}
+.herr-tab.active{background:rgba(103,58,183,.14);border-color:#AB47BC;color:#CE93D8}
+.herr-panel{display:none}
+.herr-panel.show{display:block}
+.herr-card{background:#0e1018;border-radius:10px;padding:16px;border:1px solid #1e2335;margin-bottom:10px}
+.herr-nombre{font-size:14px;font-weight:500;color:#fff;margin-bottom:4px}
+.herr-maker{font-size:10px;color:#546E7A;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+.herr-row{display:flex;gap:8px;align-items:flex-start;margin-bottom:8px;font-size:12px;color:#E0E0E0;line-height:1.5}
+.herr-lbl{font-size:10px;color:#CE93D8;font-weight:500;min-width:90px;flex-shrink:0;margin-top:1px;text-transform:uppercase;letter-spacing:.5px}
+.prompt-box{background:#0e1018;border-left:3px solid #AB47BC;border-radius:0 10px 10px 0;padding:14px 16px;margin:10px 0;font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.prompt-label{font-size:10px;color:#CE93D8;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}
+.prompt-why{font-size:11px;color:#B0BEC5;line-height:1.6;margin-top:8px;padding-top:8px;border-top:1px solid #1e2335}
+.flujo-step{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
+.flujo-num{width:22px;height:22px;border-radius:50%;background:#AB47BC;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;flex-shrink:0;margin-top:2px}
+.flujo-txt{font-size:12px;color:#E0E0E0;line-height:1.6;flex:1}
+.flujo-arrow{color:#546E7A;font-size:12px;margin-left:32px;margin-bottom:4px}
+.qw{display:none}
+.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s;font-family:var(--font-sans,sans-serif)}
+.qopt:hover{border-color:#AB47BC;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}
+.qnx.show{display:block}
+.completar-wrap{padding:20px 24px;display:none}
+.completar-wrap.show{display:block}
+.btn-completar{width:100%;padding:14px;background:transparent;border:2px solid #AB47BC;border-radius:12px;color:#CE93D8;font-size:13px;font-weight:500;cursor:pointer;transition:all .3s;letter-spacing:.5px;font-family:var(--font-sans,sans-serif)}
+.btn-completar:hover{background:rgba(103,58,183,.12)}
+.btn-completar.done{background:#AB47BC;color:#fff;border-color:#AB47BC}
+.completar-confirm{text-align:center;font-size:11px;color:#A5D6A7;margin-top:8px;display:none}
+.completar-confirm.show{display:block}
+.lf{text-align:center;font-size:10px;color:#546E7A;padding:16px 24px;border-top:1px solid #1a2a3a}
+.fl{color:#2196F3;cursor:pointer;text-decoration:underline}
+</style>
+
+<div class="lw">
+  <div class="lh">
+    <div class="lb">MÓDULO 1 · LECCIÓN 1.8</div>
+    <div class="lt">Revisión crítica con <span>NotebookLM, Consensus AI y Elicit</span></div>
+    <div class="lm">
+      <div class="lmi"><div class="md" style="background:#AB47BC"></div>95 minutos</div>
+      <div class="lmi"><div class="md" style="background:#FFB300"></div>4 secciones</div>
+      <div class="lmi"><div class="md" style="background:#A5D6A7"></div>Herramientas especializadas en evidencia</div>
+    </div>
+  </div>
+  <div class="pbw"><div class="pbb"><div class="pbf" id="pf"></div></div><div class="pbl" id="pl">0%</div></div>
+  <div class="snav">
+    <button class="nb active" id="t0" onclick="go(0)">📖 Intro</button>
+    <button class="nb" id="t1" onclick="go(1)">🔬 Herramientas</button>
+    <button class="nb" id="t2" onclick="go(2)">⚙️ Flujos</button>
+    <button class="nb" id="t3" onclick="go(3)">✅ Test</button>
+  </div>
+
+  <div class="sec active" id="s0">
+    <div class="card">
+      <div class="ct">Objetivo</div>
+      <div class="cb">Dominar tres herramientas especializadas de IA para el análisis sistemático de evidencia científica: NotebookLM para análisis de múltiples documentos simultáneos, Consensus AI y Elicit para búsqueda basada en evidencia. Integrarlas en flujos reales de revisión sistemática y preparación de sesiones clínicas.</div>
+    </div>
+    <div class="simil">
+      <div class="sl">La diferencia con la lección anterior</div>
+      En la lección 1.7 usabas Claude o ChatGPT con un artículo que tú le dabas. Estas tres herramientas van un paso más allá: buscan, seleccionan y sintetizan la evidencia directamente desde bases de datos científicas. No necesitas encontrar los artículos — la herramienta los encuentra por ti y te da la síntesis con sus fuentes.
+    </div>
+    <div class="card">
+      <div class="ct">Cuándo usar cada herramienta</div>
+      <div class="cb">
+        <strong style="color:#CE93D8">NotebookLM →</strong> cuando tienes varios documentos propios (guías, protocolos, artículos descargados) y quieres analizarlos juntos, hacer preguntas cruzadas o generar un resumen integrado.<br><br>
+        <strong style="color:#A5D6A7">Consensus AI →</strong> cuando necesitas saber qué dice la evidencia sobre una pregunta clínica concreta, sin tener los artículos: la herramienta los busca y sintetiza por ti con citas verificables.<br><br>
+        <strong style="color:#90CAF9">Elicit →</strong> cuando preparas una revisión sistemática o metaanálisis: extrae automáticamente variables de múltiples estudios en tabla, ideal para comparar poblaciones, intervenciones y outcomes.
+      </div>
+    </div>
+    <div class="nav-actions"><span></span><button class="btn-p" onclick="go(1)">Ver herramientas →</button></div>
+  </div>
+
+  <div class="sec" id="s1">
+    <div class="card">
+      <div class="ct">Las tres herramientas — selecciona para ver detalle</div>
+    </div>
+    <div class="herr-tabs">
+      <div class="herr-tab active" onclick="showHerr(this,0)">NotebookLM</div>
+      <div class="herr-tab" onclick="showHerr(this,1)">Consensus AI</div>
+      <div class="herr-tab" onclick="showHerr(this,2)">Elicit</div>
+    </div>
+
+    <div class="herr-panel show" id="hp0">
+      <div class="herr-card">
+        <div class="herr-nombre">NotebookLM</div>
+        <div class="herr-maker">Google · notebooklm.google.com · Gratuito</div>
+        <div class="herr-row"><div class="herr-lbl">Qué hace</div><div>Analiza hasta 50 documentos simultáneamente (PDFs, artículos, guías, notas). Responde preguntas sobre el conjunto de documentos con citas exactas del origen. Genera resúmenes, guías de estudio y podcasts de audio.</div></div>
+        <div class="herr-row"><div class="herr-lbl">Uso clínico</div><div>Subir las 5-6 guías clínicas de tu especialidad y preguntar: "¿Qué dicen estas guías sobre el manejo del paciente con IC y FGe &lt;30?" La respuesta cita exactamente qué guía y qué página dice qué.</div></div>
+        <div class="herr-row"><div class="herr-lbl">Privacidad</div><div>Los documentos se suben a servidores de Google. No incluir datos de pacientes. Adecuado para documentos institucionales no confidenciales y bibliografía científica publicada.</div></div>
+        <div class="herr-row"><div class="herr-lbl">Limitación clave</div><div>Solo trabaja con los documentos que tú subes — no accede a internet ni a bases de datos. La calidad del análisis depende de la calidad de los documentos proporcionados.</div></div>
+      </div>
+      <div class="prompt-label">Caso de uso clínico — Preparación de sesión con NotebookLM</div>
+      <div class="prompt-box">Documentos cargados en el Notebook:
+- Guía ESC 2023 de Insuficiencia Cardíaca (PDF)
+- GPC SNS sobre IC (PDF)
+- Protocolo local del servicio (PDF)
+- 3 artículos recientes de NEJM sobre SGLT2 en IC (PDFs)
+
+Preguntas al notebook:
+"¿Qué recomendaciones dan estas guías sobre el inicio de SGLT2 en pacientes con IC-FEVIr y FGe entre 20-45? ¿Hay diferencias entre la guía ESC y el protocolo local?"
+
+"Genera un resumen comparativo de los 3 artículos de NEJM: población, intervención, outcome principal y nivel de evidencia."</div>
+      <div class="prompt-why">NotebookLM cita exactamente el documento y la sección de donde extrae cada dato. Esto hace el análisis trazable y verificable — puedes ir directamente a la fuente si necesitas profundizar.</div>
+    </div>
+
+    <div class="herr-panel" id="hp1">
+      <div class="herr-card">
+        <div class="herr-nombre">Consensus AI</div>
+        <div class="herr-maker">consensus.app · Freemium (10 búsquedas/día gratis)</div>
+        <div class="herr-row"><div class="herr-lbl">Qué hace</div><div>Busca en más de 200 millones de artículos científicos y genera una síntesis de lo que dice la evidencia sobre tu pregunta, con citas verificables de artículos reales de PubMed y otras bases.</div></div>
+        <div class="herr-row"><div class="herr-lbl">Uso clínico</div><div>Hacer una pregunta clínica directa ("¿Es la metformina segura en IRC estadio 3b?") y obtener un consenso de la evidencia con los artículos que lo respaldan, sin necesidad de diseñar la estrategia de búsqueda en PubMed.</div></div>
+        <div class="herr-row"><div class="herr-lbl">Ventaja clave</div><div>Indica si los estudios son favorables, mixtos o desfavorables para cada pregunta. Muestra el nivel de evidencia y el año de publicación. Las citas son reales y verificables en PubMed.</div></div>
+        <div class="herr-row"><div class="herr-lbl">Limitación clave</div><div>La síntesis es del estado de la evidencia en la base de datos — puede no incluir los artículos más recientes si no han sido indexados. Verificar siempre la fecha del artículo más reciente citado.</div></div>
+      </div>
+      <div class="prompt-label">Ejemplo de preguntas clínicas para Consensus</div>
+      <div class="prompt-box">"Does dapagliflozin reduce hospitalization in heart failure with preserved ejection fraction?"
+
+"Is low-dose aspirin effective for primary prevention in diabetic patients over 65?"
+
+"What is the evidence for early mobilization in ICU patients with mechanical ventilation?"
+
+"Does metformin increase lactic acidosis risk in CKD stage 3b?"
+
+Consejo: las preguntas en inglés obtienen mejores resultados porque la mayoría de la literatura indexada está en inglés.</div>
+      <div class="prompt-why">Consensus es especialmente útil para responder preguntas clínicas en guardia o entre consultas, donde no tienes tiempo de hacer una búsqueda estructurada en PubMed. La síntesis llega en 30 segundos.</div>
+    </div>
+
+    <div class="herr-panel" id="hp2">
+      <div class="herr-card">
+        <div class="herr-nombre">Elicit</div>
+        <div class="herr-maker">elicit.com · Freemium</div>
+        <div class="herr-row"><div class="herr-lbl">Qué hace</div><div>Busca artículos relevantes para tu pregunta de investigación y extrae automáticamente variables clave de cada estudio en una tabla: población, intervención, outcomes, tamaño muestral, limitaciones. Diseñado específicamente para revisiones sistemáticas.</div></div>
+        <div class="herr-row"><div class="herr-lbl">Uso clínico</div><div>Preparar la tabla de extracción de datos para una revisión sistemática o para el apartado de "evidencia disponible" de un protocolo clínico. Lo que antes requería leer 15 artículos completos, Elicit lo tabula en minutos.</div></div>
+        <div class="herr-row"><div class="herr-lbl">Ventaja clave</div><div>La extracción automática de variables en tabla permite identificar rápidamente heterogeneidad entre estudios (poblaciones distintas, comparadores distintos) que complica la interpretación del metaanálisis.</div></div>
+        <div class="herr-row"><div class="herr-lbl">Limitación clave</div><div>La extracción automática puede omitir variables que están en el texto pero no en las tablas del artículo. Siempre verificar los estudios más relevantes con lectura directa.</div></div>
+      </div>
+      <div class="prompt-label">Flujo de uso de Elicit para preparar un protocolo clínico</div>
+      <div class="prompt-box">1. Entra en elicit.com y escribe tu pregunta de investigación en inglés:
+   "Efficacy and safety of SGLT2 inhibitors in heart failure with reduced ejection fraction"
+
+2. Elicit encuentra los artículos más relevantes y para cada uno extrae:
+   · Population · Intervention · Control · Primary outcome · Sample size · Follow-up · Key findings
+
+3. Exporta la tabla como CSV y usa Claude para sintetizar:
+   "A partir de esta tabla de extracción de estudios [pega CSV], identifica:
+   1) Consistencia del beneficio en los outcomes primarios
+   2) Diferencias en los criterios de inclusión que limiten la generalización
+   3) Lagunas de evidencia no cubiertas por estos estudios"</div>
+      <div class="prompt-why">La combinación Elicit (extracción automática) + Claude (síntesis e interpretación) es el flujo más potente para preparar el apartado de evidencia de un protocolo o una GPC local.</div>
+    </div>
+    <div class="nav-actions"><button class="btn-s" onclick="go(0)">← Atrás</button><button class="btn-p" onclick="go(2)">Flujos integrados →</button></div>
+  </div>
+
+  <div class="sec" id="s2">
+    <div class="card">
+      <div class="ct">Flujos integrados para revisión sistemática y sesiones clínicas</div>
+      <div class="cb">Cómo combinar las tres herramientas según el objetivo clínico.</div>
+    </div>
+
+    <div class="card">
+      <div class="ct">Flujo A — Preparación de sesión clínica (30-45 min → 8-10 min)</div>
+      <div class="cb" style="padding:0;margin-top:8px">
+        <div class="flujo-step"><div class="flujo-num">1</div><div class="flujo-txt"><strong style="color:#CE93D8">Consensus AI:</strong> busca las últimas evidencias sobre el tema de la sesión. Obtén el consenso actualizado y los 3-4 artículos más citados con sus resultados principales.</div></div>
+        <div class="flujo-arrow">↓</div>
+        <div class="flujo-step"><div class="flujo-num">2</div><div class="flujo-txt"><strong style="color:#CE93D8">NotebookLM:</strong> sube los artículos clave + la guía vigente de tu especialidad. Pregunta: "¿Qué dicen estos artículos que no está recogido en la guía actual? ¿Hay discrepancias?"</div></div>
+        <div class="flujo-arrow">↓</div>
+        <div class="flujo-step"><div class="flujo-num">3</div><div class="flujo-txt"><strong style="color:#CE93D8">Claude:</strong> con el resumen de NotebookLM, genera el esquema de la sesión clínica: introducción, puntos clave, casos clínicos ilustrativos y preguntas de debate.</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ct">Flujo B — Revisión sistemática rápida para protocolo (días → horas)</div>
+      <div class="cb" style="padding:0;margin-top:8px">
+        <div class="flujo-step"><div class="flujo-num">1</div><div class="flujo-txt"><strong style="color:#CE93D8">Elicit:</strong> define la pregunta PICO y obtén la tabla de extracción automática de los 15-20 estudios más relevantes. Exporta a CSV.</div></div>
+        <div class="flujo-arrow">↓</div>
+        <div class="flujo-step"><div class="flujo-num">2</div><div class="flujo-txt"><strong style="color:#CE93D8">Claude:</strong> analiza la tabla CSV. Identifica consistencia, heterogeneidad y lagunas. Genera el borrador del apartado "Evidencia disponible" del protocolo.</div></div>
+        <div class="flujo-arrow">↓</div>
+        <div class="flujo-step"><div class="flujo-num">3</div><div class="flujo-txt"><strong style="color:#CE93D8">NotebookLM:</strong> sube el borrador + los artículos más relevantes. Verifica que las afirmaciones del protocolo están respaldadas por los artículos cargados. Detecta contradicciones.</div></div>
+        <div class="flujo-arrow">↓</div>
+        <div class="flujo-step"><div class="flujo-num">4</div><div class="flujo-txt"><strong style="color:#CE93D8">Revisión humana:</strong> el profesional lee los artículos de mayor impacto y valida las afirmaciones más críticas del protocolo. La IA ha hecho el trabajo de síntesis; el experto aporta el juicio clínico.</div></div>
+      </div>
+    </div>
+
+    <div class="simil">
+      <div class="sl">Regla de oro</div>
+      Estas herramientas aceleran la fase de síntesis, no eliminan la fase de revisión crítica. El profesional sigue siendo responsable de validar las afirmaciones más relevantes en las fuentes primarias antes de incorporarlas a un protocolo o una decisión clínica.
+    </div>
+    <div class="nav-actions"><button class="btn-s" onclick="go(1)">← Herramientas</button><button class="btn-p" onclick="go(3)">Test →</button></div>
+  </div>
+
+  <div class="sec" id="s3">
+    <div class="qw active" id="q1w">
+      <div class="qnum">Pregunta 1 de 3</div>
+      <div class="qtxt">Un médico de guardia tiene 5 minutos para resolver una duda clínica concreta: "¿Hay evidencia de que el uso de esteroides en la sepsis temprana reduce la mortalidad?" ¿Qué herramienta es más adecuada?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,1)">NotebookLM, porque analiza múltiples documentos a la vez</button>
+        <button class="qopt" onclick="ans(this,false,1)">Elicit, porque extrae variables de múltiples estudios en tabla</button>
+        <button class="qopt" onclick="ans(this,true,1)">Consensus AI, porque busca en la literatura directamente y da la síntesis de la evidencia en 30 segundos con citas verificables</button>
+        <button class="qopt" onclick="ans(this,false,1)">Claude, porque tiene el mayor razonamiento clínico</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+      <div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div>
+    </div>
+    <div class="qw" id="q2w">
+      <div class="qnum">Pregunta 2 de 3</div>
+      <div class="qtxt">Un investigador está preparando una revisión sistemática sobre el uso de probióticos en la prevención de infecciones nosocomiales. Quiere extraer automáticamente los datos de 20 estudios en una tabla comparativa. ¿Qué herramienta usa?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,2)">Consensus AI, porque sintetiza la evidencia de forma rápida</button>
+        <button class="qopt" onclick="ans(this,true,2)">Elicit, porque está diseñada específicamente para extracción automática de variables en tabla a partir de múltiples estudios</button>
+        <button class="qopt" onclick="ans(this,false,2)">NotebookLM, porque puede cargar hasta 50 documentos</button>
+        <button class="qopt" onclick="ans(this,false,2)">Claude directamente, porque tiene mejor razonamiento que Elicit</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+      <div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div>
+    </div>
+    <div class="qw" id="q3w">
+      <div class="qnum">Pregunta 3 de 3</div>
+      <div class="qtxt">Una jefa de servicio sube a NotebookLM el protocolo local de anticoagulación, la guía ESC 2023 y tres artículos de NEJM. Pregunta: "¿Hay discrepancias entre nuestro protocolo y las recomendaciones más recientes?" ¿Cuál es la principal ventaja de NotebookLM frente a preguntar directamente a Claude?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,3)">Claude tiene mayor razonamiento clínico que NotebookLM</button>
+        <button class="qopt" onclick="ans(this,false,3)">No hay diferencia: ambas herramientas dan el mismo resultado</button>
+        <button class="qopt" onclick="ans(this,true,3)">NotebookLM cita exactamente el documento y la sección de donde extrae cada afirmación, haciendo el análisis trazable. Claude respondería desde su conocimiento de entrenamiento, sin citar los documentos específicos que tú has subido</button>
+        <button class="qopt" onclick="ans(this,false,3)">NotebookLM tiene acceso a internet y puede comparar con guías más recientes que no has subido</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+      <div class="qnx" id="nx3">
+        <div style="background:rgba(103,58,183,.09);border:1px solid rgba(103,58,183,.25);border-radius:10px;padding:16px;margin-top:8px">
+          <div style="font-size:13px;font-weight:500;color:#CE93D8;margin-bottom:6px">Lección 1.8 completada</div>
+          <div style="font-size:12px;color:#B0BEC5;line-height:1.6">Ya dominas las tres herramientas especializadas en evidencia. La lección <strong style="color:#fff">1.9</strong> aborda los <strong style="color:#fff">principios éticos básicos para el uso seguro de IA</strong> en entornos clínicos.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="completar-wrap" id="cw">
+    <button class="btn-completar" id="bcmp" onclick="completar()">MARCAR LECCIÓN COMO COMPLETADA</button>
+    <div class="completar-confirm" id="cc">✓ Lección 1.8 registrada · DoncelProject</div>
+  </div>
+
+  <div class="lf">
+    <span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span>
+    <span> · Desarrollado por DoncelProject · doncel.project@gmail.com</span>
+  </div>
+</div>
+
+<script>
+let done=new Set([0]),cmp=false;
+function upd(){
+  const p=Math.round((done.size/4)*100);
+  document.getElementById('pf').style.width=p+'%';
+  document.getElementById('pl').textContent=p+'%';
+  if(done.size>=4)document.getElementById('cw').classList.add('show');
+}
+function go(n){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));
+  document.getElementById('s'+n).classList.add('active');
+  document.getElementById('t'+n).classList.add('active');
+  done.add(n);upd();
+}
+function showHerr(el,i){
+  document.querySelectorAll('.herr-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.herr-panel').forEach(p=>p.classList.remove('show'));
+  el.classList.add('active');
+  document.getElementById('hp'+i).classList.add('show');
+}
+const fbs={
+  1:{ok:'✅ Correcto. Consensus AI es la herramienta indicada para responder preguntas clínicas concretas en tiempo real. Busca directamente en la literatura y da la síntesis en 30 segundos con citas verificables. NotebookLM requiere que subas los documentos previamente; Elicit está orientado a extracción sistemática de variables para revisiones.',ko:'❌ Para una duda clínica concreta con tiempo limitado, Consensus AI es la herramienta correcta: busca en la literatura en tiempo real y da la síntesis inmediata con citas. NotebookLM requiere tener los documentos previamente subidos. Elicit está diseñado para extracción tabular en revisiones sistemáticas, no para preguntas rápidas.'},
+  2:{ok:'✅ Correcto. Elicit está diseñado específicamente para esto: extracción automática de variables clave (población, intervención, outcomes, muestra) de múltiples estudios en formato tabla, lo que es exactamente lo que necesita una revisión sistemática. La tabla exportable es su función diferenciadora frente a Consensus o NotebookLM.',ko:'❌ Para extracción automática de variables de múltiples estudios en tabla, Elicit es la herramienta diseñada para esa tarea específica. Consensus sintetiza pero no extrae variables estructuradas. NotebookLM analiza documentos que tú subes, no hace extracción tabular automática de múltiples estudios.'},
+  3:{ok:'✅ Correcto. Esta es la ventaja definitoria de NotebookLM: la trazabilidad de las citas. Cuando responde, indica exactamente qué documento y qué sección respalda cada afirmación. Si le preguntas lo mismo a Claude sin subir los documentos, Claude respondería desde su conocimiento de entrenamiento general — no desde los documentos específicos de tu servicio, que pueden diferir de la guía estándar.',ko:'❌ La ventaja clave de NotebookLM es la trazabilidad: cita exactamente el documento y la sección de origen de cada afirmación. Claude sin los documentos respondería desde su conocimiento general de entrenamiento, no desde el protocolo específico de tu servicio. NotebookLM tampoco tiene acceso a internet — solo trabaja con lo que tú le subes.'}
+};
+function ans(btn,ok,n){
+  btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);
+  btn.classList.add(ok?'correct':'wrong');
+  const fb=document.getElementById('fb'+n);
+  fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;
+  fb.className='qfb show '+(ok?'ok':'ko');
+  document.getElementById('nx'+n).classList.add('show');
+  if(n===3){done.add(3);upd();}
+}
+function showQ(n){
+  document.getElementById('q'+(n-1)+'w').classList.remove('active');
+  document.getElementById('q'+n+'w').classList.add('active');
+}
+function completar(){
+  if(cmp)return;cmp=true;
+  const b=document.getElementById('bcmp');
+  b.textContent='✓ LECCIÓN COMPLETADA';
+  b.classList.add('done');
+  document.getElementById('cc').classList.add('show');
+  try{window.storage.set('completada_leccion_1_8',JSON.stringify({leccion:'1.8',titulo:'NotebookLM, Consensus AI y Elicit',fecha:new Date().toLocaleDateString('es-ES'),ts:Date.now()})).catch(()=>{});}catch(e){}
+}
+upd();
+</script>

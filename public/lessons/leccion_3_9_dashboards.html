@@ -1,0 +1,308 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:32px}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(0,184,212,.15);border:1px solid rgba(0,184,212,.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#80DEEA;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px}.lt span{color:#00B8D4}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px;flex-wrap:wrap}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#00B8D4;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:80px}
+.nb.active{color:#00B8D4;border-bottom-color:#00B8D4;background:#0C0D12}
+.sec{display:none;padding:20px 24px}.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(0,184,212,.08);border:1px solid rgba(0,184,212,.22);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#80DEEA;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#00B8D4;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer}
+.tec-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.tec-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 14px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s}
+.tec-tab.active{background:rgba(0,184,212,.15);border-color:#00B8D4;color:#80DEEA}
+.tec-panel{display:none}.tec-panel.show{display:block}
+.prompt-box{background:#0e1018;border:1px solid #1e2335;border-radius:10px;padding:14px;margin:10px 0}
+.prompt-label{font-size:10px;color:#80DEEA;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}
+.prompt-text{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.prompt-why{font-size:11px;color:#B0BEC5;line-height:1.6;margin-top:10px;padding-top:10px;border-top:1px solid #1e2335}
+.limit-item{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #1a2a3a}
+.limit-item:last-child{border-bottom:none}
+.li-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.li-title{font-size:12px;font-weight:600;color:#fff;margin-bottom:3px}
+.li-desc{font-size:11px;color:#B0BEC5;line-height:1.6}
+.flow-box{background:#0C0D12;border-radius:8px;padding:12px 14px;margin:10px 0;font-family:monospace;font-size:11px;color:#80DEEA;line-height:1.9;white-space:pre-wrap;word-break:break-word;border-left:2px solid #00B8D4}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.cg-item{background:#13151e;border:1px solid #1e2335;border-radius:10px;padding:14px}
+.cg-icon{font-size:20px;margin-bottom:6px}
+.cg-title{font-size:12px;font-weight:600;color:#fff;margin-bottom:4px}
+.cg-desc{font-size:11px;color:#B0BEC5;line-height:1.6}
+.alerta{border-radius:10px;padding:12px 14px;margin:12px 0;font-size:12px;line-height:1.6}
+.ao{background:rgba(76,175,80,.07);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.aw{background:rgba(255,152,0,.07);border:1px solid rgba(255,152,0,.22);color:#FFD54F}
+.ad{background:rgba(244,67,54,.07);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.alt{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px}
+.qw{display:none}.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s}
+.qopt:hover{border-color:#00B8D4;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}.qnx.show{display:block}
+.complete-btn{width:100%;background:linear-gradient(135deg,#00B8D4,#0097A7);color:#fff;border:none;border-radius:10px;padding:14px 20px;font-size:13px;font-weight:600;cursor:pointer;margin-top:16px;letter-spacing:.3px;transition:opacity .2s}
+.complete-btn:hover{opacity:.9}.complete-btn:disabled{opacity:.5;cursor:not-allowed}
+.lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a}
+.fl{color:#00B8D4;cursor:pointer;text-decoration:underline}
+</style>
+<div class="lw">
+<div class="lh"><div class="lb">MÓDULO 3 · LECCIÓN 3.9</div><div class="lt">Integración con HIS: APIs, webhooks<br><span>y estándares HL7 FHIR para conectar automatizaciones con el núcleo hospitalario</span></div><div class="lm"><div class="lmi"><div class="md" style="background:#00B8D4"></div>90 minutos</div><div class="lmi"><div class="md" style="background:#FFB300"></div>Nivel intermedio-avanzado</div><div class="lmi"><div class="md" style="background:#A5D6A7"></div>Interoperabilidad</div></div></div>
+<div class="pbw"><div class="pbb"><div class="pbf" id="pbf39"></div></div><div class="pbl" id="pbl39">0%</div></div>
+<div class="snav"><button class="nb active" id="t1" onclick="go(1)">Interoperabilidad HIS</button><button class="nb" id="t2" onclick="go(2)">HL7 FHIR en la práctica</button><button class="nb" id="t3" onclick="go(3)">APIs REST del HIS</button><button class="nb" id="t4" onclick="go(4)">Estrategias sin API</button><button class="nb" id="t5" onclick="go(5)">Test</button></div>
+
+<div class="sec active" id="s1">
+<div class="card"><div class="ct">Objetivo de la lección</div><div class="cb">Entender cómo conectar flujos de automatización con el Sistema de Información Hospitalario (HIS) — el núcleo de datos clínicos del hospital — utilizando las alternativas técnicas disponibles según el grado de apertura de cada sistema: API REST nativa, HL7 FHIR, webhooks, o estrategias sin API cuando el HIS no las ofrece.</div></div>
+<div class="simil"><div class="sl">🔌 Analogía clínica</div>El HIS es como el sistema circulatorio del hospital: todos los datos fluyen por él. Las automatizaciones que creamos en lecciones anteriores son como órganos periféricos — son útiles, pero solo se vuelven plenamente funcionales cuando tienen conexión sanguínea con el sistema central. Sin integración con el HIS, las automatizaciones trabajan con datos sacados a mano del sistema (como extraer sangre por punción para cada análisis). Con integración, los datos fluyen automáticamente.</div>
+<div class="concept-grid">
+<div class="cg-item"><div class="cg-icon">🏥</div><div class="cg-title">¿Qué es el HIS?</div><div class="cg-desc">Sistema de Información Hospitalario: el software central que gestiona la historia clínica electrónica, citaciones, admisión/alta, prescripción, y resultados de pruebas. En España: SAP IS-H, Selene, Millennium (Cerner), Medora, Horos, y sistemas propios autonómicos.</div></div>
+<div class="cg-item"><div class="cg-icon">🔗</div><div class="cg-title">¿Por qué integrar?</div><div class="cg-desc">Sin integración: exportas datos manualmente del HIS → los subes a tu automatización. Con integración: los datos fluyen automáticamente en tiempo real. La diferencia entre un flujo que depende de una persona y uno que funciona solo.</div></div>
+<div class="cg-item"><div class="cg-icon">📋</div><div class="cg-title">Alternativas técnicas</div><div class="cg-desc">De más a menos deseable: API REST nativa del HIS → FHIR endpoint → webhook del HIS → polling de base de datos (con permisos) → exportación CSV automatizada → lectura de email/notificación del HIS.</div></div>
+<div class="cg-item"><div class="cg-icon">⚠️</div><div class="cg-title">Realidad del SNS</div><div class="cg-desc">Muchos HIS de hospitales públicos españoles tienen APIs limitadas o sin documentar. El TIC del hospital y el proveedor del HIS son interlocutores clave. No siempre la opción óptima es técnicamente viable — hay que trabajar con lo disponible.</div></div>
+</div>
+<div class="nav-actions"><div></div><button class="btn-p" onclick="go(2)">HL7 FHIR →</button></div>
+</div>
+
+<div class="sec" id="s2">
+<div class="card"><div class="ct">HL7 FHIR: el estándar de interoperabilidad sanitaria</div><div class="cb">HL7 FHIR (Fast Healthcare Interoperability Resources) es el estándar internacional de interoperabilidad para sistemas de información sanitaria. Los HIS modernos que implementan FHIR exponen sus datos a través de una API REST estandarizada que cualquier sistema puede consumir.</div></div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'fhir-que')">📖 Qué es FHIR</button><button class="tec-tab" onclick="showTab(this,'fhir-recursos')">📦 Recursos clave</button><button class="tec-tab" onclick="showTab(this,'fhir-query')">🔍 Consultas FHIR</button></div>
+<div class="tec-panel show" id="fhir-que">
+<div class="card"><div class="ct">FHIR explicado sin tecnicismos</div><div class="cb">Imagina que cada elemento de la historia clínica (paciente, diagnóstico, medicación, resultado de prueba, cita) es un «recurso» con un formato estándar definido internacionalmente. FHIR define la estructura de cada recurso y cómo pedirlo al sistema. Si el HIS implementa FHIR, puedes pedirle «dame todas las citas de mañana del servicio de cardiología» y recibirás la respuesta en un formato siempre igual, independientemente del HIS específico.</div></div>
+<div class="limit-item"><div class="li-icon">✅</div><div class="li-body"><div class="li-title">Ventaja clave: independencia del HIS específico</div><div class="li-desc">Una automatización construida sobre FHIR funciona con cualquier HIS que implemente el estándar — Cerner, Epic, SAP IS-H, o cualquier otro. No depende de las particularidades técnicas de cada proveedor.</div></div></div>
+<div class="limit-item"><div class="li-icon">📍</div><div class="li-body"><div class="li-title">Adopción en España</div><div class="li-desc">El SNS está impulsando FHIR a través de la Estrategia de Salud Digital. SAP IS-H (usado en varios hospitales de Andalucía, Madrid y otras CCAA) tiene módulo FHIR. Cerner Millennium incluye FHIR nativo. Selene (usado en Osakidetza y otros) tiene desarrollo progresivo de FHIR. La adopción varía según el hospital y la versión del HIS.</div></div></div>
+<div class="limit-item"><div class="li-icon">🔐</div><div class="li-body"><div class="li-title">Autenticación y autorización</div><div class="li-desc">Los endpoints FHIR requieren autenticación SMART on FHIR (basada en OAuth 2.0). El acceso debe estar autorizado por el TIC del hospital para cada aplicación que quiera consumir datos del HIS. Ninguna automatización debe acceder al HIS sin este proceso de autorización formal.</div></div></div>
+</div>
+<div class="tec-panel" id="fhir-recursos">
+<div class="flow-box">RECURSOS FHIR MÁS RELEVANTES PARA AUTOMATIZACIÓN:
+
+Patient — Datos del paciente
+  → Campos útiles: id, nombre, birthDate, telecom (teléfono), address
+
+Appointment — Cita
+  → Campos útiles: start, end, status, serviceType, participant
+  → Status values: proposed | pending | booked | arrived | fulfilled | cancelled
+
+Encounter — Episodio asistencial (ingreso, consulta, urgencia)
+  → Campos útiles: status, class, type, period (start/end), hospitalization
+
+Observation — Resultado clínico (analítica, constante, exploración)
+  → Campos útiles: code (LOINC), value, interpretation (H/L/N/A=alta/baja/normal/alarma)
+  → Para valores críticos: interpretation = "AA" (alert-above) o "LL" (alert-below)
+
+MedicationRequest — Prescripción
+  → Campos útiles: medication, dosageInstruction, status, authoredOn
+
+DiagnosticReport — Informe diagnóstico (radiólogo, anatomopatólogo)
+  → Campos útiles: status, code, conclusion, presentedForm (PDF del informe)
+
+Condition — Diagnóstico
+  → Campos útiles: code (ICD-10), clinicalStatus, verificationStatus, onsetDateTime</div>
+</div>
+<div class="tec-panel" id="fhir-query">
+<div class="flow-box">CONSULTAS FHIR PRÁCTICAS:
+
+BASE URL EJEMPLO: https://his.hospital.es/fhir/R4/
+
+1. Obtener citas de mañana del Servicio de Cardiología:
+GET /Appointment?date=2025-01-15&service-type=394579002&status=booked
+
+2. Obtener observaciones con interpretación crítica en las últimas 6 horas:
+GET /Observation?date=gt2025-01-14T18:00:00&interpretation=AA,LL
+
+3. Obtener ingresos activos del servicio de Medicina Interna:
+GET /Encounter?status=in-progress&service-type=394814009
+
+4. Buscar paciente por nombre y fecha de nacimiento:
+GET /Patient?name=Garcia&birthdate=1965-03-15
+
+5. Obtener prescripciones activas de un paciente:
+GET /MedicationRequest?subject=Patient/12345&status=active
+
+EN MAKE (módulo HTTP Request):
+→ URL: base_url + endpoint FHIR
+→ Headers: Authorization: Bearer [token_oauth]
+→ Headers: Accept: application/fhir+json
+→ Method: GET
+→ Resultado: JSON con la lista de recursos</div>
+<div class="prompt-box">
+<div class="prompt-label">Prompt: diseñar la integración FHIR para un flujo específico</div>
+<div class="prompt-text">Quiero conectar un flujo de automatización en Make con el HIS de nuestro hospital usando FHIR R4.
+
+El flujo que quiero implementar:
+[DESCRIPCIÓN DEL FLUJO: qué datos necesito del HIS, cuándo los necesito, qué acción quiero desencadenar]
+
+El HIS que usamos es: [nombre y versión del HIS]
+
+Proporciona:
+1. Los recursos FHIR que necesito consultar para este flujo
+2. Las queries FHIR exactas (endpoints + parámetros) para obtener los datos necesarios
+3. Los campos del response JSON que debo extraer para usar en el flujo
+4. Cómo configurar el módulo HTTP Request en Make para hacer la llamada FHIR con autenticación OAuth
+5. El proceso que debo seguir con el TIC del hospital para obtener los permisos de acceso al endpoint FHIR
+6. Qué hacer si el HIS no tiene FHIR disponible (alternativas)</div>
+<div class="prompt-why">FHIR tiene curva de aprendizaje técnica — pero la mayoría de lo que necesitas para una automatización se reduce a 3-5 queries estándar. Este prompt genera exactamente las queries para tu caso específico, eliminando la necesidad de estudiar toda la especificación FHIR.</div>
+</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(1)">← Interoperabilidad</button><button class="btn-p" onclick="go(3)">APIs REST →</button></div>
+</div>
+
+<div class="sec" id="s3">
+<div class="card"><div class="ct">APIs REST propietarias del HIS</div><div class="cb">Muchos HIS, especialmente los más antiguos o los desarrollados internamente por las CCAA, tienen APIs REST propietarias — no estándar FHIR pero funcionalmente equivalentes para casos de uso específicos. El proceso de trabajo es similar pero la documentación de la API varía entre sistemas.</div></div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'api-proceso')">📋 Proceso de integración</button><button class="tec-tab" onclick="showTab(this,'api-autenticacion')">🔐 Autenticación</button><button class="tec-tab" onclick="showTab(this,'api-webhook')">🔔 Webhooks del HIS</button></div>
+<div class="tec-panel show" id="api-proceso">
+<div class="limit-item"><div class="li-icon">1️⃣</div><div class="li-body"><div class="li-title">Paso 1: Identificar si el HIS tiene API documentada</div><div class="li-desc">Contactar con el TIC del hospital. Preguntar: «¿Tiene el HIS una API REST documentada para integraciones externas?» Si sí, pedir la documentación (Swagger/OpenAPI es el formato estándar). Si no, pasar a la sección de estrategias sin API.</div></div></div>
+<div class="limit-item"><div class="li-icon">2️⃣</div><div class="li-body"><div class="li-title">Paso 2: Proceso de autorización formal</div><div class="li-desc">Ningún acceso a la API del HIS debe hacerse sin un proceso formal de autorización del responsable de TI y del responsable de protección de datos. Requiere: descripción del flujo, datos a los que accede, sistemas que recibirán los datos, medidas de seguridad implementadas. Puede tomar semanas — planificalo.</div></div></div>
+<div class="limit-item"><div class="li-icon">3️⃣</div><div class="li-body"><div class="li-title">Paso 3: Entorno de pruebas (sandbox)</div><div class="li-desc">Nunca desarrolles y pruebes directamente contra la base de datos de producción del HIS. El HIS debe tener un entorno de pruebas (sandbox) con datos sintéticos o anonimizados donde desarrollar y validar la integración antes de pasar a producción.</div></div></div>
+<div class="limit-item"><div class="li-icon">4️⃣</div><div class="li-body"><div class="li-title">Paso 4: Implementación con rate limiting</div><div class="li-desc">Las APIs del HIS tienen límites de peticiones (rate limiting) para proteger el rendimiento del sistema. Configura tu flujo para no superar estos límites: añade delays entre peticiones, usa cache cuando sea posible, y evita polling excesivamente frecuente en horarios de alta carga asistencial.</div></div></div>
+</div>
+<div class="tec-panel" id="api-autenticacion">
+<div class="card"><div class="ct">Tipos de autenticación en APIs de HIS</div></div>
+<div class="limit-item"><div class="li-icon">🔑</div><div class="li-body"><div class="li-title">API Key (la más simple)</div><div class="li-desc">Una clave estática que se incluye en el header de cada petición. Simple de configurar en Make (variable de entorno). Debe rotarse periódicamente y nunca incluirse en el código visible. En Make: Header → «X-API-Key: tu_clave».</div></div></div>
+<div class="limit-item"><div class="li-icon">🔒</div><div class="li-body"><div class="li-title">OAuth 2.0 / JWT (el más seguro)</div><div class="li-desc">El flujo obtiene primero un token de acceso temporal (válido 1-24h) usando credenciales seguras, y usa ese token para las peticiones a la API. Make tiene módulo nativo para OAuth 2.0. Es el estándar SMART on FHIR. Requiere configurar el endpoint de token del HIS.</div></div></div>
+<div class="limit-item"><div class="li-icon">🔐</div><div class="li-body"><div class="li-title">Certificado cliente (el más común en SNS)</div><div class="li-desc">El sistema que llama a la API debe tener instalado un certificado digital que el HIS reconoce. Muy usado en integraciones en la red SARA del SNS. Requiere que TIC genere y gestione el certificado. En Make no es nativamente soportado — requiere un middleware o n8n self-hosted.</div></div></div>
+</div>
+<div class="tec-panel" id="api-webhook">
+<div class="card"><div class="ct">Webhooks del HIS: el HIS nos llama a nosotros</div><div class="cb">En lugar de que la automatización pregunte periódicamente al HIS («polling»), el HIS puede notificar a la automatización cuando ocurre un evento relevante. Esto se llama webhook o push notification. Es más eficiente y permite reacción en tiempo real.</div></div>
+<div class="flow-box">CONFIGURACIÓN DE WEBHOOK DEL HIS EN MAKE:
+
+1. Make genera una URL única de webhook para tu escenario:
+   Ejemplo: https://hook.eu1.make.com/abcdefg123456789
+
+2. El TIC del hospital configura el HIS para enviar un HTTP POST
+   a esa URL cuando ocurra el evento definido:
+   - Alta de paciente
+   - Nuevo ingreso
+   - Resultado crítico de laboratorio
+   - Cita cancelada
+   - Cambio de estado de episodio
+
+3. El cuerpo del POST contiene los datos del evento en JSON:
+   {
+     "event": "patient_discharged",
+     "timestamp": "2025-01-15T14:32:00Z",
+     "patient_id": "123456",
+     "ward": "cardiologia",
+     "discharge_type": "home"
+   }
+
+4. Make procesa el JSON y desencadena las acciones del flujo
+
+VENTAJA SOBRE POLLING:
+→ Polling cada 15 min = demora máxima 15 min en reaccionar al evento
+→ Webhook = demora máxima 2-5 segundos en reaccionar al evento</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(2)">← HL7 FHIR</button><button class="btn-p" onclick="go(4)">Estrategias sin API →</button></div>
+</div>
+
+<div class="sec" id="s4">
+<div class="card"><div class="ct">Estrategias de integración cuando el HIS no tiene API</div><div class="cb">La realidad de muchos hospitales del SNS: el HIS es un sistema legado sin API documentada, sin FHIR, sin webhooks. Esto no impide la automatización — requiere estrategias alternativas.</div></div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'sin-csv')">📊 CSV automatizado</button><button class="tec-tab" onclick="showTab(this,'sin-email')">📧 Email del HIS</button><button class="tec-tab" onclick="showTab(this,'sin-db')">🗄️ Acceso BD directo</button></div>
+<div class="tec-panel show" id="sin-csv">
+<div class="card"><div class="ct">Exportación CSV programada — La más común en el SNS</div><div class="cb">La mayoría de HIS permiten configurar exportaciones automáticas a CSV/Excel en una ubicación de red compartida o carpeta local. Esta exportación programada (diaria, por turno, o en tiempo real según el HIS) es la base de muchas automatizaciones en hospitales sin API.</div></div>
+<div class="flow-box">FLUJO: Automatización basada en exportación CSV del HIS
+
+CONFIGURACIÓN EN EL HIS:
+→ Solicitar al TIC que configure una exportación programada de:
+   - Altas del día a las 22:00 → CSV en carpeta \\servidor\exports\altas\
+   - Citas de mañana a las 23:00 → CSV en carpeta \\servidor\exports\citas\
+→ Formato requerido: CSV UTF-8, con encabezado en primera fila
+→ Campos mínimos necesarios para tu flujo: [definir con TIC]
+
+EN MAKE (o n8n):
+→ Trigger: Schedule a las 23:15 (después de que el HIS haya exportado)
+→ Módulo: "Read a File from a Folder" (Microsoft SharePoint o Google Drive)
+  O: HTTP Request GET a URL interna del CSV (si está en servidor web)
+→ Módulo: "Parse CSV" → transforma cada fila en un objeto JSON
+→ Iterator: procesar cada registro
+→ [Acciones del flujo para cada registro]
+
+LIMITACIÓN CLAVE:
+La exportación CSV implica latencia (mínimo horas) — no es tiempo real.
+Para procesos donde las horas no importan (recordatorios del día siguiente,
+reporting diario, cartas de alta), es perfectamente válido.</div>
+</div>
+<div class="tec-panel" id="sin-email">
+<div class="card"><div class="ct">Email de notificación del HIS como trigger</div><div class="cb">Muchos HIS envían emails automáticos al personal cuando ocurren ciertos eventos: nuevo resultado de laboratorio disponible, alta registrada, cita cancelada. Estos emails pueden usarse como trigger de automatización.</div></div>
+<div class="flow-box">FLUJO: Trigger por email del HIS en Make
+
+CONFIGURACIÓN:
+→ Crear un email dedicado solo para recibir notificaciones del HIS:
+   ejempl: notificaciones-his@hospital.es (bandeja Gmail/Outlook)
+
+→ Make: módulo "Watch Emails" (Gmail o Outlook connector)
+   → Trigger: nuevo email en la bandeja
+   → Filtro: De = "noreply@his.hospital.es" Y Asunto contiene = "Alta registrada"
+
+→ Módulo "Parse Email" o expresión regular para extraer los datos del email:
+   - Número de historia clínica (patrón: HCL-[0-9]+)
+   - Nombre del paciente
+   - Servicio
+   - Timestamp del alta
+
+→ Acciones del flujo con los datos extraídos
+
+LIMITACIÓN:
+Extraer datos de texto de email es frágil si el formato del email del HIS cambia.
+Configurar el HIS para que el email incluya los datos en formato estructurado
+(JSON en el cuerpo, o como adjunto CSV) es mucho más robusto.</div>
+</div>
+<div class="tec-panel" id="sin-db">
+<div class="card"><div class="ct">Acceso directo a la base de datos del HIS (solo lectura)</div><div class="cb">En algunos hospitales, el TIC puede conceder acceso de solo lectura a la base de datos del HIS (SQL Server, Oracle, PostgreSQL) a través de una conexión segura. Esto permite queries directas sin depender de que el HIS tenga API.</div></div>
+<div class="alerta aw"><div class="alt">⚠️ Requiere autorización formal y coordinación con TIC</div>El acceso directo a la base de datos del HIS es la opción más potente pero también la más sensible. Requiere: autorización formal del responsable de TI y del DPD, vistas de solo lectura creadas por el DBA (nunca acceso a tablas completas), usuario de base de datos con permisos mínimos, conexión a través de VPN o red interna, y auditoría de accesos activada.</div>
+<div class="flow-box">EN n8n self-hosted (dentro de la red del hospital):
+→ Nodo "MySQL" / "PostgreSQL" / "SQL Server"
+→ Credenciales: servidor, base de datos, usuario de solo lectura, contraseña
+→ Query de ejemplo (vista creada por el DBA, no tabla real):
+   SELECT Servicio, COUNT(*) as Total_Altas, AVG(Estancia) as Estancia_Media
+   FROM v_altas_hoy  -- vista creada por DBA, datos ya agregados
+   WHERE fecha_alta = CURDATE()
+   GROUP BY Servicio
+
+NOTA: n8n self-hosted dentro de la red del hospital es la única plataforma
+de automatización que puede acceder directamente a la BD del HIS sin
+que los datos salgan de la infraestructura hospitalaria.</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(3)">← APIs REST</button><button class="btn-p" onclick="go(5)">Test →</button></div>
+</div>
+
+<div class="sec" id="s5">
+<div class="qw active" id="q1w"><div class="qnum">Pregunta 1 de 3</div><div class="qtxt">¿Cuál es la ventaja principal de usar webhooks del HIS frente al polling periódico para un flujo de notificación de valores críticos de laboratorio?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,1)">Los webhooks son más fáciles de configurar en Make que el polling periódico</button><button class="qopt" onclick="ans(this,false,1)">Los webhooks no requieren autenticación, lo que simplifica la seguridad del flujo</button><button class="qopt" onclick="ans(this,true,1)">El webhook notifica en tiempo real (latencia de segundos) en el momento en que el HIS genera el evento, mientras que el polling introduce una demora máxima igual al intervalo de comprobación. Para valores críticos, una demora de 15-60 minutos puede tener consecuencias clínicas</button><button class="qopt" onclick="ans(this,false,1)">Los webhooks procesan más datos por petición, reduciendo el coste en plataformas de pago por operación como Make</button></div><div class="qfb" id="fb1"></div><div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div></div>
+<div class="qw" id="q2w"><div class="qnum">Pregunta 2 de 3</div><div class="qtxt">Un TIC de hospital dice que el HIS no tiene API pero sí puede configurar una exportación automática de CSV con las altas del día a las 22:00. ¿Para qué tipo de automatización es esta estrategia adecuada?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,2)">No es adecuada para ninguna automatización de valor clínico — sin API no hay automatización real posible</button><button class="qopt" onclick="ans(this,true,2)">Es adecuada para flujos que toleran una latencia de horas: encuestas de satisfacción post-alta (se envían 3-5 días después), cartas de alta para médico de AP, reporting diario de indicadores, recordatorios de citas del día siguiente. No es adecuada para notificaciones tiempo-crítico como valores críticos</button><button class="qopt" onclick="ans(this,false,2)">Es adecuada para todos los flujos, incluyendo alertas de valores críticos, porque el CSV puede exportarse cada 5 minutos</button><button class="qopt" onclick="ans(this,false,2)">Solo es adecuada para el reporting mensual — para cualquier flujo más frecuente se necesita API</button></div><div class="qfb" id="fb2"></div><div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div></div>
+<div class="qw" id="q3w"><div class="qnum">Pregunta 3 de 3</div><div class="qtxt">El recurso FHIR «Observation» con interpretation = «AA» en un resultado de laboratorio indica...</div><div class="qopts"><button class="qopt" onclick="ans(this,false,3)">Que el resultado es «Anormal Agudo» — un resultado fuera del rango normal pero no crítico</button><button class="qopt" onclick="ans(this,true,3)">Que el valor está críticamente elevado («alert-above» en terminología FHIR) — es un valor crítico por exceso que requiere notificación urgente. «LL» sería el valor críticamente bajo. «H» y «L» son los equivalentes no críticos (alto y bajo sin alarma)</button><button class="qopt" onclick="ans(this,false,3)">Que el resultado es doble positivo — se ha confirmado en dos determinaciones</button><button class="qopt" onclick="ans(this,false,3)">Que el resultado ha sido validado por dos analistas («double-check»)</button></div><div class="qfb" id="fb3"></div><div class="qnx" id="nx3"><div style="background:rgba(0,184,212,.1);border:1px solid rgba(0,184,212,.28);border-radius:10px;padding:16px;margin-top:8px"><div style="font-size:13px;font-weight:500;color:#80DEEA;margin-bottom:6px">✓ Lección 3.9 completada</div><div style="font-size:12px;color:#B0BEC5;line-height:1.6">Entiendes las alternativas de integración con el HIS: FHIR R4, APIs REST propietarias, webhooks, y estrategias sin API. Sabes cuándo usar cada una y el proceso formal necesario. La lección 3.10 cierra este bloque con <strong style="color:#fff">automatización en Administración Pública Sanitaria Española: transparencia, Cl@ve, contratación pública y normativa SNS</strong>.</div></div><button class="complete-btn" id="completeBtn" onclick="markComplete()">✓ MARCAR LECCIÓN COMO COMPLETADA</button></div></div>
+</div>
+<div class="lf"><span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span> · Desarrollado por DoncelProject · doncel.project@gmail.com</div>
+</div>
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/5)*100);document.getElementById('pbf39').style.width=p+'%';document.getElementById('pbl39').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function showTab(el,id){const sec=el.closest('.sec');sec.querySelectorAll('.tec-tab').forEach(t=>t.classList.remove('active'));sec.querySelectorAll('.tec-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById(id).classList.add('show');}
+const fbs={
+1:{ok:'✅ Correcto. El webhook entrega el evento al instante en que ocurre en el HIS — latencia de segundos. El polling comprueba cada N minutos si hay novedades, introduciendo una demora máxima de N minutos. Para un resultado crítico de laboratorio, una demora de 15-60 minutos puede ser clínicamente inaceptable. El webhook es siempre la opción preferida cuando el HIS lo soporta y el proceso es tiempo-crítico.',ko:'❌ La ventaja del webhook sobre el polling no es la facilidad de configuración (de hecho el webhook es más complejo de configurar que el polling) ni la seguridad. La ventaja es exclusivamente temporal: el webhook reacciona en segundos al evento, el polling introduce una demora igual al intervalo de comprobación. Para alertas clínicas, esta diferencia temporal puede ser clínicamente relevante.'},
+2:{ok:'✅ Correcto. La exportación CSV con latencia de horas es válida para todos los flujos que no son tiempo-críticos. Los recordatorios de citas, las encuestas post-alta (que se envían días después), el reporting diario de indicadores, o las cartas de derivación son procesos donde una latencia de 24h es completamente aceptable. Los flujos de notificación de valores críticos o alertas de deterioro del paciente requieren latencias de segundos — para esos, la exportación CSV diaria es inadecuada.',ko:'❌ La exportación CSV con latencia de horas tiene valor clínico real para muchos procesos frecuentes en sanidad — no es una solución menor. Para que sea adecuada, el proceso debe tolerar la latencia temporal. Un CSV exportado cada 5 minutos tampoco sería la solución correcta para valores críticos — la sobrecarga del HIS y la latencia residual hacen necesario el webhook.'},
+3:{ok:'✅ Correcto. En el estándar FHIR, los códigos de interpretation del recurso Observation siguen una escala: «N» = normal, «H» = alto (fuera del rango superior normal pero no crítico), «L» = bajo (fuera del rango inferior normal pero no crítico), «HH» o «AA» = críticamente elevado (alert-above), «LL» = críticamente bajo (alert-below). Para un flujo de notificación automática de valores críticos, el filtro correcto es: interpretation = "AA" OR interpretation = "LL".',ko:'❌ «AA» en FHIR Observation interpretation significa «alert-above» — valor críticamente elevado que excede el rango de alarma superior definido por el laboratorio. No está relacionado con doble positividad ni doble validación. Los códigos FHIR de interpretation son estándar internacional: H/L para alto/bajo no crítico, HH/AA para críticamente alto, LL para críticamente bajo.'}
+};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+function markComplete(){document.getElementById('completeBtn').disabled=true;document.getElementById('completeBtn').textContent='✓ Completada';window.parent.postMessage({type:'LESSON_COMPLETE'},'*');}
+upd();
+</script>

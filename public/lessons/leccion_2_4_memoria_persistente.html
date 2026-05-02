@@ -1,0 +1,334 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:32px}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(33,150,243,0.15);border:1px solid rgba(33,150,243,0.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#90CAF9;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px}
+.lt span{color:#2196F3}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#2196F3;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:70px}
+.nb.active{color:#2196F3;border-bottom-color:#2196F3;background:#0C0D12}
+.sec{display:none;padding:20px 24px}
+.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(33,150,243,0.08);border:1px solid rgba(33,150,243,0.22);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#2196F3;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer}
+.step-list{display:flex;flex-direction:column;gap:0}
+.step{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid #1e2335}
+.step:last-child{border-bottom:none}
+.step-num{width:28px;height:28px;border-radius:50%;background:rgba(33,150,243,.2);color:#90CAF9;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step-body{flex:1}
+.step-title{font-size:13px;font-weight:500;color:#fff;margin-bottom:4px}
+.step-desc{font-size:12px;color:#B0BEC5;line-height:1.6}
+.step-code{font-family:monospace;font-size:11px;background:#0C0D12;border:1px solid #1e2335;border-radius:6px;padding:8px 10px;margin-top:8px;color:#90CAF9;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+.alerta{border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;line-height:1.7}
+.alerta-warn{background:rgba(255,152,0,.07);border:1px solid rgba(255,152,0,.25);color:#FFD54F}
+.alerta-danger{background:rgba(244,67,54,.07);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.alerta-ok{background:rgba(76,175,80,.07);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.alerta .al-titulo{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px}
+.prompt-box{background:#0e1018;border:1px solid #1e2335;border-radius:10px;padding:14px;margin:10px 0}
+.prompt-label{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}
+.prompt-text{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.prompt-why{font-size:11px;color:#B0BEC5;line-height:1.6;margin-top:10px;padding-top:10px;border-top:1px solid #1e2335}
+.compare-wrap{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.cv{border-radius:10px;padding:14px}
+.cv-bad{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2)}
+.cv-good{background:rgba(76,175,80,.08);border:1px solid rgba(76,175,80,.2)}
+.cv-label{font-size:10px;font-weight:500;margin-bottom:8px;letter-spacing:.6px}
+.cv-bad .cv-label{color:#EF9A9A}
+.cv-good .cv-label{color:#A5D6A7}
+.cv-prompt{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.6;background:#0C0D12;border-radius:6px;padding:10px;white-space:pre-wrap;word-break:break-word}
+.cv-why{font-size:11px;margin-top:8px;padding-top:8px;border-top:1px solid #1e2335;line-height:1.5}
+.cv-bad .cv-why{color:#EF9A9A}
+.cv-good .cv-why{color:#A5D6A7}
+.qw{display:none}.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s}
+.qopt:hover{border-color:#2196F3;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}.qnx.show{display:block}
+.lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a}
+.fl{color:#2196F3;cursor:pointer;text-decoration:underline}
+</style>
+
+<div class="lw">
+  <div class="lh">
+    <div class="lb">MÓDULO 2 · LECCIÓN 2.4</div>
+    <div class="lt">Memoria persistente: <span>IA para seguimiento clínico longitudinal</span></div>
+    <div class="lm">
+      <div class="lmi"><div class="md" style="background:#2196F3"></div>60 minutos</div>
+      <div class="lmi"><div class="md" style="background:#00B8D4"></div>4 secciones</div>
+      <div class="lmi"><div class="md" style="background:#FF5252"></div>Seguridad y limitaciones legales</div>
+    </div>
+  </div>
+
+  <div class="pbw">
+    <div class="pbb"><div class="pbf" id="pf24"></div></div>
+    <div class="pbl" id="pl24">0%</div>
+  </div>
+
+  <div class="snav">
+    <button class="nb active" id="t1" onclick="go(1)">Cómo funciona</button>
+    <button class="nb" id="t2" onclick="go(2)">Configuración</button>
+    <button class="nb" id="t3" onclick="go(3)">Límites legales</button>
+    <button class="nb" id="t4" onclick="go(4)">Test</button>
+  </div>
+
+  <!-- S1: CÓMO FUNCIONA -->
+  <div class="sec active" id="s1">
+    <div class="card">
+      <div class="ct">Objetivo de la lección</div>
+      <div class="cb">Implementar sistemas de IA con memoria para continuidad asistencial en pacientes crónicos. Aprenderás a configurar la memoria en ChatGPT y Claude, gestionar el contexto clínico longitudinal de forma segura, y conocer las limitaciones legales y éticas del almacenamiento de información clínica.</div>
+    </div>
+
+    <div class="simil">
+      <div class="sl">Analogía clínica</div>
+      La memoria en IA funciona como el sumario de enfermería al cambio de turno: condensas lo más relevante del paciente para que el siguiente profesional no empiece desde cero. La diferencia es que la IA sí puede perder o confundir ese contexto — de ahí que la gestión activa sea imprescindible.
+    </div>
+
+    <div class="ct" style="margin-top:4px">¿Qué es la memoria en IA conversacional?</div>
+
+    <div class="card">
+      <div class="cb">Las IA conversacionales como ChatGPT o Claude no tienen memoria entre conversaciones por defecto — cada sesión empieza desde cero. Las funcionalidades de memoria actuales permiten que la IA recuerde información entre sesiones distintas, pero con importantes limitaciones que el profesional sanitario debe conocer antes de usarlas con contexto clínico.</div>
+    </div>
+
+    <div class="step-list">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Memoria automática (ChatGPT)</div>
+          <div class="step-desc">ChatGPT con memoria activada extrae y almacena automáticamente información de las conversaciones. El usuario puede ver, editar y eliminar recuerdos desde Configuración → Personalización → Memoria. La IA decide qué guardar — lo que implica riesgo de almacenar información clínica no deseada.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Memoria explícita mediante contexto (Claude y ChatGPT)</div>
+          <div class="step-desc">La técnica más controlada y segura: el profesional construye un "resumen de contexto" que pega al inicio de cada conversación. Tú controlas exactamente qué información se proporciona y qué no. No hay almacenamiento automático fuera de tu control.</div>
+          <div class="step-code">Al inicio de la conversación:
+"Contexto del paciente para esta sesión: [resumen anonimizado]. Los datos a continuación son ficticios/anonimizados para uso educativo/clínico interno."</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Proyectos en Claude</div>
+          <div class="step-desc">Claude permite crear Proyectos con instrucciones persistentes y documentos de contexto. Un proyecto de "seguimiento de paciente crónico" puede mantener el historial de evolución, medicación y objetivos terapéuticos. Requiere gestión activa de la información incluida.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Memoria mediante herramientas externas</div>
+          <div class="step-desc">Sistemas como Mem.ai, Notion IA o bases de datos propias permiten crear repositorios de contexto clínico que se inyectan en cada conversación mediante APIs. Mayor control pero requiere conocimiento técnico. Opción avanzada para el Módulo 3.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-actions"><div></div><button class="btn-p" onclick="go(2)">Configuración →</button></div>
+  </div>
+
+  <!-- S2: CONFIGURACIÓN -->
+  <div class="sec" id="s2">
+    <div class="card">
+      <div class="ct">Configuración práctica paso a paso</div>
+      <div class="cb">Aprende a configurar la memoria en ChatGPT y Claude para uso en seguimiento de pacientes crónicos, con los ajustes de seguridad necesarios para entorno clínico.</div>
+    </div>
+
+    <div class="ct" style="margin:0 0 10px">ChatGPT — Activar y gestionar memoria</div>
+    <div class="step-list" style="background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:14px 16px;margin-bottom:14px">
+      <div class="step">
+        <div class="step-num" style="font-size:10px">1</div>
+        <div class="step-body">
+          <div class="step-title">Verificar estado de memoria</div>
+          <div class="step-desc">Configuración (⚙) → Personalización → Memoria. Activa o desactiva según el caso de uso. Para uso clínico sensible: considera mantenerla desactivada y usar contexto manual.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num" style="font-size:10px">2</div>
+        <div class="step-body">
+          <div class="step-title">Gestionar recuerdos existentes</div>
+          <div class="step-desc">En "Gestionar recuerdos" puedes ver qué ha almacenado la IA, editar recuerdos incorrectos y eliminar cualquier información clínica que no deba persistir. Revisión periódica obligatoria en contexto sanitario.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num" style="font-size:10px">3</div>
+        <div class="step-body">
+          <div class="step-title">Usar conversaciones temporales</div>
+          <div class="step-desc">Para casos clínicos que no deben persistir: usa "Conversación temporal" (icono de hoja en ChatGPT). No se guarda historial ni se actualiza la memoria. Equivalente al modo incógnito.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ct" style="margin:0 0 10px">Prompt de contexto clínico anonimizado — plantilla</div>
+    <div class="prompt-box">
+      <div class="prompt-label">Plantilla de contexto para seguimiento de crónico</div>
+      <div class="prompt-text">CONTEXTO CLÍNICO — SESIÓN [fecha]
+[Nota: todos los datos han sido anonimizados/pseudonimizados]
+
+Perfil: Paciente varón/mujer, [rango de edad: ej. 65-70 años], [área geográfica genérica si relevante]
+
+Diagnósticos principales: [lista sin códigos identificativos]
+Comorbilidades: [lista]
+
+Medicación actual: [lista de fármacos con dosis y pauta — sin marcas si hay alternativas genéricas]
+
+Última revisión ([mes/año]): [resumen de evolución clínica relevante]
+Objetivos terapéuticos actuales: [lista]
+Pendiente en próxima visita: [lista]
+
+TAREA PARA ESTA SESIÓN: [lo que necesitas que haga la IA hoy]</div>
+      <div class="prompt-why">Esta plantilla permite mantener continuidad asistencial sin almacenar datos identificativos. Actualiza el contexto después de cada visita.</div>
+    </div>
+
+    <div class="compare-wrap">
+      <div class="cv cv-bad">
+        <div class="cv-label">❌ CONTEXTO INSEGURO</div>
+        <div class="cv-prompt">Paciente: Juan García López, NHC 12345, DNI 28XXX, IC Av. Málaga 23, tel 666XXX. DM2, HTA. Metformina 850mg...</div>
+        <div class="cv-why">Datos identificativos directos. Vulneración RGPD. Nunca en prompts de IA externa.</div>
+      </div>
+      <div class="cv cv-good">
+        <div class="cv-label">✅ CONTEXTO SEGURO</div>
+        <div class="cv-prompt">Paciente anonimizado, varón ~68 años. DM2 (HbA1c 7.8%), HTA controlada. Metformina 850mg/12h, ramipril 5mg/24h. Última analítica: FG 62...</div>
+        <div class="cv-why">Sin datos identificativos. Información clínica suficiente para el trabajo con la IA.</div>
+      </div>
+    </div>
+
+    <div class="nav-actions"><button class="btn-s" onclick="go(1)">← Cómo funciona</button><button class="btn-p" onclick="go(3)">Límites legales →</button></div>
+  </div>
+
+  <!-- S3: LÍMITES LEGALES -->
+  <div class="sec" id="s3">
+    <div class="card">
+      <div class="ct">Marco legal y ético</div>
+      <div class="cb">El uso de memoria en IA con datos clínicos está sujeto al RGPD, la Ley Orgánica de Protección de Datos (LOPDGDD) y normativa sanitaria específica. El desconocimiento no exime de responsabilidad.</div>
+    </div>
+
+    <div class="alerta alerta-danger">
+      <div class="al-titulo">Prohibición absoluta</div>
+      Nunca introduzcas en herramientas de IA externa (ChatGPT, Claude, Gemini en sus versiones de consumo) datos identificativos de pacientes: nombre, apellidos, NHC, DNI/NIE, dirección, teléfono, fecha de nacimiento exacta, o cualquier combinación que permita identificar a la persona. Esto constituye una cesión de datos personales de salud a terceros sin consentimiento expreso del paciente — sancionable según el RGPD con multas de hasta 20 millones de euros o el 4% de la facturación global.
+    </div>
+
+    <div class="alerta alerta-warn">
+      <div class="al-titulo">Zona gris: pseudonimización</div>
+      La pseudonimización (sustituir identificadores por códigos) no equivale a anonimización completa. Si la clave de correspondencia existe en algún sistema tuyo, el dato sigue siendo personal según el RGPD. Para uso con IA externa, la anonimización irreversible es el único estándar seguro — elimina o generaliza toda información que permita reidentificación.
+    </div>
+
+    <div class="alerta alerta-ok">
+      <div class="al-titulo">Uso seguro permitido</div>
+      El uso de IA con datos completamente anonimizados para: preparación de sesiones clínicas, generación de material docente, revisión de literatura, redacción de protocolos genéricos y análisis de situaciones clínicas ficticias o anonimizadas no requiere consentimiento específico del paciente, siempre que no sea posible la reidentificación.
+    </div>
+
+    <div class="ct" style="margin:16px 0 8px">Limitaciones técnicas de la memoria en IA</div>
+    <div class="step-list">
+      <div class="step">
+        <div class="step-num" style="font-size:11px">!</div>
+        <div class="step-body">
+          <div class="step-title">La IA puede recordar mal o mezclar contextos</div>
+          <div class="step-desc">Los sistemas de memoria actuales no son infalibles. La IA puede confundir datos entre sesiones, extraer información incorrecta o "recordar" algo que en realidad no ocurrió. Verifica siempre el contexto que la IA tiene antes de trabajar con él.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num" style="font-size:11px">!</div>
+        <div class="step-body">
+          <div class="step-title">No es una historia clínica</div>
+          <div class="step-desc">La memoria de la IA no tiene valor legal, no es auditable, puede modificarse accidentalmente y no cumple los requisitos de trazabilidad de una HCE. Es una herramienta de apoyo, nunca el registro clínico oficial.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num" style="font-size:11px">!</div>
+        <div class="step-body">
+          <div class="step-title">Los datos almacenados pueden usarse para entrenar modelos</div>
+          <div class="step-desc">En las versiones de consumo de ChatGPT y Claude, los datos de las conversaciones pueden usarse para mejorar los modelos (salvo desactivación explícita o uso de versiones empresariales con DPA firmado). Las versiones Enterprise (ChatGPT Enterprise, Claude for Business) ofrecen garantías contractuales de no uso para entrenamiento.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-actions"><button class="btn-s" onclick="go(2)">← Configuración</button><button class="btn-p" onclick="go(4)">Test →</button></div>
+  </div>
+
+  <!-- S4: TEST -->
+  <div class="sec" id="s4">
+    <div class="qw active" id="q1w">
+      <div class="qnum">Pregunta 1 de 3</div>
+      <div class="qtxt">Un médico de familia quiere usar ChatGPT para hacer seguimiento longitudinal de sus pacientes diabéticos. ¿Cuál es la práctica más segura desde el punto de vista legal y técnico?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,1)">Activar la memoria automática de ChatGPT y dejar que la IA gestione los recuerdos clínicos de cada paciente</button>
+        <button class="qopt" onclick="ans(this,true,1)">Construir un resumen de contexto anonimizado que pega al inicio de cada sesión, sin activar memoria automática ni incluir datos identificativos</button>
+        <button class="qopt" onclick="ans(this,false,1)">Usar el nombre del paciente en el prompt pero indicar a la IA que no lo almacene</button>
+        <button class="qopt" onclick="ans(this,false,1)">Crear una cuenta de ChatGPT separada para cada paciente con su historial completo</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+      <div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div>
+    </div>
+
+    <div class="qw" id="q2w">
+      <div class="qnum">Pregunta 2 de 3</div>
+      <div class="qtxt">¿Cuál de las siguientes afirmaciones sobre la memoria de la IA es correcta en relación con la historia clínica electrónica (HCE)?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,2)">La memoria de la IA puede usarse como complemento oficial a la HCE si el profesional la firma digitalmente</button>
+        <button class="qopt" onclick="ans(this,false,2)">Los datos en la memoria de ChatGPT están protegidos por el secreto médico como cualquier HCE</button>
+        <button class="qopt" onclick="ans(this,true,2)">La memoria de la IA no tiene valor legal, no es auditable y no cumple requisitos de trazabilidad de una HCE — es solo una herramienta de apoyo</button>
+        <button class="qopt" onclick="ans(this,false,2)">Si el paciente consiente verbalmente, el médico puede incluir su historial completo en la memoria de ChatGPT</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+      <div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div>
+    </div>
+
+    <div class="qw" id="q3w">
+      <div class="qnum">Pregunta 3 de 3</div>
+      <div class="qtxt">Un hospital quiere implementar IA con memoria persistente para seguimiento de pacientes oncológicos con garantías legales RGPD. ¿Qué versión de las herramientas disponibles es más adecuada?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,3)">ChatGPT versión gratuita con la memoria desactivada</button>
+        <button class="qopt" onclick="ans(this,false,3)">Claude.ai versión personal con proyectos privados</button>
+        <button class="qopt" onclick="ans(this,true,3)">ChatGPT Enterprise o Claude for Business con Acuerdo de Procesamiento de Datos (DPA) firmado, que garantiza no uso para entrenamiento y cumplimiento RGPD</button>
+        <button class="qopt" onclick="ans(this,false,3)">Cualquier versión de pago de IA conversacional ofrece las mismas garantías legales automáticamente</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+      <div class="qnx" id="nx3">
+        <div style="background:rgba(33,150,243,.1);border:1px solid rgba(33,150,243,.28);border-radius:10px;padding:16px;margin-top:8px">
+          <div style="font-size:13px;font-weight:500;color:#90CAF9;margin-bottom:6px">✓ Lección 2.4 completada</div>
+          <div style="font-size:12px;color:#B0BEC5;line-height:1.6">Dominas la configuración de memoria en IA para seguimiento clínico y sus límites legales. La lección 2.5 establece el <strong style="color:#fff">protocolo completo de prompts éticos y seguros para uso en hospitales: anonimización, red flags y auditoría</strong>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lf">
+    <span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span>
+    <span> · Desarrollado por DoncelProject · doncel.project@gmail.com</span>
+  </div>
+</div>
+
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/4)*100);document.getElementById('pf24').style.width=p+'%';document.getElementById('pl24').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+const fbs={
+  1:{ok:'✅ Correcto. El contexto anonimizado manual es la práctica más segura: tú controlas exactamente qué información se proporciona, no hay almacenamiento automático fuera de tu control, y no se vulnera el RGPD al no incluir datos identificativos. La memoria automática en versiones de consumo no ofrece las garantías legales necesarias para datos clínicos.',ko:'❌ La memoria automática en versiones de consumo, crear cuentas por paciente con historial completo, o indicar al modelo que "no almacene" datos son prácticas inseguras o ineficaces. La IA no puede garantizar no almacenar lo que procesa. El único enfoque seguro es controlar tú qué información entra, usando contexto anonimizado manual.'},
+  2:{ok:'✅ Correcto. La memoria de la IA no tiene ningún valor legal como registro clínico: no es auditable, no tiene trazabilidad garantizada, puede modificarse accidentalmente y no cumple los requisitos normativos de una HCE. Es una herramienta de apoyo al trabajo clínico, nunca el registro oficial del proceso asistencial.',ko:'❌ La memoria de la IA no equivale ni se aproxima a una HCE en términos legales. No tiene valor probatorio, no es auditable, no cumple requisitos de trazabilidad y el consentimiento verbal del paciente no es suficiente para transferir datos de salud a un tercero (la empresa de IA) según el RGPD.'},
+  3:{ok:'✅ Correcto. Las versiones Enterprise (ChatGPT Enterprise, Claude for Business) incluyen un Acuerdo de Procesamiento de Datos (DPA) que garantiza contractualmente el no uso de los datos para entrenamiento del modelo, medidas de seguridad adicionales y cumplimiento RGPD. Sin DPA firmado, cualquier dato clínico introducido puede usarse para entrenar modelos, lo que constituye una cesión de datos personales de salud a terceros.',ko:'❌ No todas las versiones de pago ofrecen garantías legales equivalentes. Solo las versiones Enterprise con DPA (Data Processing Agreement) firmado ofrecen garantías contractuales de cumplimiento RGPD y no uso para entrenamiento. Las versiones de pago estándar (ChatGPT Plus, Claude Pro) no incluyen estas garantías automáticamente.'}
+};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+upd();
+</script>

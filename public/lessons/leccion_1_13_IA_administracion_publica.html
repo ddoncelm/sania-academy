@@ -1,0 +1,284 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:0}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(63,81,181,0.13);border:1px solid rgba(63,81,181,0.32);border-radius:20px;padding:4px 12px;font-size:11px;color:#9FA8DA;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px;color:#fff}
+.lt span{color:#5C6BC0}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px;flex-wrap:wrap}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#5C6BC0;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:70px;font-family:var(--font-sans,sans-serif)}
+.nb.active{color:#5C6BC0;border-bottom-color:#5C6BC0;background:#0C0D12}
+.sec{display:none;padding:20px 24px}
+.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(63,81,181,0.07);border:1px solid rgba(63,81,181,0.2);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#9FA8DA;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#5C6BC0;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500;font-family:var(--font-sans,sans-serif)}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer;font-family:var(--font-sans,sans-serif)}
+.badge{display:inline-block;font-size:10px;font-weight:500;padding:2px 8px;border-radius:8px;margin-right:4px}
+.b-indigo{background:rgba(63,81,181,.15);color:#9FA8DA}
+.b-green{background:rgba(76,175,80,.15);color:#A5D6A7}
+.b-amber{background:rgba(255,152,0,.15);color:#FFD54F}
+.b-blue{background:rgba(33,150,243,.15);color:#90CAF9}
+.b-cyan{background:rgba(0,188,212,.15);color:#80DEEA}
+.est-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.est-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 12px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s;font-family:var(--font-sans,sans-serif)}
+.est-tab.active{background:rgba(63,81,181,.14);border-color:#5C6BC0;color:#9FA8DA}
+.est-panel{display:none}
+.est-panel.show{display:block}
+.plan-item{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #1e2335;font-size:12px;color:#E0E0E0;line-height:1.6}
+.plan-item:last-child{border-bottom:none}
+.plan-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.plan-title{font-weight:500;color:#fff;margin-bottom:3px}
+.contrat-step{background:#0e1018;border-radius:10px;padding:14px 16px;margin-bottom:10px;border-left:3px solid #5C6BC0}
+.cs-num{font-size:10px;color:#9FA8DA;font-weight:500;text-transform:uppercase;letter-spacing:.6px;margin-bottom:5px}
+.cs-title{font-size:12px;font-weight:500;color:#fff;margin-bottom:5px}
+.cs-desc{font-size:12px;color:#B0BEC5;line-height:1.6}
+.cs-req{font-size:11px;color:#FFD54F;margin-top:6px;padding-top:6px;border-top:1px solid #1e2335}
+.ccaa-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.ccaa-card{background:#0e1018;border-radius:8px;padding:12px;border:1px solid #1e2335}
+.ccaa-nombre{font-size:12px;font-weight:500;color:#9FA8DA;margin-bottom:5px}
+.ccaa-desc{font-size:11px;color:#B0BEC5;line-height:1.5}
+.modulo-fin{background:linear-gradient(135deg,rgba(63,81,181,.12),rgba(0,150,136,.08));border:1px solid rgba(63,81,181,.3);border-radius:14px;padding:22px;text-align:center;margin-top:14px}
+.qw{display:none}
+.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s;font-family:var(--font-sans,sans-serif)}
+.qopt:hover{border-color:#5C6BC0;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}
+.qnx.show{display:block}
+.completar-wrap{padding:20px 24px;display:none}
+.completar-wrap.show{display:block}
+.btn-completar{width:100%;padding:14px;background:transparent;border:2px solid #5C6BC0;border-radius:12px;color:#9FA8DA;font-size:13px;font-weight:500;cursor:pointer;transition:all .3s;letter-spacing:.5px;font-family:var(--font-sans,sans-serif)}
+.btn-completar:hover{background:rgba(63,81,181,.12)}
+.btn-completar.done{background:#5C6BC0;color:#fff;border-color:#5C6BC0}
+.completar-confirm{text-align:center;font-size:11px;color:#A5D6A7;margin-top:8px;display:none}
+.completar-confirm.show{display:block}
+.lf{text-align:center;font-size:10px;color:#546E7A;padding:16px 24px;border-top:1px solid #1a2a3a}
+.fl{color:#2196F3;cursor:pointer;text-decoration:underline}
+</style>
+<div class="lw">
+  <div class="lh">
+    <div class="lb">MÓDULO 1 · LECCIÓN 1.13 — CIERRE</div>
+    <div class="lt">IA en Administración Pública <span>Sanitaria Española</span></div>
+    <div class="lm">
+      <div class="lmi"><div class="md" style="background:#5C6BC0"></div>95 minutos</div>
+      <div class="lmi"><div class="md" style="background:#FFB300"></div>4 secciones</div>
+      <div class="lmi"><div class="md" style="background:#A5D6A7"></div>SNS · CCAA · Contratación pública</div>
+    </div>
+  </div>
+  <div class="pbw"><div class="pbb"><div class="pbf" id="pf"></div></div><div class="pbl" id="pl">0%</div></div>
+  <div class="snav">
+    <button class="nb active" id="t0" onclick="go(0)">📖 Intro</button>
+    <button class="nb" id="t1" onclick="go(1)">🗺 Estrategia</button>
+    <button class="nb" id="t2" onclick="go(2)">📋 Contratación</button>
+    <button class="nb" id="t3" onclick="go(3)">🎓 Test final</button>
+  </div>
+
+  <div class="sec active" id="s0">
+    <div class="card">
+      <div class="ct">Objetivo</div>
+      <div class="cb">Comprender el marco estratégico y operativo de la IA en el Sistema Nacional de Salud español. Conocer la estrategia nacional, los planes autonómicos más avanzados y las claves de la contratación pública de soluciones de IA, para que el profesional pueda participar activamente en los procesos de transformación digital de su organización.</div>
+    </div>
+    <div class="simil">
+      <div class="sl">Por qué el profesional necesita conocer este marco</div>
+      Las decisiones sobre qué herramientas de IA se implantan en tu hospital no las toma solo el departamento de TI. En los sistemas sanitarios públicos, estas decisiones pasan por procesos de contratación pública, evaluación de impacto y aprobación de dirección. Un profesional que conoce este marco puede influir activamente: participar en comités de evaluación, redactar requisitos técnicos en los pliegos, o liderar el piloto que justifica la contratación.
+    </div>
+    <div class="card">
+      <div class="ct">El contexto: ¿dónde está España en IA sanitaria?</div>
+      <div class="cb">España ocupa una posición media-alta en el ranking europeo de digitalización sanitaria, con ventajas significativas: alta penetración de HCE, biodatos de alta calidad en el SNS y una red de hospitales universitarios activos en investigación. Las debilidades: fragmentación entre CCAA, infraestructura de datos heterogénea y procesos de contratación pública lentos para la velocidad de evolución de la IA.</div>
+    </div>
+    <div class="nav-actions"><span></span><button class="btn-p" onclick="go(1)">Estrategia →</button></div>
+  </div>
+
+  <div class="sec" id="s1">
+    <div class="card">
+      <div class="ct">Estrategia Nacional de IA en Salud y planes autonómicos</div>
+    </div>
+    <div class="est-tabs">
+      <div class="est-tab active" onclick="showEst(this,0)">Nivel nacional (SNS)</div>
+      <div class="est-tab" onclick="showEst(this,1)">CCAA destacadas</div>
+      <div class="est-tab" onclick="showEst(this,2)">Financiación europea</div>
+    </div>
+
+    <div class="est-panel show" id="ep0">
+      <div class="card">
+        <div class="ct">Estrategia de Salud Digital del SNS 2023-2027</div>
+        <div class="cb" style="padding:0;margin-top:8px">
+          <div class="plan-item"><div class="plan-dot" style="background:#5C6BC0"></div><div><div class="plan-title">Historia Clínica Digital del SNS (HCDSNS)</div>Interoperabilidad entre CCAA mediante estándar FHIR. Objetivo: acceso del profesional a datos del paciente independientemente de la CA donde fue atendido.</div></div>
+          <div class="plan-item"><div class="plan-dot" style="background:#5C6BC0"></div><div><div class="plan-title">Plan de IA en Salud del MSCBS</div>Identificación de casos de uso prioritarios (triaje, imagen médica, crónicos), marco de evaluación de herramientas y Red de Excelencia en IA Clínica con hospitales de referencia.</div></div>
+          <div class="plan-item"><div class="plan-dot" style="background:#5C6BC0"></div><div><div class="plan-title">Nodo Español de IA en Salud (ANAES)</div>Infraestructura de datos federada que permite entrenar modelos de IA con datos del SNS respetando la privacidad de los pacientes mediante técnicas de privacidad diferencial y aprendizaje federado.</div></div>
+          <div class="plan-item"><div class="plan-dot" style="background:#5C6BC0"></div><div><div class="plan-title">Formación en competencias digitales</div>El Ministerio de Sanidad incluye la alfabetización en IA como competencia transversal esencial en la formación MIR/EIR y en la formación continuada del SNS.</div></div>
+          <div class="plan-item"><div class="plan-dot" style="background:#5C6BC0"></div><div><div class="plan-title">Sandbox regulatorio de IA en salud</div>Espacio de prueba supervisado donde hospitales y empresas pueden testear soluciones de IA en condiciones reales antes de la certificación definitiva, reduciendo el tiempo de llegada al mercado.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="est-panel" id="ep1">
+      <div class="ccaa-grid">
+        <div class="ccaa-card">
+          <div class="ccaa-nombre">Andalucía — SSPA</div>
+          <div class="ccaa-desc">Plan de IA en Diraya. Piloto de IA en imagen radiológica. Dashboard de crónicos en AP. Integración de ACSA con criterios de evaluación de IA. Datos: 8,5M pacientes registrados.</div>
+        </div>
+        <div class="ccaa-card">
+          <div class="ccaa-nombre">Cataluña — CatSalut</div>
+          <div class="ccaa-desc">Programa PERIS de investigación con IA clínica. Hospital Clínic como hub de innovación. DataHealth: plataforma de explotación de datos sanitarios para investigación e IA.</div>
+        </div>
+        <div class="ccaa-card">
+          <div class="ccaa-nombre">Madrid — SERMAS</div>
+          <div class="ccaa-desc">Red de hospitales universitarios con proyectos de IA en urgencias, oncología y gestión. La Paz como hospital piloto para IA en deterioro. Plan de telemedicina con IA integrada.</div>
+        </div>
+        <div class="ccaa-card">
+          <div class="ccaa-nombre">País Vasco — Osakidetza</div>
+          <div class="ccaa-desc">Implantación de Cerner con API FHIR en toda la red. Proyectos piloto de IA en prescripción y conciliación farmacológica. Programa de formación digital obligatorio para facultativos.</div>
+        </div>
+        <div class="ccaa-card">
+          <div class="ccaa-nombre">Navarra — SNS-O</div>
+          <div class="ccaa-desc">HCE EPIC con Epic App Orchard para integración de IA. Programa de investigación clínica con IA en oncología y cardiología. Datos unificados de toda la CA en una sola plataforma.</div>
+        </div>
+        <div class="ccaa-card">
+          <div class="ccaa-nombre">Galicia — SERGAS</div>
+          <div class="ccaa-desc">Historia Clínica Electrónica Gallega (IANUS) con proyectos de integración de IA. Programa de telemedicina rural con apoyo de IA diagnóstica para zonas de baja cobertura especializada.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="est-panel" id="ep2">
+      <div class="card">
+        <div class="ct">Financiación europea disponible para IA sanitaria</div>
+        <div class="cb">
+          <strong style="color:#9FA8DA">Horizonte Europa (2021-2027):</strong> el programa de investigación e innovación de la UE financia proyectos de IA clínica a través de las convocatorias de salud digital. Los hospitales del SNS pueden participar como socios o como entidades líderes.<br><br>
+          <strong style="color:#9FA8DA">PERTE de Salud de Vanguardia:</strong> proyecto estratégico para recuperación económica que incluye financiación específica para digitalización e IA sanitaria en España. Convocatorias periódicas del CDTI.<br><br>
+          <strong style="color:#9FA8DA">Fondos FEDER:</strong> los programas operativos regionales incluyen líneas de financiación para digitalización sanitaria. El SSPA y otras CCAA han accedido a fondos FEDER para proyectos de HCE e IA.<br><br>
+          <strong style="color:#9FA8DA">European Health Data Space (EHDS):</strong> el espacio europeo de datos de salud, en implementación, facilitará el acceso a datos para investigación en IA manteniendo la protección del paciente.
+        </div>
+      </div>
+    </div>
+    <div class="nav-actions"><button class="btn-s" onclick="go(0)">← Atrás</button><button class="btn-p" onclick="go(2)">Contratación →</button></div>
+  </div>
+
+  <div class="sec" id="s2">
+    <div class="card">
+      <div class="ct">Procurement y contratación pública de soluciones de IA</div>
+      <div class="cb">La contratación pública en el SNS sigue la Ley de Contratos del Sector Público (LCSP). La IA añade complejidades específicas que el profesional clínico debe conocer para participar en los procesos de evaluación y redacción de pliegos.</div>
+    </div>
+
+    <div class="contrat-step">
+      <div class="cs-num">Fase 1</div>
+      <div class="cs-title">Definición de necesidad y requisitos técnicos</div>
+      <div class="cs-desc">El pliego técnico define qué debe hacer el sistema, qué estándares debe cumplir (FHIR, DICOM, SNOMED), qué certificaciones debe tener (CE, marcado sanitario) y qué métricas de rendimiento se exigen antes y después del despliegue.</div>
+      <div class="cs-req">El clínico aquí: definir los requisitos funcionales reales. "El sistema debe reducir el tiempo de documentación en un X%" es un requisito funcional. "El sistema debe usar GPT-4" es un requisito técnico innecesariamente restrictivo que excluye competencia.</div>
+    </div>
+
+    <div class="contrat-step">
+      <div class="cs-num">Fase 2</div>
+      <div class="cs-title">Evaluación de proveedores y criterios de adjudicación</div>
+      <div class="cs-desc">Los criterios de adjudicación deben incluir: precisión validada en población comparable, integración con la HCE del centro, cumplimiento RGPD con DPA, plan de mantenimiento y actualización, y plan de formación del personal.</div>
+      <div class="cs-req">El clínico aquí: participar en el comité de evaluación técnica. Los criterios de calidad clínica deben pesar tanto o más que el precio. Exigir validación en datos comparables al perfil de tu población.</div>
+    </div>
+
+    <div class="contrat-step">
+      <div class="cs-num">Fase 3</div>
+      <div class="cs-title">Piloto y evaluación previa al despliegue</div>
+      <div class="cs-desc">Antes del despliegue completo, el contrato debe incluir una fase piloto con indicadores de rendimiento predefinidos. Si el sistema no alcanza los umbrales acordados, debe existir una cláusula de resolución o penalización.</div>
+      <div class="cs-req">El clínico aquí: diseñar los indicadores del piloto. Los KPIs deben ser clínicamente relevantes, no solo técnicos. "Precisión diagnóstica ≥85% en la población del centro" es mejor que "tiempo de respuesta &lt;200ms".</div>
+    </div>
+
+    <div class="contrat-step">
+      <div class="cs-num">Fase 4</div>
+      <div class="cs-title">Seguimiento, auditoría y renovación</div>
+      <div class="cs-desc">El contrato debe incluir revisión periódica del rendimiento del modelo (concept drift), auditoría de sesgos al menos anual, y plan de re-validación cuando cambien los protocolos clínicos o la población atendida.</div>
+      <div class="cs-req">El clínico aquí: participar en la auditoría anual de rendimiento. Si el modelo ha degradado su precisión, el proveedor está contractualmente obligado a actualizarlo. Sin este seguimiento, la IA puede volverse peligrosamente obsoleta sin que nadie lo detecte.</div>
+    </div>
+
+    <div class="nav-actions"><button class="btn-s" onclick="go(1)">← Estrategia</button><button class="btn-p" onclick="go(3)">Test final →</button></div>
+  </div>
+
+  <div class="sec" id="s3">
+    <div class="qw active" id="q1w">
+      <div class="qnum">Pregunta 1 de 3 — Test de cierre del Módulo 1</div>
+      <div class="qtxt">Un hospital del SSPA quiere contratar un sistema de IA para predicción de reingresos. En el pliego técnico incluye el requisito: "El sistema debe usar modelos GPT-4 de OpenAI". ¿Cuál es el problema de este requisito?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,1)">No hay problema: especificar la tecnología garantiza la calidad del sistema</button>
+        <button class="qopt" onclick="ans(this,true,1)">El requisito es innecesariamente restrictivo: especifica la tecnología en lugar del resultado esperado, lo que limita la competencia, puede vulnerar la LCSP y excluye soluciones igualmente válidas o superiores de otros proveedores</button>
+        <button class="qopt" onclick="ans(this,false,1)">El problema es que GPT-4 no está certificado como producto sanitario</button>
+        <button class="qopt" onclick="ans(this,false,1)">El problema es que OpenAI no tiene acuerdo con el SSPA</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+      <div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div>
+    </div>
+    <div class="qw" id="q2w">
+      <div class="qnum">Pregunta 2 de 3 — Test de cierre del Módulo 1</div>
+      <div class="qtxt">¿Qué es el Nodo Español de IA en Salud (ANAES) y cuál es su función principal?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,2)">Un organismo regulador que certifica las herramientas de IA sanitaria antes de su uso en el SNS</button>
+        <button class="qopt" onclick="ans(this,true,2)">Una infraestructura de datos federada que permite entrenar modelos de IA con datos del SNS respetando la privacidad de los pacientes mediante técnicas de privacidad diferencial y aprendizaje federado</button>
+        <button class="qopt" onclick="ans(this,false,2)">Un marketplace público donde los hospitales del SNS pueden adquirir soluciones de IA preaprobadas</button>
+        <button class="qopt" onclick="ans(this,false,2)">Un programa de formación en IA para profesionales sanitarios del sistema público</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+      <div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div>
+    </div>
+    <div class="qw" id="q3w">
+      <div class="qnum">Pregunta 3 de 3 — Test de cierre del Módulo 1</div>
+      <div class="qtxt">En el proceso de contratación de IA en el SNS, ¿cuál es el papel más valioso que puede desempeñar un clínico con formación en IA?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,3)">Aprobar el presupuesto de la solución propuesta por el departamento de TI</button>
+        <button class="qopt" onclick="ans(this,false,3)">Seleccionar el modelo de IA más avanzado tecnológicamente disponible</button>
+        <button class="qopt" onclick="ans(this,true,3)">Definir los requisitos funcionales clínicamente relevantes, diseñar los KPIs del piloto, participar en la evaluación técnica y liderar la auditoría periódica del rendimiento del modelo</button>
+        <button class="qopt" onclick="ans(this,false,3)">Verificar que el sistema cumple con el RGPD antes de la firma del contrato</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+      <div class="qnx" id="nx3">
+        <div class="modulo-fin">
+          <div style="font-size:28px;margin-bottom:12px">🎓</div>
+          <div style="font-size:17px;font-weight:500;color:#9FA8DA;margin-bottom:12px">Módulo 1 completado al 100%</div>
+          <div style="font-size:12px;color:#B0BEC5;line-height:1.9;text-align:left;max-width:480px;margin:0 auto">
+            <strong style="color:#fff">13 lecciones completadas</strong> según el programa oficial de SaludIA Academy.<br><br>
+            <strong style="color:#9FA8DA">Competencias adquiridas:</strong> fundamentos de IA generativa · modelos conversacionales · revisión bibliográfica con IA · ética y normativa · casos reales de éxito y fracaso · integración con HCE · IA multimodal · marco estratégico SNS.<br><br>
+            <strong style="color:#A5D6A7">Módulo 2 →</strong> Ingeniería de prompts clínicos y personalización. 10 horas · 10 lecciones. Arranca con Big Data, ML y DL explicados para clínicos.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="completar-wrap" id="cw">
+    <button class="btn-completar" id="bcmp" onclick="completar()">MARCAR LECCIÓN COMO COMPLETADA</button>
+    <div class="completar-confirm" id="cc">✓ Lección 1.13 registrada · Módulo 1 completado · DoncelProject</div>
+  </div>
+  <div class="lf">
+    <span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span>
+    <span> · Desarrollado por DoncelProject · doncel.project@gmail.com</span>
+  </div>
+</div>
+<script>
+let done=new Set([0]),cmp=false;
+function upd(){const p=Math.round((done.size/4)*100);document.getElementById('pf').style.width=p+'%';document.getElementById('pl').textContent=p+'%';if(done.size>=4)document.getElementById('cw').classList.add('show');}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function showEst(el,i){document.querySelectorAll('.est-tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.est-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById('ep'+i).classList.add('show');}
+const fbs={1:{ok:'✅ Correcto. Especificar una marca o tecnología concreta en los pliegos técnicos de contratación pública puede vulnerar los principios de libre concurrencia y competencia establecidos en la LCSP. El pliego debe definir qué resultado se espera ("reducción de reingresos ≥15% en 12 meses, validado en población comparable") y los estándares de interoperabilidad requeridos (FHIR, DICOM), no la tecnología específica. Esto permite que compitan múltiples proveedores y el hospital obtiene la mejor solución disponible.',ko:'❌ Especificar una marca o modelo tecnológico concreto en un pliego de contratación pública puede vulnerar los principios de libre concurrencia de la LCSP. Además, "usar GPT-4" no garantiza ni calidad clínica ni interoperabilidad. El pliego debe definir resultados esperados y estándares técnicos, no marcas. La certificación CE y el DPA son requisitos legales separados que deben figurar independientemente.'},2:{ok:'✅ Correcto. ANAES es la infraestructura de datos federada que resuelve uno de los principales cuellos de botella de la IA sanitaria española: cómo entrenar modelos con la riqueza de datos del SNS sin comprometer la privacidad de los pacientes. El aprendizaje federado permite que los modelos se entrenen en cada nodo (hospital o CA) sin que los datos salgan de su origen, y la privacidad diferencial añade una capa matemática de protección adicional.',ko:'❌ ANAES no es un regulador ni un marketplace. Es una infraestructura técnica de datos federada: permite entrenar modelos de IA usando datos del SNS sin que esos datos abandonen los sistemas donde residen. El aprendizaje federado y la privacidad diferencial son las dos tecnologías clave que hacen posible esto, manteniendo la privacidad del paciente y cumpliendo el RGPD.'},3:{ok:'✅ Correcto. Este es exactamente el valor diferencial del profesional clínico con formación en IA en un proceso de contratación pública. Sin conocimiento clínico, los pliegos técnicos se redactan con criterios puramente tecnológicos o de precio. Con un clínico formado en IA en el equipo de contratación, los requisitos son funcionalmente correctos, los KPIs del piloto son clínicamente relevantes, la evaluación técnica incorpora criterio clínico y la auditoría periódica garantiza que el sistema sigue siendo útil y seguro en el tiempo.',ko:'❌ El papel más valioso del clínico con formación en IA va mucho más allá de aprobar presupuestos o verificar el RGPD (que es responsabilidad del DPO). El clínico formado puede influir en todo el ciclo: desde la definición de requisitos funcionales clínicamente correctos hasta el diseño de los KPIs del piloto y la auditoría periódica de rendimiento. Ningún otro perfil en la organización puede hacer esto.'}};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');if(n===3){done.add(3);upd();}}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+function completar(){if(cmp)return;cmp=true;const b=document.getElementById('bcmp');b.textContent='✓ MÓDULO 1 COMPLETADO';b.classList.add('done');document.getElementById('cc').classList.add('show');try{window.storage.set('completada_leccion_1_13',JSON.stringify({leccion:'1.13',titulo:'IA en Administración Pública Sanitaria',fecha:new Date().toLocaleDateString('es-ES'),ts:Date.now()})).catch(()=>{});window.storage.set('modulo_1_completado',JSON.stringify({fecha:new Date().toLocaleDateString('es-ES'),ts:Date.now()})).catch(()=>{});}catch(e){}}
+upd();
+</script>

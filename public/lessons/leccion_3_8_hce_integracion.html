@@ -1,0 +1,280 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:32px}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(0,184,212,.15);border:1px solid rgba(0,184,212,.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#80DEEA;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px}.lt span{color:#00B8D4}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px;flex-wrap:wrap}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#00B8D4;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:80px}
+.nb.active{color:#00B8D4;border-bottom-color:#00B8D4;background:#0C0D12}
+.sec{display:none;padding:20px 24px}.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(0,184,212,.08);border:1px solid rgba(0,184,212,.22);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#80DEEA;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#00B8D4;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer}
+.tec-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.tec-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 14px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s}
+.tec-tab.active{background:rgba(0,184,212,.15);border-color:#00B8D4;color:#80DEEA}
+.tec-panel{display:none}.tec-panel.show{display:block}
+.prompt-box{background:#0e1018;border:1px solid #1e2335;border-radius:10px;padding:14px;margin:10px 0}
+.prompt-label{font-size:10px;color:#80DEEA;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}
+.prompt-text{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.prompt-why{font-size:11px;color:#B0BEC5;line-height:1.6;margin-top:10px;padding-top:10px;border-top:1px solid #1e2335}
+.limit-item{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #1a2a3a}
+.limit-item:last-child{border-bottom:none}
+.li-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.li-title{font-size:12px;font-weight:600;color:#fff;margin-bottom:3px}
+.li-desc{font-size:11px;color:#B0BEC5;line-height:1.6}
+.flow-box{background:#0C0D12;border-radius:8px;padding:12px 14px;margin:10px 0;font-family:monospace;font-size:11px;color:#80DEEA;line-height:1.9;white-space:pre-wrap;word-break:break-word;border-left:2px solid #00B8D4}
+.alerta{border-radius:10px;padding:12px 14px;margin:12px 0;font-size:12px;line-height:1.6}
+.ao{background:rgba(76,175,80,.07);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.aw{background:rgba(255,152,0,.07);border:1px solid rgba(255,152,0,.22);color:#FFD54F}
+.ad{background:rgba(244,67,54,.07);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.alt{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px}
+.qw{display:none}.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s}
+.qopt:hover{border-color:#00B8D4;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}.qnx.show{display:block}
+.complete-btn{width:100%;background:linear-gradient(135deg,#00B8D4,#0097A7);color:#fff;border:none;border-radius:10px;padding:14px 20px;font-size:13px;font-weight:600;cursor:pointer;margin-top:16px;letter-spacing:.3px;transition:opacity .2s}
+.complete-btn:hover{opacity:.9}.complete-btn:disabled{opacity:.5;cursor:not-allowed}
+.lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a}
+.fl{color:#00B8D4;cursor:pointer;text-decoration:underline}
+</style>
+<div class="lw">
+<div class="lh"><div class="lb">MÓDULO 3 · LECCIÓN 3.8</div><div class="lt">Encuestas de satisfacción automatizadas<br><span>y análisis de experiencia del paciente con IA</span></div><div class="lm"><div class="lmi"><div class="md" style="background:#00B8D4"></div>70 minutos</div><div class="lmi"><div class="md" style="background:#FFB300"></div>Nivel intermedio</div><div class="lmi"><div class="md" style="background:#A5D6A7"></div>Experiencia del paciente</div></div></div>
+<div class="pbw"><div class="pbb"><div class="pbf" id="pbf38"></div></div><div class="pbl" id="pbl38">0%</div></div>
+<div class="snav"><button class="nb active" id="t1" onclick="go(1)">Encuestas en sanidad</button><button class="nb" id="t2" onclick="go(2)">Diseño y automatización</button><button class="nb" id="t3" onclick="go(3)">Análisis con IA</button><button class="nb" id="t4" onclick="go(4)">Casos y alertas</button><button class="nb" id="t5" onclick="go(5)">Test</button></div>
+
+<div class="sec active" id="s1">
+<div class="card"><div class="ct">Objetivo de la lección</div><div class="cb">Diseñar un sistema automatizado de captura y análisis de la experiencia del paciente que vaya más allá del NPS numérico: detectar patrones en comentarios libres, identificar alertas tempranas de insatisfacción y generar informes accionables sin intervención manual en cada paso.</div></div>
+<div class="simil"><div class="sl">🎯 Analogía clínica</div>La encuesta de satisfacción tradicional es como hacer un ECG una vez al año — captura un momento puntual pero se pierde la arritmia que ocurrió en marzo. Un sistema automatizado de encuestas es como el Holter: monitorización continua que captura cada episodio, identifica el patrón y te lo entrega interpretado. La clave no es la encuesta — es la monitorización continua y el análisis automático.</div>
+<div class="card"><div class="ct">El problema del sistema actual de encuestas hospitalarias</div><div class="cb" style="margin-bottom:10px">Los sistemas tradicionales de evaluación de la satisfacción tienen tres problemas estructurales que la automatización resuelve:</div>
+<div class="limit-item"><div class="li-icon">⏰</div><div class="li-body"><div class="li-title">Latencia excesiva</div><div class="li-desc">Las encuestas ACSA o del SNS se analizan trimestral o anualmente. Cuando el hospital recibe el informe, la experiencia que generó el problema lleva meses o años en el pasado. La automatización permite análisis en tiempo real o semanal, con capacidad de actuar antes de que el problema se extienda.</div></div></div>
+<div class="limit-item"><div class="li-icon">📊</div><div class="li-body"><div class="li-title">Tasa de respuesta baja</div><div class="li-desc">Las encuestas en papel al alta tienen tasas de respuesta del 15-25%. Las encuestas digitales enviadas por SMS o WhatsApp en el momento adecuado (1-3 días post-alta) alcanzan el 40-60%. El momento de envío es el factor más importante para la tasa de respuesta — la automatización garantiza que el mensaje llega siempre en el momento óptimo.</div></div></div>
+<div class="limit-item"><div class="li-icon">💬</div><div class="li-body"><div class="li-title">Comentarios cualitativos sin analizar</div><div class="li-desc">Las preguntas de respuesta libre generan los insights más valiosos, pero requieren análisis manual — que en la práctica no se hace. La IA puede analizar cientos de comentarios en segundos, identificar categorías de problemas, detectar el tono emocional y extraer las quejas más frecuentes sin intervención humana.</div></div></div>
+<div class="nav-actions"><div></div><button class="btn-p" onclick="go(2)">Diseño y automatización →</button></div>
+</div>
+
+</div>
+<div class="sec" id="s2">
+<div class="card"><div class="ct">Diseño del sistema automatizado de encuestas</div><div class="cb">Tres componentes: cuándo enviar (timing), qué preguntar (diseño) y cómo enviar (canal). Los tres determinan la calidad de los datos recogidos.</div></div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'enc-timing')">⏰ Timing</button><button class="tec-tab" onclick="showTab(this,'enc-diseno')">📝 Diseño</button><button class="tec-tab" onclick="showTab(this,'enc-flujo')">⚙️ Flujo automatizado</button></div>
+<div class="tec-panel show" id="enc-timing">
+<div class="limit-item"><div class="li-icon">✅</div><div class="li-body"><div class="li-title">Consultas externas: 24-48h post-consulta</div><div class="li-desc">El recuerdo de la experiencia es más vívido y la emoción ha bajado lo suficiente para una valoración equilibrada. Envío por SMS/WhatsApp en horario de mañana (10-12h) o tarde (16-18h) — evitar lunes por la mañana y viernes por la tarde.</div></div></div>
+<div class="limit-item"><div class="li-icon">✅</div><div class="li-body"><div class="li-title">Hospitalización: 3-5 días post-alta</div><div class="li-desc">Tiempo suficiente para que el paciente haya procesado la experiencia completa, incluyendo el proceso de alta y la vuelta a casa. Demasiado pronto (mismo día) y el paciente está ocupado con el proceso de salida; demasiado tarde (>7 días) y el recuerdo se difumina.</div></div></div>
+<div class="limit-item"><div class="li-icon">✅</div><div class="li-body"><div class="li-title">Urgencias: 12-24h post-alta de urgencias</div><div class="li-desc">La urgencia genera emociones intensas que distorsionan la valoración si se pregunta inmediatamente. 12-24h da tiempo a que el paciente esté en casa y recuperado, pero mantiene el recuerdo fresco. Encuesta más corta (3 preguntas máximo) que la de hospitalización.</div></div></div>
+<div class="limit-item"><div class="li-icon">⚠️</div><div class="li-body"><div class="li-title">Qué evitar</div><div class="li-desc">Enviar la encuesta mientras el paciente aún está ingresado (sesgo positivo por dependencia). Enviar más de una encuesta por el mismo episodio. Enviar en horarios fuera de los indicados. Encuestas de más de 10 preguntas (la tasa de completación cae drásticamente).</div></div></div>
+</div>
+<div class="tec-panel" id="enc-diseno">
+<div class="card"><div class="ct">Estructura estándar de encuesta — 5 preguntas, 3 minutos</div><div class="cb">Esta estructura maximiza la tasa de completación y captura tanto datos cuantitativos (para estadística) como cualitativos (para análisis de IA).</div></div>
+<div class="flow-box">ENCUESTA POST-CONSULTA/ALTA (5 preguntas):
+
+P1 — NPS (Net Promoter Score):
+"En una escala del 0 al 10, ¿con qué probabilidad recomendaría este servicio a un familiar o amigo?"
+→ Respuesta: escala numérica 0-10
+
+P2 — Valoración global:
+"¿Cómo valoraría su experiencia general en este servicio?"
+→ Respuesta: ★☆☆☆☆ (1-5 estrellas)
+
+P3 — Punto fuerte (abierta):
+"¿Qué es lo que más ha valorado de la atención recibida?"
+→ Respuesta: texto libre (máx 200 caracteres)
+
+P4 — Área de mejora (abierta):
+"¿Qué podríamos mejorar para la próxima vez?"
+→ Respuesta: texto libre (máx 200 caracteres)
+
+P5 — Dimensión específica (varía según servicio):
+Para consultas: "¿Recibió información clara sobre su diagnóstico y tratamiento?"
+Para urgencias: "¿Considera que el tiempo de espera fue razonable para su caso?"
+Para cirugía: "¿Se sintió adecuadamente informado antes de la intervención?"
+→ Respuesta: Sí / Parcialmente / No</div>
+</div>
+<div class="tec-panel" id="enc-flujo">
+<div class="flow-box">FLUJO AUTOMATIZADO: Envío y recogida de encuestas post-alta
+
+TRIGGER: Alta registrada en HIS → webhook a Make
+         O: Make comprueba cada 30min nuevas altas en Google Sheets/CSV
+
+PASO 1 — Filtros de exclusión:
+  → Excluir: menores de edad sin tutor identificado
+  → Excluir: exitus (paciente fallecido durante el ingreso)
+  → Excluir: pacientes que ya recibieron encuesta en los últimos 90 días
+  → Excluir: ingresos < 24h (urgencias sin observación)
+
+PASO 2 — Calcular timestamp de envío óptimo:
+  → Fecha_alta + días_óptimos_servicio = Fecha_envío
+  → Ajustar a horario óptimo (10:00 AM)
+  → Si cae en fin de semana: mover al lunes 10:00 AM
+
+PASO 3 — Delay hasta timestamp calculado
+
+PASO 4 — Enviar encuesta:
+  → Canal 1: WhatsApp (si disponible) con enlace a Google Forms
+  → Canal 2: SMS con enlace corto si no hay WhatsApp
+  → Mensaje: "Hola [Nombre], ¿cómo fue su experiencia en [Servicio]? 
+     Nos importa su opinión (3 min): [enlace] Gracias."
+
+PASO 5 — Si no responde en 48h: SMS recordatorio único
+  → Un solo recordatorio — no insistir más
+
+PASO 6 — Al completar la encuesta (trigger por Google Forms):
+  → Registrar respuesta en hoja "Respuestas_Encuestas"
+  → Si NPS < 6 ("detractor"): marcar para análisis prioritario
+  → Si comentario incluye palabras clave de alerta: notificar inmediatamente</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(1)">← Encuestas en sanidad</button><button class="btn-p" onclick="go(3)">Análisis con IA →</button></div>
+</div>
+
+</div>
+<div class="sec" id="s3">
+<div class="card"><div class="ct">Análisis automático de comentarios con IA</div><div class="cb">Los comentarios de texto libre son la fuente de información más valiosa de una encuesta — y la más infrautilizada. La IA puede analizarlos todos en segundos, sin sesgo de selección y con consistencia que el análisis humano nunca puede garantizar a escala.</div></div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'ia-sent')">😊 Análisis de sentimiento</button><button class="tec-tab" onclick="showTab(this,'ia-cat')">🏷️ Categorización</button><button class="tec-tab" onclick="showTab(this,'ia-prompt')">📝 Prompts de análisis</button></div>
+<div class="tec-panel show" id="ia-sent">
+<div class="card"><div class="ct">Análisis de sentimiento en comentarios de pacientes</div><div class="cb">El análisis de sentimiento clasifica automáticamente cada comentario como positivo, neutral o negativo, y puede identificar el tono emocional específico: satisfacción, frustración, agradecimiento, miedo, indignación.</div></div>
+<div class="flow-box">EJEMPLO DE ANÁLISIS DE SENTIMIENTO:
+
+Comentario: "La enfermera que me atendió por la noche fue muy amable y atenta, pero 
+espere 4 horas para que me vieran y nadie me explicaba qué pasaba"
+
+Análisis automático:
+→ Sentimiento global: MIXTO (positivo + negativo)
+→ Tono predominante: FRUSTRACIÓN
+→ Aspectos positivos mencionados: trato de enfermería (nocturna)
+→ Aspectos negativos mencionados: tiempo de espera, comunicación/información
+→ Categorías: Tiempo_Espera (negativo), Comunicación_Info (negativo), 
+               Trato_Enfermería (positivo)
+→ Prioridad de atención: MEDIA (frustración moderada, no queja grave)
+→ Acción sugerida: revisar protocolo de información durante espera prolongada</div>
+</div>
+<div class="tec-panel" id="ia-cat">
+<div class="limit-item"><div class="li-icon">🏷️</div><div class="li-body"><div class="li-title">Categorías estándar para sanidad</div><div class="li-desc"><strong>Trato del personal:</strong> amabilidad, respeto, empatía, trato deshumanizado. <strong>Comunicación e información:</strong> explicación del diagnóstico/tratamiento, información durante esperas, instrucciones al alta. <strong>Tiempos de espera:</strong> cita, urgencias, resultado de pruebas, información sobre espera. <strong>Instalaciones y limpieza:</strong> habitación, baños, zonas comunes, temperatura. <strong>Proceso asistencial:</strong> coordinación entre servicios, continuidad de cuidados, seguridad percibida. <strong>Gestión administrativa:</strong> cita, trámites, tiempos de facturación, reclamaciones.</div></div></div>
+<div class="limit-item"><div class="li-icon">🚨</div><div class="li-body"><div class="li-title">Palabras clave de alerta inmediata</div><div class="li-desc">Algunos comentarios requieren atención inmediata antes del análisis semanal: «error», «equivocación», «medicamento incorrecto», «caída», «negligencia», «denuncia», «abogado», «muy grave», «peligroso». El flujo detecta estas palabras y notifica al responsable de calidad en tiempo real, sin esperar al análisis semanal.</div></div></div>
+</div>
+<div class="tec-panel" id="ia-prompt">
+<div class="prompt-box">
+<div class="prompt-label">Prompt: análisis semanal de comentarios de satisfacción</div>
+<div class="prompt-text">Eres el responsable de calidad del Servicio de [ESPECIALIDAD]. Has recibido los siguientes comentarios de pacientes esta semana:
+
+[PEGAR AQUÍ: lista de comentarios numerados, uno por línea]
+
+Realiza el análisis completo:
+
+1. RESUMEN EJECUTIVO (5 líneas máximo):
+   - NPS calculado (promotores 9-10, neutros 7-8, detractores 0-6)
+   - Tema positivo dominante esta semana
+   - Tema de queja dominante esta semana
+   - Tendencia respecto a semanas anteriores (si se proporciona histórico)
+
+2. ANÁLISIS DE CATEGORÍAS:
+   Para cada categoría relevante mencionada: nº de comentarios, % positivos/negativos, ejemplos representativos (sin datos identificativos del paciente)
+
+3. ALERTAS:
+   - Comentarios que sugieren incidente de seguridad: reproducir literalmente + número de comentario
+   - Comentarios de máxima insatisfacción (detractores) con queja específica
+   
+4. OPORTUNIDADES DE MEJORA PRIORIZADAS:
+   Las 3 áreas con mayor impacto en satisfacción que pueden mejorarse con acciones concretas. Para cada una: descripción del problema, frecuencia, acción de mejora recomendada y dificultad de implementación (alta/media/baja).
+
+5. CITAS REPRESENTATIVAS:
+   3 comentarios positivos y 3 negativos más representativos del período (sin datos identificativos).</div>
+<div class="prompt-why">Este prompt produce en 30 segundos el análisis que un responsable de calidad tardaría 3-4 horas en hacer manualmente. El resultado no es el informe final — es el borrador al 80% que el responsable revisa y valida en 15 minutos. El valor real está en la escalabilidad: funciona igual con 20 comentarios que con 2.000.</div>
+</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(2)">← Diseño</button><button class="btn-p" onclick="go(4)">Casos y alertas →</button></div>
+</div>
+
+<div class="sec" id="s4">
+<div class="card"><div class="ct">Sistema de alertas por insatisfacción y casos prácticos</div><div class="cb">El análisis semanal detecta tendencias. Las alertas en tiempo real detectan situaciones que requieren respuesta inmediata — antes de que el paciente insatisfecho publique una reseña en Google, contacte con la prensa, o inicie una reclamación formal.</div></div>
+<div class="flow-box">SISTEMA DE ALERTAS POR NIVEL DE INSATISFACCIÓN:
+
+NIVEL 1 — Alerta inmediata (respuesta en 24h):
+Trigger: NPS = 0-4 + comentario con palabras clave de incidente
+Acción: email al responsable de calidad + jefe de servicio
+Contenido: comentario completo + datos del episodio asistencial (sin datos del paciente)
+Objetivo: verificar si hay incidente de seguridad subyacente que reportar
+
+NIVEL 2 — Gestión en 48-72h:
+Trigger: NPS = 0-4 sin palabras clave de alerta
+Acción: añadir a cola de revisión del responsable de calidad
+Objetivo: evaluar si requiere contacto con el paciente y resolución de la queja
+
+NIVEL 3 — Análisis semanal:
+Trigger: NPS 5-6 (detractores sin queja grave) + todos los comentarios neutros
+Acción: incluir en análisis semanal automatizado
+Objetivo: identificar patrones de insatisfacción moderada que si persisten se convierten en grave
+
+RECLAMACIONES FORMALES (gestión especial):
+Si el comentario menciona intención de reclamar formalmente:
+→ Notificar a Dirección de Calidad + Asesoría Jurídica
+→ Archivar el comentario con timestamp y número de episodio
+→ No contactar al paciente sin coordinar con asesoría</div>
+<div class="prompt-box">
+<div class="prompt-label">Prompt: redactar respuesta personalizada a un paciente insatisfecho</div>
+<div class="prompt-text">Soy responsable de calidad del Servicio de [ESPECIALIDAD]. Hemos recibido el siguiente comentario de un paciente tras su [consulta/ingreso/visita a urgencias]:
+
+COMENTARIO DEL PACIENTE:
+"[comentario del paciente]"
+
+PUNTUACIÓN NPS: [número del 0 al 10]
+
+Contexto adicional que puedo compartir:
+- Qué ocurrió realmente (si se conoce): [opcional]
+- Qué se puede mejorar o ya se ha mejorado: [opcional]
+
+Redacta una respuesta para contactar con este paciente que:
+1. Agradezca el tiempo de compartir su experiencia
+2. Reconozca las molestias o dificultades específicas que mencionó (sin promesas vacías)
+3. Explique brevemente qué se puede hacer diferente (si hay algo concreto)
+4. Ofrezca un canal de contacto directo si quiere ampliar información
+5. Evite: lenguaje defensivo, justificaciones que invaliden su experiencia, promesas que no se puedan cumplir
+
+Tono: empático, honesto y profesional. Extensión: máximo 150 palabras.</div>
+<div class="prompt-why">Responder a pacientes insatisfechos es una de las tareas más difíciles de comunicación clínica. Un tono incorrecto puede escalar la queja; no responder puede llevar a una reclamación formal. Este prompt genera la respuesta calibrada que el responsable de calidad revisa y personaliza antes de enviar — nunca se envía sin revisión humana.</div>
+</div>
+<div class="alerta ao"><div class="alt">✅ Resultado clínico demostrado</div>Los hospitales con sistemas de feedback en tiempo real y respuesta en 48-72h a pacientes insatisfechos reducen las reclamaciones formales en un 35-45% según estudios publicados en el Journal of Patient Experience. La velocidad de respuesta es el factor más determinante — no la solución completa del problema, sino el reconocimiento rápido de la experiencia.</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(3)">← Análisis con IA</button><button class="btn-p" onclick="go(5)">Test →</button></div>
+</div>
+
+<div class="sec" id="s5">
+<div class="qw active" id="q1w"><div class="qnum">Pregunta 1 de 3</div><div class="qtxt">Un servicio tiene el 60% de las encuestas con NPS entre 7-8. ¿Cómo se clasifican estos pacientes y qué implica para el cálculo del NPS?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,1)">Son "promotores" — un NPS alto — y elevan la puntuación final del servicio</button><button class="qopt" onclick="ans(this,true,1)">Son "pasivos" o "neutros" (NPS 7-8) — no se incluyen en el cálculo del NPS. El NPS = % promotores (9-10) - % detractores (0-6). Los pasivos no suman ni restan, pero representan pacientes en riesgo de volverse detractores si tienen una mala experiencia adicional</button><button class="qopt" onclick="ans(this,false,1)">Son "detractores moderados" — se restan del NPS igual que los de puntuación 0-6</button><button class="qopt" onclick="ans(this,false,1)">Un NPS de 7-8 es excelente en sanidad pública — indica que el 60% recomendaría el servicio</button></div><div class="qfb" id="fb1"></div><div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div></div>
+<div class="qw" id="q2w"><div class="qnum">Pregunta 2 de 3</div><div class="qtxt">El sistema de análisis automático de comentarios detecta la frase: «creo que me dieron una medicación equivocada y nadie me lo explicó». ¿Qué nivel de alerta debe activarse y por qué?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,2)">Nivel 3 — análisis semanal. El paciente usa «creo que», lo que indica incertidumbre — puede ser un malentendido</button><button class="qopt" onclick="ans(this,false,2)">Nivel 2 — gestión en 48-72h. Es una queja de insatisfacción moderada que requiere seguimiento pero no es urgente</button><button class="qopt" onclick="ans(this,true,2)">Nivel 1 — alerta inmediata. La mención de «medicación equivocada» activa la detección de palabras clave de posible incidente de seguridad, independientemente del grado de certeza del paciente («creo que»). Se debe verificar si hubo error de medicación antes de responder al paciente</button><button class="qopt" onclick="ans(this,false,2)">No debe generar alerta automática — primero hay que verificar manualmente si hubo un error real antes de activar ningún protocolo</button></div><div class="qfb" id="fb2"></div><div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div></div>
+<div class="qw" id="q3w"><div class="qnum">Pregunta 3 de 3</div><div class="qtxt">¿Cuál es el timing óptimo para enviar la encuesta de satisfacción a un paciente dado de alta tras una hospitalización de 5 días?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,3)">El mismo día del alta, en el momento en que recoge sus pertenencias — la experiencia está fresca</button><button class="qopt" onclick="ans(this,false,3)">7-10 días después del alta — tiempo suficiente para que el paciente haya procesado toda la experiencia médica</button><button class="qopt" onclick="ans(this,true,3)">3-5 días post-alta — tiempo suficiente para que el paciente esté instalado en casa y haya procesado la experiencia, pero lo suficientemente próximo para que el recuerdo sea vívido. El mismo día del alta el paciente está ocupado con el proceso de salida; más de 7 días y el recuerdo se difumina</button><button class="qopt" onclick="ans(this,false,3)">Durante el ingreso, el último día antes del alta — así el paciente aún puede dar retroalimentación sobre su habitación y los profesionales que le atendieron</button></div><div class="qfb" id="fb3"></div><div class="qnx" id="nx3"><div style="background:rgba(0,184,212,.1);border:1px solid rgba(0,184,212,.28);border-radius:10px;padding:16px;margin-top:8px"><div style="font-size:13px;font-weight:500;color:#80DEEA;margin-bottom:6px">✓ Lección 3.8 completada</div><div style="font-size:12px;color:#B0BEC5;line-height:1.6">Tienes el sistema completo: encuestas con timing óptimo, análisis automático de sentimiento y categorías, alertas diferenciadas por nivel de insatisfacción y prompts para responder a pacientes. La lección 3.9 entra en <strong style="color:#fff">integración con HIS: APIs, webhooks y conectores HL7/FHIR para conectar automatizaciones con el núcleo del sistema de información hospitalario</strong>.</div></div><button class="complete-btn" id="completeBtn" onclick="markComplete()">✓ MARCAR LECCIÓN COMO COMPLETADA</button></div></div>
+</div>
+<div class="lf"><span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span> · Desarrollado por DoncelProject · doncel.project@gmail.com</div>
+</div>
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/5)*100);document.getElementById('pbf38').style.width=p+'%';document.getElementById('pbl38').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function showTab(el,id){const sec=el.closest('.sec');sec.querySelectorAll('.tec-tab').forEach(t=>t.classList.remove('active'));sec.querySelectorAll('.tec-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById(id).classList.add('show');}
+const fbs={
+1:{ok:'✅ Correcto. El NPS tiene tres segmentos: promotores (9-10), pasivos o neutros (7-8) y detractores (0-6). La fórmula del NPS es: % promotores - % detractores. Los pasivos no participan en el cálculo — ni suman ni restan. Un 60% de pasivos es una señal de alerta: son pacientes satisfechos de forma insuficiente que un solo episodio negativo puede convertir en detractores. Un buen sistema de experiencia del paciente trabaja activamente para convertir pasivos en promotores.',ko:'❌ El NPS no es una media de puntuaciones — es la diferencia entre el porcentaje de promotores (9-10) y el de detractores (0-6). Los pasivos (7-8) quedan excluidos del cálculo. Un NPS del 60% de respuestas en 7-8 significa que el 60% de los pacientes son neutrales, lo que no es necesariamente bueno — son potenciales detractores ante cualquier experiencia negativa.'},
+2:{ok:'✅ Correcto. Cualquier comentario que mencione un posible error de medicación activa el nivel 1 de alerta, independientemente del grado de certeza del paciente. El «creo que» no reduce la urgencia — el sistema debe verificar si hubo un error de medicación antes de cualquier respuesta al paciente. Si hubo error, es un incidente de seguridad que debe reportarse internamente. Si no lo hubo, el paciente recibió información insuficiente sobre su medicación — también es un problema que gestionar. En ningún caso se deja para el análisis semanal.',ko:'❌ Las palabras clave de posible incidente de seguridad (medicación equivocada, caída, error) siempre activan el nivel 1, con independencia de la certeza expresada por el paciente. El «creo que» puede indicar tanto un incidente real como una percepción errónea, pero el único modo de saberlo es verificarlo internamente con urgencia. La gestión en 48-72h sería demasiado lenta para un posible error de medicación.'},
+3:{ok:'✅ Correcto. El timing óptimo para hospitalización es 3-5 días post-alta. El mismo día del alta el paciente está en proceso de salida, con estrés logístico. Los primeros 1-2 días en casa son de adaptación. Entre el día 3 y 5, el paciente está cómodo en casa, ha tenido perspectiva sobre la experiencia completa y el recuerdo es todavía vívido. A partir del día 7-10 la tasa de respuesta y la calidad del detalle de las respuestas cae significativamente.',ko:'❌ El mismo día del alta es el peor momento — el paciente está concentrado en el proceso de salida, transporte, recoger pertenencias. Durante el ingreso, el sesgo de dependencia (el paciente está bajo cuidado del mismo equipo que valora) distorsiona las respuestas hacia lo positivo. 7-10 días es demasiado tarde — el recuerdo se difumina y la tasa de respuesta cae. El óptimo documentado es 3-5 días post-alta.'}
+};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+function markComplete(){document.getElementById('completeBtn').disabled=true;document.getElementById('completeBtn').textContent='✓ Completada';window.parent.postMessage({type:'LESSON_COMPLETE'},'*');}
+upd();
+</script>

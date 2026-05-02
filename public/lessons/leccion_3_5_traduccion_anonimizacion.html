@@ -1,0 +1,271 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:32px}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(0,184,212,.15);border:1px solid rgba(0,184,212,.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#80DEEA;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px}
+.lt span{color:#00B8D4}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px;flex-wrap:wrap}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#00B8D4;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:80px}
+.nb.active{color:#00B8D4;border-bottom-color:#00B8D4;background:#0C0D12}
+.sec{display:none;padding:20px 24px}.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(0,184,212,.08);border:1px solid rgba(0,184,212,.22);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#80DEEA;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#00B8D4;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer}
+.tec-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.tec-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 14px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s}
+.tec-tab.active{background:rgba(0,184,212,.15);border-color:#00B8D4;color:#80DEEA}
+.tec-panel{display:none}.tec-panel.show{display:block}
+.prompt-box{background:#0e1018;border:1px solid #1e2335;border-radius:10px;padding:14px;margin:10px 0}
+.prompt-label{font-size:10px;color:#80DEEA;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}
+.prompt-text{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.prompt-why{font-size:11px;color:#B0BEC5;line-height:1.6;margin-top:10px;padding-top:10px;border-top:1px solid #1e2335}
+.limit-item{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #1a2a3a}
+.limit-item:last-child{border-bottom:none}
+.li-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.li-title{font-size:12px;font-weight:600;color:#fff;margin-bottom:3px}
+.li-desc{font-size:11px;color:#B0BEC5;line-height:1.6}
+.flow-box{background:#0C0D12;border-radius:8px;padding:12px 14px;margin:10px 0;font-family:monospace;font-size:11px;color:#80DEEA;line-height:1.9;white-space:pre-wrap;word-break:break-word;border-left:2px solid #00B8D4}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.cg-item{background:#13151e;border:1px solid #1e2335;border-radius:10px;padding:14px}
+.cg-icon{font-size:20px;margin-bottom:6px}
+.cg-title{font-size:12px;font-weight:600;color:#fff;margin-bottom:4px}
+.cg-desc{font-size:11px;color:#B0BEC5;line-height:1.6}
+.alerta{border-radius:10px;padding:12px 14px;margin:12px 0;font-size:12px;line-height:1.6}
+.ao{background:rgba(76,175,80,.07);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.aw{background:rgba(255,152,0,.07);border:1px solid rgba(255,152,0,.22);color:#FFD54F}
+.ad{background:rgba(244,67,54,.07);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.alt{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px}
+.qw{display:none}.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s}
+.qopt:hover{border-color:#00B8D4;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}.qnx.show{display:block}
+.complete-btn{width:100%;background:linear-gradient(135deg,#00B8D4,#0097A7);color:#fff;border:none;border-radius:10px;padding:14px 20px;font-size:13px;font-weight:600;cursor:pointer;margin-top:16px;letter-spacing:.3px;transition:opacity .2s}
+.complete-btn:hover{opacity:.9}.complete-btn:disabled{opacity:.5;cursor:not-allowed}
+.lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a}
+.fl{color:#00B8D4;cursor:pointer;text-decoration:underline}
+</style>
+<div class="lw">
+<div class="lh"><div class="lb">MÓDULO 3 · LECCIÓN 3.5</div><div class="lt">Traducción y anonimización de informes clínicos:<br><span>pipeline RGPD-compliant para documentación multiidioma</span></div><div class="lm"><div class="lmi"><div class="md" style="background:#00B8D4"></div>88 minutos</div><div class="lmi"><div class="md" style="background:#FFB300"></div>Nivel intermedio</div><div class="lmi"><div class="md" style="background:#A5D6A7"></div>RGPD · Documentación</div></div></div>
+<div class="pbw"><div class="pbb"><div class="pbf" id="pbf35"></div></div><div class="pbl" id="pbl35">0%</div></div>
+<div class="snav"><button class="nb active" id="t1" onclick="go(1)">Marco y necesidad</button><button class="nb" id="t2" onclick="go(2)">Anonimización</button><button class="nb" id="t3" onclick="go(3)">Traducción clínica</button><button class="nb" id="t4" onclick="go(4)">Pipeline completo</button><button class="nb" id="t5" onclick="go(5)">Test</button></div>
+
+<div class="sec active" id="s1">
+<div class="card"><div class="ct">Objetivo de la lección</div><div class="cb">Diseñar y automatizar el procesamiento seguro de documentación clínica multiidioma: desde la anonimización conforme al RGPD hasta la traducción médica precisa con validación terminológica, manteniendo en todo momento la soberanía de los datos sensibles.</div></div>
+<div class="simil"><div class="sl">🔐 Analogía clínica</div>Procesar un informe clínico para traducción es como preparar una muestra biológica para análisis externo: antes de enviarla al laboratorio externo eliminas todos los identificadores del paciente (etiquetas, códigos internos), trabajas solo con el contenido analítico necesario, y cuando recibes el resultado lo reintegras en la historia correcta mediante una clave de correspondencia que nunca ha salido de tu sistema. La anonimización es el equivalente digital de retirar la etiqueta antes de enviar la muestra.</div>
+<div class="card"><div class="ct">¿Por qué automatizar traducción y anonimización?</div><div class="cb" style="margin-bottom:10px">Tres escenarios muy frecuentes en hospitales españoles que generan esta necesidad:</div>
+<div class="limit-item"><div class="li-icon">🌍</div><div class="li-body"><div class="li-title">Paciente extranjero con informes previos en otro idioma</div><div class="li-desc">Turistas, residentes extranjeros o pacientes procedentes de otro país que traen documentación médica en inglés, francés, alemán, árabe o ruso. El médico necesita el contenido clínico en castellano para tomar decisiones, pero no puede enviar el informe con datos del paciente a un servicio de traducción externo sin anonimizarlo primero.</div></div></div>
+<div class="limit-item"><div class="li-icon">🔬</div><div class="li-body"><div class="li-title">Publicación científica con casos clínicos</div><div class="li-desc">Investigación clínica que requiere anonimizar casos para publicación o presentación en congresos. El proceso manual de anonimización es tedioso, inconsistente entre investigadores, y propenso a dejar identificadores residuales. La automatización garantiza consistencia y trazabilidad.</div></div></div>
+<div class="limit-item"><div class="li-icon">🤝</div><div class="li-body"><div class="li-title">Colaboración intercentro para formación o segunda opinión</div><div class="li-desc">Envío de casos a otro hospital o especialista para segunda opinión o uso docente. Los datos del paciente deben eliminarse antes de la transferencia. El pipeline automatizado garantiza que ningún identificador escapa al proceso.</div></div></div>
+</div>
+<div class="nav-actions"><div></div><button class="btn-p" onclick="go(2)">Anonimización →</button></div>
+</div>
+
+<div class="sec" id="s2">
+<div class="card"><div class="ct">Técnicas de anonimización y pseudonimización</div><div class="cb">El RGPD distingue entre datos anonimizados (ya no aplica el RGPD) y pseudonimizados (siguen siendo datos personales). Para traducción y uso externo se requiere anonimización completa; para uso interno con reintegración posterior, la pseudonimización es suficiente.</div></div>
+<div class="concept-grid">
+<div class="cg-item"><div class="cg-icon">🔀</div><div class="cg-title">Pseudonimización</div><div class="cg-desc">Se sustituyen los identificadores directos por códigos. La clave de correspondencia se guarda separada en el sistema original. Permite reidentificar al paciente cuando sea necesario. Sigue siendo dato personal bajo RGPD.</div></div>
+<div class="cg-item"><div class="cg-icon">🚫</div><div class="cg-title">Anonimización completa</div><div class="cg-desc">Se eliminan o generalizan los identificadores de forma irreversible. Ya no es posible reidentificar al individuo. El documento resultante ya no está sujeto al RGPD. Requiere el test de Mosaic para verificar que no es reidentificable.</div></div>
+<div class="cg-item"><div class="cg-icon">🗑️</div><div class="cg-title">Supresión</div><div class="cg-desc">Eliminación total del dato. El más simple: borrar el campo completo. Limitación: si el campo contiene información clínicamente relevante además del identificador, se pierde también el contenido útil.</div></div>
+<div class="cg-item"><div class="cg-icon">📊</div><div class="cg-title">Generalización</div><div class="cg-desc">Sustitución por categoría menos específica. En lugar de «María García Pérez, 45 años, C/ Mayor 12, Madrid» → «Mujer, 40-50 años, Madrid». Conserva información estadística útil sin identificar al individuo.</div></div>
+</div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'anon-manual')">⚠️ Proceso manual</button><button class="tec-tab" onclick="showTab(this,'anon-ia')">🤖 Anonimización con IA</button><button class="tec-tab" onclick="showTab(this,'anon-validacion')">✅ Validación</button></div>
+<div class="tec-panel show" id="anon-manual">
+<div class="card"><div class="ct">Identificadores a eliminar de un informe clínico</div><div class="cb">Esta lista de 18 identificadores viene del estándar HIPAA Safe Harbor (internacionalmente reconocido). Eliminarlos todos garantiza que el documento no es reidentificable por combinación de campos.</div></div>
+<div class="flow-box">LISTA COMPLETA DE IDENTIFICADORES A ELIMINAR:
+1. Nombre y apellidos (todas las variantes)
+2. Dirección postal (incluyendo barrio/distrito)
+3. Fechas (nacimiento, ingreso, alta, intervención, muerte)
+   → Se conserva solo el año o la edad en décadas
+4. Teléfonos
+5. Números de fax
+6. Email
+7. NHC / Número de Historia Clínica
+8. Número de la Seguridad Social (NAF, NIF)
+9. Número de tarjeta sanitaria
+10. Número de cuenta bancaria
+11. Número de certificado o licencia
+12. Número de vehículo / matrícula
+13. Número de dispositivo implantado (si identifica)
+14. URL / dirección web
+15. IP
+16. Biométricos (huellas, voz, retina)
+17. Fotografía a cuerpo completo
+18. Cualquier otro identificador único</div>
+<div class="alerta aw"><div class="alt">⚠️ Identificadores residuales frecuentes</div>Los más difíciles de detectar manualmente: el nombre del médico firmante (datos del profesional que pueden llevar al paciente), el número de cama combinado con fecha de ingreso, referencias a familiares ("su hijo [nombre]"), la firma digitalizada, y datos de imágenes incrustadas en el PDF (DICOM con metadatos).</div>
+</div>
+<div class="tec-panel" id="anon-ia">
+<div class="card"><div class="ct">Anonimización automática con IA y NER (Named Entity Recognition)</div><div class="cb">Los modelos de IA con capacidad de Reconocimiento de Entidades Nombradas (NER) pueden identificar automáticamente los identificadores personales en texto libre y sustituirlos. Esta es la base de los sistemas automáticos de anonimización clínica.</div></div>
+<div class="limit-item"><div class="li-icon">🤖</div><div class="li-body"><div class="li-title">Herramientas NER para anonimización médica</div><div class="li-desc"><strong>spaCy + modelos médicos:</strong> biblioteca Python open source con modelos entrenados en texto clínico español (IberLEF, PharmacoNER). <strong>Microsoft Presidio:</strong> herramienta open source específica para detección y anonimización de PII (Personal Identifiable Information), compatible con RGPD. <strong>AWS Comprehend Medical:</strong> servicio cloud de extracción de entidades médicas con función de desidentificación. <strong>Claude API / GPT-4:</strong> capacidad NER avanzada pero requiere que ningún dato real llegue al API externo antes de anonimizar.</div></div></div>
+<div class="prompt-box">
+<div class="prompt-label">Prompt: anonimizar informe clínico (solo con texto ya pseudonimizado)</div>
+<div class="prompt-text">Actúa como sistema de anonimización de documentos clínicos.
+
+El siguiente texto es un informe médico que ya ha pasado por un proceso de pseudonimización automática (los nombres reales han sido sustituidos por códigos internos). Tu tarea es:
+
+1. Identificar TODOS los identificadores residuales que podrían reidentificar al paciente: nombres de familiares, fechas específicas (mantén solo el año), referencias geográficas precisas, nombres de centros muy específicos, nombres de profesionales que llevan al paciente, números de historia clínica residuales.
+
+2. Sustituir cada identificador encontrado por una etiqueta genérica: [NOMBRE], [FECHA], [LUGAR], [PROFESIONAL], [NÚMERO].
+
+3. Proporcionar primero la lista de identificadores encontrados y luego el texto anonimizado.
+
+4. Al final, evalúa el riesgo residual de reidentificación en escala 1-10 y justifica tu puntuación.
+
+TEXTO A ANONIMIZAR:
+[PEGAR AQUÍ EL TEXTO PSEUDONIMIZADO]</div>
+<div class="prompt-why">Este prompt trabaja SIEMPRE con texto ya pseudonimizado — nunca con datos reales de pacientes en claro. El primer paso de pseudonimización (sustitución de nombres reales por códigos) debe hacerse dentro de la infraestructura del hospital. Solo el texto con códigos pasa a la IA externa para la verificación de residuos.</div>
+</div>
+</div>
+<div class="tec-panel" id="anon-validacion">
+<div class="card"><div class="ct">Validación del resultado de anonimización</div><div class="cb">Ningún sistema de anonimización automática es perfecto. La validación es obligatoria antes de considerar el documento como anonimizado.</div></div>
+<div class="limit-item"><div class="li-icon">✅</div><div class="li-body"><div class="li-title">Test de reidentificación básico</div><div class="li-desc">Busca en Google los fragmentos de texto más específicos del documento anonimizado. Si la búsqueda lleva al paciente, el documento no está suficientemente anonimizado. Combina también las fechas + especialidad + diagnóstico raros para verificar que la combinación no identifica.</div></div></div>
+<div class="limit-item"><div class="li-icon">👁️</div><div class="li-body"><div class="li-title">Revisión humana del 100% de los documentos (por ahora)</div><div class="li-desc">Hasta que los sistemas automáticos de anonimización médica en español demuestren una tasa de error menor al 0.1% en tu contexto específico, la revisión humana del documento anonimizado es obligatoria antes de cualquier transferencia a terceros. La IA asiste, no reemplaza.</div></div></div>
+<div class="alerta ao"><div class="alt">✅ Flujo seguro recomendado</div>Texto real → Pseudonimización automática (dentro del hospital) → Revisión NER con IA (texto pseudonimizado, no real) → Revisión humana del documento resultante → Certificación del DPD → Transferencia. Nunca: Texto real → API externa directamente.</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(1)">← Marco y necesidad</button><button class="btn-p" onclick="go(3)">Traducción clínica →</button></div>
+</div>
+
+<div class="sec" id="s3">
+<div class="card"><div class="ct">Traducción médica precisa con IA</div><div class="cb">La traducción de informes médicos tiene requisitos distintos a la traducción general. Los errores terminológicos en traducción médica pueden llevar a decisiones clínicas equivocadas. La IA puede hacer traducciones médicas de alta calidad, pero requiere instrucciones específicas para evitar los errores más frecuentes.</div></div>
+<div class="simil"><div class="sl">🌐 Los riesgos de la traducción médica sin instrucciones</div>«Intoxicación» en inglés puede ser «poisoning» (intoxicación tóxica) o «intoxication» (intoxicación etílica) — traducciones diferentes para contextos clínicos distintos. «Sensible» en inglés médico significa «sensible» como en «sensibilidad al tacto», pero también puede confundirse con el español «sensato». «Discharge» puede ser «alta hospitalaria» o «exudado/secreción». Sin instrucciones de contexto, la IA elige la traducción más frecuente, que puede no ser la correcta para tu caso.</div>
+<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'trad-prompt')">📝 Prompts de traducción</button><button class="tec-tab" onclick="showTab(this,'trad-err')">⚠️ Errores frecuentes</button><button class="tec-tab" onclick="showTab(this,'trad-valid')">✅ Validación</button></div>
+<div class="tec-panel show" id="trad-prompt">
+<div class="prompt-box">
+<div class="prompt-label">Prompt maestro: traducción médica precisa inglés → castellano</div>
+<div class="prompt-text">Actúa como traductor médico especializado con certificación en terminología clínica española (SNS) y experiencia en traducción de informes para uso asistencial.
+
+INSTRUCCIONES ESPECÍFICAS:
+- Usa terminología médica española estándar del SNS y de las guías clínicas españolas
+- Para fármacos: usa el Denominación Común Internacional (DCI) en castellano, no nombres comerciales
+- Para procedimientos: usa la nomenclatura CIE-10-ES cuando sea aplicable
+- Para valores de laboratorio: usa las unidades del SI (Sistema Internacional) y los rangos de referencia del laboratorio español estándar
+- Mantén los acrónimos en el idioma original y añade entre paréntesis la traducción la primera vez que aparecen
+- Si un término tiene varias traducciones posibles con matices distintos, elige la que corresponde al contexto clínico del documento y añade una nota [Nota del traductor: ...] explicando la elección
+- Los apartados del informe (Anamnesis, Exploración física, Pruebas complementarias, Juicio clínico, Plan) deben mantenerse con esos nombres estándar en castellano
+
+TEXTO A TRADUCIR (informe médico en inglés, ya anonimizado):
+[PEGAR AQUÍ EL TEXTO ANONIMIZADO EN INGLÉS]
+
+Al final del informe traducido, incluye:
+- Lista de términos donde hubo ambigüedad terminológica y cómo se resolvió
+- Lista de acrónimos traducidos
+- Evaluación de la confianza de la traducción: alta / media / baja + razón</div>
+<div class="prompt-why">Este prompt produce traducciones médicas de alta calidad porque da contexto de dominio (SNS, CIE-10-ES), exige transparencia sobre las decisiones terminológicas ambiguas, y fuerza una autoevaluación de confianza que señala los términos que requieren revisión humana especializada.</div>
+</div>
+<div class="prompt-box">
+<div class="prompt-label">Prompt: traducción castellano → inglés para publicación científica</div>
+<div class="prompt-text">Actúa como revisor científico y traductor médico con experiencia en publicaciones en revistas indexadas en PubMed (Lancet, NEJM, BMJ style).
+
+Traduce el siguiente texto clínico del castellano al inglés médico para su posible publicación científica:
+
+REQUISITOS:
+- Inglés médico estándar internacional (British English preferido para revistas europeas, American English si la revista objetivo es de EEUU — indica cuál usas)
+- Terminología ICD-10 para diagnósticos, SNOMED CT para procedimientos si aplica
+- Valores en unidades del SI con equivalencia convencional entre paréntesis si es estándar internacional
+- Estructura IMRaD si el texto es un caso clínico (Introducción, Métodos, Resultados, Discusión)
+- Tiempo verbal: pasado para métodos y resultados, presente para discusión e introducción
+- Evita construcciones pasivas innecesarias (estilo activo preferido en revistas top)
+
+TEXTO ORIGINAL (ya anonimizado):
+[TEXTO EN CASTELLANO]</div>
+<div class="prompt-why">La traducción para publicación científica tiene estándares distintos a la traducción asistencial. Este prompt aplica las convenciones de las revistas biomédicas internacionales.</div>
+</div>
+</div>
+<div class="tec-panel" id="trad-err">
+<div class="limit-item"><div class="li-icon">⚠️</div><div class="li-body"><div class="li-title">Falsos amigos médicos más frecuentes inglés-castellano</div><div class="li-desc"><strong>Intoxication</strong> → intoxicación etílica (NO intoxicación por tóxico). <strong>Sensible</strong> → sensible (sensitivo), NO «con juicio». <strong>Constipation</strong> → estreñimiento (NO resfriado/constipado). <strong>Discharge</strong> → alta hospitalaria O secreción/exudado según contexto. <strong>Physician</strong> → médico (NO físico). <strong>Surgeon</strong> → cirujano (NO sargento). <strong>Prescription</strong> → prescripción/receta (NO proscripción).</div></div></div>
+<div class="limit-item"><div class="li-icon">⚠️</div><div class="li-body"><div class="li-title">Diferencias de valores de referencia por sistema</div><div class="li-desc">Glucosa en sangre: EEUU usa mg/dL, España usa mmol/L (factor conversión: /18). Colesterol, triglicéridos: mismo issue. Bilirrubina: EEUU mg/dL, España μmol/L. Siempre verifica las unidades y los rangos de referencia al traducir valores analíticos — un valor normal en un sistema puede parecer patológico en otro.</div></div></div>
+<div class="limit-item"><div class="li-icon">⚠️</div><div class="li-body"><div class="li-title">Fármacos con nombres distintos por país</div><div class="li-desc">Acetaminophen (EEUU) = Paracetamol (España). Epinephrine (EEUU) = Adrenalina (España). Meperidine (EEUU) = Petidina (España). Norepinephrine = Noradrenalina. Usa siempre la DCI (Denominación Común Internacional) para evitar confusiones.</div></div></div>
+</div>
+<div class="tec-panel" id="trad-valid">
+<div class="limit-item"><div class="li-icon">✅</div><div class="li-body"><div class="li-title">Verificación del profesional clínico</div><div class="li-desc">Toda traducción médica generada por IA debe ser revisada por un profesional clínico con conocimiento del idioma origen antes de ser usada para decisiones clínicas. La IA puede generar errores sutiles en terminología especializada. El médico responsable del paciente firma la validez clínica de la traducción.</div></div></div>
+<div class="limit-item"><div class="li-icon">📝</div><div class="li-body"><div class="li-title">Registro de validación</div><div class="li-desc">Documenta: fecha de traducción, herramienta utilizada, profesional que revisó, fecha de revisión y cualquier corrección realizada. En caso de incidente, este registro demuestra que existió supervisión humana sobre el proceso de IA.</div></div></div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(2)">← Anonimización</button><button class="btn-p" onclick="go(4)">Pipeline completo →</button></div>
+</div>
+
+<div class="sec" id="s4">
+<div class="card"><div class="ct">Pipeline automatizado completo: anonimización + traducción + validación</div><div class="cb">Este pipeline combina todos los pasos en un flujo automatizado que puede implementarse en Make con n8n self-hosted para la parte de anonimización (datos sensibles) y la API de Claude para la traducción del texto ya anonimizado.</div></div>
+<div class="flow-box">PIPELINE: Traducción de informe extranjero para uso clínico
+
+ENTRADA: PDF o texto en idioma extranjero con datos del paciente
+
+PASO 1 — Extracción de texto (n8n self-hosted)
+  → Módulo PDF-parse extrae texto del PDF
+  → El texto queda dentro de la infraestructura del hospital
+
+PASO 2 — Pseudonimización automática (n8n + Presidio self-hosted)
+  → Microsoft Presidio detecta entidades: nombres, fechas, direcciones, IDs
+  → Las sustituye por tokens: {NOMBRE_1}, {FECHA_1}, {LUGAR_1}
+  → Guarda tabla de correspondencia: token ↔ valor real (en BD interna)
+  → El texto pseudonimizado sale del hospital; la tabla de correspondencia NO
+
+PASO 3 — Revisión NER de residuos (API Claude/GPT — texto pseudonimizado)
+  → Prompt de verificación de identificadores residuales
+  → Si detecta residuos: devuelve lista para corrección manual
+  → Si no detecta residuos: avanza
+
+PASO 4 — Traducción médica (API Claude/GPT — texto pseudonimizado)
+  → Prompt maestro de traducción médica (lección anterior)
+  → Resultado: texto traducido con notas terminológicas
+
+PASO 5 — Reintegración de tokens (n8n self-hosted)
+  → Sustituye tokens {NOMBRE_1} etc. por los valores reales de la tabla
+  → El documento final con datos reales nunca salió del hospital
+  → Solo salió el texto pseudonimizado para traducción
+
+PASO 6 — Generación del documento final
+  → Texto traducido + datos del paciente reintegrados
+  → Añade cabecera: "Traducción automatizada por IA - Requiere validación clínica"
+  → Guarda en carpeta del paciente en el sistema documental del hospital
+
+PASO 7 — Notificación al médico solicitante
+  → "La traducción del informe de [Paciente pseudonimizado] está disponible. 
+     Requiere su revisión y validación antes del uso clínico."</div>
+<div class="alerta ao"><div class="alt">✅ Principio clave de este pipeline</div>Los datos de identificación del paciente NUNCA salen de la infraestructura del hospital. Los pasos 1 y 2 se ejecutan en n8n self-hosted dentro del hospital. Solo el texto pseudonimizado — sin ningún identificador — se envía a la API externa para los pasos 3 y 4. Los datos reales se reintegran en el paso 5, dentro del hospital.</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(3)">← Traducción clínica</button><button class="btn-p" onclick="go(5)">Test →</button></div>
+</div>
+
+<div class="sec" id="s5">
+<div class="qw active" id="q1w"><div class="qnum">Pregunta 1 de 3</div><div class="qtxt">Un médico quiere usar la API de Claude para traducir un informe de un paciente turista desde el inglés al castellano. El informe incluye el nombre completo, fecha de nacimiento y número de pasaporte del paciente. ¿Cuál es el procedimiento correcto?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,1)">Enviar el informe completo a la API — Claude tiene políticas de privacidad que protegen los datos</button><button class="qopt" onclick="ans(this,true,1)">Primero anonimizar/pseudonimizar el informe dentro de la infraestructura del hospital (eliminando nombre, fecha de nacimiento y pasaporte, sustituyéndolos por tokens), y solo entonces enviar el texto sin identificadores a la API para traducción</button><button class="qopt" onclick="ans(this,false,1)">Obtener el consentimiento verbal del paciente y después enviar el informe completo a la API</button><button class="qopt" onclick="ans(this,false,1)">No es posible usar IA para traducción médica en ningún caso — siempre se requiere un traductor jurado</button></div><div class="qfb" id="fb1"></div><div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div></div>
+<div class="qw" id="q2w"><div class="qnum">Pregunta 2 de 3</div><div class="qtxt">¿Cuál es la diferencia clave entre pseudonimización y anonimización completa según el RGPD?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,2)">No hay diferencia práctica — ambas eliminan los datos identificativos del paciente de forma permanente</button><button class="qopt" onclick="ans(this,false,2)">La pseudonimización es más segura que la anonimización porque usa tokens criptográficos</button><button class="qopt" onclick="ans(this,true,2)">La pseudonimización sustituye identificadores por códigos pero mantiene la posibilidad de reidentificación mediante la tabla de correspondencia — sigue siendo dato personal sujeto al RGPD. La anonimización es irreversible y el documento resultante ya no está sujeto al RGPD</button><button class="qopt" onclick="ans(this,false,2)">La anonimización es un proceso temporal; la pseudonimización es permanente</button></div><div class="qfb" id="fb2"></div><div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div></div>
+<div class="qw" id="q3w"><div class="qnum">Pregunta 3 de 3</div><div class="qtxt">Un médico recibe una traducción generada automáticamente por IA de un informe alemán. El valor de glucosa aparece como «126 mg/dL». El informe original decía «7.0 mmol/L». ¿Cuál es el problema y cómo resolverlo?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,3)">No hay problema — 126 mg/dL equivale exactamente a 7.0 mmol/L (factor 18), la traducción es correcta</button><button class="qopt" onclick="ans(this,false,3)">El problema es que el sistema alemán usa mmol/L pero en España se usa mg/dL — hay que dividir por 18</button><button class="qopt" onclick="ans(this,true,3)">La conversión numérica es correcta (7.0 mmol/L × 18 ≈ 126 mg/dL), pero el médico debe verificar cuál es el rango de referencia del laboratorio alemán original y añadir el contexto: 126 mg/dL en ayunas está en rango diagnóstico de diabetes — una diferencia clínica relevante que puede no ser obvia si el médico solo lee el número sin el rango de referencia del sistema original</button><button class="qopt" onclick="ans(this,false,3)">La IA cometió un error de conversión — 7.0 mmol/L son 70 mg/dL, no 126</button></div><div class="qfb" id="fb3"></div><div class="qnx" id="nx3"><div style="background:rgba(0,184,212,.1);border:1px solid rgba(0,184,212,.28);border-radius:10px;padding:16px;margin-top:8px"><div style="font-size:13px;font-weight:500;color:#80DEEA;margin-bottom:6px">✓ Lección 3.5 completada</div><div style="font-size:12px;color:#B0BEC5;line-height:1.6">Dominas el pipeline de anonimización + traducción RGPD-compliant: los datos identificativos nunca salen del hospital, solo el texto pseudonimizado se envía a la API, y la validación clínica humana es siempre el paso final. La lección 3.6 conecta la automatización con <strong style="color:#fff">bases científicas externas: PubMed, ClinicalTrials y alertas de nueva evidencia</strong>.</div></div><button class="complete-btn" id="completeBtn" onclick="markComplete()">✓ MARCAR LECCIÓN COMO COMPLETADA</button></div></div>
+</div>
+
+<div class="lf"><span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span> · Desarrollado por DoncelProject · doncel.project@gmail.com</div>
+</div>
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/5)*100);document.getElementById('pbf35').style.width=p+'%';document.getElementById('pbl35').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function showTab(el,id){const sec=el.closest('.sec');sec.querySelectorAll('.tec-tab').forEach(t=>t.classList.remove('active'));sec.querySelectorAll('.tec-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById(id).classList.add('show');}
+const fbs={
+1:{ok:'✅ Correcto. Ningún dato identificativo del paciente puede enviarse a una API externa sin pseudonimización/anonimización previa. El proceso correcto es: (1) eliminar o tokenizar todos los identificadores dentro de la infraestructura del hospital, (2) enviar solo el texto sin identificadores a la API para traducción, (3) reintegrar los datos reales al resultado dentro del hospital. Las políticas de privacidad del proveedor no sustituyen a la obligación del responsable del tratamiento (el hospital) de proteger los datos.',ko:'❌ Las políticas de privacidad del proveedor de IA no eximen al hospital de su obligación como responsable del tratamiento de proteger los datos de los pacientes. El consentimiento verbal tampoco es base legal suficiente para transferir datos de salud a terceros fuera de la UE sin DPA. El proceso correcto siempre requiere anonimización/pseudonimización previa.'},
+2:{ok:'✅ Correcto. Esta distinción es fundamental en RGPD. La pseudonimización sustituye identificadores por tokens pero la tabla de correspondencia (que permite volver al nombre real) existe y está protegida — el dato sigue siendo personal y el RGPD aplica. La anonimización elimina esa posibilidad de reidentificación de forma irreversible — el RGPD ya no aplica al documento resultante. Para uso externo definitivo se requiere anonimización; para uso interno con posibilidad de volver al dato real, la pseudonimización es suficiente y más útil.',ko:'❌ La diferencia es jurídicamente crítica: los datos pseudonimizados siguen siendo datos personales bajo el RGPD porque pueden reidentificarse con la tabla de correspondencia. Solo los datos verdaderamente anonimizados (sin posibilidad de reidentificación) quedan fuera del ámbito del RGPD. La pseudonimización no es más segura — es diferente en propósito.'},
+3:{ok:'✅ Correcto. La conversión matemática es correcta (7.0 mmol/L × 18 = 126 mg/dL). El problema más sutil es el clínico: 126 mg/dL en ayunas es exactamente el umbral diagnóstico de diabetes mellitus (≥126 mg/dL en dos determinaciones). Un médico que ve «7.0 mmol/L» en el informe alemán con el rango de referencia de ese laboratorio puede interpretar el contexto diferente que uno que ve «126 mg/dL» sin ese contexto. El prompt de traducción médica debe incluir siempre los rangos de referencia del laboratorio original junto a los valores.',ko:'❌ El factor de conversión entre mmol/L y mg/dL para glucosa es 18 (no 10). 7.0 mmol/L × 18 = 126 mg/dL, que es la cifra correcta. Sin embargo, la respuesta correcta va más allá de la conversión — el punto crítico es que 126 mg/dL es el umbral diagnóstico de diabetes, y el contexto del rango de referencia del laboratorio original es esencial para la interpretación clínica correcta.'}
+};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+function markComplete(){document.getElementById('completeBtn').disabled=true;document.getElementById('completeBtn').textContent='✓ Completada';window.parent.postMessage({type:'LESSON_COMPLETE'},'*');}
+upd();
+</script>

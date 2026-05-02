@@ -1,0 +1,448 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:32px}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(156,39,176,.15);border:1px solid rgba(156,39,176,.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#CE93D8;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px}
+.lt span{color:#AB47BC}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px;flex-wrap:wrap}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#AB47BC;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:70px}
+.nb.active{color:#AB47BC;border-bottom-color:#AB47BC;background:#0C0D12}
+.sec{display:none;padding:20px 24px}
+.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(156,39,176,.08);border:1px solid rgba(156,39,176,.22);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#CE93D8;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#AB47BC;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer}
+.btn-complete{background:linear-gradient(135deg,#AB47BC,#7B1FA2);color:#fff;border:none;border-radius:10px;padding:14px 28px;font-size:13px;font-weight:600;cursor:pointer;width:100%;margin-top:16px;letter-spacing:.3px;transition:opacity .2s}
+.btn-complete:hover{opacity:.88}
+.tec-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.tec-tab{background:#13151e;border:1px solid #1e2335;border-radius:20px;padding:6px 12px;font-size:11px;color:#B0BEC5;cursor:pointer;transition:all .2s}
+.tec-tab.active{background:rgba(156,39,176,.15);border-color:#AB47BC;color:#CE93D8}
+.tec-panel{display:none}
+.tec-panel.show{display:block}
+.prompt-box{background:#0e1018;border:1px solid #1e2335;border-radius:10px;padding:14px;margin:10px 0}
+.prompt-label{font-size:10px;color:#CE93D8;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}
+.prompt-text{font-family:monospace;font-size:11px;color:#E0E0E0;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.prompt-why{font-size:11px;color:#B0BEC5;line-height:1.6;margin-top:10px;padding-top:10px;border-top:1px solid #1e2335}
+.limit-item{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;background:#13151e;border:1px solid #1e2335;border-radius:8px;margin-bottom:8px;font-size:12px;color:#E0E0E0;line-height:1.6}
+.li-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.concept-card{background:#13151e;border:1px solid #1e2335;border-radius:10px;padding:14px}
+.cc-label{font-size:10px;color:#CE93D8;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:500}
+.cc-title{font-size:13px;font-weight:500;color:#fff;margin-bottom:6px}
+.cc-body{font-size:12px;color:#B0BEC5;line-height:1.6}
+.risk-bar{height:6px;border-radius:4px;margin:6px 0 4px;background:#1e2335;overflow:hidden}
+.risk-fill{height:6px;border-radius:4px}
+.timeline-item{position:relative;padding:12px 14px 12px 44px;background:#13151e;border:1px solid #1e2335;border-radius:8px;margin-bottom:8px}
+.tl-dot{position:absolute;left:14px;top:16px;width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;flex-shrink:0}
+.tl-date{font-size:10px;font-weight:600;letter-spacing:.5px;margin-bottom:3px}
+.tl-title{font-size:12px;font-weight:500;color:#fff;margin-bottom:3px}
+.tl-desc{font-size:11px;color:#B0BEC5;line-height:1.5}
+.badge-riesgo{display:inline-block;font-size:10px;padding:2px 8px;border-radius:8px;font-weight:600;margin-left:6px}
+.br-alto{background:rgba(244,67,54,.15);color:#EF9A9A}
+.br-medio{background:rgba(255,152,0,.15);color:#FFD54F}
+.br-bajo{background:rgba(76,175,80,.15);color:#A5D6A7}
+.br-min{background:rgba(176,190,197,.15);color:#B0BEC5}
+.qw{display:none}
+.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s}
+.qopt:hover{border-color:#AB47BC;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}
+.qnx.show{display:block}
+.lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a}
+.fl{color:#AB47BC;cursor:pointer;text-decoration:underline}
+</style>
+
+<div class="lw">
+
+  <div class="lh">
+    <div class="lb">MÓDULO 5 · LECCIÓN 5.1</div>
+    <div class="lt">Marco normativo español y europeo: <span>AI Act, estrategias autonómicas y sandbox regulatorio</span></div>
+    <div class="lm">
+      <div class="lmi"><div class="md" style="background:#AB47BC"></div>72 minutos</div>
+      <div class="lmi"><div class="md" style="background:#00B8D4"></div>4 secciones</div>
+      <div class="lmi"><div class="md" style="background:#FFB300"></div>Normativa SNS actualizada</div>
+    </div>
+  </div>
+
+  <div class="pbw">
+    <div class="pbb"><div class="pbf" id="pf51"></div></div>
+    <div class="pbl" id="pl51">0%</div>
+  </div>
+
+  <div class="snav">
+    <button class="nb active" id="t1" onclick="go(1)">AI Act en salud</button>
+    <button class="nb" id="t2" onclick="go(2)">Estrategias CCAA</button>
+    <button class="nb" id="t3" onclick="go(3)">Sandbox y acción</button>
+    <button class="nb" id="t4" onclick="go(4)">Test</button>
+  </div>
+
+  <!-- SECCIÓN 1: AI ACT -->
+  <div class="sec active" id="s1">
+
+    <div class="card">
+      <div class="ct">Objetivo de la lección</div>
+      <div class="cb">Dominar el contexto regulatorio específico para IA sanitaria en España y Europa. El AI Act tiene impacto directo en cómo los hospitales pueden desarrollar, adquirir y usar IA clínica. Conocer este marco no es una opción para quien lidera proyectos de IA en salud — es un requisito profesional.</div>
+    </div>
+
+    <div class="simil">
+      <div class="sl">Marco de referencia clínico</div>
+      Aplicar IA clínica sin conocer el AI Act es como prescribir un medicamento de uso hospitalario sin saber que requiere visado de inspección: técnicamente puedes hacerlo, pero la responsabilidad legal recae sobre ti y tu institución. El marco regulatorio no frena la innovación; la hace sostenible.
+    </div>
+
+    <div class="ct" style="margin-top:4px">Clasificación de riesgo del AI Act — ¿Dónde cae tu sistema?</div>
+
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="cc-label">Riesgo inaceptable <span class="badge-riesgo br-alto">PROHIBIDO</span></div>
+        <div class="cc-title">No se puede usar en UE</div>
+        <div class="risk-bar"><div class="risk-fill" style="width:100%;background:#F44336"></div></div>
+        <div class="cc-body">Sistemas de scoring social ciudadano, manipulación subliminal, explotación de vulnerabilidades. En sanidad: IA que tome decisiones clínicas definitivas sin supervisión humana posible.</div>
+      </div>
+      <div class="concept-card">
+        <div class="cc-label">Alto riesgo <span class="badge-riesgo br-alto">REGULADO</span></div>
+        <div class="cc-title">Diagnóstico y apoyo clínico</div>
+        <div class="risk-bar"><div class="risk-fill" style="width:80%;background:#FF7043"></div></div>
+        <div class="cc-body">IA para diagnóstico, pronóstico, decisión terapéutica, triaje. Obligaciones: documentación técnica, supervisión humana, logs de actividad, evaluación de conformidad antes de despliegue.</div>
+      </div>
+      <div class="concept-card">
+        <div class="cc-label">Riesgo limitado <span class="badge-riesgo br-medio">TRANSPARENCIA</span></div>
+        <div class="cc-title">Chatbots y asistentes</div>
+        <div class="risk-bar"><div class="risk-fill" style="width:45%;background:#FFB300"></div></div>
+        <div class="cc-body">Chatbots de atención al paciente, asistentes de triaje no autónomos. Obligación principal: informar al usuario de que interactúa con una IA. Sin evaluación de conformidad previa.</div>
+      </div>
+      <div class="concept-card">
+        <div class="cc-label">Riesgo mínimo <span class="badge-riesgo br-bajo">LIBRE</span></div>
+        <div class="cc-title">Herramientas de soporte</div>
+        <div class="risk-bar"><div class="risk-fill" style="width:15%;background:#4CAF50"></div></div>
+        <div class="cc-body">Filtros de spam, correctores de informes, herramientas de resumen bibliográfico. Sin obligaciones regulatorias específicas del AI Act. Aplica RGPD si hay datos personales.</div>
+      </div>
+    </div>
+
+    <div class="ct" style="margin:16px 0 8px">Calendario de aplicación del AI Act — fechas clave</div>
+
+    <div class="timeline-item">
+      <div class="tl-dot" style="background:#F44336;color:#fff">✗</div>
+      <div class="tl-date" style="color:#EF9A9A">Febrero 2025</div>
+      <div class="tl-title">Prohibiciones de IA de riesgo inaceptable aplicables</div>
+      <div class="tl-desc">Los sistemas ya prohibidos deben ser retirados. Ningún nuevo sistema de riesgo inaceptable puede desplegarse en la UE.</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-dot" style="background:#FFB300;color:#0C0D12">⚙</div>
+      <div class="tl-date" style="color:#FFD54F">Agosto 2025</div>
+      <div class="tl-title">Obligaciones de gobernanza y alfabetización IA</div>
+      <div class="tl-desc">Los hospitales deben tener designado un responsable de IA y acreditar formación básica del personal que usa o supervisa sistemas de IA.</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-dot" style="background:#AB47BC;color:#fff">★</div>
+      <div class="tl-date" style="color:#CE93D8">Agosto 2026 — FECHA CRÍTICA</div>
+      <div class="tl-title">Cumplimiento completo para sistemas de alto riesgo</div>
+      <div class="tl-desc">Todos los sistemas de IA de alto riesgo (incluyendo los diagnósticos y de apoyo clínico) deben cumplir todas las obligaciones: documentación técnica completa, evaluación de conformidad, supervisión humana documentada, gestión de logs y registro en base de datos UE.</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-dot" style="background:#4CAF50;color:#fff">→</div>
+      <div class="tl-date" style="color:#A5D6A7">2027 en adelante</div>
+      <div class="tl-title">AEMPS como autoridad permanente de vigilancia</div>
+      <div class="tl-desc">La Agencia Española de Medicamentos y Productos Sanitarios consolida su rol como ventanilla única para IA médica: notificaciones de incidentes, gestión del sandbox, coordinación con EMA.</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-label">Prompt para análisis de cumplimiento AI Act</div>
+      <div class="prompt-text">Actúa como experto en regulación de IA sanitaria con conocimiento del Reglamento (UE) 2024/1689.
+
+Contexto: Soy [rol] en [tipo de hospital]. Nuestro servicio está evaluando implementar un sistema de IA para [caso de uso específico].
+
+Tarea: Analiza si este sistema caería en la categoría de alto riesgo según el AI Act. Si es así, lista las 5 obligaciones principales que debemos cumplir antes de agosto 2026, con el responsable interno más lógico para cada una.
+
+Formato: tabla con columnas Obligación | Plazo parcial | Responsable sugerido | Riesgo si no se cumple.
+
+Restricciones: Basa tu análisis en el Reglamento (UE) 2024/1689 y el MDR (UE) 2017/745. Si alguna obligación requiere interpretación de la AEMPS, indícalo explícitamente.</div>
+      <div class="prompt-why">Usar este prompt en fase de evaluación tecnológica evita sorpresas regulatorias. El análisis de riesgo debe hacerse antes de la contratación, no después del despliegue.</div>
+    </div>
+
+    <div class="nav-actions">
+      <div></div>
+      <button class="btn-p" onclick="go(2)">Estrategias CCAA →</button>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 2: ESTRATEGIAS CCAA -->
+  <div class="sec" id="s2">
+
+    <div class="card">
+      <div class="ct">El mapa autonómico de la IA en salud</div>
+      <div class="cb">Las comunidades autónomas tienen competencia en sanidad y han desarrollado estrategias propias que condicionan el entorno normativo y de financiación en cada territorio. Conocer el mapa te permite encontrar aliados, financiación y pilotos ya activos.</div>
+    </div>
+
+    <div class="simil">
+      <div class="sl">Analogía operativa</div>
+      Las estrategias autonómicas de IA en salud son como las guías de práctica clínica locales: el AI Act es el estándar europeo de mínimos, pero cada CCAA puede establecer requisitos adicionales, calendarios propios y programas de apoyo que condicionan lo que puedes hacer (y financiar) en tu hospital.
+    </div>
+
+    <div class="tec-tabs">
+      <button class="tec-tab active" onclick="showTab(this,'tab-snc')">SNS / Ministerio</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-and')">Andalucía</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-cat')">Cataluña</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-mad')">Madrid</button>
+    </div>
+
+    <div class="tec-panel show" id="tab-snc">
+      <div class="limit-item">
+        <div class="li-icon">🏛️</div>
+        <div><strong>Plan de Transformación Digital del SNS</strong><br>Marco nacional que establece ejes estratégicos: historia clínica digital interoperable, telemedicina, analítica de datos e IA. Define los estándares técnicos (FHIR R4, SNOMED CT) y los objetivos de interoperabilidad entre CCAA para 2025–2027.</div>
+      </div>
+      <div class="limit-item">
+        <div class="li-icon">📋</div>
+        <div><strong>Estrategia de Salud Digital del Ministerio</strong><br>Contempla la creación del nodo nacional de datos de salud (BNDES), el desarrollo de plataformas de análisis de datos anonimizados y la incorporación de IA en la historia clínica compartida del SNS. Los hospitales pueden solicitar acceso para proyectos validados.</div>
+      </div>
+      <div class="limit-item">
+        <div class="li-icon">🔗</div>
+        <div><strong>Interoperabilidad obligatoria con CCAA</strong><br>Los sistemas de IA que lean o escriban en HCE deben ser compatibles con el nodo del SNS y cumplir HL7 FHIR R4. Los proyectos que no contemplen esta interoperabilidad desde el diseño afrontan riesgo de no escalabilidad.</div>
+      </div>
+    </div>
+
+    <div class="tec-panel" id="tab-and">
+      <div class="limit-item">
+        <div class="li-icon">🫁</div>
+        <div><strong>Estrategia Digital SAS 2025 — Programa IA-Salud</strong><br>El Servicio Andaluz de Salud tiene proyectos activos en predicción de reingresos en urgencias, análisis de imagen en dermatología y retinografía, y asistente de prescripción en AP. Convocatorias anuales de proyectos piloto abiertas a UGCs.</div>
+      </div>
+      <div class="limit-item">
+        <div class="li-icon">⚖️</div>
+        <div><strong>Comité de Ética de IA del SAS</strong><br>Órgano asesor con representación de profesionales sanitarios, pacientes y expertos en bioética. Cualquier proyecto de IA clínica del SAS que afecte a decisiones sobre pacientes debe pasar por evaluación de este comité antes del piloto.</div>
+      </div>
+      <div class="limit-item">
+        <div class="li-icon">💻</div>
+        <div><strong>Acceso a infraestructura ACSA y DIRAYA</strong><br>Los proyectos de IA en Andalucía pueden solicitar acceso supervisado a datos anonimizados de DIRAYA para entrenamiento y validación. El proceso pasa por el CEIC del hospital y el Comité de Ética de IA del SAS. Plazo habitual: 4–6 meses.</div>
+      </div>
+      <div class="prompt-box">
+        <div class="prompt-label">Prompt para navegar el programa IA-Salud del SAS</div>
+        <div class="prompt-text">Actúa como asesor de innovación del SAS con experiencia en convocatorias de proyectos piloto de IA.
+
+Contexto: Soy [rol] en [nombre del hospital o centro]. Tenemos una idea de proyecto de IA para [caso de uso] en [especialidad]. El proyecto afectaría a [número] pacientes al año.
+
+Tarea: Dame el mapa de pasos desde la idea hasta el piloto aprobado en el SAS, incluyendo qué órganos deben dar el visto bueno, qué documentación necesito preparar y en qué orden, y cuáles son los errores más frecuentes que ralentizan la aprobación.
+
+Formato: lista numerada con sub-pasos. Señala los cuellos de botella con ⚠️.
+
+Restricciones: Céntrate en el contexto del SAS (Andalucía). Si algún paso puede variar por especialidad o tipo de hospital, indícalo.</div>
+        <div class="prompt-why">El principal error en proyectos de IA del SAS es iniciar el desarrollo técnico antes de obtener los permisos del CEIC y del Comité de Ética de IA. Este prompt ayuda a planificar el proceso correcto desde el principio.</div>
+      </div>
+    </div>
+
+    <div class="tec-panel" id="tab-cat">
+      <div class="limit-item">
+        <div class="li-icon">🧬</div>
+        <div><strong>CatSalut Digital — Oncología de precisión</strong><br>Programa de innovación en IA con foco en el WCB (Whole Cancer Biome), predicción de deterioro en pacientes crónicos y optimización de listas de espera. Los proyectos pueden acceder a la infraestructura del Parc de Salut Mar y del IDIBAPS.</div>
+      </div>
+      <div class="limit-item">
+        <div class="li-icon">📄</div>
+        <div><strong>Guía de gobernanza de IA para proveedores del sistema público</strong><br>CatSalut ha desarrollado una guía propia que establece requisitos mínimos para empresas que proveen IA al sistema público catalán: auditabilidad, explicabilidad, análisis de sesgo, plan de salida y continuidad del servicio.</div>
+      </div>
+      <div class="limit-item">
+        <div class="li-icon">🤝</div>
+        <div><strong>Red de Innovación en IA — acceso a pilotos</strong><br>CatSalut mantiene una red de hospitales de referencia para pilotos de IA donde otros centros pueden sumarse como co-investigadores. Reduce costes de implementación y permite validación multicéntrica.</div>
+      </div>
+    </div>
+
+    <div class="tec-panel" id="tab-mad">
+      <div class="limit-item">
+        <div class="li-icon">📡</div>
+        <div><strong>Proyectos piloto activos en red pública madrileña</strong><br>Lectura de ECG con IA en urgencias, triaje asistido y automatización de informes de radiología. El Hospital La Paz lidera el programa de IA en oncología con financiación del programa europeo Horizon Europe.</div>
+      </div>
+      <div class="limit-item">
+        <div class="li-icon">🏥</div>
+        <div><strong>Proceso de aprobación en hospitales de la CAM</strong><br>Los proyectos de IA clínica en Madrid requieren aprobación de la Dirección General de Sistemas de Información Sanitaria, además del CEIC. Los proyectos con dato real de paciente deben pasar por el Comité de Privacidad de la SERMAS.</div>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <button class="btn-s" onclick="go(1)">← AI Act en salud</button>
+      <button class="btn-p" onclick="go(3)">Sandbox y acción →</button>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 3: SANDBOX Y ACCIÓN -->
+  <div class="sec" id="s3">
+
+    <div class="card">
+      <div class="ct">Sandbox regulatorio — qué es y para qué sirve</div>
+      <div class="cb">Un sandbox regulatorio es un entorno supervisado donde puedes probar tu sistema de IA con pacientes reales antes de completar el proceso regulatorio formal. No es una exención — es una rampa de acceso a la regulación.</div>
+    </div>
+
+    <div class="simil">
+      <div class="sl">Marco de referencia clínico</div>
+      El sandbox de la AEMPS funciona como un ensayo clínico fase I: el regulador te permite probar el sistema con pacientes reales bajo su supervisión, generando la evidencia necesaria para la autorización definitiva. No te exime del marcado CE — te ayuda a llegar a él con datos reales.
+    </div>
+
+    <div class="ct" style="margin:4px 0 10px">¿Qué consigues con el sandbox de la AEMPS?</div>
+
+    <div class="limit-item">
+      <div class="li-icon">✅</div>
+      <div><strong>Prueba real con pacientes bajo supervisión regulatoria</strong><br>Puedes usar el sistema con pacientes reales antes de completar la evaluación de conformidad. El regulador documenta el proceso y puede emitir opinión favorable que acelera la certificación posterior.</div>
+    </div>
+    <div class="limit-item">
+      <div class="li-icon">✅</div>
+      <div><strong>Generación de evidencia clínica para el expediente regulatorio</strong><br>Los datos del piloto en sandbox pueden formar parte de la documentación técnica requerida por el AI Act y el MDR. Reduces el tiempo entre piloto y certificación porque ya tienes la evidencia generada.</div>
+    </div>
+    <div class="limit-item">
+      <div class="li-icon">✅</div>
+      <div><strong>Acceso a orientación directa de la AEMPS durante el desarrollo</strong><br>El equipo regulatorio de la AEMPS te asesora durante el piloto, lo que reduce el riesgo de construir algo que no pasará la evaluación de conformidad posterior. Es el equivalente a tener al inspector de obra durante la construcción.</div>
+    </div>
+    <div class="limit-item">
+      <div class="li-icon">⚠️</div>
+      <div><strong>No exime del marcado CE ni de la evaluación de conformidad</strong><br>El sandbox es una fase de prueba supervisada. Termina con un informe de la AEMPS, no con una autorización definitiva. El proceso de certificación completo debe realizarse igualmente después.</div>
+    </div>
+
+    <div class="ct" style="margin:16px 0 8px">Hoja de ruta práctica: de la idea al piloto regulado</div>
+
+    <div class="tec-tabs">
+      <button class="tec-tab active" onclick="showTab(this,'tab-fase1')">Fase 1 — Evaluación</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-fase2')">Fase 2 — Permisos</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-fase3')">Fase 3 — Piloto</button>
+      <button class="tec-tab" onclick="showTab(this,'tab-fase4')">Fase 4 — Escalado</button>
+    </div>
+
+    <div class="tec-panel show" id="tab-fase1">
+      <div class="limit-item"><div class="li-icon">🔍</div><div><strong>Clasificación de riesgo del AI Act</strong> — ¿Es alto riesgo tu sistema? Si aplica diagnóstico, pronóstico o apoyo a decisiones clínicas, la respuesta casi siempre es sí. Documenta la justificación.</div></div>
+      <div class="limit-item"><div class="li-icon">⚕️</div><div><strong>¿Califica como dispositivo médico (MDR)?</strong> — Un sistema de IA que genera recomendaciones clínicas para un paciente concreto suele calificar como SaMD (Software as a Medical Device). Si es así, aplica el MDR además del AI Act.</div></div>
+      <div class="limit-item"><div class="li-icon">📊</div><div><strong>Análisis de datos disponibles y su calidad</strong> — Antes de comenzar el desarrollo: ¿tienes los datos para entrenar y validar? ¿Son representativos? ¿Están anonimizados correctamente? Esta fase determina si el proyecto es viable técnicamente.</div></div>
+    </div>
+
+    <div class="tec-panel" id="tab-fase2">
+      <div class="limit-item"><div class="li-icon">🏥</div><div><strong>CEIC del hospital</strong> — El Comité de Ética de Investigación Clínica debe aprobar cualquier proyecto que use datos de pacientes. Plazo habitual: 2–4 meses. Prepara el protocolo completo antes de presentar.</div></div>
+      <div class="limit-item"><div class="li-icon">⚖️</div><div><strong>Comité de Ética de IA de la CCAA (si existe)</strong> — Andalucía, Cataluña y otras CCAA tienen órganos específicos para IA clínica. Consulta si tu proyecto requiere su evaluación además del CEIC.</div></div>
+      <div class="limit-item"><div class="li-icon">📝</div><div><strong>Solicitud de sandbox a la AEMPS</strong> — Si tu sistema es de alto riesgo y quieres el apoyo regulatorio durante el piloto, presenta la solicitud de sandbox. La AEMPS evalúa la solicitud en 30–60 días.</div></div>
+    </div>
+
+    <div class="tec-panel" id="tab-fase3">
+      <div class="limit-item"><div class="li-icon">🧪</div><div><strong>Piloto supervisado con muestra acotada</strong> — Define el número de pacientes, el período de piloto y los criterios de éxito antes de comenzar. Un piloto sin criterios predefinidos no genera evidencia regulatoria válida.</div></div>
+      <div class="limit-item"><div class="li-icon">📈</div><div><strong>Métricas de rendimiento y seguridad</strong> — Sensibilidad, especificidad, VPP, VPN, tasa de error crítico. Y métricas de seguridad: ¿cuántos eventos adversos relacionados con la IA? ¿Cómo se detectaron y gestionaron?</div></div>
+      <div class="limit-item"><div class="li-icon">📋</div><div><strong>Documentación del piloto para el expediente regulatorio</strong> — Cada decisión del sistema, cada intervención humana y cada evento adverso debe quedar registrado. Este registro forma parte del expediente regulatorio.</div></div>
+    </div>
+
+    <div class="tec-panel" id="tab-fase4">
+      <div class="limit-item"><div class="li-icon">🎯</div><div><strong>Evaluación de conformidad formal</strong> — Con la evidencia del piloto, inicia el proceso formal de evaluación de conformidad. Si califica como DM, necesitas un organismo notificado. Si es solo AI Act, puede ser autoevaluación en algunos casos.</div></div>
+      <div class="limit-item"><div class="li-icon">🔄</div><div><strong>Sistema de monitorización post-despliegue</strong> — El AI Act exige monitorización continua del rendimiento del sistema en producción. Diseña el sistema de alertas y revisión periódica antes de escalar.</div></div>
+      <div class="limit-item"><div class="li-icon">🌐</div><div><strong>Registro en base de datos europea de IA</strong> — Los sistemas de alto riesgo deben registrarse en la base de datos UE gestionada por la Comisión Europea. La AEMPS orienta sobre el proceso de registro.</div></div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-label">Prompt para preparar la solicitud de sandbox AEMPS</div>
+      <div class="prompt-text">Actúa como consultor regulatorio especializado en IA médica (AI Act + MDR).
+
+Contexto: Nuestro hospital desarrolla un sistema de IA para [caso de uso] en [especialidad]. Ya tenemos aprobación del CEIC. Queremos solicitar el sandbox de la AEMPS.
+
+Tarea: Estructura la memoria justificativa de la solicitud de sandbox con estos apartados obligatorios: (1) descripción técnica del sistema y clasificación de riesgo, (2) necesidad del sandbox (por qué no podemos avanzar sin él), (3) plan de piloto con métricas de seguridad, (4) mecanismos de supervisión humana, (5) plan de gestión de incidentes.
+
+Formato: documento formal, apartados numerados, máximo 4 páginas equivalentes.
+
+Restricciones: No incluyas datos reales de pacientes en la memoria. Si algún apartado requiere documentación específica de la AEMPS, indícalo con [REQUIERE GUÍA AEMPS].</div>
+      <div class="prompt-why">La AEMPS valora especialmente el rigor del plan de seguridad y supervisión humana. Una solicitud que anticipa los riesgos y los gestiona proactivamente tiene más probabilidad de éxito.</div>
+    </div>
+
+    <div style="margin-top:20px;padding-top:16px;border-top:1px solid #1e2335">
+      <button class="btn-complete" onclick="completar()">✓ MARCAR LECCIÓN COMO COMPLETADA</button>
+    </div>
+
+    <div class="nav-actions">
+      <button class="btn-s" onclick="go(2)">← Estrategias CCAA</button>
+      <button class="btn-p" onclick="go(4)">Test →</button>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 4: TEST -->
+  <div class="sec" id="s4">
+
+    <div class="qw active" id="q1w">
+      <div class="qnum">Pregunta 1 de 3</div>
+      <div class="qtxt">Un hospital de Madrid quiere desplegar un sistema de IA que analiza imágenes de TAC y genera una lista de diagnósticos diferenciales para el radiólogo. ¿Qué categoría de riesgo le asigna el AI Act y qué obligación principal implica antes de agosto 2026?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,1)">Riesgo limitado — solo necesita informar al radiólogo de que usa IA</button>
+        <button class="qopt" onclick="ans(this,true,1)">Alto riesgo — requiere documentación técnica completa, supervisión humana documentada, logs de actividad y evaluación de conformidad antes de agosto 2026</button>
+        <button class="qopt" onclick="ans(this,false,1)">Riesgo mínimo — los sistemas de apoyo al diagnóstico están exentos del AI Act</button>
+        <button class="qopt" onclick="ans(this,false,1)">Riesgo inaceptable — la IA no puede participar en decisiones diagnósticas en la UE</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+      <div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div>
+    </div>
+
+    <div class="qw" id="q2w">
+      <div class="qnum">Pregunta 2 de 3</div>
+      <div class="qtxt">¿Cuál es la ventaja principal del sandbox de la AEMPS para un hospital que desarrolla IA diagnóstica, y qué NO consigues con él?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,2)">Consigues exención permanente del marcado CE y financiación directa del Ministerio</button>
+        <button class="qopt" onclick="ans(this,false,2)">Consigues reducir el proceso regulatorio completo a menos de 6 meses</button>
+        <button class="qopt" onclick="ans(this,true,2)">Consigues probar el sistema con pacientes reales bajo supervisión de la AEMPS y generar evidencia para el expediente regulatorio — pero no te exime del marcado CE ni de la evaluación de conformidad posterior</button>
+        <button class="qopt" onclick="ans(this,false,2)">Consigues la autorización definitiva para despliegue en toda España sin evaluación de conformidad adicional</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+      <div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div>
+    </div>
+
+    <div class="qw" id="q3w">
+      <div class="qnum">Pregunta 3 de 3</div>
+      <div class="qtxt">Un profesional sanitario de Andalucía quiere desarrollar un proyecto de IA clínica para su UGC. Antes de iniciar el desarrollo técnico, ¿qué dos aprobaciones institucionales necesita obligatoriamente según el marco del SAS?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,3)">Aprobación de la dirección del hospital y del servicio de informática</button>
+        <button class="qopt" onclick="ans(this,true,3)">El CEIC del hospital (para el uso de datos de pacientes) y el Comité de Ética de IA del SAS (para proyectos de IA clínica que afecten a decisiones sobre pacientes)</button>
+        <button class="qopt" onclick="ans(this,false,3)">Solo la AEMPS — es la única autoridad competente para proyectos de IA médica en España</button>
+        <button class="qopt" onclick="ans(this,false,3)">La AEPD (para el tratamiento de datos) y la Consejería de Salud (para proyectos de innovación)</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+      <div class="qnx" id="nx3">
+        <div style="background:rgba(156,39,176,.1);border:1px solid rgba(156,39,176,.28);border-radius:10px;padding:16px;margin-top:8px">
+          <div style="font-size:13px;font-weight:500;color:#CE93D8;margin-bottom:6px">✓ Lección 5.1 completada</div>
+          <div style="font-size:12px;color:#B0BEC5;line-height:1.6">Dominas el marco regulatorio del AI Act para sanidad, el mapa autonómico y el funcionamiento del sandbox de la AEMPS. La lección 5.2 aborda la <strong style="color:#fff">gobernanza ética y gestión de riesgos: comités de ética de IA, matrices de riesgo y protocolos de escalado ante incidentes</strong>.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="lf">
+    <span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span>
+    <span> · Desarrollado por DoncelProject · doncel.project@gmail.com</span>
+  </div>
+
+</div>
+
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/4)*100);document.getElementById('pf51').style.width=p+'%';document.getElementById('pl51').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function showTab(el,id){el.closest('.sec').querySelectorAll('.tec-tab').forEach(t=>t.classList.remove('active'));el.closest('.sec').querySelectorAll('.tec-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById(id).classList.add('show');}
+function completar(){window.parent.postMessage({type:'LESSON_COMPLETE'},'*');document.querySelector('.btn-complete').textContent='✓ Lección completada';document.querySelector('.btn-complete').style.opacity='.5';document.querySelector('.btn-complete').disabled=true;}
+const fbs={
+  1:{ok:'✅ Correcto. Un sistema que analiza imagen médica y genera diagnósticos diferenciales encaja exactamente en la definición de alto riesgo del AI Act (Anexo III, punto 5a: IA para diagnóstico médico). Las obligaciones incluyen: documentación técnica del sistema, gestión de logs de actividad, supervisión humana documentada y evaluación de conformidad. Plazo: antes de agosto 2026.',ko:'❌ Los sistemas de IA que participan en diagnóstico médico — aunque sea como apoyo al radiólogo — son de alto riesgo según el AI Act. No son riesgo mínimo ni limitado por tener supervisión humana: la supervisión humana es una obligación del alto riesgo, no un criterio de exclusión. El sistema de IA que genera diagnósticos diferenciales en radiología también puede calificar como dispositivo médico (SaMD) bajo el MDR.'},
+  2:{ok:'✅ Correcto. El sandbox de la AEMPS permite probar con pacientes reales bajo supervisión regulatoria, generando evidencia clínica para el expediente. Pero no es una autorización definitiva: después del sandbox sigue siendo obligatorio el proceso de evaluación de conformidad y, si aplica, el marcado CE. La analogía correcta es un ensayo clínico fase I: prueba supervisada para generar evidencia, no autorización de comercialización.',ko:'❌ El sandbox no exime del marcado CE ni reduce el proceso regulatorio completo a 6 meses. Es una fase de prueba supervisada donde el regulador te acompaña mientras generas evidencia clínica real. Termina con un informe de la AEMPS, no con una autorización definitiva. El proceso de evaluación de conformidad debe realizarse igualmente después.'},
+  3:{ok:'✅ Correcto. En Andalucía, cualquier proyecto de IA clínica que use datos de pacientes o afecte a decisiones clínicas necesita: (1) aprobación del CEIC del hospital para el uso de datos de pacientes, y (2) evaluación del Comité de Ética de IA del SAS para proyectos que afectan a decisiones sobre pacientes. El error más frecuente es iniciar el desarrollo técnico antes de tener ambas aprobaciones, lo que obliga a parar y rediseñar.',ko:'❌ En el SAS (Andalucía), los proyectos de IA clínica requieren aprobación del CEIC (para el tratamiento de datos de pacientes) y del Comité de Ética de IA del SAS (específico para IA que afecta a decisiones clínicas). La dirección del hospital y el servicio de informática son actores clave para la implementación, pero no son las aprobaciones regulatorias/éticas obligatorias previas al desarrollo.'}
+};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+upd();
+</script>

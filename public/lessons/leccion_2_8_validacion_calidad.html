@@ -1,0 +1,309 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.lw{background:#0C0D12;color:#fff;font-family:var(--font-sans,sans-serif);border-radius:16px;overflow:hidden;padding-bottom:32px}
+.lh{background:#0C0D12;border-bottom:1px solid #1a2a3a;padding:24px 28px 20px}
+.lb{display:inline-flex;align-items:center;gap:6px;background:rgba(33,150,243,0.15);border:1px solid rgba(33,150,243,0.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#90CAF9;font-weight:500;margin-bottom:12px;letter-spacing:.5px}
+.lt{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:8px}
+.lt span{color:#2196F3}
+.lm{display:flex;align-items:center;gap:16px;font-size:12px;color:#B0BEC5;margin-top:10px}
+.lmi{display:flex;align-items:center;gap:5px}
+.md{width:6px;height:6px;border-radius:50%}
+.pbw{background:#1a1c24;border-bottom:1px solid #1a2a3a;padding:10px 28px;display:flex;align-items:center;gap:10px}
+.pbb{flex:1;height:4px;background:#2a2d3a;border-radius:4px}
+.pbf{height:4px;background:#2196F3;border-radius:4px;width:0%;transition:width .5s}
+.pbl{font-size:11px;color:#B0BEC5;min-width:40px;text-align:right}
+.snav{display:flex;background:#13151e;border-bottom:1px solid #1a2a3a;overflow-x:auto}
+.nb{flex:1;padding:10px 6px;background:transparent;border:none;cursor:pointer;font-size:11px;color:#B0BEC5;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;min-width:70px}
+.nb.active{color:#2196F3;border-bottom-color:#2196F3;background:#0C0D12}
+.sec{display:none;padding:20px 24px}
+.sec.active{display:block}
+.card{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ct{font-size:11px;color:#B0BEC5;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.cb{font-size:13px;color:#E0E0E0;line-height:1.7}
+.simil{background:rgba(33,150,243,0.08);border:1px solid rgba(33,150,243,0.22);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:12px;color:#E0E0E0;line-height:1.7}
+.sl{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:500}
+.nav-actions{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #1e2335}
+.btn-p{background:#2196F3;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:12px;cursor:pointer;font-weight:500}
+.btn-s{background:transparent;color:#B0BEC5;border:1px solid #2a2d3a;border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer}
+.aluc-grid{display:grid;grid-template-columns:1fr;gap:10px;margin:12px 0}
+.aluc-card{border-radius:10px;padding:14px 16px}
+.aluc-danger{background:rgba(244,67,54,.07);border:1px solid rgba(244,67,54,.22)}
+.aluc-warn{background:rgba(255,152,0,.07);border:1px solid rgba(255,152,0,.22)}
+.aluc-ok{background:rgba(76,175,80,.07);border:1px solid rgba(76,175,80,.2)}
+.aluc-title{font-size:12px;font-weight:500;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.aluc-danger .aluc-title{color:#EF9A9A}
+.aluc-warn .aluc-title{color:#FFD54F}
+.aluc-ok .aluc-title{color:#A5D6A7}
+.aluc-desc{font-size:12px;color:#B0BEC5;line-height:1.6;margin-bottom:8px}
+.aluc-ex{font-family:monospace;font-size:11px;padding:8px 10px;border-radius:6px;line-height:1.6}
+.aluc-danger .aluc-ex{background:rgba(244,67,54,.1);color:#EF9A9A}
+.aluc-warn .aluc-ex{background:rgba(255,152,0,.1);color:#FFD54F}
+.aluc-ok .aluc-ex{background:rgba(76,175,80,.1);color:#A5D6A7}
+.val-layers{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.vl{border-radius:10px;padding:14px 16px;display:flex;gap:12px}
+.vl1{background:rgba(33,150,243,.07);border:1px solid rgba(33,150,243,.22)}
+.vl2{background:rgba(0,184,212,.07);border:1px solid rgba(0,184,212,.22)}
+.vl3{background:rgba(76,175,80,.07);border:1px solid rgba(76,175,80,.2)}
+.vl-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0}
+.vl1 .vl-num{background:rgba(33,150,243,.2);color:#90CAF9}
+.vl2 .vl-num{background:rgba(0,184,212,.2);color:#80DEEA}
+.vl3 .vl-num{background:rgba(76,175,80,.2);color:#A5D6A7}
+.vl-body{}
+.vl-title{font-size:13px;font-weight:500;margin-bottom:4px}
+.vl1 .vl-title{color:#90CAF9}
+.vl2 .vl-title{color:#80DEEA}
+.vl3 .vl-title{color:#A5D6A7}
+.vl-desc{font-size:12px;color:#B0BEC5;line-height:1.6}
+.vl-check{font-size:11px;color:#E0E0E0;margin-top:6px;line-height:1.8}
+.metricas-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.met-card{background:#13151e;border:1px solid #1e2335;border-radius:10px;padding:14px}
+.met-name{font-size:13px;font-weight:500;color:#fff;margin-bottom:4px}
+.met-def{font-size:12px;color:#B0BEC5;line-height:1.5;margin-bottom:8px}
+.met-clinico{font-size:11px;background:#0C0D12;padding:8px;border-radius:6px;color:#90CAF9;line-height:1.5;border-left:2px solid #2196F3}
+.detector-wrap{background:#13151e;border:1px solid #1e2335;border-radius:12px;padding:16px;margin:12px 0}
+.detector-input{width:100%;background:#0C0D12;border:1px solid #1e2335;border-radius:8px;padding:10px 12px;color:#E0E0E0;font-size:12px;font-family:inherit;resize:vertical;min-height:80px;margin-bottom:10px}
+.detector-input:focus{outline:none;border-color:#2196F3}
+.detector-result{display:none;border-radius:8px;padding:12px;font-size:12px;line-height:1.7;margin-top:8px}
+.detector-result.show{display:block}
+.qw{display:none}.qw.active{display:block}
+.qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
+.qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{background:#13151e;border:1px solid #1e2335;border-radius:8px;padding:11px 14px;font-size:12px;color:#E0E0E0;text-align:left;cursor:pointer;transition:all .2s}
+.qopt:hover{border-color:#2196F3;color:#fff}
+.qopt.correct{background:rgba(76,175,80,.15);border-color:#4CAF50;color:#A5D6A7}
+.qopt.wrong{background:rgba(244,67,54,.12);border-color:#F44336;color:#EF9A9A}
+.qfb{font-size:12px;line-height:1.7;margin-top:10px;padding:12px;border-radius:8px;display:none}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);color:#A5D6A7}
+.qfb.ko{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
+.qnx{display:none;margin-top:12px}.qnx.show{display:block}
+.lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a}
+.fl{color:#2196F3;cursor:pointer;text-decoration:underline}
+</style>
+
+<div class="lw">
+  <div class="lh">
+    <div class="lb">MÓDULO 2 · LECCIÓN 2.8</div>
+    <div class="lt">Validación y control de calidad: <span>detectar alucinaciones y sesgos en respuestas clínicas</span></div>
+    <div class="lm">
+      <div class="lmi"><div class="md" style="background:#2196F3"></div>78 minutos</div>
+      <div class="lmi"><div class="md" style="background:#FF5252"></div>Detección de alucinaciones</div>
+      <div class="lmi"><div class="md" style="background:#FFB300"></div>Protocolo multicapa</div>
+    </div>
+  </div>
+  <div class="pbw"><div class="pbb"><div class="pbf" id="pf28"></div></div><div class="pbl" id="pl28">0%</div></div>
+  <div class="snav">
+    <button class="nb active" id="t1" onclick="go(1)">Alucinaciones</button>
+    <button class="nb" id="t2" onclick="go(2)">Protocolo</button>
+    <button class="nb" id="t3" onclick="go(3)">Métricas</button>
+    <button class="nb" id="t4" onclick="go(4)">Test</button>
+  </div>
+
+  <div class="sec active" id="s1">
+    <div class="card"><div class="ct">Objetivo</div><div class="cb">Implementar sistemas de verificación para garantizar la precisión clínica de las respuestas de IA. La alucinación —generar información falsa con apariencia de certeza— es el riesgo más crítico del uso de IA en contextos donde los errores tienen consecuencias directas para el paciente.</div></div>
+    <div class="simil"><div class="sl">Analogía clínica</div>La alucinación de una IA es el equivalente al síndrome de Korsakoff en neurología: el paciente genera recuerdos completamente falsos con plena convicción de que son reales, sin distinguir entre lo que sabe y lo que inventa. La IA hace lo mismo con datos clínicos.</div>
+
+    <div class="ct" style="margin-top:4px">Tipos de alucinación en contexto clínico</div>
+    <div class="aluc-grid">
+      <div class="aluc-card aluc-danger">
+        <div class="aluc-title">🔴 Alucinación factual directa</div>
+        <div class="aluc-desc">La IA afirma un hecho médico incorrecto con total convicción. Dosis erróneas, contraindicaciones inexistentes, efectos adversos inventados, estadísticas fabricadas.</div>
+        <div class="aluc-ex">❌ "El metoprolol está contraindicado en pacientes con diabetes tipo 2 por riesgo de hiperglucemia severa." [Falso — es una precaución, no contraindicación absoluta]</div>
+      </div>
+      <div class="aluc-card aluc-danger">
+        <div class="aluc-title">🔴 Alucinación bibliográfica</div>
+        <div class="aluc-desc">La IA genera referencias bibliográficas con autores, revistas, años y DOIs completamente inventados que parecen reales. Especialmente peligrosa en contextos de investigación clínica.</div>
+        <div class="aluc-ex">❌ "Según el estudio de García-López et al. (2021) en NEJM, el tratamiento con X redujo la mortalidad un 34%..." [Estudio y datos inexistentes]</div>
+      </div>
+      <div class="aluc-card aluc-warn">
+        <div class="aluc-title">🟡 Alucinación por desactualización</div>
+        <div class="aluc-desc">La IA proporciona información correcta según su fecha de entrenamiento pero desactualizada. Guías que han cambiado, fármacos retirados del mercado, nuevas contraindicaciones descubiertas.</div>
+        <div class="aluc-ex">⚠️ Recomendaciones de guías de 2020 presentadas como actuales cuando la guía fue revisada en 2023 con cambios significativos.</div>
+      </div>
+      <div class="aluc-card aluc-warn">
+        <div class="aluc-title">🟡 Alucinación por generalización</div>
+        <div class="aluc-desc">La IA extrapola correctamente para la población general pero ignora las particularidades del caso específico planteado (edad avanzada, insuficiencia renal, polimedicación).</div>
+        <div class="aluc-ex">⚠️ Recomienda la dosis estándar de un fármaco sin ajustar por función renal cuando el contexto indicaba FG reducido.</div>
+      </div>
+      <div class="aluc-card aluc-ok">
+        <div class="aluc-title">✅ Señales de respuesta fiable</div>
+        <div class="aluc-desc">La IA indica explícitamente sus limitaciones, distingue entre lo que sabe con certeza y lo que estima, y recomienda verificación en fuentes primarias para datos críticos.</div>
+        <div class="aluc-ex">✅ "Según mi conocimiento hasta [fecha], la dosis habitual es X. Recomiendo verificar en ficha técnica actualizada o consultar con farmacéutico clínico antes de prescribir."</div>
+      </div>
+    </div>
+    <div class="nav-actions"><div></div><button class="btn-p" onclick="go(2)">Protocolo →</button></div>
+  </div>
+
+  <div class="sec" id="s2">
+    <div class="card"><div class="ct">Protocolo de validación multicapa</div><div class="cb">La validación de respuestas clínicas de IA no es un acto único — es un proceso de tres capas que garantiza que ningún error llega a tener impacto en el paciente.</div></div>
+
+    <div class="val-layers">
+      <div class="vl vl1">
+        <div class="vl-num">1</div>
+        <div class="vl-body">
+          <div class="vl-title">Capa 1 — Validación automática (por prompt)</div>
+          <div class="vl-desc">Instrucciones en el propio prompt que obligan a la IA a señalar sus limitaciones. Esta capa no elimina los errores pero los hace visibles para la revisión posterior.</div>
+          <div class="vl-check">
+            ✓ "Si no tienes certeza, indica [VERIFICAR]"<br>
+            ✓ "No inventes referencias — cita solo si puedes dar título y autor con certeza"<br>
+            ✓ "Indica la fecha de corte de tu conocimiento cuando sea relevante"<br>
+            ✓ "Señala cuando una recomendación puede variar según características del paciente"
+          </div>
+        </div>
+      </div>
+      <div class="vl vl2">
+        <div class="vl-num">2</div>
+        <div class="vl-body">
+          <div class="vl-title">Capa 2 — Revisión por el profesional (peer review personal)</div>
+          <div class="vl-desc">El profesional que generó el prompt revisa la respuesta con criterio clínico. Esta es la capa más crítica y no puede delegarse ni automatizarse.</div>
+          <div class="vl-check">
+            ✓ ¿Los datos numéricos (dosis, valores, estadísticas) son correctos?<br>
+            ✓ ¿Las afirmaciones son coherentes con mi conocimiento clínico?<br>
+            ✓ ¿Las referencias existen y dicen lo que la IA afirma?<br>
+            ✓ ¿Se ha ignorado alguna particularidad importante del caso?<br>
+            ✓ ¿El tono de certeza es proporcional a la evidencia real?
+          </div>
+        </div>
+      </div>
+      <div class="vl vl3">
+        <div class="vl-num">3</div>
+        <div class="vl-body">
+          <div class="vl-title">Capa 3 — Validación por experto (para uso institucional)</div>
+          <div class="vl-desc">Para prompts y respuestas que se usarán de forma sistemática (protocolos de servicio, materiales docentes, plantillas institucionales), una segunda revisión por un experto en el área. No necesaria para uso puntual personal.</div>
+          <div class="vl-check">
+            ✓ Revisión por especialista del área antes de uso sistemático<br>
+            ✓ Verificación en fuentes primarias (guías, fichas técnicas, PubMed)<br>
+            ✓ Registro de la validación y fecha de revisión<br>
+            ✓ Periodicidad de actualización definida (mínimo anual)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="detector-wrap">
+      <div class="ct">Simulador de detección de alucinaciones</div>
+      <div class="cb" style="font-size:12px;margin-bottom:10px">Pega o escribe una respuesta de IA con información clínica y analiza qué elementos deberías verificar.</div>
+      <textarea class="detector-input" id="det-input" placeholder="Pega aquí una respuesta de IA con contenido clínico para analizar sus puntos de riesgo..."></textarea>
+      <button class="btn-p" onclick="analizarRespuesta()" style="font-size:11px;padding:7px 16px">Analizar puntos de riesgo</button>
+      <div class="detector-result" id="det-result"></div>
+    </div>
+
+    <div class="nav-actions"><button class="btn-s" onclick="go(1)">← Alucinaciones</button><button class="btn-p" onclick="go(3)">Métricas →</button></div>
+  </div>
+
+  <div class="sec" id="s3">
+    <div class="card"><div class="ct">Métricas de calidad para IA sanitaria</div><div class="cb">Las métricas de evaluación de IA en salud van más allá de la precisión técnica. Incluyen dimensiones clínicas, éticas y operativas que reflejan el impacto real en el proceso asistencial.</div></div>
+
+    <div class="metricas-grid">
+      <div class="met-card">
+        <div class="met-name">Sensibilidad clínica</div>
+        <div class="met-def">Capacidad del sistema para identificar correctamente los casos positivos. En diagnóstico: ¿detecta todos los casos reales de la condición?</div>
+        <div class="met-clinico">En IA de apoyo diagnóstico, priorizar alta sensibilidad — mejor sobredetectar que perder un caso real con consecuencias graves.</div>
+      </div>
+      <div class="met-card">
+        <div class="met-name">Especificidad clínica</div>
+        <div class="met-def">Capacidad para identificar correctamente los casos negativos. ¿Genera muchos falsos positivos que saturan el sistema?</div>
+        <div class="met-clinico">En screening poblacional, la especificidad es crítica — los falsos positivos tienen coste económico y psicológico para el paciente.</div>
+      </div>
+      <div class="met-card">
+        <div class="met-name">Tasa de alucinación</div>
+        <div class="met-def">% de respuestas que contienen al menos un error factual. En contextos clínicos, cualquier tasa mayor a 0% requiere protocolo de revisión obligatorio.</div>
+        <div class="met-clinico">Monitorizar con casos de prueba periódicos: preguntas con respuesta conocida y verificable en el dominio clínico de uso.</div>
+      </div>
+      <div class="met-card">
+        <div class="met-name">Calibración de confianza</div>
+        <div class="met-def">¿La certeza expresada por la IA es proporcional a la evidencia real? Un modelo bien calibrado expresa más duda cuando realmente no sabe.</div>
+        <div class="met-clinico">Señal de alerta: respuestas siempre muy confiadas independientemente de la calidad de la evidencia subyacente.</div>
+      </div>
+      <div class="met-card">
+        <div class="met-name">Sesgo de población</div>
+        <div class="met-def">Rendimiento diferencial según características del paciente (edad, sexo, etnia). Modelos entrenados con datos no representativos tienen peor rendimiento en subgrupos.</div>
+        <div class="met-clinico">Verificar explícitamente el rendimiento en poblaciones que atiendes habitualmente: mayores, pacientes pluripatológicos, grupos étnicos específicos.</div>
+      </div>
+      <div class="met-card">
+        <div class="met-name">Tiempo de respuesta clínico</div>
+        <div class="met-def">Latencia desde el prompt hasta la respuesta útil. En urgencias, una respuesta lenta puede tener consecuencias clínicas directas.</div>
+        <div class="met-clinico">Para uso en urgencias: evaluar latencia en condiciones reales de carga del sistema, no solo en condiciones óptimas de laboratorio.</div>
+      </div>
+    </div>
+    <div class="nav-actions"><button class="btn-s" onclick="go(2)">← Protocolo</button><button class="btn-p" onclick="go(4)">Test →</button></div>
+  </div>
+
+  <div class="sec" id="s4">
+    <div class="qw active" id="q1w">
+      <div class="qnum">Pregunta 1 de 3</div>
+      <div class="qtxt">Una IA responde con total seguridad que "el enalapril está contraindicado en pacientes con diabetes tipo 2". El médico sabe que esto es incorrecto. ¿Qué tipo de error de la IA ilustra este caso?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,1)">Alucinación bibliográfica — la IA cita una fuente inexistente</button>
+        <button class="qopt" onclick="ans(this,true,1)">Alucinación factual directa — afirma un hecho médico incorrecto con plena convicción</button>
+        <button class="qopt" onclick="ans(this,false,1)">Alucinación por desactualización — la guía cambió recientemente</button>
+        <button class="qopt" onclick="ans(this,false,1)">Sesgo de población — la IA responde diferente según el perfil del paciente</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+      <div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div>
+    </div>
+    <div class="qw" id="q2w">
+      <div class="qnum">Pregunta 2 de 3</div>
+      <div class="qtxt">¿Cuál de estas instrucciones en el prompt activa la Capa 1 del protocolo de validación multicapa?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,2)">Pedir que la respuesta tenga menos de 200 palabras</button>
+        <button class="qopt" onclick="ans(this,false,2)">Solicitar que use terminología médica técnica avanzada</button>
+        <button class="qopt" onclick="ans(this,true,2)">"Si no tienes certeza sobre algún dato, indícalo con [VERIFICAR] en lugar de afirmarlo como hecho establecido"</button>
+        <button class="qopt" onclick="ans(this,false,2)">Asignar el rol de especialista con 20 años de experiencia a la IA</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+      <div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div>
+    </div>
+    <div class="qw" id="q3w">
+      <div class="qnum">Pregunta 3 de 3</div>
+      <div class="qtxt">Un servicio usa IA para screening de riesgo cardiovascular. ¿Qué métrica debe priorizarse si el objetivo es no perder ningún paciente de alto riesgo?</div>
+      <div class="qopts">
+        <button class="qopt" onclick="ans(this,false,3)">Especificidad — reducir al máximo los falsos positivos</button>
+        <button class="qopt" onclick="ans(this,true,3)">Sensibilidad — detectar todos los casos reales aunque genere algunos falsos positivos</button>
+        <button class="qopt" onclick="ans(this,false,3)">Tiempo de respuesta — la rapidez es lo más crítico en screening</button>
+        <button class="qopt" onclick="ans(this,false,3)">Calibración de confianza — que la IA exprese adecuadamente su nivel de certeza</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+      <div class="qnx" id="nx3">
+        <div style="background:rgba(33,150,243,.1);border:1px solid rgba(33,150,243,.28);border-radius:10px;padding:16px;margin-top:8px">
+          <div style="font-size:13px;font-weight:500;color:#90CAF9;margin-bottom:6px">✓ Lección 2.8 completada</div>
+          <div style="font-size:12px;color:#B0BEC5;line-height:1.6">Dominas la detección de alucinaciones y el protocolo de validación multicapa. La lección 2.9 aborda <strong style="color:#fff">RAG: cómo potenciar la IA con acceso a bases de datos médicas verificadas (PubMed, Cochrane, UpToDate)</strong>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lf"><span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span><span> · Desarrollado por DoncelProject · doncel.project@gmail.com</span></div>
+</div>
+
+<script>
+let done=new Set([0]);
+function upd(){const p=Math.round((done.size/4)*100);document.getElementById('pf28').style.width=p+'%';document.getElementById('pl28').textContent=p+'%';}
+function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
+function analizarRespuesta(){
+  const txt=document.getElementById('det-input').value.trim();
+  const r=document.getElementById('det-result');
+  if(!txt){r.innerHTML='Escribe o pega una respuesta de IA para analizar.';r.style.background='rgba(33,150,243,.08)';r.style.border='1px solid rgba(33,150,243,.2)';r.style.color='#90CAF9';r.classList.add('show');return;}
+  const flags=[];
+  const nums=/\d+[\.,]?\d*\s*(%|mg|mcg|µg|ml|mmol|UI|g\/|dL|mg\/)/gi;
+  const refs=/(según|estudio de|et al\.|pubmed|nejm|lancet|jama|bmj|cochrane)/gi;
+  const certs=/(siempre|nunca|absolutamente|está demostrado|es imposible|definitivamente|sin duda)/gi;
+  const dates=/(2020|2021|2022|actualm|reciente|últim)/gi;
+  if(nums.test(txt)) flags.push({color:'#EF9A9A',icon:'🔴',txt:'<strong>Valores numéricos detectados</strong> (dosis, porcentajes, concentraciones). Verifica cada uno en ficha técnica o fuente primaria antes de usar clínicamente.'});
+  if(refs.test(txt)) flags.push({color:'#EF9A9A',icon:'🔴',txt:'<strong>Referencias bibliográficas detectadas</strong>. Comprueba que el estudio existe buscándolo en PubMed con título + primer autor. Las referencias inventadas son el error más frecuente y difícil de detectar.'});
+  if(certs.test(txt)) flags.push({color:'#FFD54F',icon:'🟡',txt:'<strong>Lenguaje de certeza absoluta detectado</strong>. La medicina raramente es absoluta. Contrasta con guías clínicas actuales si la afirmación categórica te genera dudas.'});
+  if(dates.test(txt)) flags.push({color:'#FFD54F',icon:'🟡',txt:'<strong>Referencias temporales detectadas</strong>. Verifica que la información no ha sido actualizada en guías más recientes, especialmente en áreas de rápida evolución.'});
+  if(flags.length===0) flags.push({color:'#A5D6A7',icon:'✅',txt:'No se detectan patrones de alto riesgo obvios. Aplica igualmente la revisión clínica estándar — el análisis automático no sustituye el juicio profesional.'});
+  r.innerHTML='<div style="font-size:11px;color:#B0BEC5;margin-bottom:8px;text-transform:uppercase;letter-spacing:.7px">Puntos de verificación detectados</div>'+flags.map(f=>`<div style="display:flex;gap:8px;margin-bottom:8px;font-size:12px;line-height:1.6"><span style="flex-shrink:0">${f.icon}</span><span style="color:${f.color}">${f.txt}</span></div>`).join('');
+  r.style.background='#13151e';r.style.border='1px solid #1e2335';r.style.color='#E0E0E0';r.classList.add('show');
+}
+const fbs={
+  1:{ok:'✅ Correcto. Es una alucinación factual directa: la IA afirma un hecho clínico incorrecto (contraindicación inexistente) con plena certeza. Este es el tipo más peligroso porque el tono de seguridad de la respuesta puede inducir al profesional a aceptarla sin verificación. Los IECA tienen precauciones en diabetes pero no están contraindicados — al contrario, están indicados en nefropatía diabética.',ko:'❌ No hay referencia bibliográfica inventada ni desactualización implicada. Este es un caso de alucinación factual directa: la IA genera una afirmación médica incorrecta con plena convicción. Es el tipo más peligroso porque la seguridad del tono puede engañar al profesional que no conoce el área específica.'},
+  2:{ok:'✅ Correcto. La instrucción de señalar incertidumbre con [VERIFICAR] es exactamente la Capa 1 del protocolo: una instrucción en el propio prompt que obliga a la IA a hacer visibles sus limitaciones en lugar de ocultarlas bajo un tono afirmativo. No elimina los errores, pero los marca para que la revisión posterior (Capa 2) pueda focalizarse en los puntos críticos.',ko:'❌ La longitud, el nivel de tecnicismo y el rol del modelo afectan la calidad de la respuesta pero no activan la validación automática. La Capa 1 es específicamente la instrucción que pide a la IA señalar sus propias incertidumbres — esto transforma errores silenciosos en alertas visibles para la revisión posterior.'},
+  3:{ok:'✅ Correcto. En screening de riesgo cardiovascular donde el objetivo es no perder ningún caso de alto riesgo, la sensibilidad es la métrica prioritaria. Un falso positivo tiene un coste (pruebas adicionales, ansiedad del paciente) pero recuperable. Un falso negativo — no detectar un paciente de alto riesgo — puede costar la vida. La especificidad se optimiza en una segunda fase del proceso.',ko:'❌ La especificidad alta en screening cardiovascular significaría perder pacientes de alto riesgo no detectados (falsos negativos) — exactamente lo que queremos evitar. La sensibilidad es la métrica prioritaria cuando el coste de perder un caso real supera claramente el coste de investigar un falso positivo.'}
+};
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
+upd();
+</script>
