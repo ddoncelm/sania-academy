@@ -8,8 +8,8 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
-        name: 'SanIA DoncelProject Academy',
-        short_name: 'SanIA Academy',
+        name: 'SaludIA.Academy',
+        short_name: 'SaludIA',
         description: 'Formación en IA para sanitarios',
         theme_color: '#0C0D12',
         background_color: '#0C0D12',

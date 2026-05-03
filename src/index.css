@@ -1,33 +1,32 @@
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap');
 
-:root {
-  --font-sans: 'DM Sans', sans-serif;
-  --font-display: 'Syne', sans-serif;
-  --bg: #0C0D12;
-  --surface: #13151e;
-  --border: #1e2335;
-  --text: #fff;
-  --muted: #546E7A;
-  --accent: #2196F3;
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-html { font-size: 16px; }
+html, body, #root {
+  height: 100%;
+}
 
 body {
-  font-family: var(--font-sans);
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
+  background: #0C0D12;
+  color: #fff;
+  font-family: 'Sora', sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
-button { cursor: pointer; }
-
-input, button { font-family: var(--font-sans); }
-
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #2a2d3a; }
-
-* { transition-property: none; }
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0C0D12;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e2335;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2196F3;
+}
