@@ -5,7 +5,6 @@ export default function LoginPage() {
   const { signIn, signUp } = useAuth()
   const [email, setEmail]     = useState('')
   const [password, setPassword] = useState('')
-  const [mode, setMode]       = useState('login') // 'login' | 'register'
   const [error, setError]     = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -53,24 +52,6 @@ export default function LoginPage() {
           <p style={{ color: '#B0BEC5', fontSize: '0.85rem', margin: 0 }}>
             IA práctica para sanitarios
           </p>
-        </div>
-
-        {/* Tabs */}
-        <div style={{
-          display: 'flex', background: '#0C0D12', borderRadius: '8px',
-          padding: '4px', marginBottom: '1.5rem'
-        }}>
-          {['login', 'register'].map(m => (
-            <button key={m} onClick={() => setMode(m)} style={{
-              flex: 1, padding: '0.5rem', border: 'none', borderRadius: '6px',
-              cursor: 'pointer', fontFamily: 'inherit', fontSize: '0.85rem',
-              background: mode === m ? '#2196F3' : 'transparent',
-              color: mode === m ? '#fff' : '#B0BEC5',
-              transition: 'all 0.2s'
-            }}>
-              {m === 'login' ? 'Acceder' : 'Registrarse'}
-            </button>
-          ))}
         </div>
 
         {/* Form */}
