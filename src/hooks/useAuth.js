@@ -18,13 +18,18 @@ export function useAuth() {
     return () => subscription.unsubscribe()
   }, [])
 
-  const signIn = (email, password) =>
-    supabase.auth.signInWithPassword({ email, password })
+  // Envía el código OTP al email
+  const sendOtp = (email) =>
+    supabase.auth.signInWithOtp({
+      email,
+      options: { shouldCreateUser: false } // Solo usuarios ya dados de alta
+    })
 
-  const signUp = (email, password) =>
-    supabase.auth.signUp({ email, password })
+  // Verifica el código OTP introducido por el alumno
+  const verifyOtp = (email, token) =>
+    supabase.auth.verifyOtp({ email, token, type: 'email' })
 
   const signOut = () => supabase.auth.signOut()
 
-  return { user, loading, signIn, signUp, signOut }
+  return { user, loading, sendOtp, verifyOtp, signOut }
 }
