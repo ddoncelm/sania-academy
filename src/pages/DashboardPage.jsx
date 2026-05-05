@@ -9,7 +9,8 @@ import { useAuth } from '../hooks/useAuth.js'
 export default function DashboardPage() {
   const { user, signOut }           = useAuth()
   const { completed, complete }     = useProgress(user?.id)
-  const [activeLesson, setActive]   = useState(null) // { lesson, module }
+  const [activeLesson, setActive]   = useState(null)
+  const [bannerClosed, setBanner]   = useState(false)
 
   const totalDone = completed.size
   const pct       = Math.round((totalDone / TOTAL_LESSONS) * 100)
@@ -35,17 +36,53 @@ export default function DashboardPage() {
       <main style={{ maxWidth: '900px', margin: '0 auto', padding: '2rem 1.5rem' }}>
 
         {/* Bienvenida */}
-        <div style={{ marginBottom: '2.5rem' }}>
+        <div style={{ marginBottom: '1.5rem' }}>
           <h1 style={{ color: '#fff', margin: '0 0 0.5rem', fontSize: '1.5rem', fontWeight: 700 }}>
             Bienvenido, <span style={{ color: '#00B8D4' }}>{user?.email?.split('@')[0]}</span>
           </h1>
           <p style={{ color: '#B0BEC5', margin: 0, fontSize: '0.9rem' }}>
             {totalDone === 0
-              ? 'Empieza por cualquier lección que te interese. No hay orden obligatorio.'
-              : `Llevas ${totalDone} de ${TOTAL_LESSONS} lecciones completadas. Sigue así.`
+              ? 'Puedes acceder a cualquier lección libremente.'
+              : `Llevas ${totalDone} de ${TOTAL_LESSONS} lecciones completadas.`
             }
           </p>
         </div>
+
+        {/* Aviso de orden recomendado */}
+        {!bannerClosed && (
+          <div style={{
+            background: 'rgba(33,150,243,0.08)',
+            border: '1px solid rgba(33,150,243,0.25)',
+            borderLeft: '4px solid #2196F3',
+            borderRadius: '10px',
+            padding: '0.9rem 1.2rem',
+            marginBottom: '2rem',
+            display: 'flex', alignItems: 'flex-start', gap: '12px'
+          }}>
+            <span style={{ fontSize: '1.1rem', flexShrink: 0 }}>💡</span>
+            <div style={{ flex: 1 }}>
+              <p style={{ color: '#90CAF9', margin: '0 0 0.2rem', fontSize: '0.85rem', fontWeight: 600 }}>
+                Navegación libre activada
+              </p>
+              <p style={{ color: '#B0BEC5', margin: 0, fontSize: '0.82rem', lineHeight: 1.5 }}>
+                Puedes empezar por cualquier lección que te interese. Sin embargo, te recomendamos 
+                seguir el orden establecido para aprovechar al máximo la formación, ya que los 
+                contenidos están diseñados de forma progresiva.
+              </p>
+            </div>
+            <button
+              onClick={() => setBanner(true)}
+              style={{
+                background: 'none', border: 'none', color: '#4a5568',
+                cursor: 'pointer', fontSize: '1rem', lineHeight: 1,
+                flexShrink: 0, padding: '0 0 0 8px'
+              }}
+              title="Cerrar"
+            >
+              ×
+            </button>
+          </div>
+        )}
 
         {/* Estadísticas rápidas */}
         <div style={{

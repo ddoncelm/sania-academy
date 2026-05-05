@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useAuth } from '../hooks/useAuth.js'
+import LOGO_B64 from '../lib/logo.js'
 
 export default function LoginPage() {
   const { signIn } = useAuth()
@@ -32,34 +33,22 @@ export default function LoginPage() {
         borderRadius: '16px', padding: '2.5rem'
       }}>
 
-        {/* Logo */}
+        {/* Logo DoncelProject */}
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: '10px',
-            marginBottom: '0.5rem'
-          }}>
-            <div style={{
-              width: 40, height: 40, borderRadius: '10px',
-              background: 'linear-gradient(135deg, #2196F3, #00B8D4)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: '1.2rem'
-            }}>⚕</div>
-            <span style={{ color: '#fff', fontSize: '1.3rem', fontWeight: 700 }}>
-              SaludIA<span style={{ color: '#00B8D4' }}>.Academy</span>
-            </span>
+          <a href="mailto:doncel.project@gmail.com">
+            <img
+              src={LOGO_B64}
+              alt="DoncelProject"
+              style={{ width: 120, marginBottom: '1rem' }}
+            />
+          </a>
+          <div style={{ color: '#fff', fontSize: '1.2rem', fontWeight: 700, marginBottom: '0.3rem' }}>
+            SaludIA<span style={{ color: '#00B8D4' }}>.Academy</span>
           </div>
-          <p style={{ color: '#B0BEC5', fontSize: '0.85rem', margin: 0 }}>
+          <p style={{ color: '#B0BEC5', fontSize: '0.82rem', margin: 0 }}>
             IA práctica para sanitarios
           </p>
         </div>
-
-        {/* Título */}
-        <h2 style={{
-          color: '#fff', fontSize: '1rem', fontWeight: 600,
-          marginBottom: '1.5rem', textAlign: 'center'
-        }}>
-          Accede a tu cuenta
-        </h2>
 
         {/* Formulario */}
         <form onSubmit={handleSubmit}>
@@ -151,7 +140,6 @@ export default function LoginPage() {
             DoncelProject
           </a>
         </p>
-
       </div>
     </div>
   )

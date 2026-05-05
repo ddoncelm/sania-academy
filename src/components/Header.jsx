@@ -1,4 +1,5 @@
 import { TOTAL_LESSONS } from '../services/lessons.js'
+import LOGO_B64 from '../lib/logo.js'
 
 export default function Header({ user, completed, onSignOut }) {
   const pct = Math.round((completed.size / TOTAL_LESSONS) * 100)
@@ -11,18 +12,13 @@ export default function Header({ user, completed, onSignOut }) {
       position: 'sticky', top: 0, zIndex: 100,
       fontFamily: "'Sora', sans-serif"
     }}>
-      {/* Brand */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-        <div style={{
-          width: 32, height: 32, borderRadius: '8px',
-          background: 'linear-gradient(135deg, #2196F3, #00B8D4)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: '1rem'
-        }}>⚕</div>
-        <span style={{ color: '#fff', fontWeight: 700, fontSize: '1rem' }}>
+      {/* Logo DoncelProject */}
+      <a href="mailto:doncel.project@gmail.com" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
+        <img src={LOGO_B64} alt="DoncelProject" style={{ height: 32 }} />
+        <span style={{ color: '#fff', fontWeight: 700, fontSize: '0.95rem' }}>
           SaludIA<span style={{ color: '#00B8D4' }}>.Academy</span>
         </span>
-      </div>
+      </a>
 
       {/* Progreso global */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flex: 1, maxWidth: '300px', margin: '0 2rem' }}>
