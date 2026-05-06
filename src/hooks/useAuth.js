@@ -19,11 +19,13 @@ export function useAuth() {
   }, [])
 
   // Envía el código OTP al email
-  const sendOtp = (email) =>
-    supabase.auth.signInWithOtp({
-      email,
-      options: { shouldCreateUser: false } // Solo usuarios ya dados de alta
-    })
+ const sendOtp = (email) =>
+  supabase.auth.signInWithOtp({
+    email,
+    options: {
+      shouldCreateUser: true, // cambia a true
+    }
+  })
 
   // Verifica el código OTP introducido por el alumno
   const verifyOtp = (email, token) =>
