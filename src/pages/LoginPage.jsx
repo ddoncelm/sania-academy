@@ -109,7 +109,6 @@ export default function LoginPage() {
         {/* PASO 2 — Enlace enviado */}
         {step === 'sent' && (
           <div>
-            {/* Icono email */}
             <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
               <div style={{
                 width: 64, height: 64, borderRadius: '50%',
