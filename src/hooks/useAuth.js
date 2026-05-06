@@ -22,9 +22,7 @@ export function useAuth() {
  const sendOtp = (email) =>
   supabase.auth.signInWithOtp({
     email,
-    options: {
-      shouldCreateUser: true, // cambia a true
-    }
+    options: { shouldCreateUser: false }
   })
 
   // Verifica el código OTP introducido por el alumno

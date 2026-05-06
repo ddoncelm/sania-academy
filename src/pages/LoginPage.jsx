@@ -3,15 +3,14 @@ import { useAuth } from '../hooks/useAuth.js'
 import LOGO_B64 from '../lib/logo.js'
 
 export default function LoginPage() {
-  const { sendOtp, verifyOtp } = useAuth()
+  const { sendOtp } = useAuth()
 
   const [step, setStep]       = useState('email')
   const [email, setEmail]     = useState('')
-  const [code, setCode]       = useState('')
   const [error, setError]     = useState('')
   const [loading, setLoading] = useState(false)
 
-  async function handleSendCode(e) {
+  async function handleSendLink(e) {
     e.preventDefault()
     setError('')
     setLoading(true)
@@ -20,20 +19,8 @@ export default function LoginPage() {
       if (err) {
         setError('Este email no tiene acceso. Contacta con el administrador.')
       } else {
-        setStep('code')
+        setStep('sent')
       }
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  async function handleVerifyCode(e) {
-    e.preventDefault()
-    setError('')
-    setLoading(true)
-    try {
-      const { error: err } = await verifyOtp(email, code.trim())
-      if (err) setError('Código incorrecto o caducado. Solicita uno nuevo.')
     } finally {
       setLoading(false)
     }
@@ -84,9 +71,9 @@ export default function LoginPage() {
 
         {/* PASO 1 — Email */}
         {step === 'email' && (
-          <form onSubmit={handleSendCode}>
+          <form onSubmit={handleSendLink}>
             <p style={{ color: '#B0BEC5', fontSize: '0.85rem', marginBottom: '1.2rem', lineHeight: 1.5 }}>
-              Introduce tu email y te enviaremos un código de acceso de un solo uso.
+              Introduce tu email y te enviaremos un enlace de acceso seguro.
             </p>
 
             <div style={{ marginBottom: '1.25rem' }}>
@@ -114,68 +101,53 @@ export default function LoginPage() {
             )}
 
             <button type="submit" disabled={loading} style={btnPrimary(loading)}>
-              {loading ? 'Enviando...' : 'Enviar código'}
+              {loading ? 'Enviando...' : 'Enviar enlace de acceso'}
             </button>
           </form>
         )}
 
-        {/* PASO 2 — Código */}
-        {step === 'code' && (
-          <form onSubmit={handleVerifyCode}>
+        {/* PASO 2 — Enlace enviado */}
+        {step === 'sent' && (
+          <div>
+            {/* Icono email */}
+            <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+              <div style={{
+                width: 64, height: 64, borderRadius: '50%',
+                background: 'rgba(0,184,212,0.1)', border: '1px solid rgba(0,184,212,0.3)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                margin: '0 auto 1rem'
+              }}>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00B8D4" strokeWidth="1.8">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </div>
+              <div style={{ color: '#fff', fontSize: '1.05rem', fontWeight: 600, marginBottom: '0.4rem' }}>
+                Revisa tu correo
+              </div>
+            </div>
+
             <div style={{
               background: 'rgba(0,184,212,0.08)', border: '1px solid rgba(0,184,212,0.2)',
-              borderRadius: '8px', padding: '0.8rem 1rem', marginBottom: '1.5rem'
+              borderRadius: '8px', padding: '0.9rem 1rem', marginBottom: '1.5rem'
             }}>
-              <p style={{ color: '#80DEEA', margin: 0, fontSize: '0.85rem', lineHeight: 1.5 }}>
-                Código enviado a <strong>{email}</strong>.<br />
-                Revisa tu bandeja de entrada (y la carpeta spam).
+              <p style={{ color: '#80DEEA', margin: 0, fontSize: '0.85rem', lineHeight: 1.6 }}>
+                Hemos enviado un enlace de acceso a <strong>{email}</strong>.<br />
+                Haz clic en el enlace del email para entrar.<br />
+                <span style={{ color: '#4a9ead', fontSize: '0.8rem' }}>
+                  Revisa también la carpeta de spam.
+                </span>
               </p>
             </div>
 
-            <div style={{ marginBottom: '1.25rem' }}>
-              <label style={{ color: '#B0BEC5', fontSize: '0.8rem', display: 'block', marginBottom: '0.4rem' }}>
-                Código de verificación (6 dígitos)
-              </label>
-              <input
-                type="text"
-                value={code}
-                onChange={e => setCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                required
-                placeholder="123456"
-                maxLength={6}
-                inputMode="numeric"
-                autoComplete="one-time-code"
-                style={{ ...inputStyle, fontSize: '1.5rem', letterSpacing: '0.4rem', textAlign: 'center' }}
-              />
-            </div>
-
-            {error && (
-              <div style={{
-                background: 'rgba(244,67,54,0.1)', border: '1px solid rgba(244,67,54,0.3)',
-                borderRadius: '8px', padding: '0.7rem 1rem',
-                color: '#ef9a9a', fontSize: '0.85rem', marginBottom: '1rem'
-              }}>
-                {error}
-              </div>
-            )}
-
-            <button type="submit" disabled={loading || code.length < 6} style={btnPrimary(loading || code.length < 6)}>
-              {loading ? 'Verificando...' : 'Acceder'}
-            </button>
-
             <button
               type="button"
-              onClick={() => { setStep('email'); setCode(''); setError('') }}
-              style={{
-                width: '100%', marginTop: '0.75rem', padding: '0.6rem',
-                background: 'transparent', border: 'none',
-                color: '#4a5568', fontFamily: 'inherit', fontSize: '0.82rem',
-                cursor: 'pointer'
-              }}
+              onClick={() => { setStep('email'); setError('') }}
+              style={btnPrimary(false)}
             >
-              ← Cambiar email o reenviar código
+              Volver a enviar
             </button>
-          </form>
+          </div>
         )}
 
         {/* Footer */}
