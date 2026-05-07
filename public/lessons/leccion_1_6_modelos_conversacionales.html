@@ -353,6 +353,7 @@ function completar(){
   b.classList.add('done');
   document.getElementById('cc').classList.add('show');
   try{window.storage.set('completada_leccion_1_6',JSON.stringify({leccion:'1.6',titulo:'Modelos conversacionales',fecha:new Date().toLocaleDateString('es-ES'),ts:Date.now()})).catch(()=>{});}catch(e){}
+window.parent.postMessage({ type: 'LESSON_COMPLETE' }, '*');
 }
 upd();
 </script>
