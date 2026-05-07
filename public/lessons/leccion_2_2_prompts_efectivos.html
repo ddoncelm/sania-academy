@@ -559,7 +559,7 @@ const fbs={
     ko:'❌ El formato tabla y limitar el número de diagnósticos son decisiones de formato y restricción, no de técnica de razonamiento. Chain-of-Thought se activa específicamente pidiendo que la IA desarrolle el proceso de razonamiento antes de la respuesta final — esto transforma la salida de una lista de diagnósticos en un razonamiento clínico auditable y educativo.'
   }
 };
-function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
+function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');if(n===3){window.parent.postMessage({type:'LESSON_COMPLETE'},'*');}}
 function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
 upd();
 </script>

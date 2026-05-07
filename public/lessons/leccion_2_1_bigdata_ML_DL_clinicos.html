@@ -356,6 +356,7 @@ function completar(){
       fecha:new Date().toLocaleDateString('es-ES'),ts:Date.now()
     })).catch(()=>{});
   }catch(e){}
+window.parent.postMessage({ type: 'LESSON_COMPLETE' }, '*');
 }
 upd();
 </script>

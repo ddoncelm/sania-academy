@@ -280,5 +280,6 @@ const fbs={1:{ok:'✅ Correcto. Especificar una marca o tecnología concreta en 
 function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');if(n===3){done.add(3);upd();}}
 function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
 function completar(){if(cmp)return;cmp=true;const b=document.getElementById('bcmp');b.textContent='✓ MÓDULO 1 COMPLETADO';b.classList.add('done');document.getElementById('cc').classList.add('show');try{window.storage.set('completada_leccion_1_13',JSON.stringify({leccion:'1.13',titulo:'IA en Administración Pública Sanitaria',fecha:new Date().toLocaleDateString('es-ES'),ts:Date.now()})).catch(()=>{});window.storage.set('modulo_1_completado',JSON.stringify({fecha:new Date().toLocaleDateString('es-ES'),ts:Date.now()})).catch(()=>{});}catch(e){}}
+window.parent.postMessage({ type: 'LESSON_COMPLETE' }, '*');
 upd();
 </script>
