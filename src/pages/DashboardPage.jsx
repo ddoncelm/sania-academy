@@ -18,7 +18,6 @@ export default function DashboardPage() {
   if (activeLesson) {
     return (
       <div style={{ background: '#0C0D12', minHeight: '100vh' }}>
-        <Header user={user} completed={completed} onSignOut={signOut} />
         <LessonViewer
           lesson={activeLesson.lesson}
           module={activeLesson.module}
