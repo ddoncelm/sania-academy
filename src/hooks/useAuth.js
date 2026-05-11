@@ -18,12 +18,15 @@ export function useAuth() {
     return () => subscription.unsubscribe()
   }, [])
 
-  // Envía el código OTP al email
- const sendOtp = (email) =>
-  supabase.auth.signInWithOtp({
-    email,
-    options: { shouldCreateUser: false }
-  })
+  // Envía Magic Link al email
+  const sendOtp = (email) =>
+    supabase.auth.signInWithOtp({
+      email,
+      options: {
+        shouldCreateUser: false,
+        emailRedirectTo: 'https://sania-academy.netlify.app'
+      }
+    })
 
   // Verifica el código OTP introducido por el alumno
   const verifyOtp = (email, token) =>
