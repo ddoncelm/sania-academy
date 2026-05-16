@@ -16,7 +16,7 @@ export default function Header({ user, completed, onSignOut }) {
       <a href="mailto:doncel.project@gmail.com" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
         <img src={LOGO_B64} alt="DoncelProject" style={{ height: 32 }} />
         <span style={{ color: '#fff', fontWeight: 700, fontSize: '0.95rem' }}>
-          SaludIA<span style={{ color: '#00B8D4' }}>.Academy</span>
+          SanIA<span style={{ color: '#00B8D4' }}>.Academy</span>
         </span>
       </a>
 

@@ -62,7 +62,7 @@ export default function LoginPage() {
             <img src={LOGO_B64} alt="DoncelProject" style={{ width: 110, marginBottom: '1rem' }} />
           </a>
           <div style={{ color: '#fff', fontSize: '1.2rem', fontWeight: 700, marginBottom: '0.3rem' }}>
-            SaludIA<span style={{ color: '#00B8D4' }}>.Academy</span>
+            SanIA<span style={{ color: '#00B8D4' }}>.Academy</span>
           </div>
           <p style={{ color: '#B0BEC5', fontSize: '0.82rem', margin: 0 }}>
             IA práctica para sanitarios
