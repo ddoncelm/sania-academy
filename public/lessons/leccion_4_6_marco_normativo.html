@@ -48,6 +48,30 @@
 .aw{background:rgba(255,152,0,.07);border:1px solid rgba(255,152,0,.22);color:#FFD54F}
 .ad{background:rgba(244,67,54,.07);border:1px solid rgba(244,67,54,.2);color:#EF9A9A}
 .alt{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px}
+.sas-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(0,184,212,.12);border:1px solid rgba(0,184,212,.35);border-radius:12px;padding:3px 10px;font-size:10px;color:#00B8D4;font-weight:600;letter-spacing:.5px;margin-bottom:10px}
+.uso-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+@media(max-width:540px){.uso-grid{grid-template-columns:1fr}}
+.uso-card{border-radius:10px;padding:12px 14px}
+.uso-ok{background:rgba(76,175,80,.07);border:1px solid rgba(76,175,80,.2)}
+.uso-no{background:rgba(244,67,54,.07);border:1px solid rgba(244,67,54,.2)}
+.uso-title{font-size:11px;font-weight:700;margin-bottom:8px}
+.uso-title-ok{color:#A5D6A7}
+.uso-title-no{color:#EF9A9A}
+.uso-item{font-size:11px;color:#B0BEC5;line-height:1.6;padding:3px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.uso-item:last-child{border-bottom:none}
+.uso-ok .uso-item::before{content:"✓ ";color:#A5D6A7}
+.uso-no .uso-item::before{content:"✗ ";color:#EF9A9A}
+.ob-item{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;background:#13151e;border-radius:8px;margin-bottom:7px;border:1px solid #1e2335}
+.ob-letter{width:22px;height:22px;border-radius:50%;background:rgba(33,150,243,.2);border:1px solid rgba(33,150,243,.4);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#90CAF9;flex-shrink:0;margin-top:1px}
+.ob-text{font-size:11px;color:#B0BEC5;line-height:1.6}
+.ob-text strong{color:#E0E0E0}
+.disc-pill{display:block;background:rgba(244,67,54,.09);border:1px solid rgba(244,67,54,.22);border-radius:8px;padding:8px 12px;font-size:11px;color:#EF9A9A;line-height:1.5;margin-bottom:8px}
+.disc-pill strong{color:#fff;display:block;font-size:10px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+.trans-step{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #1a2a3a}
+.trans-step:last-child{border-bottom:none}
+.trans-num{width:26px;height:26px;border-radius:50%;background:rgba(0,184,212,.15);border:1px solid rgba(0,184,212,.3);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#00B8D4;flex-shrink:0}
+.trans-body{font-size:11px;color:#B0BEC5;line-height:1.6}
+.trans-body strong{color:#E0E0E0}
 .qw{display:none}.qw.active{display:block}
 .qnum{font-size:11px;color:#B0BEC5;margin-bottom:8px}
 .qtxt{font-size:13px;font-weight:500;color:#fff;margin-bottom:14px;line-height:1.6}
@@ -66,196 +90,324 @@
 .lf{text-align:center;font-size:10px;color:#546E7A;margin-top:24px;padding-top:16px;border-top:1px solid #1a2a3a}
 .fl{color:#2196F3;cursor:pointer;text-decoration:underline}
 </style>
+
 <div class="lw">
-<div class="lh"><div class="lb">MÓDULO 4 · LECCIÓN 4.6</div><div class="lt">Marco normativo completo:<br><span>Reglamento Europeo de IA, MDR y responsabilidad profesional en sanidad</span></div><div class="lm"><div class="lmi"><div class="md" style="background:#2196F3"></div>82 minutos</div><div class="lmi"><div class="md" style="background:#FFB300"></div>Nivel avanzado</div><div class="lmi"><div class="md" style="background:#A5D6A7"></div>Regulación IA médica</div></div></div>
+<div class="lh">
+  <div class="lb">MODULO 4 - LECCION 4.6</div>
+  <div class="lt">Marco normativo completo:<br><span>AI Act, MDR, responsabilidad profesional y normativa SAS</span></div>
+  <div class="lm">
+    <div class="lmi"><div class="md" style="background:#2196F3"></div>15-20 minutos</div>
+    <div class="lmi"><div class="md" style="background:#FFB300"></div>Nivel avanzado</div>
+    <div class="lmi"><div class="md" style="background:#A5D6A7"></div>Regulacion IA medica</div>
+    <div class="lmi"><div class="md" style="background:#00B8D4"></div>Instruccion SAS 0028/26</div>
+  </div>
+</div>
 <div class="pbw"><div class="pbb"><div class="pbf" id="pbf46"></div></div><div class="pbl" id="pbl46">0%</div></div>
-<div class="snav"><button class="nb active" id="t1" onclick="go(1)">El panorama regulatorio</button><button class="nb" id="t2" onclick="go(2)">AI Act europeo</button><button class="nb" id="t3" onclick="go(3)">MDR y dispositivos médicos</button><button class="nb" id="t4" onclick="go(4)">Responsabilidad profesional</button><button class="nb" id="t5" onclick="go(5)">Test</button></div>
+<div class="snav">
+  <button class="nb active" id="t1" onclick="go(1)">El panorama regulatorio</button>
+  <button class="nb" id="t2" onclick="go(2)">AI Act europeo</button>
+  <button class="nb" id="t3" onclick="go(3)">MDR y dispositivos</button>
+  <button class="nb" id="t4" onclick="go(4)">Responsabilidad</button>
+  <button class="nb" id="t5" onclick="go(5)">Normativa SAS</button>
+  <button class="nb" id="t6" onclick="go(6)">Test</button>
+</div>
 
+<!-- S1 PANORAMA -->
 <div class="sec active" id="s1">
-<div class="card"><div class="ct">Objetivo de la lección</div><div class="cb">Navegar el complejo panorama regulatorio de la IA médica en Europa y España: el Reglamento Europeo de IA (AI Act), el Reglamento de Dispositivos Médicos (MDR/IVDR), la legislación española de salud digital, y las implicaciones para la responsabilidad profesional cuando la IA participa en decisiones clínicas.</div></div>
-<div class="simil"><div class="sl">⚖️ Analogía clínica</div>La regulación de la IA médica sigue exactamente la misma lógica que la regulación de los medicamentos: cuanto mayor el riesgo potencial, mayor la exigencia de evidencia y supervisión antes de la comercialización. Un suplemento vitamínico requiere menos ensayos que un antineoplásico. Un chatbot de información de salud requiere menos regulación que un sistema de IA que recomienda dosis de quimioterapia. La proporcionalidad entre riesgo y requisito regulatorio es el principio central del AI Act y el MDR.</div>
-<div class="card"><div class="ct">Los tres marcos regulatorios que se superponen en IA sanitaria europea</div></div>
-<div class="limit-item"><div class="li-icon">🇪🇺</div><div class="li-body"><div class="li-title">AI Act (Reglamento 2024/1689 UE) — En vigor desde agosto 2024</div><div class="li-desc">El primer marco regulatorio horizontal de IA del mundo. Clasifica todos los sistemas de IA según su riesgo. Los sistemas de IA en salud se clasifican como «alto riesgo» en su mayoría. Obligaciones para fabricantes Y usuarios (deployers). Período de transición hasta agosto 2026 para la mayoría de obligaciones.</div></div></div>
-<div class="limit-item"><div class="li-icon">🏥</div><div class="li-body"><div class="li-title">MDR/IVDR (Reglamentos 2017/745 y 2017/746) — Marco de dispositivos médicos</div><div class="li-desc">Si la IA toma decisiones diagnósticas o terapéuticas de forma autónoma, puede clasificarse como dispositivo médico software (SaMD — Software as a Medical Device) y quedar sujeta al MDR/IVDR. Requiere marcado CE como dispositivo médico. Las herramientas de apoyo a la decisión clínica que no deciden de forma autónoma generalmente no son SaMD.</div></div></div>
-<div class="limit-item"><div class="li-icon">🇪🇸</div><div class="li-body"><div class="li-title">Legislación española específica</div><div class="li-desc">Ley de Cohesión y Calidad del SNS (Ley 16/2003), Ley de Garantías y Uso Racional del Medicamento, Estrategia de Salud Digital del MSSSI 2021-2026, y las regulaciones autonómicas específicas (en Andalucía: Decreto-Ley de Salud Digital de la Junta). Todos aplican junto al AI Act.</div></div></div>
-<div class="nav-actions"><div></div><button class="btn-p" onclick="go(2)">AI Act →</button></div>
+<div class="card"><div class="ct">Objetivo de la leccion</div><div class="cb">Navegar el complejo panorama regulatorio de la IA medica en Europa y Espana: el Reglamento Europeo de IA (AI Act), el Reglamento de Dispositivos Medicos (MDR/IVDR), la legislacion espanola de salud digital, la normativa especifica del Servicio Andaluz de Salud, y las implicaciones para la responsabilidad profesional cuando la IA participa en decisiones clinicas.</div></div>
+<div class="simil"><div class="sl">Analogia clinica</div>La regulacion de la IA medica sigue exactamente la misma logica que la regulacion de los medicamentos: cuanto mayor el riesgo potencial, mayor la exigencia de evidencia y supervision antes de la comercializacion. Un suplemento vitaminico requiere menos ensayos que un antineoplasico. Un chatbot de informacion de salud requiere menos regulacion que un sistema de IA que recomienda dosis de quimioterapia. La proporcionalidad entre riesgo y requisito regulatorio es el principio central del AI Act y el MDR.</div>
+<div class="card"><div class="ct">Los cuatro marcos regulatorios que se superponen en IA sanitaria</div></div>
+<div class="limit-item"><div class="li-icon">EU</div><div class="li-body"><div class="li-title">AI Act (Reglamento 2024/1689 UE) - En vigor desde agosto 2024</div><div class="li-desc">El primer marco regulatorio horizontal de IA del mundo. Clasifica todos los sistemas de IA segun su riesgo. Los sistemas de IA en salud se clasifican como alto riesgo en su mayoria. Obligaciones para fabricantes Y usuarios (deployers). Periodo de transicion hasta agosto 2026 para la mayoria de obligaciones.</div></div></div>
+<div class="limit-item"><div class="li-icon">MDR</div><div class="li-body"><div class="li-title">MDR/IVDR (Reglamentos 2017/745 y 2017/746)</div><div class="li-desc">Si la IA toma decisiones diagnosticas o terapeuticas de forma autonoma, puede clasificarse como dispositivo medico software (SaMD). Requiere marcado CE como dispositivo medico. Las herramientas de apoyo a la decision clinica que no deciden de forma autonoma generalmente no son SaMD.</div></div></div>
+<div class="limit-item"><div class="li-icon">ES</div><div class="li-body"><div class="li-title">Legislacion espanola especifica</div><div class="li-desc">Ley 16/2003 de Cohesion y Calidad del SNS, Estrategia de Salud Digital del MSSSI 2021-2026, y el RD 311/2022 (Esquema Nacional de Seguridad), que establece requisitos de seguridad para todos los sistemas de informacion de la Administracion Publica, incluidos los sanitarios. Todos aplican junto al AI Act.</div></div></div>
+<div class="limit-item" style="border-bottom:none"><div class="li-icon">AN</div><div class="li-body"><div class="sas-badge">NUEVO - SAS/ANDALUCIA</div><div class="li-title">Instruccion 0028/26 DGTIC SAS (mayo 2026)</div><div class="li-desc">El SAS acaba de publicar su primera instruccion especifica sobre uso de IA generativa por profesionales. Establece que esta permitido, que esta prohibido, las obligaciones del personal y el regimen disciplinario en caso de incumplimiento. Es la norma de aplicacion directa e inmediata para cualquier profesional del SAS. Se complementa con la Estrategia Andaluza de IA 2030 y la Resolucion de la Junta de octubre 2020 sobre conducta en el uso de TIC.</div></div></div>
+<div class="nav-actions"><div></div><button class="btn-p" onclick="go(2)">AI Act</button></div>
 </div>
 
+<!-- S2 AI ACT -->
 <div class="sec" id="s2">
-<div class="card"><div class="ct">El AI Act europeo: clasificación de riesgo y obligaciones</div><div class="cb">El AI Act clasifica los sistemas de IA en cuatro niveles de riesgo, con obligaciones proporcionales. Para sanidad, casi todos los sistemas relevantes caen en la categoría de alto riesgo.</div></div>
-<div class="risk-card risk-alto" style="color:#EF9A9A">
-<div class="risk-titulo">🔴 RIESGO ALTO — La mayoría de IA clínica</div>
-<div class="risk-desc">Sistemas que influyen en decisiones sobre atención médica, diagnóstico, tratamiento o monitorización del paciente. Incluye: sistemas de apoyo al diagnóstico por imagen, predicción de riesgo clínico, gestión de listas de espera, triage automatizado, sistemas de prescripción asistida.<br><br>
-<strong>Obligaciones del fabricante:</strong> documentación técnica completa, sistema de gestión de calidad, registro de datos de entrenamiento, evaluación de conformidad, marcado CE de IA, registro en base de datos EU (EUDAMED para médicos).<br>
-<strong>Obligaciones del hospital (deployer):</strong> supervisión humana, no modificar sin nueva evaluación, mantener logs de uso, informar a pacientes cuando la IA influye en decisiones que les afectan, procedimiento de queja.</div>
+<div class="card"><div class="ct">El AI Act europeo: clasificacion de riesgo y obligaciones</div><div class="cb">El AI Act clasifica los sistemas de IA en cuatro niveles de riesgo, con obligaciones proporcionales. Para sanidad, casi todos los sistemas relevantes caen en la categoria de alto riesgo.</div></div>
+<div class="risk-card risk-alto" style="color:#EF9A9A"><div class="risk-titulo">RIESGO ALTO - La mayoria de IA clinica</div><div class="risk-desc">Sistemas que influyen en decisiones sobre atencion medica, diagnostico, tratamiento o monitorizacion del paciente. Incluye: sistemas de apoyo al diagnostico por imagen, prediccion de riesgo clinico, gestion de listas de espera, triage automatizado, sistemas de prescripcion asistida.<br><br><strong>Obligaciones del fabricante:</strong> documentacion tecnica completa, sistema de gestion de calidad, evaluacion de conformidad, marcado CE de IA, registro en EUDAMED.<br><strong>Obligaciones del hospital (deployer):</strong> supervision humana, no modificar sin nueva evaluacion, mantener logs de uso, informar a pacientes cuando la IA influye en decisiones que les afectan, procedimiento de queja.</div></div>
+<div class="risk-card risk-limitado" style="color:#FFD54F"><div class="risk-titulo">RIESGO LIMITADO - Herramientas de apoyo no decisorias</div><div class="risk-desc">Chatbots de informacion sanitaria, herramientas de transcripcion de notas, asistentes de documentacion clinica donde la decision final es siempre humana. Obligacion principal: transparencia - el usuario debe saber que esta interactuando con un sistema de IA.</div></div>
+<div class="risk-card risk-minimo" style="color:#A5D6A7"><div class="risk-titulo">RIESGO MINIMO - IA sin impacto en decisiones clinicas</div><div class="risk-desc">Filtros de spam, sistemas de recomendacion de formacion para el personal, herramientas de traduccion de documentos internos. Sin obligaciones especificas del AI Act mas alla de las buenas practicas.</div></div>
+<div class="tec-tabs">
+  <button class="tec-tab active" onclick="showTab(this,'aia-hosp')">Obligaciones del hospital</button>
+  <button class="tec-tab" onclick="showTab(this,'aia-pac')">Derechos del paciente</button>
+  <button class="tec-tab" onclick="showTab(this,'aia-timeline')">Calendario</button>
 </div>
-<div class="risk-card risk-limitado" style="color:#FFD54F">
-<div class="risk-titulo">🟡 RIESGO LIMITADO — Herramientas de apoyo no decisorias</div>
-<div class="risk-desc">Chatbots de información sanitaria, herramientas de transcripción de notas, asistentes de documentación clínica donde la decisión final es siempre humana. Obligación principal: transparencia — el usuario debe saber que está interactuando con un sistema de IA.</div>
-</div>
-<div class="risk-card risk-minimo" style="color:#A5D6A7">
-<div class="risk-titulo">🟢 RIESGO MÍNIMO — IA sin impacto en decisiones clínicas</div>
-<div class="risk-desc">Filtros de spam en el correo del hospital, sistemas de recomendación de formación para el personal, herramientas de traducción de documentos internos. Sin obligaciones específicas del AI Act más allá de las buenas prácticas.</div>
-</div>
-<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'aia-hosp')">🏥 Obligaciones del hospital</button><button class="tec-tab" onclick="showTab(this,'aia-pac')">👤 Derechos del paciente</button><button class="tec-tab" onclick="showTab(this,'aia-timeline')">📅 Calendario</button></div>
-<div class="tec-panel show" id="aia-hosp">
-<div class="flow-box">OBLIGACIONES DEL HOSPITAL COMO DEPLOYER DE IA DE ALTO RIESGO:
+<div class="tec-panel show" id="aia-hosp"><div class="flow-box">OBLIGACIONES DEL HOSPITAL COMO DEPLOYER DE IA DE ALTO RIESGO:
 
-1. SUPERVISIÓN HUMANA OBLIGATORIA:
-   → Designar personal competente responsable de supervisar el sistema
-   → Capacidad de desconectar o anular el sistema en cualquier momento
-   → Procedimiento documentado para cuando el output del sistema es
-     cuestionado por el profesional
+1. SUPERVISION HUMANA OBLIGATORIA:
+   - Designar personal competente responsable de supervisar el sistema
+   - Capacidad de desconectar o anular el sistema en cualquier momento
+   - Procedimiento documentado cuando el output es cuestionado
 
 2. REGISTRO DE USO:
-   → Mantener logs de las decisiones en las que el sistema participó
-   → Identificar qué versión del sistema se usó en cada decisión
-   → Retención de logs durante el período legalmente requerido
+   - Mantener logs de las decisiones en las que el sistema participo
+   - Identificar que version del sistema se uso en cada decision
+   - Retencion de logs durante el periodo legalmente requerido
 
-3. INFORMACIÓN AL PACIENTE:
-   → El paciente debe ser informado cuando un sistema de IA de alto riesgo
-     ha participado significativamente en la decisión que le afecta
-   → Derecho del paciente a solicitar que su caso sea revisado sin IA
-   → Procedimiento de reclamación si el paciente no está de acuerdo
+3. INFORMACION AL PACIENTE:
+   - El paciente debe ser informado cuando la IA influyo en su decision
+   - Derecho del paciente a solicitar revision sin IA
+   - Procedimiento de reclamacion disponible
 
-4. NO MODIFICAR SIN NUEVA EVALUACIÓN:
-   → Cualquier modificación significativa del sistema (nuevos datos de
-     entrenamiento, cambio de parámetros, nueva versión) requiere nueva
-     evaluación de conformidad antes de volver a desplegarlo
+4. NO MODIFICAR SIN NUEVA EVALUACION:
+   - Cualquier modificacion significativa requiere nueva evaluacion
+     de conformidad antes de volver a desplegarlo
 
 5. INCIDENTES GRAVES:
-   → Notificación a la autoridad competente de incidentes graves
-     relacionados con el sistema de IA
-   → En España: AEMPS o autoridad autonómica según el tipo de sistema</div>
-</div>
+   - Notificacion a la autoridad competente
+   - En Espana: AEMPS o autoridad autonomica segun el sistema</div></div>
 <div class="tec-panel" id="aia-pac">
-<div class="limit-item"><div class="li-icon">💬</div><div class="li-body"><div class="li-title">Derecho a la explicación</div><div class="li-desc">El paciente tiene derecho a recibir una explicación comprensible de por qué el sistema de IA llegó a ese output. No necesariamente los detalles técnicos del modelo, pero sí los factores principales que influyeron en la decisión. En sanidad, este derecho ya existía bajo RGPD (Art. 22) para decisiones automatizadas — el AI Act lo refuerza.</div></div></div>
-<div class="limit-item"><div class="li-icon">🙅</div><div class="li-body"><div class="li-title">Derecho a supervisión humana</div><div class="li-desc">El paciente puede solicitar que su caso sea revisado por un profesional humano sin participación de IA. El hospital debe tener un procedimiento para gestionar esta solicitud. En la práctica, en sanidad siempre hay supervisión humana — pero el procedimiento formal debe estar documentado.</div></div></div>
-<div class="limit-item"><div class="li-icon">📋</div><div class="li-body"><div class="li-title">Derecho a reclamar</div><div class="li-desc">El paciente puede reclamar si considera que una decisión tomada con apoyo de IA ha vulnerado sus derechos. El hospital debe tener un procedimiento de reclamación que incluya la revisión del rol del sistema de IA en la decisión objeto de la reclamación.</div></div></div>
+  <div class="limit-item"><div class="li-icon">?</div><div class="li-body"><div class="li-title">Derecho a la explicacion</div><div class="li-desc">El paciente tiene derecho a recibir una explicacion comprensible de por que el sistema de IA llego a ese output. En sanidad, este derecho ya existia bajo RGPD (Art. 22) para decisiones automatizadas. El AI Act lo refuerza.</div></div></div>
+  <div class="limit-item"><div class="li-icon">!</div><div class="li-body"><div class="li-title">Derecho a supervision humana</div><div class="li-desc">El paciente puede solicitar que su caso sea revisado por un profesional humano sin participacion de IA. El hospital debe tener un procedimiento formal documentado para gestionar esta solicitud.</div></div></div>
+  <div class="limit-item"><div class="li-icon">#</div><div class="li-body"><div class="li-title">Derecho a reclamar</div><div class="li-desc">El paciente puede reclamar si considera que una decision tomada con apoyo de IA ha vulnerado sus derechos. El hospital debe tener un procedimiento de reclamacion que incluya la revision del rol del sistema de IA.</div></div></div>
 </div>
-<div class="tec-panel" id="aia-timeline">
-<div class="flow-box">CALENDARIO DE APLICACIÓN DEL AI ACT:
+<div class="tec-panel" id="aia-timeline"><div class="flow-box">CALENDARIO DE APLICACION DEL AI ACT:
 
 Agosto 2024: Entrada en vigor del AI Act
-Febrero 2025: Prohibiciones absolutas aplicables (IA para scoring social,
-              biometría remota en espacios públicos, etc.)
-Agosto 2025: Reglas sobre IA de propósito general (GPT, Claude, Gemini)
-             aplicables — obligaciones de transparencia para los proveedores
-Agosto 2026: Aplicación completa para sistemas de alto riesgo
-             → Obligaciones del deployer (hospitales) completamente exigibles
-             → Registro obligatorio en base de datos EU de sistemas de alto riesgo
-             → Evaluaciones de conformidad exigibles a fabricantes
+Febrero 2025: Prohibiciones absolutas aplicables
+Agosto 2025: Reglas sobre IA de proposito general aplicables
+Agosto 2026: Aplicacion completa para sistemas de alto riesgo
+             - Obligaciones del deployer (hospitales) completamente exigibles
+             - Registro obligatorio en base de datos EU
 
-PARA HOSPITALES DEL SNS — Lo que importa ahora (2025):
-→ Hacer inventario de los sistemas de IA en uso o previstos
-→ Clasificarlos por nivel de riesgo del AI Act
-→ Identificar cuáles requieren evaluación de conformidad del proveedor
-→ Establecer procedimientos de supervisión humana y registro
-→ Designar responsable del cumplimiento del AI Act en el hospital
-→ No esperar a agosto 2026 — la preparación debe comenzar ahora</div>
-</div>
-<div class="nav-actions"><button class="btn-s" onclick="go(1)">← Panorama</button><button class="btn-p" onclick="go(3)">MDR →</button></div>
+PARA HOSPITALES DEL SAS - Lo que importa ahora:
+- Inventario de sistemas de IA en uso o previstos
+- Clasificarlos por nivel de riesgo del AI Act
+- Identificar cuales requieren evaluacion de conformidad
+- Establecer procedimientos de supervision humana y registro
+- Regularizar los sistemas ya en uso antes de sept 2026
+  (plazo transitorio Instruccion 0028/26: 4 meses desde mayo 2026)</div></div>
+<div class="nav-actions"><button class="btn-s" onclick="go(1)">Panorama</button><button class="btn-p" onclick="go(3)">MDR</button></div>
 </div>
 
+<!-- S3 MDR -->
 <div class="sec" id="s3">
-<div class="card"><div class="ct">MDR: cuándo la IA es un dispositivo médico</div><div class="cb">El Reglamento de Dispositivos Médicos (MDR 2017/745) aplica al software cuando su finalidad prevista incluye diagnóstico, prevención, monitorización, tratamiento o alivio de enfermedades. La clave es la «finalidad prevista» — un mismo software puede o no ser SaMD según cómo se describe y usa.</div></div>
-<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'mdr-cuando')">🔍 ¿Cuándo es SaMD?</button><button class="tec-tab" onclick="showTab(this,'mdr-clase')">📊 Clasificación</button><button class="tec-tab" onclick="showTab(this,'mdr-practica')">🏥 Práctica hospitalaria</button></div>
-<div class="tec-panel show" id="mdr-cuando">
-<div class="card"><div class="ct">El test SaMD — ¿Tu sistema de IA es un dispositivo médico software?</div></div>
-<div class="limit-item"><div class="li-icon">✅</div><div class="li-body"><div class="li-title">SÍ es SaMD (requiere marcado CE como dispositivo médico)</div><div class="li-desc">Un sistema de IA que interpreta imágenes radiológicas y proporciona un diagnóstico de probabilidad. Un sistema que calcula la dosis de radioterapia. Un algoritmo que clasifica automáticamente el riesgo del paciente y recomienda una acción clínica específica. Un ECG digital que emite el diagnóstico de ritmo. La clave: el software toma una decisión que sustituye o complementa directamente al juicio clínico del profesional.</div></div></div>
-<div class="limit-item"><div class="li-icon">❌</div><div class="li-body"><div class="li-title">NO es SaMD (sin marcado CE de dispositivo médico)</div><div class="li-desc">Un asistente de documentación que genera borradores de informes que el médico revisa y firma. Un sistema RAG que responde preguntas sobre protocolos citando las fuentes. Una herramienta de transcripción de voz. Un dashboard de KPIs de calidad. Un sistema de recordatorios de cita. La clave: el software apoya al profesional pero no toma la decisión clínica — el profesional mantiene la decisión final sin que el sistema la predetermine.</div></div></div>
-<div class="alerta aw"><div class="alt">⚠️ La frontera es sutil y deliberadamente ambigua</div>El mismo algoritmo puede o no ser SaMD según cómo se describe y cómo se usa. Un sistema que «sugiere diagnósticos» puede no ser SaMD; el mismo sistema que «diagnostica con un 94% de precisión» sí puede serlo. Consultar con un experto en regulación de dispositivos médicos antes de desplegar cualquier sistema que esté en la zona gris.</div>
+<div class="card"><div class="ct">MDR: cuando la IA es un dispositivo medico</div><div class="cb">El Reglamento de Dispositivos Medicos (MDR 2017/745) aplica al software cuando su finalidad prevista incluye diagnostico, prevencion, monitorizacion, tratamiento o alivio de enfermedades. La clave es la finalidad prevista - un mismo software puede o no ser SaMD segun como se describe y usa.</div></div>
+<div class="tec-tabs">
+  <button class="tec-tab active" onclick="showTab(this,'mdr-cuando')">Cuando es SaMD?</button>
+  <button class="tec-tab" onclick="showTab(this,'mdr-clase')">Clasificacion</button>
+  <button class="tec-tab" onclick="showTab(this,'mdr-practica')">Practica hospitalaria</button>
 </div>
-<div class="tec-panel" id="mdr-clase">
-<div class="flow-box">CLASIFICACIÓN DE RIESGO MDR PARA IA COMO DISPOSITIVO MÉDICO:
+<div class="tec-panel show" id="mdr-cuando">
+  <div class="card"><div class="ct">El test SaMD - Es tu sistema de IA un dispositivo medico?</div></div>
+  <div class="limit-item"><div class="li-icon">SI</div><div class="li-body"><div class="li-title">SI es SaMD (requiere marcado CE como dispositivo medico)</div><div class="li-desc">Un sistema de IA que interpreta imagenes radiologicas y proporciona un diagnostico de probabilidad. Un sistema que calcula la dosis de radioterapia. Un algoritmo que clasifica automaticamente el riesgo del paciente y recomienda una accion clinica especifica. La clave: el software toma una decision que sustituye o complementa directamente al juicio clinico del profesional.</div></div></div>
+  <div class="limit-item"><div class="li-icon">NO</div><div class="li-body"><div class="li-title">NO es SaMD (sin marcado CE de dispositivo medico)</div><div class="li-desc">Un asistente de documentacion que genera borradores que el medico revisa y firma. Un sistema RAG que responde preguntas sobre protocolos citando las fuentes. Una herramienta de transcripcion de voz. La clave: el software apoya al profesional pero no toma la decision clinica.</div></div></div>
+  <div class="alerta aw"><div class="alt">La frontera es sutil y deliberadamente ambigua</div>El mismo algoritmo puede o no ser SaMD segun como se describe y usa. La Instruccion 0028/26 del SAS excluye de su ambito precisamente los sistemas con marcado de producto sanitario conforme al Reglamento (UE) 2017/745 - a esos se les aplica el MDR, no la instruccion.</div>
+</div>
+<div class="tec-panel" id="mdr-clase"><div class="flow-box">CLASIFICACION DE RIESGO MDR PARA IA COMO DISPOSITIVO MEDICO:
 
-Clase I (bajo riesgo) — sin intervención del organismo notificado:
-→ Software para registro de datos de bienestar general
-→ Sistemas de información clínica sin influencia en decisiones
+Clase I (bajo riesgo):
+- Software para registro de datos de bienestar general
+- Sistemas de informacion clinica sin influencia en decisiones
 
 Clase IIa (riesgo moderado):
-→ Software de apoyo a la decisión clínica en patologías no críticas
-→ Sistemas de monitorización que no influyen en tiempo real
+- Software de apoyo a la decision clinica en patologias no criticas
+- Sistemas de monitorizacion que no influyen en tiempo real
 
-Clase IIb (riesgo elevado) — organismo notificado obligatorio:
-→ Software para diagnóstico de patologías potencialmente mortales
-→ Sistemas de monitorización con alarmas en tiempo real para condiciones críticas
-→ IA para planificación de tratamientos oncológicos
+Clase IIb (riesgo elevado) - organismo notificado obligatorio:
+- Software para diagnostico de patologias potencialmente mortales
+- IA para planificacion de tratamientos oncologicos
 
-Clase III (máximo riesgo) — evaluación clínica exhaustiva obligatoria:
-→ Software destinado a terapia o diagnóstico de condiciones críticas
-→ IA para guiar intervenciones quirúrgicas en tiempo real
-→ Sistemas de dosificación automatizada para medicamentos de alto riesgo
+Clase III (maximo riesgo) - evaluacion clinica exhaustiva:
+- IA para guiar intervenciones quirurgicas en tiempo real
+- Sistemas de dosificacion automatizada de medicamentos de alto riesgo
 
-EJEMPLOS REALES CLASIFICADOS:
-→ DeepMind/Moorfields Eye Hospital (retinopatía): Clase IIb
-→ Philips IntelliVue Guardian (deterioro paciente): Clase IIa
-→ Epic Sepsis Model: fue debatido — depende del uso declarado</div>
-</div>
+EJEMPLOS REALES:
+- DeepMind/Moorfields Eye Hospital (retinopatia): Clase IIb
+- Philips IntelliVue Guardian (deterioro paciente): Clase IIa
+- Epic Sepsis Model: debatido - depende del uso declarado</div></div>
 <div class="tec-panel" id="mdr-practica">
-<div class="limit-item"><div class="li-icon">🛒</div><div class="li-body"><div class="li-title">Cómo verificar que un sistema es MDR-conforme antes de comprarlo</div><div class="li-desc">Exigir al proveedor: (1) certificado de marcado CE como dispositivo médico con la clase correspondiente, (2) Declaración de Conformidad UE firmada por el fabricante, (3) número de registro en EUDAMED, (4) documentación técnica del sistema (no necesariamente completa, pero al menos el resumen). Si el proveedor no puede proporcionar estos documentos, el sistema no es MDR-conforme.</div></div></div>
-<div class="limit-item"><div class="li-icon">⚠️</div><div class="li-body"><div class="li-title">Responsabilidad del hospital al desplegar software no conforme</div><div class="li-desc">Si el hospital despliega un sistema de IA que debería tener marcado CE como dispositivo médico pero no lo tiene, el hospital asume la responsabilidad del fabricante — incluyendo la realización de la evaluación de conformidad. En la práctica, esto significa que el hospital no puede desplegar software clínico sin verificar previamente el cumplimiento MDR cuando es aplicable.</div></div></div>
+  <div class="limit-item"><div class="li-icon">OK</div><div class="li-body"><div class="li-title">Como verificar que un sistema es MDR-conforme antes de comprarlo</div><div class="li-desc">Exigir al proveedor: (1) certificado de marcado CE como dispositivo medico con la clase correspondiente, (2) Declaracion de Conformidad UE firmada por el fabricante, (3) numero de registro en EUDAMED, (4) documentacion tecnica del sistema. Si el proveedor no puede proporcionar estos documentos, el sistema no es MDR-conforme.</div></div></div>
+  <div class="limit-item"><div class="li-icon">!!</div><div class="li-body"><div class="li-title">Responsabilidad del hospital al desplegar software no conforme</div><div class="li-desc">Si el hospital despliega un sistema de IA que deberia tener marcado CE pero no lo tiene, asume la responsabilidad del fabricante. La Instruccion 0028/26 SAS refuerza este punto: cualquier herramienta de IA requiere autorizacion expresa y previa de la DGTIC antes de usarse en el ambito del SAS.</div></div></div>
 </div>
-<div class="nav-actions"><button class="btn-s" onclick="go(2)">← AI Act</button><button class="btn-p" onclick="go(4)">Responsabilidad →</button></div>
+<div class="nav-actions"><button class="btn-s" onclick="go(2)">AI Act</button><button class="btn-p" onclick="go(4)">Responsabilidad</button></div>
 </div>
 
+<!-- S4 RESPONSABILIDAD -->
 <div class="sec" id="s4">
-<div class="card"><div class="ct">Responsabilidad profesional cuando la IA participa en decisiones clínicas</div><div class="cb">La pregunta que más preocupa a los clínicos: «Si la IA me dice una cosa y yo la sigo, ¿soy responsable si el paciente sufre daño?». La respuesta corta es sí — siempre. La respuesta completa es más matizada.</div></div>
-<div class="tec-tabs"><button class="tec-tab active" onclick="showTab(this,'resp-principio')">⚖️ Principio general</button><button class="tec-tab" onclick="showTab(this,'resp-proteccion')">🛡️ Cómo protegerse</button><button class="tec-tab" onclick="showTab(this,'resp-prompt')">📝 Documentación</button></div>
+<div class="card"><div class="ct">Responsabilidad profesional cuando la IA participa en decisiones clinicas</div><div class="cb">La pregunta que mas preocupa a los clinicos: si la IA me dice una cosa y yo la sigo, soy responsable si el paciente sufre dano? La respuesta corta es si, siempre. La Instruccion 0028/26 del SAS lo deja explicito: la responsabilidad final de las decisiones clinicas y administrativas recae siempre en el profesional, no en la herramienta de IA.</div></div>
+<div class="tec-tabs">
+  <button class="tec-tab active" onclick="showTab(this,'resp-principio')">Principio general</button>
+  <button class="tec-tab" onclick="showTab(this,'resp-proteccion')">Como protegerse</button>
+  <button class="tec-tab" onclick="showTab(this,'resp-prompt')">Prompt de analisis</button>
+</div>
 <div class="tec-panel show" id="resp-principio">
-<div class="limit-item"><div class="li-icon">⚖️</div><div class="li-body"><div class="li-title">El médico siempre es responsable de la decisión clínica</div><div class="li-desc">La IA no puede ser responsable. No tiene capacidad jurídica. No tiene licencia profesional. La decisión clínica, y su consecuencia, recae siempre en el profesional que la tomó — tanto si usó IA como si no. «El algoritmo me lo dijo» no es una eximente — es agravante si el médico siguió ciegamente una recomendación sin aplicar su juicio clínico.</div></div></div>
-<div class="limit-item"><div class="li-icon">🏥</div><div class="li-body"><div class="li-title">Responsabilidad compartida con la institución</div><div class="li-desc">El hospital que despliega un sistema de IA defectuoso sin la validación adecuada o sin cumplir el AI Act/MDR tiene responsabilidad institucional concurrente. Si el sistema no estaba correctamente validado, documentado o supervisado, la responsabilidad se distribuye entre el profesional (por la decisión clínica) y la institución (por el despliegue inadecuado del sistema).</div></div></div>
-<div class="limit-item"><div class="li-icon">🏭</div><div class="li-body"><div class="li-title">Responsabilidad del fabricante del sistema de IA</div><div class="li-desc">Si el sistema de IA tenía defectos técnicos no documentados que contribuyeron al daño, el fabricante puede ser responsable bajo la Directiva de Responsabilidad por Productos Defectuosos (y su próxima revisión específica para IA). Esta cadena de responsabilidad se aplica igual que para un dispositivo médico defectuoso.</div></div></div>
+  <div class="limit-item"><div class="li-icon">LEY</div><div class="li-body"><div class="li-title">El profesional siempre es responsable de la decision clinica</div><div class="li-desc">La IA no puede ser responsable. No tiene capacidad juridica ni licencia profesional. La decision clinica recae siempre en el profesional que la tomo. "El algoritmo me lo dijo" no es eximente - es agravante si el profesional siguio ciegamente una recomendacion sin aplicar su juicio clinico. La Instruccion 0028/26 lo recoge expresamente: el uso de IA generativa no podra sustituir al juicio profesional ni eximirle de responsabilidad.</div></div></div>
+  <div class="limit-item"><div class="li-icon">HOS</div><div class="li-body"><div class="li-title">Responsabilidad compartida con la institucion</div><div class="li-desc">El hospital que despliega un sistema de IA sin la validacion adecuada o sin cumplir AI Act/MDR tiene responsabilidad institucional concurrente. La responsabilidad se distribuye entre el profesional (por la decision clinica) y la institucion (por el despliegue inadecuado del sistema).</div></div></div>
+  <div class="limit-item"><div class="li-icon">FAB</div><div class="li-body"><div class="li-title">Responsabilidad del fabricante del sistema de IA</div><div class="li-desc">Si el sistema tenia defectos tecnicos no documentados que contribuyeron al dano, el fabricante puede ser responsable bajo la Directiva de Responsabilidad por Productos Defectuosos. Esta cadena de responsabilidad se aplica igual que para un dispositivo medico defectuoso.</div></div></div>
 </div>
 <div class="tec-panel" id="resp-proteccion">
-<div class="limit-item"><div class="li-icon">✅</div><div class="li-body"><div class="li-title">Usar sistemas con marcado CE/conformidad AI Act cuando aplica</div><div class="li-desc">El médico que usa un sistema conforme con la regulación aplicable (marcado CE si es SaMD, conformidad AI Act si es alto riesgo) ha cumplido con su obligación de diligencia en la selección de la herramienta. Si el sistema falla por defectos del fabricante, la responsabilidad recae principalmente en el fabricante y en la institución que lo adquirió sin verificar el cumplimiento.</div></div></div>
-<div class="limit-item"><div class="li-icon">📝</div><div class="li-body"><div class="li-title">Documentar que la IA fue un apoyo, no la decisión</div><div class="li-desc">Registrar en la historia clínica que el sistema de IA fue consultado como herramienta de apoyo, que el profesional revisó el output y tomó la decisión clínica basada en su propio juicio clínico y en la información del sistema. «Revisada la herramienta de apoyo diagnóstico — de acuerdo/en desacuerdo por los siguientes motivos clínicos» es la forma correcta de documentar el uso de IA en la HC.</div></div></div>
-<div class="limit-item"><div class="li-icon">🧠</div><div class="li-body"><div class="li-title">Mantener el juicio clínico propio — nunca delegar la decisión</div><div class="li-desc">La atrofia del juicio clínico por dependencia excesiva de la IA es un riesgo real a medio plazo. El profesional que delega sistemáticamente sus decisiones en el sistema sin aplicar su propio juicio pierde gradualmente la capacidad de detectar cuando el sistema está equivocado. La IA debe fortalecer el juicio clínico, no reemplazarlo.</div></div></div>
+  <div class="limit-item"><div class="li-icon">OK</div><div class="li-body"><div class="li-title">Usar unicamente sistemas con autorizacion / conformidad aplicable</div><div class="li-desc">El profesional que usa un sistema conforme con la regulacion aplicable (marcado CE si es SaMD, conformidad AI Act, y autorizacion DGTIC en el SAS) ha cumplido con su obligacion de diligencia. El uso de plataformas no autorizadas por el SAS en funciones institucionales esta expresamente prohibido por la Instruccion 0028/26.</div></div></div>
+  <div class="limit-item"><div class="li-icon">DOC</div><div class="li-body"><div class="li-title">Documentar que la IA fue un apoyo, no la decision</div><div class="li-desc">Registrar en la historia clinica que el sistema fue consultado como herramienta de apoyo, que el profesional reviso el output y tomo la decision basada en su propio juicio. "Revisada la herramienta de apoyo - de acuerdo/en desacuerdo por los siguientes motivos" es la forma correcta de documentar el uso de IA en la HC.</div></div></div>
+  <div class="limit-item"><div class="li-icon">JUI</div><div class="li-body"><div class="li-title">Mantener el juicio propio - nunca delegar la decision</div><div class="li-desc">La atrofia del juicio clinico por dependencia excesiva de la IA es un riesgo real a medio plazo. El profesional que delega sistematicamente sus decisiones en el sistema pierde gradualmente la capacidad de detectar cuando el sistema esta equivocado.</div></div></div>
 </div>
 <div class="tec-panel" id="resp-prompt">
-<div class="prompt-box">
-<div class="prompt-label">Prompt: evaluar el cumplimiento normativo de un sistema de IA clínica</div>
-<div class="prompt-text">Soy [ROL] en un hospital del SNS español. Estamos evaluando la implantación del siguiente sistema de IA:
+  <div class="prompt-box">
+    <div class="prompt-label">Prompt: evaluar cumplimiento normativo de un sistema de IA clinica</div>
+    <div class="prompt-text">Soy [ROL] en un hospital del SNS espanol. Evaluamos la implantacion del siguiente sistema de IA:
 
-DESCRIPCIÓN DEL SISTEMA:
+DESCRIPCION:
 - Nombre y proveedor: [nombre]
-- Función: [qué hace exactamente]
-- Quién lo usa: [perfil de usuario final]
-- Cómo influye en las decisiones: [describe el proceso de uso]
-- Datos que procesa: [tipos de datos clínicos y administrativos]
+- Funcion: [que hace exactamente]
+- Quien lo usa: [perfil de usuario final]
+- Como influye en las decisiones: [describe el proceso]
+- Datos que procesa: [tipos de datos clinicos y administrativos]
 
-Necesito un análisis de cumplimiento normativo que cubra:
-1. CLASIFICACIÓN AI ACT: ¿qué nivel de riesgo tiene este sistema según el AI Act? ¿Qué obligaciones aplican al hospital como deployer?
-2. ¿ES SaMD? ¿Requiere marcado CE como dispositivo médico bajo MDR? ¿Qué clase MDR correspondería?
-3. PREGUNTAS AL PROVEEDOR: ¿qué documentación de cumplimiento debemos exigir antes de firmtar el contrato?
-4. OBLIGACIONES INTERNAS: ¿qué procedimientos debe tener el hospital (supervisión humana, registro de uso, información al paciente)?
-5. RIESGOS DE RESPONSABILIDAD: ¿qué situaciones podrían generar responsabilidad para el hospital o el profesional?
-6. RECOMENDACIÓN: ¿puede el hospital implantar este sistema con las garantías actuales o hay acciones previas necesarias?</div>
-<div class="prompt-why">Este es el análisis que el hospital debe hacer antes de cualquier contratación de IA clínica. El output no reemplaza la consulta jurídica especializada, pero proporciona el marco correcto de preguntas y identifica los riesgos más relevantes para la conversación con los asesores legales.</div>
+Analisis de cumplimiento normativo:
+1. CLASIFICACION AI ACT: nivel de riesgo y obligaciones del hospital como deployer
+2. ES SaMD?: requiere marcado CE bajo MDR? Que clase MDR?
+3. INSTRUCCION SAS 0028/26: encaja en usos autorizados? Requiere autorizacion DGTIC?
+4. PREGUNTAS AL PROVEEDOR: documentacion de cumplimiento a exigir
+5. OBLIGACIONES INTERNAS: supervision humana, registro, informacion al paciente
+6. RIESGOS DE RESPONSABILIDAD: situaciones de riesgo para hospital o profesional
+7. RECOMENDACION: puede implantarse con las garantias actuales o hay acciones previas?</div>
+    <div class="prompt-why">Este prompt tiene en cuenta tanto los marcos europeos como la normativa SAS vigente desde mayo 2026. No reemplaza la consulta juridica especializada, pero proporciona el marco correcto de preguntas para la toma de decision.</div>
+  </div>
 </div>
-</div>
-<div class="nav-actions"><button class="btn-s" onclick="go(3)">← MDR</button><button class="btn-p" onclick="go(5)">Test →</button></div>
+<div class="nav-actions"><button class="btn-s" onclick="go(3)">MDR</button><button class="btn-p" onclick="go(5)">Normativa SAS</button></div>
 </div>
 
+<!-- S5 NORMATIVA SAS - NUEVA -->
 <div class="sec" id="s5">
-<div class="qw active" id="q1w"><div class="qnum">Pregunta 1 de 3</div><div class="qtxt">Un hospital implanta un sistema de IA que analiza imágenes de TAC y proporciona automáticamente un informe con la probabilidad de nódulo pulmonar maligno. El sistema no tiene marcado CE como dispositivo médico. ¿Cuál es la situación legal del hospital?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,1)">El hospital puede usarlo libremente si el médico revisa cada informe antes de tomar una decisión</button><button class="qopt" onclick="ans(this,true,1)">El hospital está incumpliendo el MDR. Un sistema que proporciona probabilidad de malignidad de una lesión pulmonar es SaMD (clase IIb o III), requiere marcado CE como dispositivo médico. Al desplegarlo sin ese marcado, el hospital asume la responsabilidad del fabricante y está en situación de incumplimiento regulatorio que puede generar responsabilidad institucional</button><button class="qopt" onclick="ans(this,false,1)">Es legal porque la decisión final la toma el médico — la IA solo «sugiere»</button><button class="qopt" onclick="ans(this,false,1)">Es legal si el hospital ha firmado un DPA con el proveedor del sistema</button></div><div class="qfb" id="fb1"></div><div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente →</button></div></div>
-<div class="qw" id="q2w"><div class="qnum">Pregunta 2 de 3</div><div class="qtxt">Un médico usa un sistema de IA de apoyo al diagnóstico diferencial y, sin aplicar su propio juicio clínico, prescribe el tratamiento recomendado por el sistema. El paciente sufre un efecto adverso grave que el médico habría detectado con una exploración estándar. ¿Cuál es la situación de responsabilidad del médico?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,2)">El médico no tiene responsabilidad — el sistema de IA tomó la decisión y el proveedor es el único responsable</button><button class="qopt" onclick="ans(this,false,2)">El médico tiene responsabilidad parcial pero el sistema de IA asume la mayor parte</button><button class="qopt" onclick="ans(this,true,2)">El médico es plenamente responsable de la decisión clínica, independientemente de si usó IA. Seguir ciegamente la recomendación de un sistema de IA sin aplicar el juicio clínico propio — incluyendo la exploración básica que habría detectado el problema — constituye una desviación de la lex artis que puede configurar negligencia médica</button><button class="qopt" onclick="ans(this,false,2)">El hospital es el único responsable por haber implantado el sistema de IA</button></div><div class="qfb" id="fb2"></div><div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Última →</button></div></div>
-<div class="qw" id="q3w"><div class="qnum">Pregunta 3 de 3</div><div class="qtxt">Un asistente de IA para documentación clínica genera borradores de notas de evolución que el médico revisa, edita y firma. ¿Es este sistema SaMD bajo el MDR y qué nivel de riesgo tiene bajo el AI Act?</div><div class="qopts"><button class="qopt" onclick="ans(this,false,3)">SaMD Clase IIa — cualquier software que procesa datos de pacientes es dispositivo médico. Riesgo alto AI Act porque se usa en sanidad</button><button class="qopt" onclick="ans(this,true,3)">NO es SaMD — genera borradores de texto que el médico revisa y decide, no toma decisiones diagnósticas ni terapéuticas de forma autónoma. Bajo el AI Act, es riesgo limitado (el médico sabe que usa IA) o mínimo, no alto riesgo. La obligación principal es la transparencia: el médico sabe que el texto fue generado por IA y lo valida antes de firmarlo</button><button class="qopt" onclick="ans(this,false,3)">SaMD Clase I — cualquier software de documentación médica requiere marcado CE básico</button><button class="qopt" onclick="ans(this,false,3)">Riesgo prohibido — la IA no puede participar en documentación clínica sin aprobación expresa de la AEMPS</button></div><div class="qfb" id="fb3"></div><div class="qnx" id="nx3"><div style="background:rgba(33,150,243,.1);border:1px solid rgba(33,150,243,.28);border-radius:10px;padding:16px;margin-top:8px"><div style="font-size:13px;font-weight:500;color:#90CAF9;margin-bottom:6px">✓ Lección 4.6 completada</div><div style="font-size:12px;color:#B0BEC5;line-height:1.6">Dominas el marco normativo completo: AI Act con sus niveles de riesgo y obligaciones de deployer, MDR para determinar si la IA es SaMD, y el principio de responsabilidad profesional irrenunciable del médico. La lección 4.7 entra en <strong style="color:#fff">personalización sin código con fuentes verificadas: herramientas no-code para fine-tuning, integración de bases de conocimiento médico y control de calidad</strong>.</div></div><button class="complete-btn" id="completeBtn" onclick="markComplete()">✓ MARCAR LECCIÓN COMO COMPLETADA</button></div></div>
+<div class="sas-badge">INSTRUCCION 0028/26 - SAS - MAYO 2026</div>
+<div class="card"><div class="ct">La norma de aplicacion directa para profesionales del SAS</div><div class="cb">La Direccion General de Tecnologias de la Informacion y Comunicaciones del SAS publico el 20 de mayo de 2026 la Instruccion 0028/26. Es la primera norma especifica del SAS sobre IA generativa. Entra en vigor al dia siguiente de su publicacion en la intranet corporativa. Si trabajas en el SAS, esta instruccion ya es de obligado cumplimiento.</div></div>
+<div class="tec-tabs">
+  <button class="tec-tab active" onclick="showTab(this,'sas-usos')">Usos autorizados y prohibidos</button>
+  <button class="tec-tab" onclick="showTab(this,'sas-oblig')">Obligaciones del profesional</button>
+  <button class="tec-tab" onclick="showTab(this,'sas-disci')">Regimen disciplinario</button>
+  <button class="tec-tab" onclick="showTab(this,'sas-trans')">Periodo transitorio</button>
 </div>
-<div class="lf"><span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span> · Desarrollado por DoncelProject · doncel.project@gmail.com</div>
+<div class="tec-panel show" id="sas-usos">
+  <div class="uso-grid">
+    <div class="uso-card uso-ok">
+      <div class="uso-title uso-title-ok">USOS AUTORIZADOS</div>
+      <div class="uso-item">Elaborar borradores de textos institucionales, informes o presentaciones</div>
+      <div class="uso-item">Redaccion tecnica o documental sin datos confidenciales</div>
+      <div class="uso-item">Traduccion de textos no confidenciales o material divulgativo</div>
+      <div class="uso-item">Apoyo en gestion ordinaria de la Administracion sin implicaciones juridicas o clinicas</div>
+      <div class="uso-item">Generacion de contenido educativo o formativo, siempre con revision y validacion humana</div>
+      <div class="uso-item">Buscadores web con IA incorporada, sin autenticacion personal ni informacion sensible</div>
+    </div>
+    <div class="uso-card uso-no">
+      <div class="uso-title uso-title-no">USOS EXPRESAMENTE PROHIBIDOS</div>
+      <div class="uso-item">Introducir datos personales, clinicos o identificativos de pacientes en herramientas no autorizadas</div>
+      <div class="uso-item">Realizar diagnosticos clinicos automatizados o decisiones asistenciales</div>
+      <div class="uso-item">Generar contenido enganoso, discriminatorio, ofensivo o contrario a la Administracion</div>
+      <div class="uso-item">Usar cuentas personales o plataformas no autorizadas para funciones institucionales</div>
+      <div class="uso-item">Delegar decisiones o actuaciones publicas en IA sin validacion humana</div>
+      <div class="uso-item">Introducir documentacion oficial del SAS sin autorizacion expresa</div>
+    </div>
+  </div>
+  <div class="alerta aw"><div class="alt">Punto critico - autorizacion DGTIC</div>Cualquier herramienta, plataforma o servicio basado en IA generativa que se implante en el SAS requiere autorizacion expresa y previa de la Direccion General de Tecnologias de la Informacion y Comunicaciones (DGTIC). El catalogo de herramientas autorizadas se actualizara periodicamente y se difundira por canales corporativos oficiales.</div>
 </div>
+<div class="tec-panel" id="sas-oblig">
+  <div class="card"><div class="ct">Obligaciones del personal del SAS que use IA generativa</div></div>
+  <div class="ob-item"><div class="ob-letter">a</div><div class="ob-text"><strong>Verificar y validar siempre los resultados.</strong> El profesional es responsable de la correccion, adecuacion y conformidad normativa de todo output generado por IA que utilice en su trabajo.</div></div>
+  <div class="ob-item"><div class="ob-letter">b</div><div class="ob-text"><strong>No introducir informacion sensible o clasificada</strong> en ninguna herramienta sin autorizacion previa expresa.</div></div>
+  <div class="ob-item"><div class="ob-letter">c</div><div class="ob-text"><strong>Usar exclusivamente recursos tecnologicos</strong> facilitados por el SAS o la Junta de Andalucia para el desempeno de funciones institucionales.</div></div>
+  <div class="ob-item"><div class="ob-letter">d</div><div class="ob-text"><strong>Respetar las politicas internas</strong> de seguridad de la informacion, proteccion de datos y confidencialidad.</div></div>
+  <div class="ob-item"><div class="ob-letter">e</div><div class="ob-text"><strong>Formarse activamente</strong> sobre los riesgos, limitaciones e impacto etico y organizativo de estas tecnologias.</div></div>
+  <div class="ob-item"><div class="ob-letter">f</div><div class="ob-text"><strong>Realizar la formacion en IA generativa</strong> proporcionada por el SAS o por organismos publicos competentes como la <strong>Escuela Andaluza de Salud Publica (EASP)</strong>, el Instituto Andaluz de Administracion Publica, Universidades u otras entidades acreditadas.</div></div>
+  <div class="alerta ao" style="margin-top:12px"><div class="alt">Relevancia directa para este curso</div>La obligacion de formacion recogida en el apartado (f) de la Instruccion 0028/26 da respaldo normativo explicito a la formacion que estas realizando ahora. El SAS reconoce la EASP como organismo competente para proporcionar esta formacion.</div>
+</div>
+<div class="tec-panel" id="sas-disci">
+  <div class="card"><div class="ct">Proteccion de datos: prohibicion terminante</div><div class="cb">Queda terminantemente prohibido introducir datos personales o especialmente protegidos (salud, ideologia, orientacion sexual, etc.) en herramientas de IA generativa externas. Cualquier infraccion sera considerada una infraccion grave de la normativa de proteccion de datos, con las consecuencias disciplinarias o legales que procedan.</div></div>
+  <div class="card"><div class="ct">Normas de regimen disciplinario aplicables</div></div>
+  <div class="disc-pill"><strong>RD Legislativo 5/2015 - TRLEBEP</strong>Estatuto Basico del Empleado Publico. Define las faltas disciplinarias para todo el personal de la Administracion Publica.</div>
+  <div class="disc-pill"><strong>Ley 55/2003 - Estatuto Marco del personal estatutario</strong>Aplica especificamente al personal estatutario de los servicios de salud - la mayoria del personal sanitario del SAS.</div>
+  <div class="disc-pill"><strong>Ley 5/2023 - Funcion Publica de la Junta de Andalucia</strong>Marco disciplinario autonomico para el personal al servicio de la Junta de Andalucia.</div>
+  <div class="alerta ad" style="margin-top:12px"><div class="alt">Responsabilidades adicionales</div>Ademas del regimen disciplinario, pueden derivarse responsabilidades civiles, penales o administrativas conforme a la legislacion vigente, incluidas las previstas en materia de proteccion de datos por el Consejo de Transparencia y Proteccion de Datos de Andalucia.</div>
+</div>
+<div class="tec-panel" id="sas-trans">
+  <div class="card"><div class="ct">Regimen transitorio de regularizacion - 4 meses</div><div class="cb">Los centros, servicios o unidades que ya estuvieran usando herramientas de IA generativa en la fecha de entrada en vigor de la instruccion deben proceder a su regularizacion.</div></div>
+  <div class="trans-step"><div class="trans-num">1</div><div class="trans-body"><strong>Plazo: 4 meses desde la firma (20 mayo 2026)</strong> - hasta aproximadamente el 20 de septiembre de 2026. Los responsables de las unidades deben formalizar ante la DGTIC la solicitud de autorizacion.</div></div>
+  <div class="trans-step"><div class="trans-num">2</div><div class="trans-body"><strong>Durante el periodo transitorio:</strong> extremar la precaucion. En ningun momento puede haber tratamiento de datos personales o confidenciales con esas herramientas.</div></div>
+  <div class="trans-step"><div class="trans-num">3</div><div class="trans-body"><strong>Si vence el plazo sin autorizacion:</strong> las herramientas que no hayan obtenido la autorizacion expresa de la DGTIC deberan ser descontinuadas en el ambito del SAS.</div></div>
+  <div class="alerta aw" style="margin-top:10px"><div class="alt">Implicacion practica inmediata</div>Si en tu servicio o unidad se estan usando herramientas de IA generativa (ChatGPT, Copilot, Claude, Gemini u otras) para funciones institucionales, el responsable de la unidad debe iniciar el proceso de solicitud de autorizacion ante la DGTIC antes de que venza el plazo transitorio.</div>
+</div>
+<div class="nav-actions"><button class="btn-s" onclick="go(4)">Responsabilidad</button><button class="btn-p" onclick="go(6)">Test</button></div>
+</div>
+
+<!-- S6 TEST -->
+<div class="sec" id="s6">
+<div class="qw active" id="q1w">
+<div class="qnum">Pregunta 1 de 4</div>
+<div class="qtxt">Un hospital implanta un sistema de IA que analiza imagenes de TAC y proporciona automaticamente un informe con la probabilidad de nodulo pulmonar maligno. El sistema no tiene marcado CE como dispositivo medico. Cual es la situacion legal del hospital?</div>
+<div class="qopts">
+<button class="qopt" onclick="ans(this,false,1)">El hospital puede usarlo libremente si el medico revisa cada informe antes de tomar una decision</button>
+<button class="qopt" onclick="ans(this,true,1)">El hospital esta incumpliendo el MDR. Un sistema que proporciona probabilidad de malignidad de una lesion pulmonar es SaMD (clase IIb o III), requiere marcado CE como dispositivo medico. Al desplegarlo sin ese marcado, el hospital asume la responsabilidad del fabricante y esta en situacion de incumplimiento regulatorio</button>
+<button class="qopt" onclick="ans(this,false,1)">Es legal porque la decision final la toma el medico - la IA solo sugiere</button>
+<button class="qopt" onclick="ans(this,false,1)">Es legal si el hospital ha firmado un DPA con el proveedor del sistema</button>
+</div>
+<div class="qfb" id="fb1"></div>
+<div class="qnx" id="nx1"><button class="btn-p" onclick="showQ(2)">Siguiente</button></div>
+</div>
+
+<div class="qw" id="q2w">
+<div class="qnum">Pregunta 2 de 4</div>
+<div class="qtxt">Un medico usa un sistema de IA de apoyo al diagnostico diferencial y, sin aplicar su propio juicio clinico, prescribe el tratamiento recomendado por el sistema. El paciente sufre un efecto adverso grave que el medico habria detectado con una exploracion estandar. Cual es la situacion de responsabilidad del medico?</div>
+<div class="qopts">
+<button class="qopt" onclick="ans(this,false,2)">El medico no tiene responsabilidad - el sistema de IA tomo la decision y el proveedor es el unico responsable</button>
+<button class="qopt" onclick="ans(this,false,2)">El medico tiene responsabilidad parcial pero el sistema de IA asume la mayor parte</button>
+<button class="qopt" onclick="ans(this,true,2)">El medico es plenamente responsable de la decision clinica, independientemente de si uso IA. Seguir ciegamente la recomendacion de un sistema de IA sin aplicar el juicio clinico propio constituye una desviacion de la lex artis que puede configurar negligencia medica</button>
+<button class="qopt" onclick="ans(this,false,2)">El hospital es el unico responsable por haber implantado el sistema de IA</button>
+</div>
+<div class="qfb" id="fb2"></div>
+<div class="qnx" id="nx2"><button class="btn-p" onclick="showQ(3)">Siguiente</button></div>
+</div>
+
+<div class="qw" id="q3w">
+<div class="qnum">Pregunta 3 de 4</div>
+<div class="qtxt">Un asistente de IA para documentacion clinica genera borradores de notas de evolucion que el medico revisa, edita y firma. Es este sistema SaMD bajo el MDR y que nivel de riesgo tiene bajo el AI Act?</div>
+<div class="qopts">
+<button class="qopt" onclick="ans(this,false,3)">SaMD Clase IIa - cualquier software que procesa datos de pacientes es dispositivo medico. Riesgo alto AI Act porque se usa en sanidad</button>
+<button class="qopt" onclick="ans(this,true,3)">NO es SaMD - genera borradores de texto que el medico revisa y decide, no toma decisiones diagnosticas ni terapeuticas de forma autonoma. Bajo el AI Act, es riesgo limitado o minimo. La obligacion principal es la transparencia: el medico sabe que el texto fue generado por IA y lo valida antes de firmarlo</button>
+<button class="qopt" onclick="ans(this,false,3)">SaMD Clase I - cualquier software de documentacion medica requiere marcado CE basico</button>
+<button class="qopt" onclick="ans(this,false,3)">Riesgo prohibido - la IA no puede participar en documentacion clinica sin aprobacion expresa de la AEMPS</button>
+</div>
+<div class="qfb" id="fb3"></div>
+<div class="qnx" id="nx3"><button class="btn-p" onclick="showQ(4)">Ultima</button></div>
+</div>
+
+<div class="qw" id="q4w">
+<div class="qnum">Pregunta 4 de 4</div>
+<div class="qtxt">Una enfermera del SAS usa ChatGPT con su cuenta personal para redactar el informe de alta de un paciente, copiando los datos del historial. Segun la Instruccion 0028/26 del SAS, que infracciones esta cometiendo?</div>
+<div class="qopts">
+<button class="qopt" onclick="ans(this,false,4)">Ninguna, siempre que el informe final sea revisado y firmado por ella</button>
+<button class="qopt" onclick="ans(this,false,4)">Solo esta incumpliendo la politica de uso de TIC - es una falta leve</button>
+<button class="qopt" onclick="ans(this,true,4)">Esta cometiendo dos infracciones acumuladas: (1) usar una plataforma no autorizada por el SAS con cuenta personal para funciones institucionales, y (2) introducir datos personales y clinicos de un paciente en una herramienta de IA externa no autorizada. La segunda es constitutiva de infraccion grave de proteccion de datos (RGPD/LOPDGDD), con potencial regimen disciplinario y responsabilidad administrativa</button>
+<button class="qopt" onclick="ans(this,false,4)">La infraccion es del hospital por no haber facilitado una herramienta autorizada - la enfermera no tiene responsabilidad individual</button>
+</div>
+<div class="qfb" id="fb4"></div>
+<div class="qnx" id="nx4">
+<div style="background:rgba(33,150,243,.1);border:1px solid rgba(33,150,243,.28);border-radius:10px;padding:16px;margin-top:8px">
+<div style="font-size:13px;font-weight:500;color:#90CAF9;margin-bottom:6px">Leccion 4.6 completada</div>
+<div style="font-size:12px;color:#B0BEC5;line-height:1.6">Dominas el marco normativo completo: AI Act con sus niveles de riesgo y obligaciones de deployer, MDR para determinar si la IA es SaMD, el principio de responsabilidad profesional irrenunciable, y la Instruccion 0028/26 del SAS con sus usos autorizados, prohibidos, obligaciones del profesional y regimen disciplinario. La leccion 4.7 entra en <strong style="color:#fff">personalizacion sin codigo con fuentes verificadas: herramientas no-code para fine-tuning, integracion de bases de conocimiento medico y control de calidad</strong>.</div>
+</div>
+<button class="complete-btn" id="completeBtn" onclick="markComplete()">MARCAR LECCION COMO COMPLETADA</button>
+</div>
+</div>
+</div>
+
+<div class="lf"><span class="fl" onclick="window.open('mailto:doncel.project@gmail.com')">DoncelProject</span> - Desarrollado por DoncelProject - doncel.project@gmail.com</div>
+</div>
+
 <script>
 let done=new Set([0]);
-function upd(){const p=Math.round((done.size/5)*100);document.getElementById('pbf46').style.width=p+'%';document.getElementById('pbl46').textContent=p+'%';}
+function upd(){const p=Math.round((done.size/6)*100);document.getElementById('pbf46').style.width=p+'%';document.getElementById('pbl46').textContent=p+'%';}
 function go(n){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById('s'+n).classList.add('active');document.getElementById('t'+n).classList.add('active');done.add(n);upd();}
 function showTab(el,id){const sec=el.closest('.sec');sec.querySelectorAll('.tec-tab').forEach(t=>t.classList.remove('active'));sec.querySelectorAll('.tec-panel').forEach(p=>p.classList.remove('show'));el.classList.add('active');document.getElementById(id).classList.add('show');}
 const fbs={
-1:{ok:'✅ Correcto. Un sistema que proporciona probabilidad de malignidad de nódulos pulmonares es claramente SaMD bajo el MDR — influye directamente en decisiones diagnósticas sobre condiciones potencialmente mortales. Sin marcado CE, el hospital no puede desplegarlo legalmente. Al hacerlo, asume la responsabilidad del fabricante. El hecho de que el médico revise el informe no exime al hospital del incumplimiento MDR — la revisión médica es una obligación adicional, no un sustituto del marcado CE.',ko:'❌ La revisión médica es una obligación de supervisión adicional, no un sustituto del cumplimiento MDR. Un sistema que influye en el diagnóstico de cáncer de pulmón es SaMD independientemente de si hay revisión humana posterior. El DPA es relevante para RGPD pero no reemplaza el marcado CE del MDR. El MDR aplica a la función del sistema, no al proceso de uso.'},
-2:{ok:'✅ Correcto. El médico que delega la decisión clínica en la IA sin aplicar su propio juicio — incluyendo la exploración básica estándar — ha desviado de la lex artis. La IA es una herramienta de apoyo, no el decisor. El efecto adverso que una exploración estándar habría detectado es exactamente lo que el médico tiene el deber de realizar independientemente de lo que diga el sistema de IA. «El algoritmo me lo dijo» no es eximente — si acaso, puede ser agravante al mostrar que el médico sustituyó su juicio clínico por el del algoritmo.',ko:'❌ La IA no puede ser responsable jurídicamente — no tiene capacidad jurídica ni licencia profesional. La responsabilidad de la decisión clínica es siempre del médico que la tomó. El hospital puede tener responsabilidad concurrente si el sistema fue mal desplegado, pero eso no elimina la responsabilidad del médico por no aplicar su juicio clínico propio.'},
-3:{ok:'✅ Correcto. Un asistente de documentación que genera borradores que el médico revisa, edita y firma no es SaMD porque no toma decisiones diagnósticas ni terapéuticas de forma autónoma. El médico mantiene la decisión final plena — el software solo genera texto de apoyo. Bajo el AI Act, este tipo de herramienta es riesgo limitado o mínimo (no alto riesgo), con obligación principal de transparencia: el médico debe saber que el texto fue generado por IA. No se requiere marcado CE ni evaluación de conformidad de alto riesgo.',ko:'❌ No todo el software que procesa datos de pacientes es SaMD. La clave MDR es la finalidad prevista: si el software participa en decisiones diagnósticas, terapéuticas o de monitorización de forma autónoma, es SaMD. Si solo genera texto de apoyo que el profesional valida y decide, no lo es. Un asistente de documentación no diagnostica ni trata — genera borradores. La frontera es la autonomía de la decisión clínica del software.'}
+1:{ok:'Correcto. Un sistema que proporciona probabilidad de malignidad de nodulos pulmonares es claramente SaMD bajo el MDR - influye directamente en decisiones diagnosticas sobre condiciones potencialmente mortales. Sin marcado CE, el hospital no puede desplegarlo legalmente. La revision medica es una obligacion adicional, no un sustituto del marcado CE.',ko:'Incorrecto. La revision medica es una obligacion de supervision adicional, no un sustituto del cumplimiento MDR. Un sistema que influye en el diagnostico de cancer de pulmon es SaMD independientemente de si hay revision humana posterior. El DPA es relevante para RGPD pero no reemplaza el marcado CE del MDR.'},
+2:{ok:'Correcto. El medico que delega la decision clinica en la IA sin aplicar su propio juicio ha desviado de la lex artis. La IA es una herramienta de apoyo, no el decisor. La Instruccion 0028/26 del SAS lo recoge expresamente: el uso de IA generativa no exime al profesional de su responsabilidad sobre su actuacion sanitaria.',ko:'Incorrecto. La IA no puede ser responsable juridicamente - no tiene capacidad juridica ni licencia profesional. La responsabilidad de la decision clinica es siempre del profesional que la tomo. El hospital puede tener responsabilidad concurrente si el sistema fue mal desplegado, pero eso no elimina la responsabilidad individual del profesional.'},
+3:{ok:'Correcto. Un asistente de documentacion que genera borradores que el medico revisa, edita y firma no es SaMD porque no toma decisiones diagnosticas ni terapeuticas de forma autonoma. Bajo el AI Act, es riesgo limitado o minimo, con obligacion principal de transparencia. No se requiere marcado CE ni evaluacion de conformidad de alto riesgo.',ko:'Incorrecto. No todo el software que procesa datos de pacientes es SaMD. La clave MDR es la finalidad prevista: si el software participa en decisiones diagnosticas o terapeuticas de forma autonoma, es SaMD. Si solo genera texto de apoyo que el profesional valida y decide, no lo es.'},
+4:{ok:'Correcto. La Instruccion 0028/26 prohibe expresamente: (1) emplear cuentas personales o plataformas no autorizadas para funciones institucionales, y (2) introducir datos personales, clinicos o identificativos de pacientes en herramientas de IA externas no autorizadas. La segunda infraccion es especialmente grave: el RGPD y la LOPDGDD califican el tratamiento no autorizado de datos de salud como infraccion grave, con potencial responsabilidad disciplinaria, civil, penal o administrativa.',ko:'Incorrecto. La Instruccion 0028/26 establece responsabilidades individuales claras para el personal del SAS. La enfermera tiene la obligacion de verificar que la herramienta que usa esta autorizada y de no introducir datos de pacientes en plataformas externas. El hecho de que el hospital no haya facilitado una alternativa no exime de responsabilidad individual. Ademas, introducir datos de salud en una herramienta externa no autorizada es una infraccion grave de proteccion de datos, no una falta leve.'}
 };
 function ans(btn,ok,n){btn.closest('.qopts').querySelectorAll('.qopt').forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');const fb=document.getElementById('fb'+n);fb.innerHTML=ok?fbs[n].ok:fbs[n].ko;fb.className='qfb show '+(ok?'ok':'ko');document.getElementById('nx'+n).classList.add('show');}
 function showQ(n){document.getElementById('q'+(n-1)+'w').classList.remove('active');document.getElementById('q'+n+'w').classList.add('active');}
-function markComplete(){document.getElementById('completeBtn').disabled=true;document.getElementById('completeBtn').textContent='✓ Completada';window.parent.postMessage({type:'LESSON_COMPLETE'},'*');}
+function markComplete(){document.getElementById('completeBtn').disabled=true;document.getElementById('completeBtn').textContent='Completada';window.parent.postMessage({type:'LESSON_COMPLETE'},'*');}
 upd();
 </script>
